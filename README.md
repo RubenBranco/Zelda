@@ -6,3 +6,4 @@ Repositório com o código para o projeto do Grupo 09.
 
 + [Jira](https://jira.alunos.di.fc.ul.pt/browse/ZI/)
 + [Django Docs](https://docs.djangoproject.com/)
++ [Slack](pti-ptr.slack.com)
