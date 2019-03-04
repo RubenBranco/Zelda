@@ -1,13 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from users.models import Professor
+from users.models import Professor, Student
 from organizations.models import Department
 
 
 class SubjectSpecification(models.Model):
     ects = models.FloatField()
-    designation = models.CharField(max_length=100)
     code = models.CharField(max_length=10)
     programme = models.TextField()
     objectives = models.TextField()
@@ -39,7 +38,9 @@ class CourseSubject(models.Model):
         Subject,
         on_delete=models.CASCADE,
     )
+    designation = models.CharField(max_length=100)
     course_year = models.PositiveSmallIntegerField()
+    students = models.ManyToManyField(Student)
 
 
 class EntranceExam(models.Model):

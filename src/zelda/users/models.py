@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 
+from courses.models import Course
+
 
 class AppUser(User):
     MARITAL_STATUS = (
@@ -61,6 +63,10 @@ class Student(AppUser):
     statute = models.CharField(
         max_length=8,
         choices=STATUTE,
+    )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
     )
 
 
