@@ -4,6 +4,11 @@ from django.utils.translation import gettext_lazy as _
 from users.models import Professor
 
 
+class Faculty(models.Model):
+    code = models.CharField(max_length=10)
+    designation = models.CharField(max_length=200)
+
+
 class DepartmentCouncil(models.Model):
     president = models.ForeignKey(
         Professor,
@@ -30,4 +35,34 @@ class Department(models.Model):
         DepartmentCouncil,
         on_delete=models.CASCADE,
     )
+    faculty = models.ForeignKey(
+        Faculty,
+        on_delete=models.CASCADE,
+    )
 
+
+class Room(models.Model):
+    ROOM_TYPE = (
+        ("office", _("Office")),
+        ("class", _("Classroom")),
+        ("library", _("Library")),
+        ("secretarial", _("Secretarial Office")),
+        ("laboratory", _("Laboratory")),
+        ("auditorium", _("Auditorium")),
+        ("study", _("Studyroom")),
+    )
+
+    r_type = models.CharField(max_length=11)
+    capacity = models.PositiveSmallIntegerField()
+    building = models.PositiveSmallIntegerField()
+    floor = models.PositiveSmallIntegerField()
+    door = models.PositiveSmallIntegerField()
+    faculty = models.ForeignKey(
+        Faculty,
+        on_delete=models.CASCADE,
+    )
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.CASCADE,
+        null=True,
+    )
