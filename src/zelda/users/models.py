@@ -66,6 +66,11 @@ class Student(AppUser):
         'courses.Course',
         on_delete=models.CASCADE,
     )
+    faculty = models.ForeignKey(
+        'organizations.Faculty',
+        on_delete=models.CASCADE,
+    )
+
 
 
 class Administrator(AppUser):
