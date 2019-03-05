@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users',
     'courses',
     'organizations',
+    'timetable',
 ]
 
 MIDDLEWARE = [
