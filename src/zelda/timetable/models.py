@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from organizations.models import Room
+from users.models import Student
 
 
 class LessonSpecification(models.Model):
@@ -58,3 +59,14 @@ class Class(models.Model):
     code = models.CharField(max_length=10)
     designation = models.CharField(max_length=100)
     shifts = models.ManyToManyField(Shift)
+
+
+class Attendance(models.Model):
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+    )
+    lesson = models.ForeignKey(
+        Lesson,
+        on_delete=models.CASCADE,
+    )
