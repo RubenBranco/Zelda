@@ -73,7 +73,7 @@ class CourseSpecification(models.Model):
         choices=DEGREE_OPTIONS,
     )
     ects = models.FloatField()
-    total_semesters = models.SmallIntegerField()
+    total_semesters = models.PositiveSmallIntegerField()
     field = models.CharField(max_length=50)
     status = models.CharField(
         max_length=8,
@@ -98,7 +98,7 @@ class Course(models.Model):
         on_delete=models.CASCADE,
     )
     lective_year = models.DateField()
-    vacancies = models.IntegerField()
+    vacancies = models.PositiveIntegerField()
     coordinator = models.ForeignKey(
         Professor,
         on_delete=models.CASCADE,

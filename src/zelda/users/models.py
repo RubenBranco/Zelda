@@ -52,7 +52,7 @@ class Student(AppUser):
         ("parent", _("Parent")),
     )
 
-    number = models.IntegerField()
+    number = models.PositiveIntegerField()
     call = models.CharField(
         max_length=1,
         choices=CALL,
@@ -83,7 +83,7 @@ class Professor(AppUser):
         ("assocagr", _("Associate Professor with Agregação")),
     )
 
-    number = models.IntegerField()
+    number = models.PositiveIntegerField()
     rank = models.CharField(
         max_length=9,
         choices=RANKS,
