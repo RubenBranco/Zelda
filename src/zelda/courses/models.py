@@ -103,3 +103,23 @@ class Course(models.Model):
         Professor,
         on_delete=models.CASCADE,
     )
+
+
+class Grade(models.Model):
+    EECC_TYPES = (
+        ("a", _("A")),
+        ("b", _("B")),
+        ("c", _("C")),
+        ("d", _("D")),
+        ("e", _("E")),
+    )
+
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+    )
+    grade = models.FloatField()
+    eecc = models.CharField(
+        max_length=1,
+        choices=EECC_TYPES,
+    )
