@@ -118,6 +118,10 @@ class Grade(models.Model):
         Course,
         on_delete=models.CASCADE,
     )
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+    )
     grade = models.FloatField()
     eecc = models.CharField(
         max_length=1,
