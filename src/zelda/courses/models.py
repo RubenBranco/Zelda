@@ -106,6 +106,20 @@ class Course(models.Model):
 
 
 class Grade(models.Model):
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+    )
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+    )
+    grade = models.FloatField()
+    percentage = models.FloatField()
+    designation = models.CharField(max_length=100)
+
+
+class FinalGrade(models.Model):
     EECC_TYPES = (
         ("a", _("A")),
         ("b", _("B")),
@@ -122,8 +136,8 @@ class Grade(models.Model):
         Student,
         on_delete=models.CASCADE,
     )
-    grade = models.FloatField()
     eecc = models.CharField(
         max_length=1,
         choices=EECC_TYPES,
     )
+    grade = models.FloatField()
