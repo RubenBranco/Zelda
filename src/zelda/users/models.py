@@ -17,12 +17,12 @@ class AppUser(User):
         ("f", _("Female")),
     )
 
-    nif = models.IntegerField()
-    n_cc = models.IntegerField()
+    nif = models.PositiveIntegerField()
+    n_cc = models.PositiveIntegerField()
     dob = models.DateField()
     institucional_email = models.EmailField()
-    contact = models.IntegerField()
-    emergency_contact = models.IntegerField()
+    contact = models.PositiveIntegerField()
+    emergency_contact = models.PositiveIntegerField()
     professional_occupation = models.TextField(max_length=512)
     display_image = models.ImageField()
     country = CountryField()
@@ -74,7 +74,7 @@ class Student(AppUser):
 
 
 class Administrator(AppUser):
-    number = models.IntegerField()
+    number = models.PositiveIntegerField()
 
 
 class Professor(AppUser):
