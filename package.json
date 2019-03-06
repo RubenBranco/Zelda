@@ -1,0 +1,32 @@
+{
+  "name": "zelda",
+  "version": "1.0.0",
+  "description": "Information Management for education institutions.",
+  "main": "zelda.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RubenBranco/PTI-PTR-2019.git"
+  },
+  "author": "Grupo09",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/RubenBranco/PTI-PTR-2019/issues"
+  },
+  "homepage": "https://github.com/RubenBranco/PTI-PTR-2019#readme",
+  "dependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
