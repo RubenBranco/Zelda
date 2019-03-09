@@ -93,3 +93,10 @@ class Professor(AppUser):
         max_length=9,
         choices=RANKS,
     )
+
+
+ADMIN_MODELS = [
+    Student,
+    Administrator,
+    Professor,
+]

@@ -70,3 +70,12 @@ class Attendance(models.Model):
         Lesson,
         on_delete=models.CASCADE,
     )
+
+
+ADMIN_MODELS = [
+    LessonSpecification,
+    Shift,
+    Lesson,
+    Class,
+    Attendance,
+]

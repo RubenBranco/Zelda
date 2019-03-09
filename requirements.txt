@@ -2,3 +2,4 @@ django
 django-countries
 pillow
 djangorestframework
+django-jet

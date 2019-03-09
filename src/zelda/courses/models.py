@@ -141,3 +141,15 @@ class FinalGrade(models.Model):
         choices=EECC_TYPES,
     )
     grade = models.FloatField()
+
+
+ADMIN_MODELS = [
+    SubjectSpecification,
+    Subject,
+    CourseSubject,
+    EntranceExam,
+    CourseSpecification,
+    Course,
+    Grade,
+    FinalGrade,
+]

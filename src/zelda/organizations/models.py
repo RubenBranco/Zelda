@@ -66,3 +66,11 @@ class Room(models.Model):
         on_delete=models.CASCADE,
         null=True,
     )
+
+
+ADMIN_MODELS = [
+    Faculty,
+    DepartmentCouncil,
+    Department,
+    Room,
+]
