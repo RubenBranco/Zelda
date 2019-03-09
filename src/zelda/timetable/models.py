@@ -60,6 +60,9 @@ class Class(models.Model):
     designation = models.CharField(max_length=100)
     shifts = models.ManyToManyField(Shift)
 
+    class Meta:
+        verbose_name = _('class')
+        verbose_name_plural = _('classes')
 
 class Attendance(models.Model):
     student = models.ForeignKey(

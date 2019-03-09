@@ -71,10 +71,17 @@ class Student(AppUser):
         on_delete=models.CASCADE,
     )
 
+    class Meta:
+        verbose_name = _('student')
+        verbose_name_plural = _('students')
 
 
 class Administrator(AppUser):
     number = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name = _('administrator')
+        verbose_name_plural = _('administrators')
 
 
 class Professor(AppUser):
@@ -93,6 +100,10 @@ class Professor(AppUser):
         max_length=9,
         choices=RANKS,
     )
+
+    class Meta:
+        verbose_name = _('professor')
+        verbose_name_plural = _('professors')
 
 
 ADMIN_MODELS = [

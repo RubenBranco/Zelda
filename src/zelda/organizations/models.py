@@ -8,6 +8,10 @@ class Faculty(models.Model):
     code = models.CharField(max_length=10)
     designation = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name = _('faculty')
+        verbose_name_plural = _('faculties')
+
 
 class DepartmentCouncil(models.Model):
     president = models.ForeignKey(
