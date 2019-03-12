@@ -1,0 +1,31 @@
+version: "3.6"
+services:
+  zelda:
+    image: zelda:latest
+    networks:
+      zelda: {}
+    deploy:
+      replicas: ${DJANGO_REPLICAS}
+      restart_policy:
+        condition: always
+    depends_on:
+      - cache
+    ports:
+      - "8000:8000"
+    volumes:
+      - ${DATA_DIR}:/zelda/data:rw
+      - ${LOGS_DIR}:/zelda/logs:rw
+  cache:
+    image: memcached:latest
+    networks:
+      zelda: {}
+    deploy:
+      restart_policy:
+        condition: always
+      placements:
+        constraints: [node.role == manager]
+    ports:
+      - "11211:11211"
+networks:
+  zelda: {}
+

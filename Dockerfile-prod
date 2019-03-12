@@ -1,0 +1,20 @@
+FROM python:3.6
+
+WORKDIR /zelda
+
+RUN mkdir code/ pids/
+
+COPY . code/
+
+RUN pip3 install -r code/requirements.txt
+
+RUN rm requirements.txt
+
+VOLUME [ "/zelda/data", "/zelda/logs" ]
+
+ENV PROJECT_DIR=/zelda/code \
+    PIDS_DIR=/zelda/pids \
+    LOGS_DIR=/zelda/logs \
+    DATA_DIR=/zelda/data
+
+ENTRYPOINT [ "code/scripts/start-prod.sh" ]
