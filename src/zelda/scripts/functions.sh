@@ -14,7 +14,7 @@ function collect_static {
 }
 
 function start_dev {
-    manage runserver 0.0.0.0
+    manage runserver 0.0.0.0:8000
 }
 
 function start_prod {
