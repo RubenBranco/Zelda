@@ -1,6 +1,10 @@
-from django.shortcuts import render
+import json
+
+from django.shortcuts import render, reverse
+from django.http.response import HttpResponse
 from django.views.generic import TemplateView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class AbstractAppView(TemplateView):
@@ -19,10 +23,23 @@ class AbstractAppView(TemplateView):
         )
         return context
 
-@login_required(login_url='/login')
-class FrontpageView(AbstractAppView):
+
+class FrontpageView(AbstractAppView, LoginRequiredMixin):
     pass
 
 
 class LoginView(AbstractAppView):
-    pass
+    def post(self, request, *_, **__):
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, institutional_email=email, password=password)
+        if user is not None:
+            login(request, user)
+            response_data = dict(next=reverse('frontpage'))
+        else:
+            response_data = dict(error=True)
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json",
+        )

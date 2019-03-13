@@ -22,5 +22,5 @@ urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('login/', common_views.LoginView.as_view(), name='login'),
-    # path('', common_views.FrontpageView.as_view(), 'frontpage'),
+    path('', common_views.FrontpageView.as_view(), name='frontpage'),
 ]
