@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'jpd)f2m1(l94sxcn$u!3vbd7z9+km&y6+*3avd-htrovq!_9$%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "no").lower() not in {"0", "no", "false", "n", "f", ""}
 
 ALLOWED_HOSTS = []
 
@@ -125,6 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.getenv("STATIC_DIR")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'deps', 'static'),

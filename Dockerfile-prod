@@ -2,7 +2,7 @@ FROM python:3.6
 
 WORKDIR /zelda
 
-RUN mkdir code/ pids/
+RUN mkdir code/ pids/ static/
 
 COPY . code/
 
@@ -15,6 +15,8 @@ VOLUME [ "/zelda/data", "/zelda/logs" ]
 ENV PROJECT_DIR=/zelda/code \
     PIDS_DIR=/zelda/pids \
     LOGS_DIR=/zelda/logs \
-    DATA_DIR=/zelda/data
+    DATA_DIR=/zelda/data \
+    STATIC_DIR=/zelda/static \
+    DEBUG=no
 
 ENTRYPOINT [ "code/scripts/start-prod.sh" ]

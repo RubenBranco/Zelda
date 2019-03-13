@@ -2,6 +2,7 @@ FROM python:3.6
 
 WORKDIR /zelda
 
+RUN mkdir static/
 COPY requirements.txt requirements.txt
 
 RUN pip3 install -r requirements.txt
@@ -10,6 +11,8 @@ RUN rm requirements.txt
 
 VOLUME [ "/zelda/code" ]
 
-ENV PROJECT_DIR=/zelda/code
+ENV PROJECT_DIR=/zelda/code \
+    STATIC_DIR=/zelda/static \
+    DEBUG=yes
 
 ENTRYPOINT [ "code/scripts/start-dev.sh" ]
