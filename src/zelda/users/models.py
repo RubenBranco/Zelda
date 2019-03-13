@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 
 
-class AppUser(User):
+class AppUser(AbstractUser):
     MARITAL_STATUS = (
         ("single", _("Single")),
         ("married", _("Married")),
@@ -17,10 +17,16 @@ class AppUser(User):
         ("f", _("Female")),
     )
 
+    USER_TYPE_OPTIONS = ((
+        ("Student", _("Student")),
+        ("Professor", _("Professor")),
+        ("Administrator", _("Administrator")),
+    ))
+
     nif = models.PositiveIntegerField()
     n_cc = models.PositiveIntegerField()
     dob = models.DateField()
-    institucional_email = models.EmailField()
+    institutional_email = models.EmailField()
     contact = models.PositiveIntegerField()
     emergency_contact = models.PositiveIntegerField()
     professional_occupation = models.TextField(max_length=512)
@@ -34,9 +40,10 @@ class AppUser(User):
         max_length=1,
         choices=GENDER,
     )
+    user_type = models.CharField(max_length=13, choices=USER_TYPE_OPTIONS)
 
 
-class Student(AppUser):
+class Student(models.Model):
     CALL = (
         ("1", _("1st Call")),
         ("2", _("2nd Call")),
@@ -52,6 +59,10 @@ class Student(AppUser):
         ("parent", _("Parent")),
     )
 
+    app_user = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
+    )
     number = models.PositiveIntegerField()
     call = models.CharField(
         max_length=1,
@@ -76,7 +87,11 @@ class Student(AppUser):
         verbose_name_plural = _('students')
 
 
-class Administrator(AppUser):
+class Administrator(models.Model):
+    app_user = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
+    )
     number = models.PositiveIntegerField()
 
     class Meta:
@@ -84,7 +99,7 @@ class Administrator(AppUser):
         verbose_name_plural = _('administrators')
 
 
-class Professor(AppUser):
+class Professor(models.Model):
     RANKS = (
         ("assist", _("Assistant Professor")),
         ("assistinv", _("Invited Assistant Professor")),
@@ -95,6 +110,10 @@ class Professor(AppUser):
         ("assocagr", _("Associate Professor with Agregação")),
     )
 
+    app_user = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
+    )
     number = models.PositiveIntegerField()
     rank = models.CharField(
         max_length=9,

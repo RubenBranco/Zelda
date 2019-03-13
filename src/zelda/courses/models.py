@@ -92,6 +92,7 @@ class CourseSpecification(models.Model):
     )
     course_programme = models.ManyToManyField(CourseSubject)
 
+
 class Course(models.Model):
     specification = models.ForeignKey(
         CourseSpecification,

@@ -131,3 +131,8 @@ STATIC_ROOT = os.getenv("STATIC_DIR")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'deps', 'static'),
 ]
+
+# Accounts
+
+AUTH_USER_MODEL = "users.AppUser"
+LOGIN_URL = '/login/'
