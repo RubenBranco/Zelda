@@ -1,4 +1,6 @@
 const path = require('path');
+const glob = require('glob');
+
 
 const baseSrcPath = path.resolve(
     'src',
@@ -14,20 +16,9 @@ const baseStaticPath = path.resolve(
     'static',
 );
 
-
 module.exports = {
     mode: 'production',
-    entry: {
-        // frontpage: [
-        //     baseJs,
-        //     path.resolve(
-        //         baseSrcPath,
-        //         'Pages',
-        //         'frontpage.js',
-        //     )
-        // ],
-        login: path.resolve(baseSrcPath, 'Pages', 'login.jsx'),
-    },
+    entry: glob.sync(path.resolve(baseSrcPath, "Pages", "*.jsx")),
     output: {
         filename: '[name].js',
         path: path.resolve(
