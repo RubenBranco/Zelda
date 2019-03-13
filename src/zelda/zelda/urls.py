@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from common import views as common_views
 
 urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
+    path('login/', common_views.LoginView.as_view(), name='login'),
+    # path('', common_views.FrontpageView.as_view(), 'frontpage'),
 ]

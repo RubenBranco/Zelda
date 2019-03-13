@@ -1,35 +1,32 @@
 const path = require('path');
 
 const baseSrcPath = path.resolve(
-    __dirname,
     'src',
+    'zelda',
     'deps',
     'src',
 );
 
 const baseStaticPath = path.resolve(
-    __dirname,
     'src',
+    'zelda',
     'deps',
     'static',
 );
 
-const baseJs = path.resolve(
-    baseSrcPath,
-    'common',
-    'base.js',
-);
 
 module.exports = {
+    mode: 'production',
     entry: {
-        frontpage: [
-            baseJs,
-            path.resolve(
-                baseSrcPath,
-                'common',
-                'frontpage.js',
-            )
-        ],
+        // frontpage: [
+        //     baseJs,
+        //     path.resolve(
+        //         baseSrcPath,
+        //         'Pages',
+        //         'frontpage.js',
+        //     )
+        // ],
+        login: path.resolve(baseSrcPath, 'Pages', 'login.jsx'),
     },
     output: {
         filename: '[name].js',
@@ -39,12 +36,13 @@ module.exports = {
         ),
     },
     module: {
-        rules: {
+        rules: [{
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
             use: {
                 loader: 'babel-loader',
             }
-        },
+        }],
     },
+    watch: true
 }

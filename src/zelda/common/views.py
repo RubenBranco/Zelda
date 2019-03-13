@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 
 
 class AbstractAppView(TemplateView):
@@ -18,6 +19,10 @@ class AbstractAppView(TemplateView):
         )
         return context
 
-
+@login_required(login_url='/login')
 class FrontpageView(AbstractAppView):
+    pass
+
+
+class LoginView(AbstractAppView):
     pass
