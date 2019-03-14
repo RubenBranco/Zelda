@@ -5,6 +5,8 @@
 > This is a technical report describing the infrastructure behind the project.
 >
 > First Draft: Ruben Branco, 07/03/2019
+> 
+> Modified: Ruben Branco, 14/03/2019
 
 ## Introduction
 
@@ -48,23 +50,20 @@ This is a rich mans problem, as it would require a lot of users to saturate a da
 
 ## 2. User Interface
 
-The idea for the UI is for it to be as fast, coherent and seamless as possible. Since the framework chosen was ReactJS, the goal is to build it as an SPA (Single Page Application).
+The idea for the UI is for it to be as fast, coherent and seamless as possible. Since the framework chosen was ReactJS, the goal is to build it as a MPA(Multi-Page Application), however minimizing the refresh times.
 
-Let's look inside the inner workings of one of the ways to construct an SPA using ReactJS, which is what we will follow, through the directory structure for the UI Javascript (or JSX in this case).
+Let's look inside the inner workings of one of the ways to construct an MPA using ReactJS, which is what we will follow, through the directory structure for the UI Javascript (or JSX in this case).
 
 ```
 src
-├───components
-├───pages
-└───routers
+├───Components
+├───Pages
 ```
 
 Components is where the javascript code for the parts that compose a page/view are stored, each component has a state and can be reused in other pages.
 Components will be classes that extend React.Component. Components can use other components, for example, a navbar, which has a state because the links in the navbar change according to the view you are on and even to the type of user that you are. That navbar is also composed of other components, such as buttons, which also have a state because they can encode different functions/redirect to different views!
 
 Pages are essentially views on the client side, which themselves are also components. Pages are composed of many components, defining a global state for the page, which is why they are conceptually different than the components that compose the page.
-
-Routers are, like the name suggests, components that guide the UI by routing requests. For example, let's imagine we are in the frontpage and the user wants to check their grades. In a single page application, the user will click the button to check his/her grades and the page must change, it will request information from the server and then the components that should be rendered should be components that deal with grade information. That's exactly what a router does, it says "For this button/link/etc, if the user clicks it, component Y (or should we say page Y) will be rendered". This way, the user will never actually witness a page reload, because the UI is constantly changing state and requesting information from the server to render the content that the user is requesting.
 
 If the user accesses the website from a context (for example, by going directly to the url zelda-edu.me/grades/pti-ptr), it is unnecessary to request information for the grades through the REST API as the props will be injected server side, reducing time to interactive on the client.
 
