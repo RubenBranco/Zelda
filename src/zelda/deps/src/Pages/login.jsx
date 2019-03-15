@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import LoginForm from "../Components/LoginForm.jsx";
 // import LanguageSwitch from "../Components/LanguageSwitch";
-import Container from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 class Login extends React.Component{
 
@@ -15,12 +17,17 @@ class Login extends React.Component{
     render() {
 
         return (
-            <div>
-                <Container>
+            <Jumbotron fluid>
+            <Row>
+                <Col xs={5} md={4}></Col>
+                <Col xs={5} md={4}>
                     <LoginForm  url={window.url} />
                     {/* <LanguageSwitch /> */}
-                </Container>
-            </div>
+                </Col>
+                <Col xs={5} md={4}></Col>
+                
+            </Row>
+            </Jumbotron>
         )
 
 
