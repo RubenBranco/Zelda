@@ -76,4 +76,4 @@ class ImportEntitiesView(TemplateView):
             request.FILES.get('file'),
             globals()[model.capitalize()],
         )
-        return redirect('admin/')
+        return redirect('admin:index')
