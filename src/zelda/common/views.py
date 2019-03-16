@@ -6,6 +6,10 @@ from django.views.generic import TemplateView, View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from courses.models import Course, Subject
+from users.models import Student
+from .admin import import_csv
+
 
 class AbstractAppView(TemplateView):
     def __init_subclass__(cls, **kwargs):
@@ -68,4 +72,8 @@ class ImportEntitiesView(TemplateView):
         )
 
     def post(self, request, model):
-        pass
+        import_csv(
+            request.FILES.get('file'),
+            globals()[model.capitalize()],
+        )
+        return redirect('admin/')
