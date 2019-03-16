@@ -38,5 +38,6 @@ urlpatterns = [
         name='javascript-catalog'
     ),
     path('login/', common_views.LoginView.as_view(), name='login'),
+    path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('', common_views.FrontpageView.as_view(), name='frontpage'),
 ]
