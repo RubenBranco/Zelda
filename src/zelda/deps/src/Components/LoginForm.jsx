@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
             <Form>
                 <Form.Group >
                   <Form.Label>Email: </Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" placeholder={gettext("Enter your email")} />
                 </Form.Group>
 
                 <Form.Group >
@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
                 </Form.Group>
 
                 <Button variant="primary" type="button">
-                  Submit
+                  { gettext("Login") }
                 </Button>
           </Form>
         )

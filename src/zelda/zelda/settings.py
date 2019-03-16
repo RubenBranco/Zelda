@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'organizations',
     'timetable',
     'common',
+    'zelda',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,14 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = "users.AppUser"
 LOGIN_URL = '/login/'
+
+# i18n
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, "zelda", "locale")]
+
+LANGUAGE_CODE = 'pt-pt'
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('pt', 'Português'),
+)

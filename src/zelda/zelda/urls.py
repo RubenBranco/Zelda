@@ -16,11 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from common import views as common_views
+from django.views.i18n import JavaScriptCatalog
+from django.views.decorators.http import last_modified
+from django.utils import timezone
+
+
+js_i18n_mod_date = timezone.now()
 
 urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('jsi18n/', last_modified(
+        lambda req, **kw: js_i18n_mod_date,
+        )(JavaScriptCatalog.as_view(packages=['zelda'], domain='djangojs')),
+        name='javascript-catalog'
+    ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('', common_views.FrontpageView.as_view(), name='frontpage'),
 ]
