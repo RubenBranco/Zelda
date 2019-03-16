@@ -45,7 +45,7 @@ class Shift(models.Model):
         LessonSpecification,
         on_delete=models.CASCADE,
     )
-    professor = models.OneToMany(
+    professor = models.ForeignKey(
         Professor,
         on_delete=models.CASCADE,
     )

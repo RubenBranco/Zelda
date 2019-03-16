@@ -75,10 +75,7 @@ class Student(models.Model):
         max_length=8,
         choices=STATUTE,
     )
-    course = models.ForeignKey(
-        'courses.Course',
-        on_delete=models.CASCADE,
-    )
+    course = models.ManyToManyField('courses.Course')
     faculty = models.ForeignKey(
         'organizations.Faculty',
         on_delete=models.CASCADE,

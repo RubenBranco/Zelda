@@ -38,6 +38,7 @@ class Department(models.Model):
     council = models.ForeignKey(
         DepartmentCouncil,
         on_delete=models.CASCADE,
+        null=True,
     )
     faculty = models.ForeignKey(
         Faculty,

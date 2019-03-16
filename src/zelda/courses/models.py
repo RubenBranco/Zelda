@@ -103,6 +103,7 @@ class Course(models.Model):
     coordinator = models.ForeignKey(
         Professor,
         on_delete=models.CASCADE,
+        null=True,
     )
 
 
