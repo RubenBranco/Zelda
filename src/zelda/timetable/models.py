@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from organizations.models import Room
-from users.models import Student
+from users.models import Student, Professor
 
 
 class LessonSpecification(models.Model):
@@ -43,6 +43,10 @@ class Shift(models.Model):
     vacancies = models.PositiveSmallIntegerField()
     lesson_spec = models.ForeignKey(
         LessonSpecification,
+        on_delete=models.CASCADE,
+    )
+    professor = models.OneToMany(
+        Professor,
         on_delete=models.CASCADE,
     )
 

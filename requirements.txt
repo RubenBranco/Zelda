@@ -4,3 +4,5 @@ pillow
 djangorestframework
 django-jet
 gunicorn
+pandas
+numpy
