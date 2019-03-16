@@ -23,24 +23,26 @@ class AppUser(AbstractUser):
         ("Administrator", _("Administrator")),
     ))
 
-    nif = models.PositiveIntegerField()
-    n_cc = models.PositiveIntegerField()
-    dob = models.DateField()
-    institutional_email = models.EmailField()
-    contact = models.PositiveIntegerField()
-    emergency_contact = models.PositiveIntegerField()
-    professional_occupation = models.TextField(max_length=512)
-    display_image = models.ImageField()
-    country = CountryField()
+    nif = models.PositiveIntegerField(unique=True, null=True)
+    n_cc = models.PositiveIntegerField(unique=True, null=True)
+    dob = models.DateField(null=True)
+    institutional_email = models.EmailField(unique=True, null=True)
+    contact = models.PositiveIntegerField(null=True)
+    emergency_contact = models.PositiveIntegerField(null=True)
+    professional_occupation = models.TextField(max_length=512, null=True)
+    display_image = models.ImageField(null=True)
+    country = CountryField(null=True)
     marital_status = models.CharField(
         max_length=8,
         choices=MARITAL_STATUS,
+        null=True,
     )
     gender = models.CharField(
         max_length=1,
         choices=GENDER,
+        null=True,
     )
-    user_type = models.CharField(max_length=13, choices=USER_TYPE_OPTIONS)
+    user_type = models.CharField(max_length=13, choices=USER_TYPE_OPTIONS, null=True)
 
 
 class Student(models.Model):

@@ -43,3 +43,16 @@ class LoginView(AbstractAppView):
             json.dumps(response_data),
             content_type="application/json",
         )
+
+
+class ImportEntitiesView(TemplateView):
+    template_name = "zelda/admin/import.html"
+
+    def get(self, request, model):
+        return render(
+            request,
+            self.template_name,
+        )
+
+    def post(self, request, model):
+        pass

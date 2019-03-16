@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -148,3 +149,5 @@ LANGUAGES = (
     ('en', 'English'),
     ('pt', 'Português'),
 )
+
+JET_INDEX_DASHBOARD = "zelda.dashboard.ZeldaIndexDashboard"
