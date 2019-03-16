@@ -1,9 +1,9 @@
 import json
 
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, redirect
 from django.http.response import HttpResponse
-from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login
+from django.views.generic import TemplateView, View
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -43,3 +43,29 @@ class LoginView(AbstractAppView):
             json.dumps(response_data),
             content_type="application/json",
         )
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('login')
+
+    def post(self, request):
+        logout(request)
+        return HttpResponse(
+            json.dumps(dict(next=reverse('login'))),
+            content_type="application/json",
+        )
+
+
+class ImportEntitiesView(TemplateView):
+    template_name = "zelda/admin/import.html"
+
+    def get(self, request, model):
+        return render(
+            request,
+            self.template_name,
+        )
+
+    def post(self, request, model):
+        pass

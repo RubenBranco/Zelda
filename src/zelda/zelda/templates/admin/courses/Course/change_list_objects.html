@@ -1,0 +1,8 @@
+{% extends 'zelda/admin/change_list_objects.html' %}
+{% load i18n %}
+
+{% block extra-object-tools %}
+    <a href="{% url 'import_models' 'course' %}" class="addlink">
+        {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }} with csv{% endblocktrans %}
+    </a>
+{% endblock extra-object-tools %}

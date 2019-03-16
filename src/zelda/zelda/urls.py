@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from common import views as common_views
 from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.http import last_modified
 from django.utils import timezone
+from jet.dashboard import dashboard
+
+from common import views as common_views
+from users import views as user_views
 
 
 js_i18n_mod_date = timezone.now()
@@ -26,6 +29,7 @@ js_i18n_mod_date = timezone.now()
 urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
+    path('admin/import/<model>', common_views.ImportEntitiesView.as_view(), name='import_models'),
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('jsi18n/', last_modified(
@@ -34,5 +38,6 @@ urlpatterns = [
         name='javascript-catalog'
     ),
     path('login/', common_views.LoginView.as_view(), name='login'),
+    path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('', common_views.FrontpageView.as_view(), name='frontpage'),
 ]

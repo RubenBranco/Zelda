@@ -2,26 +2,35 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}{% endblock %}</title>
-        <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-            crossorigin="anonymous"
-        />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/zelda.css' %}" />
-        {% block headlinks %}{% endblock %}
-    </head>
-    <body>
-        <div id="main"></div>
-        {% block content %}{% endblock content %}
-        {% block footlinks %}
-            <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
-            {% block footjs %}{% endblock %}
-            <script src="{% static 'js/'|add:view_name|add:'.js' %}"></script>
-        {% endblock footlinks %}
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %}{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/zelda.css' %}"
+    />
+    {% block headlinks %}{% endblock %}
+  </head>
+  <body>
+    <div id="main"></div>
+    {% block content %}{% endblock content %} {% block footlinks %}
+    <script
+      type="text/javascript"
+      src="{% url 'javascript-catalog' %}"
+    ></script>
+    {% block footjs %}{% endblock %}
+    <script src="{% static 'js/'|add:view_name|add:'.js' %}"></script>
+    {% endblock footlinks %}
+  </body>
 </html>

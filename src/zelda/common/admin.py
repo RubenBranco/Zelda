@@ -1,9 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
+import pandas as pd
+import numpy as np
+
 from organizations.models import Faculty, Department
 from users.models import Student, AppUser
 from courses.models import Course, CourseSpecification, SubjectSpecification
-import pandas as pd
-import numpy as np
+
+
+admin.site.unregister(Group)
 
 
 # Register your models here.
