@@ -6,3 +6,6 @@ db.sqlite3
 .python-version
 node_modules/
 package-lock.json
+src/zelda/deps/static/admin/
+src/zelda/deps/static/jet/
+src/zelda/deps/static/range_filter/
