@@ -5,6 +5,7 @@ from django.http.response import HttpResponse
 from django.views.generic import TemplateView, View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http.request import QueryDict
 
 from courses.models import Course, Subject
 from users.models import Student
@@ -34,8 +35,13 @@ class FrontpageView(AbstractAppView, LoginRequiredMixin):
 
 class LoginView(AbstractAppView):
     def post(self, request, *_, **__):
-        email = request.POST['email']
-        password = request.POST['password']
+        if request.content_type == "application/json":
+            data = json.loads(request.body)
+        else:
+            data = QueryDict(request.body)
+
+        email = data['email']
+        password = data['password']
         user = authenticate(request, institutional_email=email, password=password)
         if user is not None:
             login(request, user)
