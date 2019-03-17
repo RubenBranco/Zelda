@@ -1,5 +1,9 @@
-{% extends 'base.html' %} {% block footjs %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block footjs %}
 <script>
-  var url = {% url 'login' %};
+    var backgroundImg = "{% static 'img/background.png' %}";
+    var url = "{% url 'login' %}";
 </script>
 {% endblock footjs %}
