@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-                <Image src="../../static/img/logo.png" id="img_form" />
+                <Image src={window.zeldaLogo} id="img_form" />
                 <Form.Group>
                     <Form.Label>Email: </Form.Label>
                     <Form.Control
