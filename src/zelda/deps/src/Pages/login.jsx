@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import LoginForm from "../Components/LoginForm.jsx";
-// import LanguageSwitch from "../Components/LanguageSwitch";
+/*import LanguageSwitch from "../Components/LanguageSwitch"; */
 import Image from "react-bootstrap/Image";
 
 class Login extends React.Component {
@@ -15,7 +15,7 @@ class Login extends React.Component {
       <div id="login">
         <div id="form">
           <LoginForm url={window.url} />
-          {/* <LanguageSwitch /> */}
+        {/* {<LanguageSwitch />}  */}
         </div>
         <div id="img">
           <Image src={window.backgroundImg} id="img_background" />
