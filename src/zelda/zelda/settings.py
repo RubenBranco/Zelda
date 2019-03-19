@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'timetable',
     'common',
     'zelda',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,11 @@ LANGUAGES = (
 )
 
 JET_INDEX_DASHBOARD = "zelda.dashboard.ZeldaIndexDashboard"
+
+# REST FRAMEWORK
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

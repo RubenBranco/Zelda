@@ -18,11 +18,14 @@ from django.urls import path, include
 from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.http import last_modified
 from django.utils import timezone
+from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
 from jet.dashboard import dashboard
 
 from common import views as common_views
 from users import views as user_views
 
+api = routers.DefaultRouter()
 
 js_i18n_mod_date = timezone.now()
 
@@ -39,5 +42,8 @@ urlpatterns = [
     ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
+    path('api/', include(api.urls)),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-docs/', include_docs_urls(title="Zelda REST API")),
     path('', common_views.FrontpageView.as_view(), name='frontpage'),
 ]
