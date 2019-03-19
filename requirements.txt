@@ -8,3 +8,5 @@ django-jet
 gunicorn
 pandas
 numpy
+coreapi
+pyyaml

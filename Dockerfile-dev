@@ -5,12 +5,12 @@ WORKDIR /zelda
 RUN mkdir static/
 COPY requirements.txt requirements.txt
 
+RUN apt update
+RUN apt install gettext -y
+
 RUN pip3 install -r requirements.txt
 
 RUN rm requirements.txt
-
-RUN apt update
-RUN apt install gettext -y
 
 VOLUME [ "/zelda/code" ]
 

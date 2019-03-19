@@ -17,6 +17,11 @@ function start_dev {
     manage runserver 0.0.0.0:8000
 }
 
+function migrate {
+    manage makemigrations
+    manage migrate
+}
+
 function start_prod {
     gunicorn \
         --bind 0.0.0.0:8000 \
