@@ -49,7 +49,7 @@ class Shift(models.Model):
         Professor,
         on_delete=models.CASCADE,
     )
-
+    
 
 class Lesson(models.Model):
     date = models.DateField()

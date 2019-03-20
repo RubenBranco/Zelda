@@ -25,7 +25,12 @@ from jet.dashboard import dashboard
 from common import views as common_views
 from users import views as user_views
 
+
 api = routers.DefaultRouter()
+
+api.register("student/", user_views.StudentViewSet, base_name="student")
+api.register("attendances/",user_views.AttendanceViewSet, base_name="attendances")
+
 
 js_i18n_mod_date = timezone.now()
 
