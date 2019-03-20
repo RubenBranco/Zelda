@@ -1,34 +1,58 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>{% block title %}{% endblock %}</title>
     <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous"
     />
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/zelda.css' %}"
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/zelda.css' %}"
     />
     {% block headlinks %}{% endblock %}
   </head>
   <body>
+    {% csrf_token %}
     <div id="main"></div>
     {% block content %}{% endblock content %} {% block footlinks %}
     <script
-      type="text/javascript"
-      src="{% url 'javascript-catalog' %}"
+        type="text/javascript"
+        src="{% url 'javascript-catalog' %}"
     ></script>
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_language_info for LANGUAGE_CODE as current_language %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as other_languages %}
+
+    <script>
+        var changeLangUrl = "{% url 'set_language' %}";
+        var currentLanguage = {
+            'name': "{{ current_language.name_local }}",
+            'code': "{{ current_language.code }}",
+        };
+        var otherLanguages = [
+            {% for language in other_languages %}
+                {% if language.code != current_language.code %}
+                    {
+                        'name': "{{ language.name_local }}",
+                        'code': "{{ language.code }}",
+                    },
+                {% endif %}
+            {% endfor %}
+        ];
+    </script>
     {% block footjs %}{% endblock %}
     <script src="{% static 'js/'|add:view_name|add:'.js' %}"></script>
     {% endblock footlinks %}
