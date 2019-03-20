@@ -19,6 +19,7 @@ module.exports = {
     mode: 'production',
     entry: {
         login: path.resolve(baseSrcPath, "Pages", "login.jsx"),
+        frontpage: path.resolve(baseSrcPath, "Pages", "frontpage.jsx")
     },
     output: {
         filename: '[name].js',
