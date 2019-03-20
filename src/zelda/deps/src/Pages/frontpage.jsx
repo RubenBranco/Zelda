@@ -4,7 +4,7 @@ import LoginForm from "../Components/LoginForm.jsx";
 import LanguageSwitch from "../Components/LanguageSwitch.jsx";
 import Image from "react-bootstrap/Image";
 
-class Login extends React.Component {
+class FrontPage extends React.Component {
   constructor() {
     super();
     this.state;
@@ -13,11 +13,10 @@ class Login extends React.Component {
   render() {
     return (
       <div id="login">
-        <LanguageSwitch />
-        <div id="logos">
-          <Image src={window.zeldaLogo} id="img_form" />
-          <Image src={window.fculLogo} id="logo_uni" />
+        <div id="formLanguageSwitch">
+          <LanguageSwitch />
         </div>
+
         <div id="form">
           <LoginForm url={window.url} />
         </div>
@@ -29,5 +28,5 @@ class Login extends React.Component {
   }
 }
 
-ReactDOM.render(<Login />, document.getElementById("main"));
-export default Login;
+ReactDOM.render(<FrontPage />, document.getElementById("main"));
+export default FrontPage;
