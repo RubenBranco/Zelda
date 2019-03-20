@@ -1,5 +1,4 @@
 import React from "react";
-///simport Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 class LanguageSwitch extends React.Component {
@@ -9,42 +8,56 @@ class LanguageSwitch extends React.Component {
       language: "PT"
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick(event) {
-    if (this.state.language == "PT") {
-      this.setState({
-        language: "EN"
-      });
-    } else {
-      this.setState({
-        language: "PT"
-      });
-    }
-    console.log(this.state);
+  handleSubmit(event) {
+    event.preventDefault();
+    if (this.state.language == "PT") this.setState({ language: "EN"}) 
+    else { this.setState({ language: "PT"})}
   }
 
   render() {
     return (
-      <Form id="formLanguageSwitch">
-        <button
-          variant="primary"
-          class="btn button_form_switch "
-          type="submit"
-          onClick={this.handleClick}
-        >
-          PT
-        </button>
-        /
-        <button
+      <Form id="formLanguageSwitch" onSubmit={this.handleSubmit}>
+
+      {this.state.language == "PT" ? (
+          <button
           variant="primary"
           class="btn button_form_switch"
           type="submit"
-          onClick={this.handleClick}
+          value="PT"
+        >
+          PT
+        </button>
+        ) : <button
+        variant="primary"
+        class="btn"
+        type="submit"
+        value="PT"
+      >
+        PT
+      </button>}
+        
+        /
+
+      {this.state.language == "EN" ? (
+          <button
+          variant="primary"
+          class="btn button_form_switch"
+          type="submit"
+          value="EN"
         >
           EN
         </button>
+        ) : <button
+        variant="primary"
+        class="btn"
+        type="submit"
+        value="EN"
+      >
+        EN
+      </button>}
       </Form>
     );
   }
