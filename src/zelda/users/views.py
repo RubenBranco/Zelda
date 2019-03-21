@@ -28,13 +28,13 @@ class AttendanceViewSet(viewsets.ModelViewSet):
         timestamp = request.timestamp
         student = request.student
 
-        if request.timestamp is in (pub_date__range = (
-            Lesson.time,
-            Lesson.time + timezone.timedelta(minutes = Lesson.duration)) - 1):
+        # if request.timestamp in (pub_date__range = (
+        #     Lesson.time,
+        #     Lesson.time + timezone.timedelta(minutes = Lesson.duration)) - 1):
 
 
-        attend = Attendance(Student.number, Lesson.pk)
-        
+        # attend = Attendance(Student.number, Lesson.pk)
+
 
 
 class StudentViewSet(viewsets.ModelViewSet):
@@ -45,5 +45,5 @@ class StudentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Attendance.objects.get().student
         return queryset
-        
+
 
