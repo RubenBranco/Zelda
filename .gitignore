@@ -9,3 +9,4 @@ package-lock.json
 src/zelda/deps/static/admin/
 src/zelda/deps/static/jet/
 src/zelda/deps/static/range_filter/
+src/zelda/deps/static/css/bootstrap.min.css
