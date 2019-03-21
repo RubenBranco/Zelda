@@ -32,7 +32,7 @@ class AbstractAppView(TemplateView):
 
 class FrontpageView(AbstractAppView, LoginRequiredMixin):
     pass
-
+    
 
 class LoginView(AbstractAppView):
     def post(self, request, *_, **__):
