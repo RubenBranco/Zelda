@@ -3,5 +3,5 @@ python3 manage.py makemessages \
     --ignore 'deps/static/admin/*' \
     --ignore 'deps/static/jet/*' \
     --ignore 'deps/static/range_filter/*' \
-    -l pt_PT \
+    -l pt \
     -d djangojs

@@ -144,7 +144,7 @@ LOGIN_URL = '/login/'
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, "zelda", "locale")]
 
-LANGUAGE_CODE = 'pt-pt'
+LANGUAGE_CODE = 'pt'
 
 LANGUAGES = (
     ('en', 'English'),
