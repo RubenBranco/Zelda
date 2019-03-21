@@ -123,11 +123,11 @@ class Grade(models.Model):
 
 class FinalGrade(models.Model):
     EECC_TYPES = (
-        ("a", _("A")),
-        ("b", _("B")),
-        ("c", _("C")),
-        ("d", _("D")),
-        ("e", _("E")),
+        ("a", "A"),
+        ("b", "B"),
+        ("c", "C"),
+        ("d", "D"),
+        ("e", "E"),
     )
 
     course = models.ForeignKey(

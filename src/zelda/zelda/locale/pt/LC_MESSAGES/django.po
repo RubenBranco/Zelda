@@ -1,0 +1,275 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-21 20:56+0000\n"
+"PO-Revision-Date: 2019-03-21 21:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: courses/models.py:55
+msgid "Post-Graduation"
+msgstr "Pós-graduação"
+
+#: courses/models.py:56
+msgid "Bachelors"
+msgstr "Licenciatura"
+
+#: courses/models.py:57
+msgid "Masters"
+msgstr "Mestrado"
+
+#: courses/models.py:58
+msgid "Doctorate"
+msgstr "Doutoramento"
+
+#: courses/models.py:61
+msgid "active"
+msgstr "ativo"
+
+#: courses/models.py:62
+msgid "inactive"
+msgstr "Inativo"
+
+#: courses/models.py:65
+msgid "day"
+msgstr "diurno"
+
+#: courses/models.py:66
+msgid "night"
+msgstr "nocturno"
+
+#: organizations/models.py:12
+msgid "faculty"
+msgstr "faculdade"
+
+#: organizations/models.py:13
+msgid "faculties"
+msgstr "faculdades"
+
+#: organizations/models.py:51
+msgid "Office"
+msgstr "Gabinete"
+
+#: organizations/models.py:52
+msgid "Classroom"
+msgstr "Sala de aula"
+
+#: organizations/models.py:53
+msgid "Library"
+msgstr "Biblioteca"
+
+#: organizations/models.py:54
+msgid "Secretarial Office"
+msgstr "Secretaria"
+
+#: organizations/models.py:55 timetable/models.py:21
+msgid "Laboratory"
+msgstr "Laboratório"
+
+#: organizations/models.py:56
+msgid "Auditorium"
+msgstr "Auditório"
+
+#: organizations/models.py:57
+msgid "Studyroom"
+msgstr "Sala de estudo"
+
+#: timetable/models.py:10
+msgid "Monday"
+msgstr "Segunda-Feira"
+
+#: timetable/models.py:11
+msgid "Tuesday"
+msgstr "Terça-Feira"
+
+#: timetable/models.py:12
+msgid "Wednesday"
+msgstr "Quarta-Feira"
+
+#: timetable/models.py:13
+msgid "Thursday"
+msgstr "Quinta-Feira"
+
+#: timetable/models.py:14
+msgid "Friday"
+msgstr "Sexta-Feira"
+
+#: timetable/models.py:15
+msgid "Saturday"
+msgstr "Sábado"
+
+#: timetable/models.py:16
+msgid "Sunday"
+msgstr "Domingo"
+
+#: timetable/models.py:19
+msgid "Theory"
+msgstr "Teórica"
+
+#: timetable/models.py:20
+msgid "Practice"
+msgstr "Teórico-Prática"
+
+#: timetable/models.py:22
+msgid "Field"
+msgstr "Aula de campo"
+
+#: timetable/models.py:68
+msgid "class"
+msgstr "Turma"
+
+#: timetable/models.py:69
+msgid "classes"
+msgstr "turmas"
+
+#: users/models.py:9
+msgid "Single"
+msgstr "Solteiro(a)"
+
+#: users/models.py:10
+msgid "Married"
+msgstr "Casado(a)"
+
+#: users/models.py:11
+msgid "Divorced"
+msgstr "Divorciado(a)"
+
+#: users/models.py:12
+msgid "Widowed"
+msgstr "Viúvo(a)"
+
+#: users/models.py:16
+msgid "Male"
+msgstr "Masculino"
+
+#: users/models.py:17
+msgid "Female"
+msgstr "Feminino"
+
+#: users/models.py:21
+msgid "Student"
+msgstr "Estudante"
+
+#: users/models.py:22
+msgid "Professor"
+msgstr "Professor(a)"
+
+#: users/models.py:23
+msgid "Administrator"
+msgstr "Administrador(a)"
+
+#: users/models.py:50
+msgid "1st Call"
+msgstr "1ª Fase"
+
+#: users/models.py:51
+msgid "2nd Call"
+msgstr "2ª Fase"
+
+#: users/models.py:55
+msgid "Worker"
+msgstr "Estudante-Trabalhador(a)"
+
+#: users/models.py:56
+msgid "Athlete"
+msgstr "Atleta"
+
+#: users/models.py:57
+msgid "Fireman"
+msgstr "Bombeiro(a)"
+
+#: users/models.py:58
+msgid "Military"
+msgstr "Militar"
+
+#: users/models.py:59
+msgid "Student's Union"
+msgstr "Associação de Estudantes"
+
+#: users/models.py:60
+msgid "Special Learning Needs"
+msgstr "Necessidades de educação especiais"
+
+#: users/models.py:61
+msgid "Parent"
+msgstr "Pai/Mãe"
+
+#: users/models.py:85
+msgid "student"
+msgstr "Estudante"
+
+#: users/models.py:86
+msgid "students"
+msgstr "estudantes"
+
+#: users/models.py:97
+msgid "administrator"
+msgstr "administrador(a)"
+
+#: users/models.py:98
+msgid "administrators"
+msgstr "administradores"
+
+#: users/models.py:103
+msgid "Assistant Professor"
+msgstr "Professor(a) Auxiliar"
+
+#: users/models.py:104
+msgid "Invited Assistant Professor"
+msgstr "Professor(a) Auxiliar Convidado"
+
+#: users/models.py:105
+msgid "Full Professor"
+msgstr "Professor(a) Catedrático"
+
+#: users/models.py:106
+msgid "Visiting Full Professor"
+msgstr "Professor(a) Catedrático Visitante"
+
+#: users/models.py:107
+msgid "Associate Professor"
+msgstr "Professor Associado"
+
+#: users/models.py:108
+msgid "Invited Associate Professor"
+msgstr "Professor Associado Convidado"
+
+#: users/models.py:109
+msgid "Associate Professor with Agregação"
+msgstr "Professor Associado com Agregação"
+
+#: users/models.py:123
+msgid "professor"
+msgstr "professor(a)"
+
+#: users/models.py:124
+msgid "professors"
+msgstr "professores"
+
+#: zelda/dashboard.py:11
+msgid "Applications"
+msgstr "Aplicações"
+
+#: zelda/templates/admin/courses/Course/change_list_object_tools.html:6
+#: zelda/templates/admin/courses/Subject/change_list_object_tools.html:6
+#: zelda/templates/admin/users/Student/change_list_object_tools.html:6
+#, python-format
+msgid "Add %(name)s with csv"
+msgstr "Adicionar %(name)s com csv"
+
+#: zelda/templates/zelda/admin/change_list_objects.html:8
+#, python-format
+msgid "Add %(name)s"
+msgstr "Adicionar %(name)s"
