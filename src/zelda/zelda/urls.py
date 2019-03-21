@@ -32,18 +32,15 @@ api.register("student/", user_views.StudentViewSet, base_name="student")
 api.register("attendances/",user_views.AttendanceViewSet, base_name="attendances")
 
 
-js_i18n_mod_date = timezone.now()
-
 urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
     path('admin/import/<model>', common_views.ImportEntitiesView.as_view(), name='import_models'),
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
-    path('jsi18n/', last_modified(
-        lambda req, **kw: js_i18n_mod_date,
-        )(JavaScriptCatalog.as_view(packages=['zelda'], domain='djangojs')),
-        name='javascript-catalog'
+    path('jsi18n/',
+        JavaScriptCatalog.as_view(packages=['zelda'], domain='djangojs'),
+        name='javascript-catalog',
     ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
