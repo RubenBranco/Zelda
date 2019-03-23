@@ -14,6 +14,7 @@ class Login extends React.Component {
     return (
       <div id="login">
         <LanguageSwitch />
+        <navbar />
         <div id="logos">
           <Image src={window.zeldaLogo} id="img_form" />
           <Image src={window.fculLogo} id="logo_uni" />

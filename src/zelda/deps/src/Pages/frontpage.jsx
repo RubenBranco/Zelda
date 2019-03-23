@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LoginForm from "../Components/LoginForm.jsx";
-import LanguageSwitch from "../Components/LanguageSwitch.jsx";
-import Image from "react-bootstrap/Image";
+import Navigator from "../Components/Navigator.jsx";
 
 class FrontPage extends React.Component {
   constructor() {
@@ -12,18 +10,10 @@ class FrontPage extends React.Component {
 
   render() {
     return (
-      <div id="login">
-        <div id="formLanguageSwitch">
-          <LanguageSwitch />
-        </div>
-
-        <div id="form">
-          <LoginForm url={window.url} />
-        </div>
-        <div id="img">
-          <Image src={window.backgroundImg} id="img_background" />
-        </div>
-      </div>
+      <div>
+        <Navigator />
+        <h1>hello world</h1>
+      </div> 
     );
   }
 }
