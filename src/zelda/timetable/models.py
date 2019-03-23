@@ -49,12 +49,12 @@ class Shift(models.Model):
         Professor,
         on_delete=models.CASCADE,
     )
-    
+
 
 class Lesson(models.Model):
     date = models.DateField()
-    lesson_spec = models.ForeignKey(
-        LessonSpecification,
+    shift = models.ForeignKey(
+        Shift,
         on_delete=models.CASCADE,
     )
 
