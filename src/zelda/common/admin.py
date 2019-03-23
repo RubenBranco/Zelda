@@ -109,8 +109,7 @@ def student_get_extra_args(attrs):
 
     # app_user creation
     app_user_dict = populate_dict(attrs, APP_USER_INFO)
-    app_user = AppUser(**app_user_dict)
-    app_user.save()
+    app_user = AppUser.objects.create_user(**app_user_dict)
     attrs["app_user"] = app_user
 
     # populate Student with foreign keys
