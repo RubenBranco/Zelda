@@ -58,7 +58,10 @@ class Room(models.Model):
         ("study", _("Studyroom")),
     )
 
-    r_type = models.CharField(max_length=11)
+    r_type = models.CharField(
+        max_length=11,
+        choices=ROOM_TYPE,
+    )
     capacity = models.PositiveSmallIntegerField()
     building = models.PositiveSmallIntegerField()
     floor = models.PositiveSmallIntegerField()

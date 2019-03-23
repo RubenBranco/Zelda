@@ -31,6 +31,10 @@ class Subject(models.Model):
     )
     # WEEKS
     duration = models.PositiveSmallIntegerField()
+    students = models.ManyToManyField(
+        Student,
+        blank=True,
+    )
 
 
 class CourseSubject(models.Model):
@@ -40,7 +44,6 @@ class CourseSubject(models.Model):
     )
     designation = models.CharField(max_length=100)
     course_year = models.PositiveSmallIntegerField()
-    students = models.ManyToManyField(Student)
 
 
 class EntranceExam(models.Model):
@@ -109,8 +112,8 @@ class Course(models.Model):
 
 
 class Grade(models.Model):
-    course = models.ForeignKey(
-        Course,
+    subject = models.ForeignKey(
+        Subject,
         on_delete=models.CASCADE,
     )
     student = models.ForeignKey(
@@ -131,8 +134,8 @@ class FinalGrade(models.Model):
         ("e", "E"),
     )
 
-    course = models.ForeignKey(
-        Course,
+    subject = models.ForeignKey(
+        Subject,
         on_delete=models.CASCADE,
     )
     student = models.ForeignKey(
