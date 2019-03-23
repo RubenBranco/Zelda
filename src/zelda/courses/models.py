@@ -104,6 +104,7 @@ class Course(models.Model):
         Professor,
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
     )
 
 
