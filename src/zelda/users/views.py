@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
+from datetime import timedelta, datetime
 
 from rest_framework import viewsets
 
-from timetable.models import Attendance, Lesson
+from timetable.models import Attendance, Lesson, Shift, LessonSpecification
 from .models import Student
 from .serializers import AttendanceSerializer, StudentSerializer
 
@@ -20,20 +21,40 @@ class AttendanceViewSet(viewsets.ModelViewSet):
     #     serializer = AttendanceSerializer(attendance, data=request.data)
     #     pass
 
-    def list(self, request):
-        pass
+    # def list(self, request):
+    #     pass
 
     def create(self, request):
         #lesson.time; lesson.duration
-        timestamp = request.timestamp
-        student = request.student
+        data = request.data
+        timestamp = datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S:%f')
 
-        # if request.timestamp in (pub_date__range = (
-        #     Lesson.time,
-        #     Lesson.time + timezone.timedelta(minutes = Lesson.duration)) - 1):
+        student_number = data['student_number']
+
+        student = Student.objects.get(number=student_number)
+
+        shift_list = Shift.objects.filter(student=student)
+
+        for shift in shift_list:
+            lessonSpec_list = LessonSpecification.objects.filter(shift=shift)
+            for lessonSpec in lessonSpec_list:
+                start_time = lessonSpec.time
+                duration = lessonSpec.duration
+
+                lesson = Lesson.objects.get(lesson_spec=lessonSpec)
+                date = lesson.date
+
+                lesson_start = datetime.combine(date, start_time)
+
+                lesson_end = lesson_start + timedelta(minutes=duration)
 
 
-        # attend = Attendance(Student.number, Lesson.pk)
+                if lesson_start <= timestamp <= lesson_end:
+                    check_attendance = Attendance.objects.get(student=student, lesson=lesson)
+                    if check_attendance is None:
+                        attendance = Attendance(student=student, lesson=lesson)
+                        attendance.save()
+                    return
 
 
 
