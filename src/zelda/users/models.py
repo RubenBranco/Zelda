@@ -131,4 +131,5 @@ ADMIN_MODELS = [
     Student,
     Administrator,
     Professor,
+    AppUser,
 ]
