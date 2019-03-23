@@ -3,7 +3,21 @@ from django.utils.translation import gettext_lazy as _
 
 from organizations.models import Room
 from users.models import Student, Professor
+from courses.models import Subject
 
+
+class Shift(models.Model):
+    code = models.CharField(max_length=10)
+    vacancies = models.PositiveSmallIntegerField()
+    subject = models.ForeignKey(
+        Subject,
+        on_delete=models.CASCADE,
+    )
+    professor = models.ForeignKey(
+        Professor,
+        on_delete=models.CASCADE,
+    )
+    student = models.ManyToManyField(Student, db_table='ShiftStudent')
 
 class LessonSpecification(models.Model):
     WEEKDAYS = (
@@ -36,25 +50,18 @@ class LessonSpecification(models.Model):
         Room,
         on_delete=models.CASCADE,
     )
-
-
-class Shift(models.Model):
-    code = models.CharField(max_length=10)
-    vacancies = models.PositiveSmallIntegerField()
-    lesson_spec = models.ForeignKey(
-        LessonSpecification,
+    shift = models.ForeignKey(
+        Shift,
         on_delete=models.CASCADE,
     )
-    professor = models.ForeignKey(
-        Professor,
-        on_delete=models.CASCADE,
-    )
+
+
 
 
 class Lesson(models.Model):
     date = models.DateField()
-    shift = models.ForeignKey(
-        Shift,
+    lesson_spec = models.ForeignKey(
+        LessonSpecification,
         on_delete=models.CASCADE,
     )
 
