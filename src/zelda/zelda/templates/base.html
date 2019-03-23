@@ -35,6 +35,23 @@
     {% get_language_info_list for LANGUAGES as other_languages %}
 
     <script>
+        var frontpageUrl = "{% url 'frontpage' %}";
+        var zeldaLogo = "{% static 'img/logo.png' %}";
+        var fculLogo = "{% static 'img/logofcul.png' %}";
+        var logoutUrl = "{% url 'logout' %}";
+        var messageIcon = "{% static 'img/messages.png' %}";
+        var webmailUrl = "{{ webmail_url }}";
+
+        {% if app_user != None %}
+            var firstName = "{{ app_user.first_name }}";
+            var lastName = "{{ app_user.last_name }}";
+            {% if app_user.display_image.name %}
+                var userImageUrl = "{{ app_user.display_image.url }}";
+            {% else %}
+                var userImageUrl = "{% static 'img/profileImage.png' %}";
+            {% endif %}
+        {% endif %}
+
         var changeLangUrl = "{% url 'set_language' %}";
         var currentLanguage = {
             'name': "{{ current_language.name_local }}",
@@ -50,10 +67,6 @@
                 {% endif %}
             {% endfor %}
         ];
-        {% if first_name != None and last_name != None %}
-            var firstName = "{{ first_name }}";
-            var lastName = "{{ last_name }}";
-        {% endif %}
     </script>
     {% block footjs %}{% endblock %}
     <script src="{% static 'js/'|add:view_name|add:'.js' %}"></script>

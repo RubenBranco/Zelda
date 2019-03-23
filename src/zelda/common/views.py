@@ -1,6 +1,7 @@
 import json
 import re
 
+from django.conf import settings
 from django.shortcuts import render, reverse, redirect
 from django.http.response import HttpResponse
 from django.views.generic import TemplateView, View
@@ -27,18 +28,13 @@ class AbstractAppView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        app_user = self.request.user
+
         context.update(
             dict(
                 view_name=re.sub("View", "", self.__class__.__name__).lower(),
-            )
-        )
-        app_user = self.request.user
-        if app_user.is_authenticated:
-            user = get_user_from_request(self.request)
-        context.update(
-            dict(
-                first_name=app_user.first_name if app_user.is_authenticated else None,
-                last_name=app_user.last_name if app_user.is_authenticated else None,
+                webmail_url=settings.WEBMAIL_URL,
+                app_user=get_user_from_request(self.request) if app_user.is_authenticated else None,
             )
         )
 

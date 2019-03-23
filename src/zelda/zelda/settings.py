@@ -181,4 +181,6 @@ else:
         }
     }
 
+# INSTITUTION SETTINGS
 
+WEBMAIL_URL = "https://webmail.ciencias.ulisboa.pt"
