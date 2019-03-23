@@ -44,6 +44,7 @@ class AppUser(AbstractUser):
     )
     user_type = models.CharField(max_length=13, choices=USER_TYPE_OPTIONS, null=True)
 
+    USERNAME_FIELD = 'institutional_email'
 
 class Student(models.Model):
     CALL = (
@@ -74,10 +75,12 @@ class Student(models.Model):
     statute = models.CharField(
         max_length=8,
         choices=STATUTE,
+        null=True,
     )
     course = models.ManyToManyField('courses.Course')
     faculty = models.ForeignKey(
         'organizations.Faculty',
+        null=True,
         on_delete=models.CASCADE,
     )
 

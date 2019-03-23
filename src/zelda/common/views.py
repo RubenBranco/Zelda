@@ -7,10 +7,15 @@ from django.views.generic import TemplateView, View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.request import QueryDict
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.debug import sensitive_post_parameters
 
 from courses.models import Course, Subject
 from users.models import Student
 from .admin import import_csv
+from .utils import get_user_from_request
 
 
 class AbstractAppView(TemplateView):
@@ -27,15 +32,35 @@ class AbstractAppView(TemplateView):
                 view_name=re.sub("View", "", self.__class__.__name__).lower(),
             )
         )
+        app_user = self.request.user
+        if app_user.is_authenticated:
+            user = get_user_from_request(self.request)
+        context.update(
+            dict(
+                first_name=app_user.first_name if app_user.is_authenticated else None,
+                last_name=app_user.last_name if app_user.is_authenticated else None,
+            )
+        )
+
         return context
 
 
 class FrontpageView(AbstractAppView, LoginRequiredMixin):
     pass
-    
+
 
 class LoginView(AbstractAppView):
+
+    @method_decorator(sensitive_post_parameters())
+    @method_decorator(csrf_protect)
+    @method_decorator(never_cache)
     def post(self, request, *_, **__):
+        if self.request.user.is_authenticated:
+            return HttpResponse(
+                json.dumps(dict(next=reverse('frontpage'))),
+                content_type="application/json"
+            )
+
         if request.content_type == "application/json":
             data = json.loads(request.body)
         else:
@@ -44,6 +69,7 @@ class LoginView(AbstractAppView):
         email = data['email']
         password = data['password']
         user = authenticate(request, institutional_email=email, password=password)
+
         if user is not None:
             login(request, user)
             response_data = dict(next=reverse('frontpage'))

@@ -17,6 +17,7 @@ class LoginForm extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.login = this.login.bind(this);
     }
 
     login() {
@@ -33,19 +34,19 @@ class LoginForm extends React.Component {
                 password: this.state.password,
                 csrfmiddlewaretoken: csrfmiddlewaretoken,
             })
-        })
-            .then(function (response) {
-                if (response.hasOwnProperty("next")) {
-                    location.change(response.next);
+        }).then(response => {
+            response.json().then(json => {
+                if (json.hasOwnProperty("next")) {
+                    location.replace(json.next);
                 } else {
-                    this.setState({ error: gettext("Invalid credentials.") });
+                    this.setState({ "error": gettext("Invalid credentials.") });
                 }
             })
-            .catch(function (error) {
-                this.setState({
-                    error: gettext("Unable to connect. Try again later.")
-                });
+        }).catch(error => {
+            this.setState({
+                "error": gettext("Unable to connect. Try again later.")
             });
+        });
     }
 
     handleChange(event) {
@@ -84,7 +85,7 @@ class LoginForm extends React.Component {
 
                 <Button
                     variant="primary"
-                    className="btn btn-primary btn-lg btn-block button_login "
+                    className="btn btn-primary btn-lg btn-block button_login"
                     type="submit"
                 >
                     {gettext("Login")}
