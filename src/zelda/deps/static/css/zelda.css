@@ -137,26 +137,6 @@ body {
 /* --------------------------------------------- FRONTPAGE END  ---------------------------------  */
 
 /* --------------------------------------------- NAVIGATOR START  ---------------------------------  */
-#navbar{
-  background-color: #ffffe1;
-  border: 1px solid #969696;
-  padding: 1%;
-  width: 100%;
-  margin: -1% 0 0 -1%; 
-}
-
-.navlinks{
-  color: black;
-  text-decoration: none;
-  padding: 1.5% 2.5% 0% 0%;
-  font-size: 13px;
-  float: right;
-  margin-right: 1%;
-}
-
-.navlinks:hover{
-  text-decoration: underline;
-}
 
 .navImage{
   float: right;
@@ -169,3 +149,18 @@ body {
   margin-top: 0.7%;
 }
 
+/* --------------------------------------------- NAVIGATOR END  ---------------------------------  */
+
+/* --------------------------------------------- MAINMENU START  ---------------------------------  */
+
+#mainMenu{
+  width: 90%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+#searchProfile{
+  margin-top: 5%;
+}
+
+/* --------------------------------------------- NAVIGATOR END  ---------------------------------  */

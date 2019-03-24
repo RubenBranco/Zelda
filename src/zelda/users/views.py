@@ -50,12 +50,19 @@ class AttendanceViewSet(viewsets.ModelViewSet):
 
 
                 if lesson_start <= timestamp <= lesson_end:
-                    check_attendance = Attendance.objects.get(student=student, lesson=lesson)
-                    if check_attendance is None:
+                    got_attendance = self.check_attendance(student, lesson)
+                    if got_attendance is None:
                         attendance = Attendance(student=student, lesson=lesson)
                         attendance.save()
                     return
 
+
+    def check_attendance(self, student, lesson):
+        try:
+            got_attendance = Attendance.objects.get(student=student, lesson=lesson)
+        except Attendance.DoesNotExist:
+            got_attendance = None
+        return got_attendance
 
 
 class StudentViewSet(viewsets.ModelViewSet):
