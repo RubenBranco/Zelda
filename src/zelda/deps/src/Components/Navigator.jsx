@@ -5,53 +5,32 @@ import Nav from 'react-bootstrap/Nav';
 class Navigator extends React.Component{
     render(){
         return(
-            <Navbar id="navbar">
-                <Nav className="mr-auto">
-                <img
-                    alt=""
-                    src="../../static/img/zelda.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top navLogoImages"
-                />
-                <img
-                    alt=""
-                    src="../../static/img/logofcul.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top navLogoImages"
-                />
-                <Navbar.Brand href="#home">
-                    
-                </Navbar.Brand>
+            <Navbar expand="sm" bg="dark" variant="dark">
+            <img
+                src="../../static/img/zelda.png"
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+                alt="React Bootstrap logo"
+            />
+            <img
+                src="../../static/img/logofcul.png"
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+                alt="React Bootstrap logo"
+            />
+                <Navbar.Brand href="#home">ZELDA</Navbar.Brand>
+                <Nav className="ml-auto">
+                    <Nav.Link href="#home">UserEmail</Nav.Link>
+                    <Nav.Link href="#features">{gettext("Messages")}</Nav.Link>
+                    <Nav.Link href="#pricing">{gettext("Notifications")}</Nav.Link>
 
-                <Nav.Link className="navlinks" href="#home">Logout</Nav.Link>
-                <Nav.Link className="navlinks" href="#features">Notifications</Nav.Link>
-                <img
-                    alt=""
-                    src="../../static/img/notification.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top navImage"
-                />
-                <Nav.Link className="navlinks" href="#pricing">Messages</Nav.Link>
-                <img
-                    alt=""
-                    src="../../static/img/messages.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top navImage"
-                />
-                <Nav.Link className="navlinks" href="#pricing">emailDoUser</Nav.Link>
-                <img
-                    alt=""
-                    src="../../static/img/profileImage.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top navImage"
-                />
+                    <form class="form-inline pull-right">
+                        <button class="btn btn-outline-danger" type="submit">{gettext("Logout")}</button>
+                    </form>
                 </Nav>
-             </Navbar>
+            </Navbar>
         )
     }
 }

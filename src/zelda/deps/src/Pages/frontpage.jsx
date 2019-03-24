@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
+import MainMenu from '../Components/MainMenu.jsx';
 
 class FrontPage extends React.Component {
   constructor() {
@@ -12,7 +13,7 @@ class FrontPage extends React.Component {
     return (
       <div>
         <Navigator />
-        <h1>hello world</h1>
+        <MainMenu />
       </div> 
     );
   }
