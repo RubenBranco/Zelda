@@ -27,13 +27,10 @@ class Navigator extends React.Component {
             className="d-inline-block align-top navImage"
           />
 
-          <Navbar.Text className="nomedoUser">ANA HABRKAKDMASDAS</Navbar.Text>
+          <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
         </Nav>
 
         <Nav className="ml-auto">
-          <Navbar.Text>
-            {window.firstName} {window.lastName}
-          </Navbar.Text>
           <Nav.Link
             className="navlinks"
             href={window.webmailUrl}
