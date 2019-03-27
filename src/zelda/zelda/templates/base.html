@@ -1,23 +1,25 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link
-        rel="stylesheet"
-        href="{% static 'css/bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/zelda.css' %}"
     />
     <link
-        rel="stylesheet"
-        type="text/css"
-        href="{% static 'css/zelda.css' %}"
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
     />
     {% block headlinks %}{% endblock %}
   </head>
@@ -26,47 +28,47 @@
     <div id="main"></div>
     {% block content %}{% endblock content %} {% block footlinks %}
     <script
-        type="text/javascript"
-        src="{% url 'javascript-catalog' %}"
+      type="text/javascript"
+      src="{% url 'javascript-catalog' %}"
     ></script>
-    {% get_current_language as LANGUAGE_CODE %}
-    {% get_language_info for LANGUAGE_CODE as current_language %}
-    {% get_available_languages as LANGUAGES %}
-    {% get_language_info_list for LANGUAGES as other_languages %}
+    {% get_current_language as LANGUAGE_CODE %} {% get_language_info for
+    LANGUAGE_CODE as current_language %} {% get_available_languages as LANGUAGES
+    %} {% get_language_info_list for LANGUAGES as other_languages %}
 
     <script>
-        var frontpageUrl = "{% url 'frontpage' %}";
-        var zeldaLogo = "{% static 'img/logo.png' %}";
-        var fculLogo = "{% static 'img/logofcul.png' %}";
-        var logoutUrl = "{% url 'logout' %}";
-        var messageIcon = "{% static 'img/messages.png' %}";
-        var webmailUrl = "{{ webmail_url }}";
+      var frontpageUrl = "{% url 'frontpage' %}";
+      var zeldaLogo = "{% static 'img/logo.png' %}";
+      var fculLogo = "{% static 'img/logofcul.png' %}";
+      var logoutUrl = "{% url 'logout' %}";
+      var webmailUrl = "{{ webmail_url }}";
+      var userImageUrl = "{% static 'img/profileImage.png' %}";
+      var fculLogoBranco ="{% static 'img/logofculbranco.png' %}";
 
-        {% if app_user != None %}
-            var firstName = "{{ app_user.first_name }}";
-            var lastName = "{{ app_user.last_name }}";
-            {% if app_user.display_image.name %}
-                var userImageUrl = "{{ app_user.display_image.url }}";
-            {% else %}
-                var userImageUrl = "{% static 'img/profileImage.png' %}";
-            {% endif %}
-        {% endif %}
+      {% if app_user != None %}
+          var firstName = "{{ app_user.first_name }}";
+          var lastName = "{{ app_user.last_name }}";
+          {% if app_user.display_image.name %}
+              var userImageUrl = "{{ app_user.display_image.url }}";
+          {% else %}
+              var userImageUrl = "{% static 'img/profileImage.png' %}";
+          {% endif %}
+      {% endif %}
 
-        var changeLangUrl = "{% url 'set_language' %}";
-        var currentLanguage = {
-            'name': "{{ current_language.name_local }}",
-            'code': "{{ current_language.code }}",
-        };
-        var otherLanguages = [
-            {% for language in other_languages %}
-                {% if language.code != current_language.code %}
-                    {
-                        'name': "{{ language.name_local }}",
-                        'code': "{{ language.code }}",
-                    },
-                {% endif %}
-            {% endfor %}
-        ];
+      var changeLangUrl = "{% url 'set_language' %}";
+      var currentLanguage = {
+          'name': "{{ current_language.name_local }}",
+          'code': "{{ current_language.code }}",
+      };
+      var otherLanguages = [
+          {% for language in other_languages %}
+              {% if language.code != current_language.code %}
+                  {
+                      'name': "{{ language.name_local }}",
+                      'code': "{{ language.code }}",
+                  },
+              {% endif %}
+          {% endfor %}
+      ];
     </script>
     {% block footjs %}{% endblock %}
     <script src="{% static 'js/'|add:view_name|add:'.js' %}"></script>

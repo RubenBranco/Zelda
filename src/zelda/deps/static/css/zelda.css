@@ -26,7 +26,7 @@ body {
   color: white;
   border: none;
 }
-.button_form_switch{
+.button_form_switch {
   text-decoration: underline;
 }
 
@@ -133,34 +133,78 @@ body {
 /* ---------------------------------------------LOGIN END ---------------------------------  */
 
 /* --------------------------------------------- FRONTPAGE START  ---------------------------------  */
-
+#img_background_all {
+  height: auto;
+  display: inline-block;
+  position: fixed;
+  margin-top: -30%;
+  transform: rotate(90deg);
+}
 /* --------------------------------------------- FRONTPAGE END  ---------------------------------  */
 
 /* --------------------------------------------- NAVIGATOR START  ---------------------------------  */
 
-.navImage{
-  float: right;
-  margin-top: 0.7%;
-  margin-right: 0.4%;
+.navImage {
+  display: inline-block;
+  margin-top: 2%;
+  margin-right: auto;
+  border-radius: 50%;
 }
 
-.navLogoImages{
-  margin-left: 2%;
-  margin-top: 0.7%;
+.navLogoImages {
+  padding-left: 5%;
+  margin-left: 40%;
+  margin-right: 7%;
+}
+.nomedoUser {
+  padding-left: 10px;
+  color: white;
+  font-weight: bold;
+  display: inline;
+}
+
+#navbar {
+  background-color: #b77668;
+  padding: 0;
+}
+
+.fa-sign-out-alt {
+  color: white;
+  font-size: 120%;
+}
+.fa-envelope {
+  color: white;
+  font-size: 120%;
 }
 
 /* --------------------------------------------- NAVIGATOR END  ---------------------------------  */
 
 /* --------------------------------------------- MAINMENU START  ---------------------------------  */
 
-#mainMenu{
+#mainMenu {
   width: 90%;
   margin: auto;
   margin-top: 5%;
+  position: relative;
 }
 
-#searchProfile{
+#searchProfile {
   margin-top: 5%;
 }
 
+.backgroundFrontPage {
+  height: auto;
+  margin-bottom: 0;
+
+  position: fixed;
+  width: 140%;
+  margin-top: -40%;
+}
+
+.searchButton {
+  background-color: #623725;
+}
+.fa-search {
+  color: white;
+}
 /* --------------------------------------------- NAVIGATOR END  ---------------------------------  */
