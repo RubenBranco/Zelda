@@ -12,6 +12,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
+from django.contrib.admin.views.decorators import staff_member_required
 
 from courses.models import Course, Subject
 from users.models import Student
@@ -42,7 +43,12 @@ class AbstractAppView(TemplateView):
         return context
 
 
-class FrontpageView(AbstractAppView, LoginRequiredMixin):
+class AbstractLoggedInAppView(LoginRequiredMixin, AbstractAppView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+
+
+class FrontpageView(AbstractLoggedInAppView):
     pass
 
 
@@ -95,12 +101,14 @@ class LogoutView(View):
 class ImportEntitiesView(TemplateView):
     template_name = "zelda/admin/import.html"
 
+    @staff_member_required
     def get(self, request, model):
         return render(
             request,
             self.template_name,
         )
 
+    @staff_member_required
     def post(self, request, model):
         import_csv(
             request.FILES.get('file'),
