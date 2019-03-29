@@ -36,7 +36,6 @@ class AbstractAppView(TemplateView):
                 view_name=re.sub("View", "", self.__class__.__name__).lower(),
                 webmail_url=settings.WEBMAIL_URL,
                 app_user=app_user,
-                specific_user=get_user_from_request(self.request) if app_user.is_authenticated else None
             )
         )
 

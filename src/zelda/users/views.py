@@ -2,11 +2,14 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from datetime import timedelta, datetime
 
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from timetable.models import Attendance, Lesson, Shift, LessonSpecification
-from .models import Student
-from .serializers import AttendanceSerializer, StudentSerializer
+from .models import Student, AppUser
+from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer
+from .permissions import AppUserSelfPermission
 
 # Create your views here.
 
@@ -66,8 +69,6 @@ class AttendanceViewSet(viewsets.ModelViewSet):
 
 
 class StudentViewSet(viewsets.ModelViewSet):
-
-    #queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
     def get_queryset(self):
@@ -75,3 +76,11 @@ class StudentViewSet(viewsets.ModelViewSet):
         return queryset
 
 
+class AppUserViewSet(viewsets.ModelViewSet):
+    serializer_class = AppUserSerializer
+    queryset = AppUser.objects.all()
+    permission_classes = (AppUserSelfPermission|permissions.IsAdminUser,)
+
+    @action(detail=False)
+    def describe_self(self, request):
+        return Response(self.serializer_class(request.user).data)
