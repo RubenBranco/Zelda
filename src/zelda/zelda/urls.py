@@ -28,7 +28,7 @@ from users import views as user_views
 
 api = routers.DefaultRouter()
 
-api.register("student/", user_views.StudentViewSet, base_name="student")
+api.register("student", user_views.StudentViewSet, base_name="student")
 api.register("appuser", user_views.AppUserViewSet, base_name="appuser")
 api.register("attendances",user_views.AttendanceViewSet, base_name="attendances")
 

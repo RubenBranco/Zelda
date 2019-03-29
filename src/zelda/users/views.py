@@ -10,7 +10,7 @@ from rest_framework.exceptions import PermissionDenied
 from timetable.models import Attendance, Lesson, Shift, LessonSpecification
 from .models import Student, AppUser
 from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer
-from .permissions import AppUserSelfPermission
+from .permissions import AppUserSelfPermission, StudentPermission
 
 # Create your views here.
 
@@ -71,10 +71,14 @@ class AttendanceViewSet(viewsets.ModelViewSet):
 
 class StudentViewSet(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
+    queryset = Student.objects.all()
+    permission_classes = (StudentPermission,)
 
-    def get_queryset(self):
-        queryset = Attendance.objects.get().student
-        return queryset
+    @action(detail=False)
+    def describe_self(self, request):
+        student = get_object_or_404(Student, app_user=request.user)
+        return Response(self.serializer_class(student).data)
+
 
 
 class AppUserViewSet(viewsets.ModelViewSet):

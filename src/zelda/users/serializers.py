@@ -18,7 +18,7 @@ class AppUserSerializer(ModelSerializer):
 class StudentSerializer(ModelSerializer):
     class Meta:
         model = Student
-        fields = ("number", "app_user")
+        fields = "__all__"
 
 
 
