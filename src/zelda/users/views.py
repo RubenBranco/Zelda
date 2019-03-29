@@ -5,6 +5,7 @@ from datetime import timedelta, datetime
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.exceptions import PermissionDenied
 
 from timetable.models import Attendance, Lesson, Shift, LessonSpecification
 from .models import Student, AppUser
@@ -79,7 +80,7 @@ class StudentViewSet(viewsets.ModelViewSet):
 class AppUserViewSet(viewsets.ModelViewSet):
     serializer_class = AppUserSerializer
     queryset = AppUser.objects.all()
-    permission_classes = (AppUserSelfPermission|permissions.IsAdminUser,)
+    permission_classes = (AppUserSelfPermission,)
 
     @action(detail=False)
     def describe_self(self, request):
