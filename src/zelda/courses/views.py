@@ -1,3 +1,35 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
+from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer
+from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification
+
+
+class CourseViewSet(ModelViewSet):
+    serializer_class = CourseSerializer
+    queryset = Course.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
+class CourseSpecificationViewSet(ModelViewSet):
+    serializer_class = CourseSpecificationSerializer
+    queryset = CourseSpecification.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
+class CourseSubjectViewSet(ModelViewSet):
+    serializer_class = CourseSubjectSerializer
+    queryset = CourseSubject.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
+class SubjectViewSet(ModelViewSet):
+    serializer_class = SubjectSerializer
+    queryset = Subject.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
+class SubjectSpecificationViewSet(ModelViewSet):
+    serializer_class = SubjectSpecificationSerializer
+    queryset = SubjectSpecification.objects.all()
+    permission_classes = (IsAuthenticated,)

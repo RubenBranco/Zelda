@@ -24,14 +24,19 @@ from jet.dashboard import dashboard
 
 from common import views as common_views
 from users import views as user_views
+from courses import views as course_views
 
 
 api = routers.DefaultRouter()
 
 api.register("student", user_views.StudentViewSet, base_name="student")
 api.register("appuser", user_views.AppUserViewSet, base_name="appuser")
-api.register("attendances",user_views.AttendanceViewSet, base_name="attendances")
-
+api.register("attendances", user_views.AttendanceViewSet, base_name="attendances")
+api.register("course", course_views.CourseViewSet, base_name="course")
+api.register("course_spec", course_views.CourseSpecificationViewSet, base_name="course_spec")
+api.register("course_subject", course_views.CourseSubjectViewSet, base_name="course_subject")
+api.register("subject", course_views.SubjectViewSet, base_name="subject")
+api.register("subject_spec", course_views.SubjectSpecificationViewSet, base_name="subject_spec")
 
 urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
