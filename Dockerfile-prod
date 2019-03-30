@@ -8,7 +8,7 @@ COPY . code/
 
 RUN pip3 install -r code/requirements.txt
 
-RUN rm requirements.txt
+RUN rm code/requirements.txt
 
 VOLUME [ \
     "/zelda/data", \
