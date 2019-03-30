@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-21 20:56+0000\n"
+"POT-Creation-Date: 2019-03-30 00:27+0000\n"
 "PO-Revision-Date: 2019-03-21 21:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,35 +18,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: courses/models.py:55
+#: courses/models.py:58
 msgid "Post-Graduation"
 msgstr "Pós-graduação"
 
-#: courses/models.py:56
+#: courses/models.py:59
 msgid "Bachelors"
 msgstr "Licenciatura"
 
-#: courses/models.py:57
+#: courses/models.py:60
 msgid "Masters"
 msgstr "Mestrado"
 
-#: courses/models.py:58
+#: courses/models.py:61
 msgid "Doctorate"
 msgstr "Doutoramento"
 
-#: courses/models.py:61
+#: courses/models.py:64
 msgid "active"
 msgstr "ativo"
 
-#: courses/models.py:62
+#: courses/models.py:65
 msgid "inactive"
 msgstr "Inativo"
 
-#: courses/models.py:65
+#: courses/models.py:68
 msgid "day"
 msgstr "diurno"
 
-#: courses/models.py:66
+#: courses/models.py:69
 msgid "night"
 msgstr "nocturno"
 
@@ -58,79 +58,79 @@ msgstr "faculdade"
 msgid "faculties"
 msgstr "faculdades"
 
-#: organizations/models.py:51
+#: organizations/models.py:52
 msgid "Office"
 msgstr "Gabinete"
 
-#: organizations/models.py:52
+#: organizations/models.py:53
 msgid "Classroom"
 msgstr "Sala de aula"
 
-#: organizations/models.py:53
+#: organizations/models.py:54
 msgid "Library"
 msgstr "Biblioteca"
 
-#: organizations/models.py:54
+#: organizations/models.py:55
 msgid "Secretarial Office"
 msgstr "Secretaria"
 
-#: organizations/models.py:55 timetable/models.py:21
+#: organizations/models.py:56 timetable/models.py:35
 msgid "Laboratory"
 msgstr "Laboratório"
 
-#: organizations/models.py:56
+#: organizations/models.py:57
 msgid "Auditorium"
 msgstr "Auditório"
 
-#: organizations/models.py:57
+#: organizations/models.py:58
 msgid "Studyroom"
 msgstr "Sala de estudo"
 
-#: timetable/models.py:10
+#: timetable/models.py:24
 msgid "Monday"
 msgstr "Segunda-Feira"
 
-#: timetable/models.py:11
+#: timetable/models.py:25
 msgid "Tuesday"
 msgstr "Terça-Feira"
 
-#: timetable/models.py:12
+#: timetable/models.py:26
 msgid "Wednesday"
 msgstr "Quarta-Feira"
 
-#: timetable/models.py:13
+#: timetable/models.py:27
 msgid "Thursday"
 msgstr "Quinta-Feira"
 
-#: timetable/models.py:14
+#: timetable/models.py:28
 msgid "Friday"
 msgstr "Sexta-Feira"
 
-#: timetable/models.py:15
+#: timetable/models.py:29
 msgid "Saturday"
 msgstr "Sábado"
 
-#: timetable/models.py:16
+#: timetable/models.py:30
 msgid "Sunday"
 msgstr "Domingo"
 
-#: timetable/models.py:19
+#: timetable/models.py:33
 msgid "Theory"
 msgstr "Teórica"
 
-#: timetable/models.py:20
+#: timetable/models.py:34
 msgid "Practice"
 msgstr "Teórico-Prática"
 
-#: timetable/models.py:22
+#: timetable/models.py:36
 msgid "Field"
 msgstr "Aula de campo"
 
-#: timetable/models.py:68
+#: timetable/models.py:75
 msgid "class"
 msgstr "Turma"
 
-#: timetable/models.py:69
+#: timetable/models.py:76
 msgid "classes"
 msgstr "turmas"
 
@@ -170,91 +170,91 @@ msgstr "Professor(a)"
 msgid "Administrator"
 msgstr "Administrador(a)"
 
-#: users/models.py:50
+#: users/models.py:53
 msgid "1st Call"
 msgstr "1ª Fase"
 
-#: users/models.py:51
+#: users/models.py:54
 msgid "2nd Call"
 msgstr "2ª Fase"
 
-#: users/models.py:55
+#: users/models.py:58
 msgid "Worker"
 msgstr "Estudante-Trabalhador(a)"
 
-#: users/models.py:56
+#: users/models.py:59
 msgid "Athlete"
 msgstr "Atleta"
 
-#: users/models.py:57
+#: users/models.py:60
 msgid "Fireman"
 msgstr "Bombeiro(a)"
 
-#: users/models.py:58
+#: users/models.py:61
 msgid "Military"
 msgstr "Militar"
 
-#: users/models.py:59
+#: users/models.py:62
 msgid "Student's Union"
 msgstr "Associação de Estudantes"
 
-#: users/models.py:60
+#: users/models.py:63
 msgid "Special Learning Needs"
 msgstr "Necessidades de educação especiais"
 
-#: users/models.py:61
+#: users/models.py:64
 msgid "Parent"
 msgstr "Pai/Mãe"
 
-#: users/models.py:85
+#: users/models.py:92
 msgid "student"
 msgstr "Estudante"
 
-#: users/models.py:86
+#: users/models.py:93
 msgid "students"
 msgstr "estudantes"
 
-#: users/models.py:97
+#: users/models.py:104
 msgid "administrator"
 msgstr "administrador(a)"
 
-#: users/models.py:98
+#: users/models.py:105
 msgid "administrators"
 msgstr "administradores"
 
-#: users/models.py:103
+#: users/models.py:110
 msgid "Assistant Professor"
 msgstr "Professor(a) Auxiliar"
 
-#: users/models.py:104
+#: users/models.py:111
 msgid "Invited Assistant Professor"
 msgstr "Professor(a) Auxiliar Convidado"
 
-#: users/models.py:105
+#: users/models.py:112
 msgid "Full Professor"
 msgstr "Professor(a) Catedrático"
 
-#: users/models.py:106
+#: users/models.py:113
 msgid "Visiting Full Professor"
 msgstr "Professor(a) Catedrático Visitante"
 
-#: users/models.py:107
+#: users/models.py:114
 msgid "Associate Professor"
 msgstr "Professor Associado"
 
-#: users/models.py:108
+#: users/models.py:115
 msgid "Invited Associate Professor"
 msgstr "Professor Associado Convidado"
 
-#: users/models.py:109
+#: users/models.py:116
 msgid "Associate Professor with Agregação"
 msgstr "Professor Associado com Agregação"
 
-#: users/models.py:123
+#: users/models.py:130
 msgid "professor"
 msgstr "professor(a)"
 
-#: users/models.py:124
+#: users/models.py:131
 msgid "professors"
 msgstr "professores"
 

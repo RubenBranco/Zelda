@@ -7,33 +7,81 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-21 10:41+0000\n"
-"PO-Revision-Date: 2019-03-21 20:53+0000\n"
+"POT-Creation-Date: 2019-03-30 00:27+0000\n"
+"PO-Revision-Date: 2019-03-30 00:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: deps/static/js/frontpage.js:17 deps/static/js/login.js:17
+#: deps/static/js/frontpage.js:42
+msgid "Subjects"
+msgstr ""
+
+#: deps/static/js/frontpage.js:42
+msgid "Courses"
+msgstr ""
+
+#: deps/static/js/frontpage.js:42
+msgid "Consult"
+msgstr "Consultar"
+
+#: deps/static/js/frontpage.js:42
+msgid "Attendance"
+msgstr "Presenças"
+
+#: deps/static/js/frontpage.js:42
+msgid "Curriculum"
+msgstr "Currículo"
+
+#: deps/static/js/frontpage.js:42
+msgid "Profile"
+msgstr "Perfil"
+
+#: deps/static/js/frontpage.js:42
+msgid "Schedule"
+msgstr "Horário"
+
+#: deps/static/js/frontpage.js:42
+msgid "Personal"
+msgstr "Pessoal"
+
+#: deps/static/js/frontpage.js:42
+msgid "By Subjects"
+msgstr "Por cadeira"
+
+#: deps/static/js/frontpage.js:42
+msgid "Enroll / Unsubscribe in Curricular Units"
+msgstr "Inscrever / Desinscrever de Unidades Currículares"
+
+#: deps/static/js/frontpage.js:42
+msgid "Enroll / Unsubscribe in Shifts"
+msgstr "Inscrever / Desinscrever de turnos"
+
+#: deps/static/js/frontpage.js:42
+msgid "Search Profile"
+msgstr "Procurar perfil"
+
+#: deps/static/js/login.js:42
 msgid "Invalid credentials."
 msgstr "Credenciais inválidas."
 
-#: deps/static/js/frontpage.js:17 deps/static/js/login.js:17
+#: deps/static/js/login.js:42
 msgid "Unable to connect. Try again later."
 msgstr "Não foi possível estabelecer ligação. Tente novamente mais tarde."
 
-#: deps/static/js/frontpage.js:17 deps/static/js/login.js:17
+#: deps/static/js/login.js:42
 msgid "Enter email"
 msgstr "Introduza o seu email"
 
-#: deps/static/js/frontpage.js:17 deps/static/js/login.js:17
+#: deps/static/js/login.js:42
 msgid "Password"
 msgstr "Password"
 
-#: deps/static/js/frontpage.js:17 deps/static/js/login.js:17
+#: deps/static/js/login.js:42
 msgid "Login"
 msgstr "Entrar"
