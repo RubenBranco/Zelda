@@ -16,6 +16,7 @@ services:
     volumes:
       - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
       - ~/certbot/var/www/certbot:/var/www/certbot:rw
+      - ~/nginx/conf.d:/etc/nginx/conf.d:ro
       - ~/nginx/logs/zelda:/zelda/logs:rw
       - ~/zelda/static:/zelda/static:ro
   zelda:
