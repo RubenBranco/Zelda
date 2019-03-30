@@ -1,5 +1,7 @@
 FROM nginx:latest
 
+COPY init-nginx.sh .
+
 RUN rm /etc/nginx/conf.d/default.conf
 
 VOLUME [ \
