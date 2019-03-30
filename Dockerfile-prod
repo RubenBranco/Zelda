@@ -10,12 +10,17 @@ RUN pip3 install -r code/requirements.txt
 
 RUN rm requirements.txt
 
-VOLUME [ "/zelda/data", "/zelda/logs" ]
+VOLUME [ \
+    "/zelda/data", \
+    "/zelda/logs", \
+    "/zelda/static" \
+]
 
 ENV PROJECT_DIR=/zelda/code \
     PIDS_DIR=/zelda/pids \
     LOGS_DIR=/zelda/logs \
     DATA_DIR=/zelda/data \
+    MEDIA_DIR=/zelda/data/media \
     STATIC_DIR=/zelda/static \
     DEBUG=no \
     MEMCACHED_HOST="memcached:11211"

@@ -1,5 +1,23 @@
 version: "3.6"
 services:
+  nginx:
+    image: zelda-nginx:latest
+    networks:
+      zelda: {}
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
+      - ~/certbot/var/www/certbot:/var/www/certbot:rw
+      - ~/nginx/logs/zelda:/zelda/logs:rw
+      - ~/zelda/static:/zelda/static:ro
   zelda:
     image: zelda:latest
     networks:
@@ -10,11 +28,10 @@ services:
         condition: always
     depends_on:
       - cache
-    ports:
-      - "8000:8000"
     volumes:
-      - ${DATA_DIR}:/zelda/data:rw
-      - ${LOGS_DIR}:/zelda/logs:rw
+      - ~/zelda/data:/zelda/data:rw
+      - ~/zelda/logs:/zelda/logs:rw
+      - ~/zelda/static:/zelda/static:rw
   cache:
     image: memcached:latest
     networks:
@@ -24,8 +41,18 @@ services:
         condition: always
       placements:
         constraints: [node.role == manager]
-    ports:
-      - "11211:11211"
+  certbot:
+    image: zelda-certbot:latest
+    networks:
+      zelda: {}
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
+      - ~/certbot/var/www/certbot:/var/www/certbot:rw
 networks:
   zelda: {}
-
