@@ -36,10 +36,10 @@ class Navigator extends React.Component {
             href={window.webmailUrl}
             target="_blank"
           >
-            <i class="far fa-envelope" />
+            <i className="far fa-envelope" />
           </Nav.Link>
           <Nav.Link className="navlinks" href={window.logoutUrl}>
-            <i class="fas fa-sign-out-alt" />
+            <i className="fas fa-sign-out-alt" />
           </Nav.Link>
         </Nav>
       </Navbar>

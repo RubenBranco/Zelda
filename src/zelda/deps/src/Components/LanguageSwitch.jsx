@@ -37,7 +37,7 @@ class LanguageSwitch extends React.Component {
                 {this.languages.map((language) =>
                     <Button
                         variant="primary"
-                        class="btn button_form_switch"
+                        className="btn button_form_switch"
                         type="button"
                         onClick={this.handleClick}
                         size="sm"

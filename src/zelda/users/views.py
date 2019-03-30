@@ -11,8 +11,9 @@ from timetable.models import Attendance, Lesson, Shift, LessonSpecification
 from .models import Student, AppUser
 from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer
 from .permissions import AppUserSelfPermission, StudentPermission
+from courses.serializers import CourseSubjectSerializer
+from courses.models import Subject, CourseSubject
 
-# Create your views here.
 
 class AttendanceViewSet(viewsets.ModelViewSet):
 
@@ -79,6 +80,17 @@ class StudentViewSet(viewsets.ModelViewSet):
         student = get_object_or_404(Student, app_user=request.user)
         return Response(self.serializer_class(student).data)
 
+    @action(detail=True)
+    def subjects(self, request, pk=None):
+        student = get_object_or_404(Student, id=pk)
+        return Response(
+            CourseSubjectSerializer(
+                CourseSubject.objects.filter(
+                    subject__in=Subject.objects.filter(students=student)
+                ),
+                many=True
+            ).data
+        )
 
 
 class AppUserViewSet(viewsets.ModelViewSet):
