@@ -5,5 +5,5 @@ while :; do
     nginx -s reload;
 done &
 
-nginx -g daemon off;
+nginx -g 'daemon off;'
 
