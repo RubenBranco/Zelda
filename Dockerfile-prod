@@ -4,7 +4,9 @@ WORKDIR /zelda
 
 RUN mkdir code/ pids/ static/
 
-COPY . code/
+COPY src/zelda \
+     requirements.txt \
+     code/
 
 RUN pip3 install -r code/requirements.txt
 
