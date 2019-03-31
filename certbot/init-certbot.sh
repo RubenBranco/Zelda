@@ -28,6 +28,5 @@ certbot certonly --webroot -w /var/www/certbot \
 trap exit TERM;
 while :; do
     certbot renew;
-    sleep 12h &
-    wait $${!};
+    sleep 12h;
 done;
