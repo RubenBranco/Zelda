@@ -26,7 +26,7 @@ services:
     deploy:
       replicas: ${DJANGO_REPLICAS}
       restart_policy:
-        condition: always
+        condition: on-failure
     depends_on:
       - cache
     volumes:
@@ -39,7 +39,7 @@ services:
       zelda: {}
     deploy:
       restart_policy:
-        condition: always
+        condition: on-failure
       placement:
         constraints:
           - node.role == manager
