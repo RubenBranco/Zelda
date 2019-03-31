@@ -1,6 +1,8 @@
 #! /bin/bash
 
-source $PROJECT_DIR/scripts/functions.sh
+cd $PROJECT_DIR
+
+source scripts/functions.sh
 
 create_deps_dirs
 collect_static
