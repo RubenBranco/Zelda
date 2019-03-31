@@ -40,8 +40,9 @@ services:
     deploy:
       restart_policy:
         condition: always
-      placements:
-        constraints: [node.role == manager]
+      placement:
+        constraints:
+          - node.role == manager
   certbot:
     image: zelda-certbot:latest
     networks:
