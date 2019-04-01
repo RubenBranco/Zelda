@@ -10,7 +10,7 @@ function manage {
 }
 
 function collect_static {
-    manage collectstatic --link --no-input
+    manage collectstatic --no-input
 }
 
 function start_dev {
