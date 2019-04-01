@@ -201,3 +201,27 @@ else:
 # INSTITUTION SETTINGS
 
 WEBMAIL_URL = "https://webmail.ciencias.ulisboa.pt"
+
+if not DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'djangofilelog': {
+                'level': 'WARNING',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(
+                    os.getenv('LOGS_DIR'),
+                    'django.log'
+                ),
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['djangofilelog'],
+                'level': 'WARNING',
+                'propagate': True,
+            },
+        },
+    }
+
