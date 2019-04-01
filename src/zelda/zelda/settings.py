@@ -25,7 +25,7 @@ SECRET_KEY = 'jpd)f2m1(l94sxcn$u!3vbd7z9+km&y6+*3avd-htrovq!_9$%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "no").lower() not in {"0", "no", "false", "n", "f", ""}
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ 'zelda-edu.me' ]
 
 # Application definition
 
