@@ -27,6 +27,15 @@ DEBUG = os.getenv("DEBUG", "no").lower() not in {"0", "no", "false", "n", "f", "
 
 ALLOWED_HOSTS = [ 'zelda-edu.me' ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_TRUSTED_ORIGINS = [
+    'localhost',
+    'zelda-edu.me',
+    'dev.zelda-edu.me',
+    '127.0.0.1',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
