@@ -18,12 +18,11 @@ class CoursesList extends React.Component {
                 </Card.Header>
                 <Card.Body>
                     <ListGroup variant="flush">
-                        {this.props.courses.map(course => {
+                        {this.props.courses.map(course =>
                             <ListGroup.Item action>
-                                <a href={course.href}>course.designation</a>
+                                <a href={course.href}>{course.designation}</a>
                             </ListGroup.Item>
-                        })
-                        }
+                        )}
                     </ListGroup>
                 </Card.Body>
                 <Card.Footer />
