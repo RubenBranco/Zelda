@@ -19,6 +19,7 @@ class Shift(models.Model):
     )
     student = models.ManyToManyField(Student, db_table='ShiftStudent')
 
+
 class LessonSpecification(models.Model):
     WEEKDAYS = (
         ("monday", _("Monday")),
@@ -56,8 +57,6 @@ class LessonSpecification(models.Model):
     )
 
 
-
-
 class Lesson(models.Model):
     date = models.DateField()
     lesson_spec = models.ForeignKey(
@@ -74,6 +73,7 @@ class Class(models.Model):
     class Meta:
         verbose_name = _('class')
         verbose_name_plural = _('classes')
+
 
 class Attendance(models.Model):
     student = models.ForeignKey(
