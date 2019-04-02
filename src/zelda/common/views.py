@@ -15,7 +15,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.contrib.admin.views.decorators import staff_member_required
 
 from courses.models import Course, Subject
-from users.models import Student
+from users.models import Student, Professor
 from .admin import import_csv
 from .utils import get_user_from_request
 
@@ -45,6 +45,13 @@ class AbstractAppView(TemplateView):
 class AbstractLoggedInAppView(LoginRequiredMixin, AbstractAppView):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
+
+
+class AbstractProfessorAppView(AbstractLoggedInAppView):
+    def dispatch(self, request, *args, **kwargs):
+        if not isinstance(get_user_from_request(request), Professor):
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
 
 class FrontpageView(AbstractLoggedInAppView):

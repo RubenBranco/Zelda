@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from common.views import AbstractProfessorAppView
 
-# Create your views here.
+
+class ProfViewAttendancesView(AbstractProfessorAppView):
+    pass
+

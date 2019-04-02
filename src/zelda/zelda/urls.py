@@ -25,6 +25,7 @@ from jet.dashboard import dashboard
 from common import views as common_views
 from users import views as user_views
 from courses import views as course_views
+from timetable import views as timetable_views
 
 
 api = routers.DefaultRouter()
@@ -38,6 +39,7 @@ api.register("course_subject", course_views.CourseSubjectViewSet, base_name="cou
 api.register("subject", course_views.SubjectViewSet, base_name="subject")
 api.register("subject_spec", course_views.SubjectSpecificationViewSet, base_name="subject_spec")
 
+
 urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
@@ -47,6 +49,10 @@ urlpatterns = [
     path('jsi18n/',
         JavaScriptCatalog.as_view(packages=['zelda'], domain='djangojs'),
         name='javascript-catalog',
+    ),
+    path('professor/view_attendances',
+        timetable_views.ProfViewAttendancesView.as_view(),
+        name='prof_view_attendances',
     ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
