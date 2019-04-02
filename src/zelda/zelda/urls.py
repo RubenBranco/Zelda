@@ -46,13 +46,30 @@ urlpatterns = [
     path('admin/import/<model>', common_views.ImportEntitiesView.as_view(), name='import_models'),
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
-    path('jsi18n/',
+    path(
+        'jsi18n/',
         JavaScriptCatalog.as_view(packages=['zelda'], domain='djangojs'),
         name='javascript-catalog',
     ),
-    path('professor/view_attendances',
+    path(
+        'professor/view_attendances',
         timetable_views.ProfViewAttendancesView.as_view(),
         name='prof_view_attendances',
+    ),
+    path(
+        'professor/view_shiftless_students',
+        timetable_views.ProfCheckShiftlessStudentsView.as_view(),
+        name='prof_view_shiftless_students',
+    ),
+    path(
+        'courses/<identifier>',
+        course_views.ViewCourseInfoView.as_view(),
+        name='view_course',
+    ),
+    path(
+        'users/<identifier>',
+        users_views.UserProfileView.as_view(),
+        name='view_user',
     ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),

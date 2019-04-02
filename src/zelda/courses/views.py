@@ -3,6 +3,11 @@ from rest_framework.permissions import IsAuthenticated
 
 from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification
+from common.views import AbstractLoggedInAppView
+
+
+class ViewCourseInfoView(AbstractLoggedInAppView):
+    pass
 
 
 class CourseViewSet(ModelViewSet):

@@ -13,6 +13,11 @@ from .serializers import AttendanceSerializer, StudentSerializer, AppUserSeriali
 from .permissions import AppUserSelfPermission, StudentPermission
 from courses.serializers import CourseSubjectSerializer
 from courses.models import Subject, CourseSubject
+from common.views import AbstractLoggedInAppView
+
+
+class UserProfileView(AbstractLoggedInAppView):
+    pass
 
 
 class AttendanceViewSet(viewsets.ModelViewSet):
