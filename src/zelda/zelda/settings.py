@@ -36,6 +36,9 @@ CSRF_TRUSTED_ORIGINS = [
     '127.0.0.1',
 ]
 
+if not DEBUG:
+    CSRF_COOKIE_DOMAIN = '.zelda-edu.me'
+
 # Application definition
 
 INSTALLED_APPS = [
