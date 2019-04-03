@@ -19,7 +19,10 @@ module.exports = {
     mode: 'production',
     entry: {
         login: path.resolve(baseSrcPath, "Pages", "login.jsx"),
-        frontpage: path.resolve(baseSrcPath, "Pages", "frontpage.jsx")
+        frontpage: path.resolve(baseSrcPath, "Pages", "frontpage.jsx"),
+        profattendances: path.resolve(baseSrcPath, "Pages", "profattendances.jsx"),
+        userprofile: path.resolve(baseSrcPath, "Pages", "userprofile.jsx"),
+        courseinfo: path.resolve(baseSrcPath, "Pages", "courseinfo.jsx"),
     },
     output: {
         filename: '[name].js',
