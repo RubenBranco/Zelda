@@ -22,6 +22,7 @@ module.exports = {
         frontpage: path.resolve(baseSrcPath, "Pages", "frontpage.jsx"),
         profattendances: path.resolve(baseSrcPath, "Pages", "profattendances.jsx"),
         userprofile: path.resolve(baseSrcPath, "Pages", "userprofile.jsx"),
+        courseinfo: path.resolve(baseSrcPath, "Pages", "courseinfo.jsx"),
     },
     output: {
         filename: '[name].js',
