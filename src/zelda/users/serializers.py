@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
 from timetable.models import Attendance
-from .models import Student, AppUser
+from .models import Student, Professor, AppUser
 
 class AttendanceSerializer(ModelSerializer):
     class Meta:
@@ -21,4 +21,7 @@ class StudentSerializer(ModelSerializer):
         fields = "__all__"
 
 
-
+class ProfessorSerializer(ModelSerializer):
+    class Meta:
+        model = Professor
+        fields = "__all__"
