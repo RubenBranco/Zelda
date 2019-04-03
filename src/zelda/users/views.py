@@ -6,10 +6,11 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.permissions import IsAuthenticated
 
 from timetable.models import Attendance, Lesson, Shift, LessonSpecification
 from .models import Student, AppUser
-from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer
+from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer, RestrictedAppUserSerializer
 from .permissions import AppUserSelfPermission, StudentPermission
 from courses.serializers import CourseSubjectSerializer
 from courses.models import Subject, CourseSubject
@@ -101,8 +102,16 @@ class StudentViewSet(viewsets.ModelViewSet):
 class AppUserViewSet(viewsets.ModelViewSet):
     serializer_class = AppUserSerializer
     queryset = AppUser.objects.all()
-    permission_classes = (AppUserSelfPermission,)
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=False)
     def describe_self(self, request):
         return Response(self.serializer_class(request.user).data)
+
+    def retrieve(self, request, pk=None):
+        app_user = get_object_or_404(AppUser, id=pk)
+
+        if request.user.is_superuser or app_user == request.user:
+            return Response(self.serializer_class(app_user).data)
+        else:
+            return Response(RestrictedAppUserSerializer(app_user).data)

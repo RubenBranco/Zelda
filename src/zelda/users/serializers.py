@@ -15,6 +15,20 @@ class AppUserSerializer(ModelSerializer):
         exclude = ('password', 'is_superuser', 'is_staff', 'is_active')
 
 
+class RestrictedAppUserSerializer(ModelSerializer):
+    class Meta:
+        model = AppUser
+        fields = (
+            "first_name",
+            "last_name",
+            "institutional_email",
+            "display_image",
+            "display_image",
+            "country",
+            "gender",
+        )
+
+
 class StudentSerializer(ModelSerializer):
     class Meta:
         model = Student
