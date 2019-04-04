@@ -47,12 +47,6 @@ class ProfessorMenu extends React.Component {
                                 <ListGroup.Item action>
                                     {gettext("Room Reservation")}
                                 </ListGroup.Item>
-                                <ListGroup.Item action>
-                                    {gettext("Enroll / Unsubscribe in Curricular Units")}
-                                </ListGroup.Item>
-                                <ListGroup.Item action>
-                                    {gettext("Enroll / Unsubscribe in Shifts")}
-                                </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
                         <Card.Footer />

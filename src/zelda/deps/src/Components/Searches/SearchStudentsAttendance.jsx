@@ -39,44 +39,48 @@ class SearchStudentsAttendance extends React.Component{
                     courses.push({
                         id: course.id,
                         designation: course.designation,
+                        subjectsId: course.course_programme,
                     })
                 });
                 this.setState({ courses });
                 // GET COURSES SUBJECTS
-                fetch(`/api/course?coursesubects=${this.state.courses[0].id}`, {
-                    method: "GET",
-                    headers: {
-                        "X-CSRFToken": csrfmiddlewaretoken,
-                    },
-                }).then(response => {
-                    response.json().then(data => {
-                        console.log(data);
-                        let curricularUnits = [];
-                        data.map(curricularUnit => {
-                            curricularUnits.push({
-                                id: curricularUnit.id,
-                                designation: curricularUnit.designation,
-                            })
-                        });
-                        this.setState({ curricularUnits });
+                //console.log(this.state.courses);
+                this.state.courses[0].subjectsId.map(subjects => {
+                    fetch(`api/course_spec/${subjects}/`, {
+                        method: "GET",
+                        headers: {
+                            "X-CSRFToken": csrfmiddlewaretoken,
+                        },
+                    }).then(response => {
+                        response.json().then(data => {
+                            let curricularUnits = [];
+                            data.map(curricularUnit => {
+                                curricularUnits.push({
+                                    id: curricularUnit.id,
+                                    designation: curricularUnit.designation,
+                                })
+                            });
+                            this.setState({ curricularUnits });
+                        })
                     })
                 })
             })
         });
+        //console.log(this.state);
     }
 
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log(this.state);
+        //console.log(this.state);
     }
 
     render () {
         return( 
             <div>
                 <Container>
-                    <h2>Consult Students Attendances</h2>
+                    <h2>{gettext("Consult Students Attendances")}</h2>
                     <hr />
 
                     <Form>
@@ -133,7 +137,6 @@ class SearchStudentsAttendance extends React.Component{
                                     onChange={this.handleChange}>
                                     <option>1</option>
                                     <option>2</option>
-                                    <option>tefoder</option>
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId="Class Type">
