@@ -126,6 +126,26 @@ class ProfessorViewSet(viewsets.ModelViewSet):
             ).data
         )
 
+    @action(detail=True)
+    def course_subjects(self, request, pk=None):
+        professor = get_object_or_404(Professor, id=pk)
+        subjects = list(
+            set(
+                map(
+                    lambda shift: shift.subject,
+                    Shift.objects.filter(professor=professor)
+                )
+            )
+        )
+        return Response([
+            CourseSubjectSerializer(
+                CourseSubject.objects.filter(subject=subject),
+                many=True
+            ).data
+            for subject in subjects
+            ]
+        )
+
 
 class AppUserViewSet(viewsets.ModelViewSet):
     serializer_class = AppUserSerializer
