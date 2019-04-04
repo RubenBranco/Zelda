@@ -2,6 +2,9 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 class Navigator extends React.Component {
   render() {
@@ -36,10 +39,10 @@ class Navigator extends React.Component {
             href={window.webmailUrl}
             target="_blank"
           >
-            <i className="far fa-envelope" />
+            <FontAwesomeIcon icon={faEnvelope} />
           </Nav.Link>
           <Nav.Link className="navlinks" href={window.logoutUrl}>
-            <i className="fas fa-sign-out-alt" />
+            <FontAwesomeIcon icon={faSignOutAlt} />
           </Nav.Link>
         </Nav>
       </Navbar>
