@@ -32,6 +32,7 @@ api = routers.DefaultRouter()
 
 api.register("student", users_views.StudentViewSet, base_name="student")
 api.register("appuser", users_views.AppUserViewSet, base_name="appuser")
+api.register("professor", users_views.ProfessorViewSet, base_name="professor")
 api.register("attendances", users_views.AttendanceViewSet, base_name="attendances")
 api.register("course", course_views.CourseViewSet, base_name="course")
 api.register("course_spec", course_views.CourseSpecificationViewSet, base_name="course_spec")

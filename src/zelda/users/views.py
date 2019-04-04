@@ -9,10 +9,10 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 
 from timetable.models import Attendance, Lesson, Shift, LessonSpecification
-from .models import Student, AppUser
-from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer, RestrictedAppUserSerializer
-from .permissions import AppUserSelfPermission, StudentPermission
-from courses.serializers import CourseSubjectSerializer
+from .models import Student, AppUser, Professor
+from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer, RestrictedAppUserSerializer, ProfessorSerializer
+from .permissions import AppUserSelfPermission, StudentPermission, ProfessorPermission
+from courses.serializers import CourseSubjectSerializer, SubjectSerializer
 from courses.models import Subject, CourseSubject
 from common.views import AbstractLoggedInAppView
 
@@ -93,6 +93,34 @@ class StudentViewSet(viewsets.ModelViewSet):
             CourseSubjectSerializer(
                 CourseSubject.objects.filter(
                     subject__in=Subject.objects.filter(students=student)
+                ),
+                many=True
+            ).data
+        )
+
+
+class ProfessorViewSet(viewsets.ModelViewSet):
+    serializer_class = ProfessorSerializer
+    queryset = Professor.objects.all()
+    permission_classes = (ProfessorPermission,)
+
+    @action(detail=False)
+    def describe_self(self, request):
+        professor = get_object_or_404(Professor, app_user=request.user)
+        return Response(self.serializer_class(professor).data)
+
+    @action(detail=True)
+    def subjects(self, request, pk=None):
+        professor = get_object_or_404(Professor, id=pk)
+        return Response(
+            SubjectSerializer(
+                list(
+                    set(
+                        map(
+                            lambda shift: shift.subject,
+                            Shift.objects.filter(professor=professor)
+                        )
+                    )
                 ),
                 many=True
             ).data
