@@ -64,12 +64,15 @@ class StudentMenu extends React.Component {
                         <Card.Body>
                             <ListGroup variant="flush">
                                 <ListGroup.Item action>
-                                    {gettext("Attendance")}
+                                    <a href="#">{gettext("Attendance")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action>
-                                    {gettext("Curriculum")}
+                                    <a href="#">{gettext("Curriculum")}</a>
                                 </ListGroup.Item>
-                                <ListGroup.Item action>{gettext("Profile")}</ListGroup.Item>
+                                <ListGroup.Item action>
+                                    <a href="#">{gettext("Grades")}</a>
+                                </ListGroup.Item>
+                                <ListGroup.Item action><a href="#">{gettext("Profile")}</a></ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
                         <Card.Footer />
@@ -81,16 +84,16 @@ class StudentMenu extends React.Component {
                         <Card.Body>
                             <ListGroup variant="flush">
                                 <ListGroup.Item action>
-                                    {gettext("Personal")}
+                                    <a href="#">{gettext("Personal")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action>
-                                    {gettext("By Subjects")}
+                                    <a href="#">{gettext("By Subjects")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action>
-                                    {gettext("Enroll / Unsubscribe in Curricular Units")}
+                                    <a href="#">{gettext("Enroll / Unsubscribe in Curricular Units")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action>
-                                    {gettext("Enroll / Unsubscribe in Shifts")}
+                                    <a href="#">{gettext("Enroll / Unsubscribe in Shifts")}</a>
                                 </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>

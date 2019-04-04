@@ -75,9 +75,9 @@ class ProfessorMenu extends React.Component {
                         <Card.Body>
                             <ListGroup variant="flush">
                                 <ListGroup.Item action>
-                                    {gettext("Attendance")}
+                                    <a href="#">{gettext("Attendance")}</a>
                                 </ListGroup.Item>
-                                <ListGroup.Item action>{gettext("Profile")}</ListGroup.Item>
+                                <ListGroup.Item action><a href="#">{gettext("Profile")}</a></ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
                         <Card.Footer />
@@ -89,10 +89,10 @@ class ProfessorMenu extends React.Component {
                         <Card.Body>
                             <ListGroup variant="flush">
                                 <ListGroup.Item action>
-                                    {gettext("Room Change")}
+                                    <a href="#">gettext("Room Change")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action>
-                                    {gettext("Room Reservation")}
+                                    <a href="#">{gettext("Room Reservation")}</a>
                                 </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
