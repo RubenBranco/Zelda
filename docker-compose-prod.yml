@@ -29,10 +29,13 @@ services:
         condition: on-failure
     depends_on:
       - cache
+      - postgres
     volumes:
       - ~/zelda/data:/zelda/data:rw
       - ~/zelda/logs:/zelda/logs:rw
       - ~/zelda/static:/zelda/static:rw
+    env_file:
+      - docker.env
   cache:
     image: memcached:latest
     networks:
@@ -56,5 +59,19 @@ services:
     volumes:
       - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
       - ~/certbot/var/www/certbot:/var/www/certbot:rw
+  postgres:
+    image: postgres:11
+    networks:
+      zelda: {}
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - ~/postgres/var/lib/postgresql/data:/var/lib/postgresql/data:rw
+    env_file:
+      - docker.env
 networks:
   zelda: {}
