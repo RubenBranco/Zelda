@@ -16,6 +16,53 @@ class ProfessorMenu extends React.Component {
         };
     }
 
+    componentDidMount() {
+        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+        if (this.state.userid === null) {
+            fetch('api/professor/describe_self', {
+                method: 'GET',
+                headers:{
+                    "X-CSRFToken": csrfmiddlewaretoken,
+                },
+            }).then(response => {
+                response.json().then(data => {
+                    this.setState({
+                        userid: data.id,
+                    });
+                    this.getCourses();
+                });
+            })
+        }
+    }
+
+    getCourses() {
+        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+        fetch(`api/professor/${this.state.userid}/course_subjects/`, {
+            method: 'GET',
+            headers:{
+                "X-CSRFToken": csrfmiddlewaretoken,
+            },
+        }).then(response => {
+            response.json().then(data => {
+                let subjects = [];
+                data.map(subjectList => {
+                    subjects.push(
+                        {
+                            id: subjectList[0].subject,
+                            designation: subjectList.map(subject =>
+                                    subject.designation
+                                ).join(" / "),
+                            href: "",
+                        }
+                    )
+                });
+                this.setState({
+                    courses: subjects,
+                });
+            });
+        });
+    }
+
     render() {
         return (
             <div>
