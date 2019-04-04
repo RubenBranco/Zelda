@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
 import StudentMenu from "./Menus/StudentMenu.jsx";
+import ProfessorMenu from "./Menus/ProfessorMenu.jsx";
 
 
 class MainMenu extends React.Component {
@@ -33,6 +34,8 @@ class MainMenu extends React.Component {
         let menu = null;
         if (this.state.userRole === "Student") {
             menu = <StudentMenu />;
+        } else if (this.state.userRole === "Professor") {
+            menu = <ProfessorMenu />;
         }
         
         return (
