@@ -3,6 +3,9 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+//import DatePicker from "react-bootstrap-date-picker";
 
 class SearchStudentsAttendance extends React.Component{
     constructor(){
@@ -18,6 +21,7 @@ class SearchStudentsAttendance extends React.Component{
             classType: "",
             fromDate: "",
             results: [],
+            startDate: new Date(),
             error: "",
         };
 
@@ -144,9 +148,17 @@ class SearchStudentsAttendance extends React.Component{
                                 <Form.Control 
                                     id="Class Type" 
                                     name="classType" 
-                                    as="select"
                                     onChange={this.handleChange}>
                                     <option>1</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group as={Col} controlId="Date">
+                                <Form.Label>{gettext("Start Date")}</Form.Label>
+                                <Form.Control 
+                                    id="Date" 
+                                    name="startDate" 
+                                    onChange={this.handleChange}>
+                                    
                                 </Form.Control>
                             </Form.Group>
                         </Form.Row>
@@ -156,6 +168,7 @@ class SearchStudentsAttendance extends React.Component{
                             type="submit"
                         >
                             {gettext("Search")}
+                            <FontAwesomeIcon icon={faSearch} />
                         </Button>
                     </Form>
                 </Container>

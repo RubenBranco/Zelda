@@ -2,14 +2,14 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faSignOutAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
 
 
 class Navigator extends React.Component {
   render() {
     return (
-      <Navbar id="navbar">
+      <Navbar id="navbar" collapseOnSelect expand="sm">
         <Nav className="mr-auto">
           <Navbar.Brand href={window.frontpageUrl}>
             <Image
@@ -21,30 +21,33 @@ class Navigator extends React.Component {
             />
           </Navbar.Brand>
         </Nav>
-        <Nav>
-          <Image
-            alt=""
-            src={window.userImageUrl}
-            width="30"
-            height="30"
-            className="d-inline-block align-top navImage"
-          />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav>
+            <Image
+              alt=""
+              src={window.userImageUrl}
+              width="30"
+              height="30"
+              className="d-inline-block align-top navImage"
+            />
 
-          <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
-        </Nav>
+            <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
+          </Nav>
 
-        <Nav className="ml-auto">
-          <Nav.Link
-            className="navlinks"
-            href={window.webmailUrl}
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faEnvelope} />
-          </Nav.Link>
-          <Nav.Link className="navlinks" href={window.logoutUrl}>
-            <FontAwesomeIcon icon={faSignOutAlt} />
-          </Nav.Link>
-        </Nav>
+          <Nav className="ml-auto">
+            <Nav.Link
+              className="navlinks"
+              href={window.webmailUrl}
+              target="_blank"
+            >
+              <FontAwesomeIcon icon={faEnvelope} />
+            </Nav.Link>
+            <Nav.Link className="navlinks" href={window.logoutUrl}>
+              <FontAwesomeIcon icon={faSignOutAlt} />
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     );
   }

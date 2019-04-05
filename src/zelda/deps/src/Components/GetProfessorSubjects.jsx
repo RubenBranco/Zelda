@@ -65,7 +65,6 @@ class GetProfessorSubjects extends React.Component{
         return (
             <div>
                 {this.props.display == 'select' ? 
-                <Form.Row>
                     <Form.Group as={Col} controlId="Subject">
                         <Form.Label>{gettext("Subject")}</Form.Label>
                         <Form.Control 
@@ -77,9 +76,7 @@ class GetProfessorSubjects extends React.Component{
                                 <option>{course.designation}</option>
                             )}
                         </Form.Control>
-                    </Form.Group> 
-                </Form.Row>
-                
+                    </Form.Group>
                 : 
                 <SubjectList courses={this.state.courses}/>
                 }
