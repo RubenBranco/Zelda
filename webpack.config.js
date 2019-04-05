@@ -21,6 +21,7 @@ module.exports = {
         login: path.resolve(baseSrcPath, "Pages", "login.jsx"),
         frontpage: path.resolve(baseSrcPath, "Pages", "frontpage.jsx"),
         profattendances: path.resolve(baseSrcPath, "Pages", "profattendances.jsx"),
+        profcheckshiftlessstudents: path.resolve(baseSrcPath, "Pages", "profcheckshiftlessstudents.jsx"),
         userprofile: path.resolve(baseSrcPath, "Pages", "userprofile.jsx"),
         courseinfo: path.resolve(baseSrcPath, "Pages", "courseinfo.jsx"),
     },
