@@ -1,8 +1,7 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
+import SubjectList from "./MenuLists/SubjectList.jsx";
 
 class GetProfessorSubjects extends React.Component{
     constructor(props) {
@@ -27,13 +26,13 @@ class GetProfessorSubjects extends React.Component{
                     this.setState({
                         userid: data.id,
                     });
-                    this.getCourses();
+                    this.getSubjects();
                 });
             })
         }
     }
 
-    getCourses() {
+    getSubjects() {
         let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
@@ -82,22 +81,7 @@ class GetProfessorSubjects extends React.Component{
                 </Form.Row>
                 
                 : 
-                
-                <Card>
-                    <Card.Header className="text-center cardheader font-weight-bold">
-                    {gettext("Subjects")}
-                    </Card.Header>
-                    <Card.Body>
-                        <ListGroup variant="flush">
-                            {this.state.courses.map(course =>
-                                <ListGroup.Item action>
-                                    <a href={course.href}>{course.designation}</a>
-                                </ListGroup.Item>
-                            )}
-                        </ListGroup>
-                    </Card.Body>
-                    <Card.Footer />
-                </Card>
+                <SubjectList courses={this.state.courses}/>
                 }
             </div>
         );

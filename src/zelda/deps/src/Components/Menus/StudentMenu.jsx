@@ -3,7 +3,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ProfileSearch from "../Searches/SearchProfile.jsx";
-import CoursesList from "../MenuLists/CoursesList.jsx";
+import CoursesList from "../MenuLists/SubjectList.jsx";
 
 
 class StudentMenu extends React.Component {
