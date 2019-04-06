@@ -32,9 +32,11 @@
     "bootstrap": "^4.3.1",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.5",
-    "react-bootstrap-date-picker": "^5.1.0",
+    "react-datepicker": "^2.3.0",
     "react-dom": "^16.8.4",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1"
   }
 }
