@@ -78,6 +78,27 @@ class AttendanceViewSet(viewsets.ModelViewSet):
                         attendance.save()
                     return
 
+    @action(detail=False)
+    def summary(self, request):
+        queryset = self.get_queryset()
+        student_attendances = dict()
+
+        for attendance in queryset:
+            student = attendance.student
+            if student not in student_attendances:
+                student_attendances[student] = 0
+            student_attendances[student] += 1
+
+        return Response([
+            dict(
+                student_id=student.id,
+                student_number=student.number,
+                name=" ".join([student.app_user.first_name, student.app_user.last_name]),
+                email=student.app_user.institutional_email,
+                attendances=n_attendances,
+            )
+            for student, n_attendances in student_attendances.items()
+        ])
 
     def check_attendance(self, student, lesson):
         try:

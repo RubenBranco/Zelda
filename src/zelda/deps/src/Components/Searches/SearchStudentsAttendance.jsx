@@ -8,7 +8,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
-
+import { urlParamEncode } from "../../functions/url.js";
+import { PassThrough } from "stream";
 
 class SearchStudentsAttendance extends React.Component{
     constructor(){
@@ -20,7 +21,7 @@ class SearchStudentsAttendance extends React.Component{
             subjects: [],
             chosenSubject: null,
             classes: {},
-            selectedSubject: null,
+            chosenClass: null,
             results: [],
             startDate: new Date(),
             error: null,
@@ -29,6 +30,7 @@ class SearchStudentsAttendance extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubjectChange = this.handleSubjectChange.bind(this);
+        this.handleSearchRequest = this.handleSearchRequest.bind(this);
     }
 
     componentDidMount() {
@@ -124,6 +126,38 @@ class SearchStudentsAttendance extends React.Component{
         });
     }
 
+    handleSearchRequest(event) {
+        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+        let payload = {};
+        const paramKeys = {
+            'firstName': 'first_name',
+            'lastName': 'last_name',
+            'startDate': 'start_date',
+            'chosenSubject': 'subject',
+            'chosenClass': 'shift',
+        }
+        for (var key in paramKeys) {
+            if (this.state[key] !== null) {
+                if (key === 'startDate') {
+                    payload[paramKeys[key]] = this.state.startDate.toISOString().split("T")[0];
+                } else {
+                    payload[paramKeys[key]] = this.state[key];
+                }
+            }
+        }
+
+        fetch(`/api/attendances/summary/?${urlParamEncode(payload)}`, {
+            method: 'GET',
+            headers:{
+                "X-CSRFToken": csrfmiddlewaretoken,
+            }
+        }).then(response => {
+            response.json().then(data => {
+                // update state and render data
+            });
+        });
+    }
+
     render () {
         const classes = this.state.chosenSubject !== null && this.state.classes.hasOwnProperty(this.state.chosenSubject) ?
             this.state.classes[this.state.chosenSubject] : null;
@@ -191,7 +225,7 @@ class SearchStudentsAttendance extends React.Component{
                         <Button
                             variant="primary"
                             className="btn btn-primary"
-                            type="submit"
+                            onClick={this.handleSearchRequest}
                         >
                             {gettext("Search")}{" "}
                             <FontAwesomeIcon icon={faSearch} />

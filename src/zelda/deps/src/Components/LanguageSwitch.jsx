@@ -2,6 +2,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import { urlParamEncode } from "../functions/url.js";
+
 class LanguageSwitch extends React.Component {
     constructor() {
         super();
@@ -22,8 +24,7 @@ class LanguageSwitch extends React.Component {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
             },
-            body: Object.entries(payload).map(([key, value]) =>
-            encodeURIComponent(key) + '=' + encodeURIComponent(value)).join('&'),
+            body: urlParamEncode(payload),
         }).then(function(response) {
             if (response.ok && response.status === 200) {
                 location.reload();
