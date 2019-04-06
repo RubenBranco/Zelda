@@ -24,7 +24,7 @@ class ProfessorMenu extends React.Component {
                         <Card.Body>
                             <ListGroup variant="flush">
                                 <ListGroup.Item action>
-                                    <a href="#">{gettext("Attendance")}</a>
+                                    <a href={window.viewAttendancesUrl}>{gettext("Attendance")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action><a href="#">{gettext("Profile")}</a></ListGroup.Item>
                             </ListGroup>
