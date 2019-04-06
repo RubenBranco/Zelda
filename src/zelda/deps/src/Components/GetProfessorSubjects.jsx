@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import SubjectList from "./MenuLists/SubjectList.jsx";
 
+
 class GetProfessorSubjects extends React.Component{
     constructor(props) {
         super(props);
@@ -60,24 +61,23 @@ class GetProfessorSubjects extends React.Component{
         });
     }
 
-
     render () {
         return (
             <div>
-                {this.props.display == 'select' ? 
+                {this.props.display == 'select' ?
                     <Form.Group as={Col} controlId="Subject">
                         <Form.Label>{gettext("Subject")}</Form.Label>
-                        <Form.Control 
-                            id="Subject" 
-                            name="Subject" 
+                        <Form.Control
+                            id="Subject"
+                            name="Subject"
                             as="select"
                             >
-                            {this.state.courses.map(course => 
+                            {this.state.courses.map(course =>
                                 <option>{course.designation}</option>
                             )}
                         </Form.Control>
                     </Form.Group>
-                : 
+                :
                 <SubjectList courses={this.state.courses}/>
                 }
             </div>
