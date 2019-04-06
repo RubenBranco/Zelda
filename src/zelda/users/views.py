@@ -30,6 +30,7 @@ class AttendanceViewSet(viewsets.ModelViewSet):
         start_date="lesson__date__gte",
         subject="lesson__lesson_spec__shift__subject",
         shift="lesson__lesson_spec__shift__code",
+        student_number="student__number",
     )
 
     def get_queryset(self):
