@@ -3,6 +3,7 @@ from rest_framework.serializers import ModelSerializer
 from timetable.models import Attendance
 from .models import Student, Professor, AppUser
 
+
 class AttendanceSerializer(ModelSerializer):
     class Meta:
         model = Attendance
