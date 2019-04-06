@@ -58,6 +58,11 @@ urlpatterns = [
         name='prof_view_attendances',
     ),
     path(
+        'students/view_attendances',
+        timetable_views.StudentViewAttendancesView.as_view(),
+        name='student_view_attendances',
+    ),
+    path(
         'professor/view_shiftless_students',
         timetable_views.ProfCheckShiftlessStudentsView.as_view(),
         name='prof_view_shiftless_students',

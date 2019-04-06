@@ -1,4 +1,4 @@
-from common.views import AbstractProfessorAppView
+from common.views import AbstractProfessorAppView, AbstractStudentAppView
 
 
 class ProfViewAttendancesView(AbstractProfessorAppView):
@@ -6,4 +6,8 @@ class ProfViewAttendancesView(AbstractProfessorAppView):
 
 
 class ProfCheckShiftlessStudentsView(AbstractProfessorAppView):
+    pass
+
+
+class StudentViewAttendancesView(AbstractStudentAppView):
     pass

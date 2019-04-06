@@ -54,6 +54,13 @@ class AbstractProfessorAppView(AbstractLoggedInAppView):
         return super().dispatch(request, *args, **kwargs)
 
 
+class AbstractStudentAppView(AbstractLoggedInAppView):
+    def dispatch(self, request, *args, **kwargs):
+        if not isinstance(get_user_from_request(request), Student):
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+
 class FrontpageView(AbstractLoggedInAppView):
     pass
 
