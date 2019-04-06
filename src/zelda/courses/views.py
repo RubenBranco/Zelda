@@ -9,6 +9,7 @@ from .models import Course, CourseSpecification, CourseSubject, Subject, Subject
 from common.views import AbstractLoggedInAppView
 from users.serializers import ProfessorSerializer
 from timetable.models import Shift
+from timetable.serializers import ShiftSerializer
 
 
 class ViewCourseInfoView(AbstractLoggedInAppView):
@@ -48,6 +49,17 @@ class SubjectViewSet(ModelViewSet):
                 many=True
             ).data
         )
+
+    @action(detail=True)
+    def shifts(self, request, pk=None):
+        subject = get_object_or_404(Subject, id=pk)
+        return Response(
+            ShiftSerializer(
+                Shift.objects.filter(subject=subject),
+                many=True
+            ).data
+        )
+
 
 class SubjectSpecificationViewSet(ModelViewSet):
     serializer_class = SubjectSpecificationSerializer
