@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from timetable.models import Attendance, Lesson, Shift, LessonSpecification
 from .models import Student, AppUser, Professor
 from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer, RestrictedAppUserSerializer, ProfessorSerializer
-from .permissions import AppUserSelfPermission, StudentPermission, ProfessorPermission
+from .permissions import AppUserSelfPermission, StudentPermission, ProfessorPermission, AttendancePermission
 from courses.serializers import CourseSubjectSerializer, SubjectSerializer
 from courses.models import Subject, CourseSubject
 from common.views import AbstractLoggedInAppView
@@ -22,18 +22,29 @@ class UserProfileView(AbstractLoggedInAppView):
 
 
 class AttendanceViewSet(viewsets.ModelViewSet):
-
-    queryset = Attendance.objects.all()
     serializer_class = AttendanceSerializer
-    #permission_class = (nao sei qual)
+    permission_classes = (AttendancePermission,)
+    filter_queries = dict(
+        first_name="student__app_user__first_name",
+        last_name="student__app_user__last_name",
+        start_date="lesson__date__gte",
+        subject="lesson__lesson_spec__shift__subject",
+        shift="lesson__lesson_spec__shift__code",
+    )
 
-    # def partial_update(self, request):
-    #     attendance = get_object_or_404(Attendance)
-    #     serializer = AttendanceSerializer(attendance, data=request.data)
-    #     pass
+    def get_queryset(self):
+        queryset = Attendance.objects.all()
+        filters = dict()
 
-    # def list(self, request):
-    #     pass
+        for query_param in self.filter_queries:
+            query_value = self.request.query_params.get(query_param, None)
+            if query_value is not None:
+                filters[self.filter_queries[query_param]] = query_value
+
+        if filters:
+            queryset = queryset.filter(**filters)
+
+        return queryset
 
     def create(self, request):
         #lesson.time; lesson.duration
