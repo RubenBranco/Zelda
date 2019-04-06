@@ -9,7 +9,10 @@ import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 import { urlParamEncode } from "../../functions/url.js";
-import { PassThrough } from "stream";
+
+import 'react-table/react-table.css'
+import ReactTable from "react-table";
+
 
 class SearchStudentsAttendance extends React.Component{
     constructor(){
@@ -153,7 +156,9 @@ class SearchStudentsAttendance extends React.Component{
             }
         }).then(response => {
             response.json().then(data => {
-                // update state and render data
+                this.setState({
+                    results: data
+                });
             });
         });
     }
@@ -161,6 +166,30 @@ class SearchStudentsAttendance extends React.Component{
     render () {
         const classes = this.state.chosenSubject !== null && this.state.classes.hasOwnProperty(this.state.chosenSubject) ?
             this.state.classes[this.state.chosenSubject] : null;
+
+        const columns = [
+            {
+            Header: '#',
+            accessor: 'student_id',
+            },
+            {
+            Header: gettext('Student Number'),
+            accessor: 'student_number',
+            },
+            {
+            Header: gettext('Student Name'),
+            accessor: 'name',
+            },
+            {
+            Header: gettext('Student Email'),
+            accessor: 'email',
+            },
+            {
+            Header: gettext('Total Attendances'),
+            accessor: 'attendances',
+            }
+        ];
+
         return(
             <div>
                 <Container>
@@ -231,6 +260,14 @@ class SearchStudentsAttendance extends React.Component{
                             <FontAwesomeIcon icon={faSearch} />
                         </Button>
                     </Form>
+                </Container>
+
+                <Container>
+                    <ReactTable
+                        data={this.state.results}
+                        resolveData={data => data.map(row => row)}
+                        columns={columns}
+                    />
                 </Container>
             </div>
         )
