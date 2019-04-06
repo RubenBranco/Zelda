@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-30 00:27+0000\n"
-"PO-Revision-Date: 2019-03-21 21:08+0000\n"
+"POT-Creation-Date: 2019-04-06 16:38+0000\n"
+"PO-Revision-Date: 2019-04-06 17:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -74,7 +74,7 @@ msgstr "Biblioteca"
 msgid "Secretarial Office"
 msgstr "Secretaria"
 
-#: organizations/models.py:56 timetable/models.py:35
+#: organizations/models.py:56 timetable/models.py:36
 msgid "Laboratory"
 msgstr "Laboratório"
 
@@ -86,53 +86,65 @@ msgstr "Auditório"
 msgid "Studyroom"
 msgstr "Sala de estudo"
 
-#: timetable/models.py:24
+#: timetable/models.py:25
 msgid "Monday"
 msgstr "Segunda-Feira"
 
-#: timetable/models.py:25
+#: timetable/models.py:26
 msgid "Tuesday"
 msgstr "Terça-Feira"
 
-#: timetable/models.py:26
+#: timetable/models.py:27
 msgid "Wednesday"
 msgstr "Quarta-Feira"
 
-#: timetable/models.py:27
+#: timetable/models.py:28
 msgid "Thursday"
 msgstr "Quinta-Feira"
 
-#: timetable/models.py:28
+#: timetable/models.py:29
 msgid "Friday"
 msgstr "Sexta-Feira"
 
-#: timetable/models.py:29
+#: timetable/models.py:30
 msgid "Saturday"
 msgstr "Sábado"
 
-#: timetable/models.py:30
+#: timetable/models.py:31
 msgid "Sunday"
 msgstr "Domingo"
 
-#: timetable/models.py:33
+#: timetable/models.py:34
 msgid "Theory"
 msgstr "Teórica"
 
-#: timetable/models.py:34
+#: timetable/models.py:35
 msgid "Practice"
 msgstr "Teórico-Prática"
 
-#: timetable/models.py:36
+#: timetable/models.py:37
 msgid "Field"
 msgstr "Aula de campo"
 
-#: timetable/models.py:75
+#: timetable/models.py:74
 msgid "class"
 msgstr "Turma"
 
-#: timetable/models.py:76
+#: timetable/models.py:75
 msgid "classes"
 msgstr "turmas"
+
+#: users/admin.py:19
+msgid "Personal info"
+msgstr "Informação Pessoal"
+
+#: users/admin.py:35
+msgid "Permissions"
+msgstr "Permissões"
+
+#: users/admin.py:38
+msgid "Important dates"
+msgstr "Datas Importantes"
 
 #: users/models.py:9
 msgid "Single"
