@@ -5,83 +5,129 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-//import DatePicker from "react-bootstrap-date-picker";
+import DatePicker from 'react-datepicker';
+
+import "react-datepicker/dist/react-datepicker.css";
+
 
 class SearchStudentsAttendance extends React.Component{
     constructor(){
         super();
         this.state = {
-            firstName: "",
-            lastName: "",
-            courses: [],
-            course: "",
-            curricularUnits: [],
-            curricularUnit: "",
-            Class: "",
-            classType: "",
-            fromDate: "",
+            userid: null,
+            firstName: null,
+            lastName: null,
+            subjects: [],
+            chosenSubject: null,
+            classes: {},
+            selectedSubject: null,
             results: [],
             startDate: new Date(),
-            error: "",
+            error: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleSubjectChange = this.handleSubjectChange.bind(this);
     }
 
     componentDidMount() {
+        if (this.state.userid === null) {
+            let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+            fetch('/api/professor/describe_self', {
+                method: 'GET',
+                headers:{
+                    "X-CSRFToken": csrfmiddlewaretoken,
+                },
+            }).then(response => {
+                response.json().then(data => {
+                    this.setState({
+                        userid: data.id,
+                    });
+                    this.getSubjects();
+                });
+            });
+        }
+    }
+
+    getSubjects() {
         let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-        // GET COURSES
-        fetch('/api/course_spec/', {
-            method: "GET",
-            headers: {
+        fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
+            method: 'GET',
+            headers:{
                 "X-CSRFToken": csrfmiddlewaretoken,
             },
         }).then(response => {
             response.json().then(data => {
-                let courses = [];
-                data.map(course => {
-                    courses.push({
-                        id: course.id,
-                        designation: course.designation,
-                        subjectsId: course.course_programme,
-                    })
+                let subjects = [];
+                data.map(subjectInfo =>
+                    this.populateSubjects(subjects, subjectInfo)
+                );
+                this.setState({
+                    subjects: subjects,
+                    chosenSubject: subjects[0].id,
                 });
-                this.setState({ courses });
-                // GET COURSES SUBJECTS
-                //console.log(this.state.courses);
-                this.state.courses[0].subjectsId.map(subjects => {
-                    fetch(`api/course_spec/${subjects}/`, {
-                        method: "GET",
-                        headers: {
-                            "X-CSRFToken": csrfmiddlewaretoken,
-                        },
-                    }).then(response => {
-                        response.json().then(data => {
-                            let curricularUnits = [];
-                            data.map(curricularUnit => {
-                                curricularUnits.push({
-                                    id: curricularUnit.id,
-                                    designation: curricularUnit.designation,
-                                })
-                            });
-                            this.setState({ curricularUnits });
-                        })
-                    })
-                })
-            })
+                this.getClasses();
+            });
         });
-        //console.log(this.state);
+    }
+
+    populateSubjects(subjectList, subjectInfo) {
+        let subject = {};
+        subject.id = subjectInfo[0].subject;
+        subject.designation = subjectInfo.map(subject =>
+            subject.designation
+        ).join(" / ");
+        subjectList.push(subject);
+    }
+
+    getClasses() {
+        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+        this.state.subjects.map(subject => {
+            let classes = this.state.classes;
+            let subjectId = subject.id;
+            classes[subjectId] = [];
+            this.setState({
+                classes
+            });
+            fetch(`/api/subject/${subjectId}/shifts`, {
+                method: 'GET',
+                headers:{
+                    "X-CSRFToken": csrfmiddlewaretoken,
+                },
+            }).then(response => {
+                response.json().then(data => {
+                    this.setState((prevState, _) => ({
+                            classes: Object.assign(prevState.classes, {[subjectId]: prevState.classes[subjectId].concat(data)})
+                    }));
+                });
+            });
+        });
     }
 
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         });
-        //console.log(this.state);
+    }
+
+    handleDateChange(date) {
+        this.setState({
+            startDate: date,
+        });
+    }
+
+    handleSubjectChange(event) {
+        this.handleChange(event);
+        this.setState({
+            chosenSubject: event.target.value,
+        });
     }
 
     render () {
-        return( 
+        const classes = this.state.chosenSubject !== null && this.state.classes.hasOwnProperty(this.state.chosenSubject) ?
+            this.state.classes[this.state.chosenSubject] : null;
+        return(
             <div>
                 <Container>
                     <h2>{gettext("Consult Students Attendances")}</h2>
@@ -89,77 +135,57 @@ class SearchStudentsAttendance extends React.Component{
 
                     <Form>
                         <Form.Row>
-                            <Form.Group as={Col} controlId="First Name">
+                            <Form.Group as={Col} controlId="firstName">
                                 <Form.Label>{gettext("First Name")}</Form.Label>
-                                <Form.Control 
-                                    id="First Name" 
-                                    name="firstName" 
-                                    type="text" 
+                                <Form.Control
+                                    name="firstName"
+                                    type="text"
                                     onChange={this.handleChange}
                                     placeholder={gettext("First Name")} />
                             </Form.Group>
-                            <Form.Group as={Col} controlId="Last Name">
+                            <Form.Group as={Col} controlId="lastName">
                                 <Form.Label>{gettext("Last Name")}</Form.Label>
-                                <Form.Control 
-                                    id="Last Name" 
-                                    name="lastName" 
+                                <Form.Control
+                                    name="lastName"
                                     type="text"
                                     onChange={this.handleChange}
-                                    placeholder={gettext("Last Name")}/>
+                                    placeholder={gettext("Last Name")} />
                             </Form.Group>
                         </Form.Row>
-
                         <Form.Row>
-                            <Form.Group as={Col} controlId="Courses">
-                                <Form.Label>{gettext("Course")}</Form.Label>
-                                <Form.Control 
-                                    id="Course" 
-                                    name="course" 
+                            <Form.Group as={Col} controlId="Subjects">
+                                <Form.Label>{gettext("Subjects")}</Form.Label>
+                                <Form.Control
+                                    name="subject"
                                     as="select"
-                                    onChange={this.handleChange}
-                                    >
-                                    {this.state.courses.map(course => 
-                                        <option>{course.designation}</option>
+                                    onChange={this.handleSubjectChange}
+                                >
+                                    {this.state.subjects.map(subject =>
+                                        <option value={subject.id}>{subject.designation}</option>
                                     )}
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="Curricular Unit">
-                                <Form.Label>{gettext("Curricular Unit")}</Form.Label>
-                                <Form.Control 
-                                    id="Curricular Unit" 
-                                    name="curricularUnit" 
-                                    as="select"
-                                    onChange={this.handleChange}>
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId="Class">
                                 <Form.Label>{gettext("Class")}</Form.Label>
-                                <Form.Control 
-                                    id="Class" 
-                                    name="Class" 
+                                <Form.Control
+                                    name="Class"
                                     as="select"
-                                    onChange={this.handleChange}>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="Class Type">
-                                <Form.Label>{gettext("Class Type")}</Form.Label>
-                                <Form.Control 
-                                    id="Class Type" 
-                                    name="classType" 
-                                    onChange={this.handleChange}>
-                                    <option>1</option>
+                                    onChange={this.handleChange}
+                                    multiple
+                                >
+                                    {classes !== null ?
+                                        classes.map(classObj =>
+                                            <option value={classObj.id}>{classObj.code}</option>
+                                        ) : null
+                                    }
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId="Date">
                                 <Form.Label>{gettext("Start Date")}</Form.Label>
-                                <Form.Control 
-                                    id="Date" 
-                                    name="startDate" 
-                                    onChange={this.handleChange}>
-                                    
-                                </Form.Control>
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={this.handleDateChange}
+                                />
                             </Form.Group>
                         </Form.Row>
                         <Button
@@ -167,7 +193,7 @@ class SearchStudentsAttendance extends React.Component{
                             className="btn btn-primary"
                             type="submit"
                         >
-                            {gettext("Search")}
+                            {gettext("Search")}{" "}
                             <FontAwesomeIcon icon={faSearch} />
                         </Button>
                     </Form>
