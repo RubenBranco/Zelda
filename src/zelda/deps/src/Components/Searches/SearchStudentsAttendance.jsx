@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
@@ -28,12 +29,17 @@ class SearchStudentsAttendance extends React.Component{
             results: [],
             startDate: new Date(),
             error: null,
+            modalShow: false,
+            studentAttendances: [],
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubjectChange = this.handleSubjectChange.bind(this);
         this.handleSearchRequest = this.handleSearchRequest.bind(this);
+        this.getSpecificStudentAttendance = this.getSpecificStudentAttendance.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     componentDidMount() {
@@ -159,6 +165,42 @@ class SearchStudentsAttendance extends React.Component{
                 this.setState({
                     results: data
                 });
+                let counter = 0;
+                var resulstId = [...this.state.results];
+                resulstId.forEach(function(result) {
+                    counter++;
+                    result.id = counter;
+                })
+                this.setState({results: resulstId});
+            });
+        });
+    }
+
+    handleClose() {
+        this.setState({ modalShow: false });
+    }
+    
+    handleShow() {
+        this.setState({ modalShow: true });
+    }
+
+    getSpecificStudentAttendance(rowProps) {
+        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+        fetch(`/api/attendances?student_number=${rowProps.student_number}`, {
+            method: 'GET',
+            headers:{
+                "X-CSRFToken": csrfmiddlewaretoken,
+            }
+        }).then(response => {
+            response.json().then(data => {
+                let counter2 = 0;
+                data.forEach(function(studentAttendance) {
+                    counter2++;
+                    studentAttendance.tableEntryId = counter2;
+                })
+                this.setState({ studentAttendances: data })
+                this.handleShow();
+                console.log(this.state.studentAttendances);
             });
         });
     }
@@ -170,28 +212,117 @@ class SearchStudentsAttendance extends React.Component{
         const columns = [
             {
             Header: '#',
-            accessor: 'student_id',
+            accessor: 'id',
+            filterable: true,
+            style: {
+                textAlign: 'right',
+            }
             },
             {
             Header: gettext('Student Number'),
             accessor: 'student_number',
+            filterable: true,
+            style: {
+                textAlign: 'right',
+            }
             },
             {
             Header: gettext('Student Name'),
             accessor: 'name',
-            },
-            {
-            Header: gettext('Student Email'),
-            accessor: 'email',
+            filterable: true,
+            style: {
+                textAlign: 'right',
+            }
             },
             {
             Header: gettext('Total Attendances'),
             accessor: 'attendances',
+            filterable: true,
+            style: {
+                textAlign: 'right',
+            }
+            },
+            {
+            Header: gettext('Student Email'),
+            accessor: 'email',
+            sortable: false,
+            filterable: false,
+            style: {
+                textAlign: 'right',
+            }
+            },
+            {
+            Cell: props =>{
+                return (
+                    <Button variant="link"
+                    onClick={() => {this.getSpecificStudentAttendance(props.original)}}
+                    >{gettext('+ More Details')}</Button>
+                )
+            },
+            sortable: false,
+            filterable: false,
+            style: {
+                textAlign: 'right',
+            }
+            }
+        ];
+
+        const columnsModal = [
+            {
+            Header: '#',
+            accessor: 'tableEntryId',
+            filterable: true,
+            style: {
+                textAlign: 'right',
+            }
+            },
+            {
+            Header: gettext('Class Type'),
+            accessor: 'student',
+            style: {
+                textAlign: 'right',
+            }
+            },
+            {
+            Header: gettext('Date'),
+            accessor: 'id',
+            filterable: true,
+            style: {
+                textAlign: 'right',
+            }
             }
         ];
 
         return(
             <div>
+
+                <Modal
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    show={this.state.modalShow}
+                    onHide={this.handleClose}
+                >
+                    <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        {gettext(`Student All Attendances to Subject:`)}
+                    </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <ReactTable
+                            noDataText={gettext('No Results Found')}
+                            keyField='#'
+                            data={this.state.studentAttendances}
+                            resolveData={data => data.map(row => row)}
+                            columns={columnsModal}
+                            defaultPageSize={5}
+                        />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.handleClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <Container>
                     <h2>{gettext("Consult Students Attendances")}</h2>
                     <hr />
@@ -264,9 +395,12 @@ class SearchStudentsAttendance extends React.Component{
 
                 <Container>
                     <ReactTable
+                        noDataText={gettext('No Results Found')}
+                        keyField='#'
                         data={this.state.results}
                         resolveData={data => data.map(row => row)}
                         columns={columns}
+                        defaultPageSize={5}
                     />
                 </Container>
             </div>
