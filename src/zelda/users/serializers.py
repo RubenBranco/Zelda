@@ -1,14 +1,18 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from timetable.models import Attendance
 from .models import Student, Professor, AppUser
 
 
 class AttendanceSerializer(ModelSerializer):
+    date = SerializerMethodField('get_attendance_date')
+
     class Meta:
         model = Attendance
         fields = "__all__" #student, lesson
 
+    def get_attendance_date(self, attendance):
+        return attendance.lesson.date
 
 class AppUserSerializer(ModelSerializer):
     class Meta:
