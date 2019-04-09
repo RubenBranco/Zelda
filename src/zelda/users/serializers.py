@@ -6,6 +6,7 @@ from .models import Student, Professor, AppUser
 
 class AttendanceSerializer(ModelSerializer):
     date = SerializerMethodField('get_attendance_date')
+    lesson_type = SerializerMethodField()
 
     class Meta:
         model = Attendance
@@ -13,6 +14,10 @@ class AttendanceSerializer(ModelSerializer):
 
     def get_attendance_date(self, attendance):
         return attendance.lesson.date
+
+    def get_lesson_type(self, attendance):
+        return attendance.lesson.lesson_spec.c_type
+
 
 class AppUserSerializer(ModelSerializer):
     class Meta:
