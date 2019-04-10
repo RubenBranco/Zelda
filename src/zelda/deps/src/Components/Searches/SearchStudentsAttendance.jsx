@@ -7,6 +7,8 @@ import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
+import ProfExportAllSubjectAttendances from "../Exports/ProfExportAllSubjectAttendances.jsx";
+import ProfExportSpecificStudentAttendances from "../Exports/ProfExportSpecificStudentAttendances.jsx";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { urlParamEncode } from "../../functions/url.js";
@@ -31,6 +33,7 @@ class SearchStudentsAttendance extends React.Component{
             error: null,
             modalShow: false,
             studentAttendances: [],
+            chosenStudent: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -169,7 +172,7 @@ class SearchStudentsAttendance extends React.Component{
                 var resulstId = [...this.state.results];
                 resulstId.forEach(function(result) {
                     counter++;
-                    result.id = counter;
+                    result.tableEntryId = counter;
                 })
                 this.setState({results: resulstId});
             });
@@ -200,7 +203,6 @@ class SearchStudentsAttendance extends React.Component{
                 })
                 this.setState({ studentAttendances: data })
                 this.handleShow();
-                console.log(this.state.studentAttendances);
             });
         });
     }
@@ -212,11 +214,14 @@ class SearchStudentsAttendance extends React.Component{
         const columns = [
             {
             Header: '#',
-            accessor: 'id',
+            accessor: 'tableEntryId',
             filterable: true,
             style: {
                 textAlign: 'right',
-            }
+            },
+            width: 100,
+            maxWidth: 100,
+            minWidth: 100,
             },
             {
             Header: gettext('Student Number'),
@@ -224,7 +229,10 @@ class SearchStudentsAttendance extends React.Component{
             filterable: true,
             style: {
                 textAlign: 'right',
-            }
+            },
+            width: 200,
+            maxWidth: 200,
+            minWidth: 200,
             },
             {
             Header: gettext('Student Name'),
@@ -240,7 +248,10 @@ class SearchStudentsAttendance extends React.Component{
             filterable: true,
             style: {
                 textAlign: 'right',
-            }
+            },
+            width: 200,
+            maxWidth: 200,
+            minWidth: 200,
             },
             {
             Header: gettext('Student Email'),
@@ -255,7 +266,7 @@ class SearchStudentsAttendance extends React.Component{
             Cell: props =>{
                 return (
                     <Button variant="link"
-                    onClick={() => {this.getSpecificStudentAttendance(props.original)}}
+                    onClick={() => {this.getSpecificStudentAttendance(props.original);}}
                     >{gettext('+ More Details')}</Button>
                 )
             },
@@ -271,25 +282,29 @@ class SearchStudentsAttendance extends React.Component{
             {
             Header: '#',
             accessor: 'tableEntryId',
-            filterable: true,
             style: {
                 textAlign: 'right',
-            }
+            },
+            width: 100,
+            maxWidth: 100,
+            minWidth: 100,
             },
             {
             Header: gettext('Class Type'),
-            accessor: 'student',
+            accessor: 'lesson_type',
             style: {
-                textAlign: 'right',
+                textAlign: 'center',
             }
             },
             {
             Header: gettext('Date'),
-            accessor: 'id',
-            filterable: true,
+            accessor: 'date',
             style: {
                 textAlign: 'right',
-            }
+            },
+            width: 110,
+            maxWidth: 110,
+            minWidth: 110,
             }
         ];
 
@@ -303,11 +318,6 @@ class SearchStudentsAttendance extends React.Component{
                     show={this.state.modalShow}
                     onHide={this.handleClose}
                 >
-                    <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        {gettext(`Student All Attendances to Subject:`)}
-                    </Modal.Title>
-                    </Modal.Header>
                     <Modal.Body>
                         <ReactTable
                             noDataText={gettext('No Results Found')}
@@ -316,7 +326,21 @@ class SearchStudentsAttendance extends React.Component{
                             resolveData={data => data.map(row => row)}
                             columns={columnsModal}
                             defaultPageSize={5}
-                        />
+                        >
+                        {
+                            this.state.studentAttendances.length > 0 ?
+                            (state, filtredData, instace) => {
+                                this.reactTable = state.pageRows.map(result => {return result._original });
+                            return (
+                                <div>
+                                    {filtredData()}
+                                    <ProfExportSpecificStudentAttendances studentAttendances={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} student={this.reactTable[0].student}/>
+                                </div>
+                                );
+                            } : null
+                        }
+
+                        </ReactTable>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.handleClose}>Close</Button>
@@ -401,8 +425,24 @@ class SearchStudentsAttendance extends React.Component{
                         resolveData={data => data.map(row => row)}
                         columns={columns}
                         defaultPageSize={5}
-                    />
-                </Container>
+                        filterable
+                    >
+                    
+                    {
+                        this.state.results.length > 0 ?
+                        (state, filtredData, instace) => {
+                        this.reactTable = state.pageRows.map(result => {return result._original });
+                        return (
+                            <div>
+                                {filtredData()}
+                                <ProfExportAllSubjectAttendances results={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} />
+                            </div>
+                            );
+                        } : null
+                    }
+
+                    </ReactTable>   
+                </Container>                
             </div>
         )
     }
