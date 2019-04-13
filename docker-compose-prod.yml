@@ -34,6 +34,7 @@ services:
       - ~/zelda/data:/zelda/data:rw
       - ~/zelda/logs:/zelda/logs:rw
       - ~/zelda/static:/zelda/static:rw
+      - ~/zelda/code/backups:/zelda/code/backups:rw
     env_file:
       - docker.env
   cache:

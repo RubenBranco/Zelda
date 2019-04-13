@@ -8,3 +8,4 @@ docs/*
 docker-compose-*
 package-lock.json
 *.md
+src/zelda/backups/*
