@@ -60,7 +60,7 @@ services:
       - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
       - ~/certbot/var/www/certbot:/var/www/certbot:rw
   postgres:
-    image: postgres:11
+    image: zelda-postgres:latest
     networks:
       zelda: {}
     deploy:
@@ -71,7 +71,6 @@ services:
           - node.role == manager
     volumes:
       - ~/postgres/var/lib/postgresql/data:/var/lib/postgresql/data:rw
-    env_file:
-      - docker.env
+      - ~/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:rw
 networks:
   zelda: {}
