@@ -24,6 +24,7 @@ module.exports = {
         profcheckshiftlessstudents: path.resolve(baseSrcPath, "Pages", "profcheckshiftlessstudents.jsx"),
         userprofile: path.resolve(baseSrcPath, "Pages", "userprofile.jsx"),
         courseinfo: path.resolve(baseSrcPath, "Pages", "courseinfo.jsx"),
+        studentattendances: path.resolve(baseSrcPath, "Pages", "studentattendances.jsx"),
     },
     output: {
         filename: '[name].js',
