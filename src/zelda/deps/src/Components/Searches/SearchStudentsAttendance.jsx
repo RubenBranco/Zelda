@@ -9,12 +9,11 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 import ProfExportAllSubjectAttendances from "../Exports/ProfExportAllSubjectAttendances.jsx";
 import ProfExportSpecificStudentAttendances from "../Exports/ProfExportSpecificStudentAttendances.jsx";
-
-import "react-datepicker/dist/react-datepicker.css";
+import ReactTable from "react-table";
 import { urlParamEncode } from "../../functions/url.js";
 
+import "react-datepicker/dist/react-datepicker.css";
 import 'react-table/react-table.css'
-import ReactTable from "react-table";
 
 
 class SearchStudentsAttendance extends React.Component{
@@ -182,7 +181,7 @@ class SearchStudentsAttendance extends React.Component{
     handleClose() {
         this.setState({ modalShow: false });
     }
-    
+
     handleShow() {
         this.setState({ modalShow: true });
     }
@@ -427,7 +426,7 @@ class SearchStudentsAttendance extends React.Component{
                         defaultPageSize={5}
                         filterable
                     >
-                    
+
                     {
                         this.state.results.length > 0 ?
                         (state, filtredData, instace) => {
@@ -441,8 +440,8 @@ class SearchStudentsAttendance extends React.Component{
                         } : null
                     }
 
-                    </ReactTable>   
-                </Container>                
+                    </ReactTable>
+                </Container>
             </div>
         )
     }
