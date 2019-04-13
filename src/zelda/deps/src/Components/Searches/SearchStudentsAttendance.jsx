@@ -168,12 +168,12 @@ class SearchStudentsAttendance extends React.Component{
                     results: data
                 });
                 let counter = 0;
-                var resulstId = [...this.state.results];
-                resulstId.forEach(function(result) {
+                var resultsId = [...this.state.results];
+                resultsId.forEach(function(result) {
                     counter++;
                     result.tableEntryId = counter;
                 })
-                this.setState({results: resulstId});
+                this.setState({results: resultsId});
             });
         });
     }
