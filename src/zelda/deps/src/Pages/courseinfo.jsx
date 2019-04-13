@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 
 
-class Courseinfo extends React.Component{
+class CourseInfo extends React.Component{
     constructor() {
         super();
         this.state;
@@ -18,5 +18,5 @@ class Courseinfo extends React.Component{
     }
 }
 
-ReactDOM.render(<Courseinfo />, document.getElementById("main"));
-export default Courseinfo;
+ReactDOM.render(<CourseInfo />, document.getElementById("main"));
+export default CourseInfo;
