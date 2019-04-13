@@ -12,6 +12,7 @@ from timetable.models import Attendance, Lesson, Shift, LessonSpecification
 from .models import Student, AppUser, Professor
 from .serializers import AttendanceSerializer, StudentSerializer, AppUserSerializer, RestrictedAppUserSerializer, ProfessorSerializer
 from .permissions import AppUserSelfPermission, StudentPermission, ProfessorPermission, AttendancePermission
+from common.utils import get_user_from_request
 from courses.serializers import CourseSubjectSerializer, SubjectSerializer
 from courses.models import Subject, CourseSubject
 from common.views import AbstractLoggedInAppView
@@ -101,6 +102,16 @@ class AttendanceViewSet(viewsets.ModelViewSet):
             for student, n_attendances in student_attendances.items()
         ])
 
+    @action(detail=False)
+    def my_attendances(self, request):
+        queryset = self.get_queryset().filter(student=get_user_from_request(request))
+        return Response(
+            AttendanceSerializer(
+                queryset,
+                many=True
+            ).data
+        )
+
     def check_attendance(self, student, lesson):
         try:
             got_attendance = Attendance.objects.get(student=student, lesson=lesson)
@@ -131,6 +142,15 @@ class StudentViewSet(viewsets.ModelViewSet):
             ).data
         )
 
+    @action(detail=True)
+    def course_subjects(self, request, pk=None):
+        student = get_object_or_404(Student, id=pk)
+        return Response(
+            CourseSubjectSerializer(
+                CourseSubject.objects.filter(subject__in=Subject.objects.filter(students=student)),
+                many=True
+            ).data
+        )
 
 class ProfessorViewSet(viewsets.ModelViewSet):
     serializer_class = ProfessorSerializer

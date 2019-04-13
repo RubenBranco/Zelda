@@ -1,12 +1,15 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from timetable.models import Attendance
+from courses.models import CourseSubject
+from common.utils import get_user_from_request
 from .models import Student, Professor, AppUser
 
 
 class AttendanceSerializer(ModelSerializer):
     date = SerializerMethodField('get_attendance_date')
     lesson_type = SerializerMethodField()
+    subject_designation = SerializerMethodField()
 
     class Meta:
         model = Attendance
@@ -18,6 +21,10 @@ class AttendanceSerializer(ModelSerializer):
     def get_lesson_type(self, attendance):
         return attendance.lesson.lesson_spec.c_type
 
+    def get_subject_designation(self, attendance):
+        return CourseSubject.objects.get(
+            subject=attendance.lesson.lesson_spec.shift.subject,
+        ).designation
 
 class AppUserSerializer(ModelSerializer):
     class Meta:
