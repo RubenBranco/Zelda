@@ -15,7 +15,8 @@ RUN rm code/requirements.txt
 VOLUME [ \
     "/zelda/data", \
     "/zelda/logs", \
-    "/zelda/static" \
+    "/zelda/static", \
+    "/zelda/code/backups" \
 ]
 
 ENV PROJECT_DIR=/zelda/code \
