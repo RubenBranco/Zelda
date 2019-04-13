@@ -73,5 +73,7 @@ services:
     volumes:
       - ~/postgres/var/lib/postgresql/data:/var/lib/postgresql/data:rw
       - ~/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:rw
+    env_file:
+      - docker.env
 networks:
   zelda: {}
