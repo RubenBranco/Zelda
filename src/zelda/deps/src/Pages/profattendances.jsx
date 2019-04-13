@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 import SearchStudentsAttendance from "../Components/Searches/SearchStudentsAttendance.jsx";
 
-class Profattendances extends React.Component {
+class ProfAttendances extends React.Component {
   constructor() {
     super();
     this.state;
@@ -14,10 +14,10 @@ class Profattendances extends React.Component {
       <div>
         <Navigator />
         <SearchStudentsAttendance />
-      </div> 
+      </div>
     );
   }
 }
 
-ReactDOM.render(<Profattendances />, document.getElementById("main"));
-export default Profattendances;
+ReactDOM.render(<ProfAttendances />, document.getElementById("main"));
+export default ProfAttendances;
