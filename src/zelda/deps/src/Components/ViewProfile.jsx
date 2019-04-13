@@ -8,20 +8,23 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Button from 'react-bootstrap/Button';
 
+import getCsrfToken from "../functions/csrf.js";
+
+
 class ViewProfile extends React.Component{
     constructor() {
         super();
         this.state = {
             userData: [],
         };
+        this.csrfmiddlewaretoken = getCsrfToken();
     }
 
     componentDidMount() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch("/api/appuser/describe_self/", {
             method: "GET",
             headers: {
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
             response.json().then(data => {

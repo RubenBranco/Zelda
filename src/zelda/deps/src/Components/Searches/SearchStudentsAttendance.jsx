@@ -15,6 +15,8 @@ import { urlParamEncode } from "../../functions/url.js";
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-table/react-table.css'
 
+import getCsrfToken from "../../functions/csrf.js";
+
 
 class SearchStudentsAttendance extends React.Component{
     constructor(){
@@ -34,6 +36,7 @@ class SearchStudentsAttendance extends React.Component{
             studentAttendances: [],
             chosenStudent: null,
         };
+        this.csrfmiddlewaretoken = getCsrfToken();
 
         this.handleChange = this.handleChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -46,11 +49,10 @@ class SearchStudentsAttendance extends React.Component{
 
     componentDidMount() {
         if (this.state.userid === null) {
-            let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
             fetch('/api/professor/describe_self', {
                 method: 'GET',
                 headers:{
-                    "X-CSRFToken": csrfmiddlewaretoken,
+                    "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
                 response.json().then(data => {
@@ -64,11 +66,10 @@ class SearchStudentsAttendance extends React.Component{
     }
 
     getSubjects() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
             headers:{
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
             response.json().then(data => {
@@ -95,7 +96,6 @@ class SearchStudentsAttendance extends React.Component{
     }
 
     getClasses() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         this.state.subjects.map(subject => {
             let classes = this.state.classes;
             let subjectId = subject.id;
@@ -106,7 +106,7 @@ class SearchStudentsAttendance extends React.Component{
             fetch(`/api/subject/${subjectId}/shifts`, {
                 method: 'GET',
                 headers:{
-                    "X-CSRFToken": csrfmiddlewaretoken,
+                    "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
                 response.json().then(data => {
@@ -138,7 +138,6 @@ class SearchStudentsAttendance extends React.Component{
     }
 
     handleSearchRequest(event) {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         let payload = {};
         const paramKeys = {
             'firstName': 'first_name',
@@ -160,7 +159,7 @@ class SearchStudentsAttendance extends React.Component{
         fetch(`/api/attendances/summary/?${urlParamEncode(payload)}`, {
             method: 'GET',
             headers:{
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             }
         }).then(response => {
             response.json().then(data => {
@@ -187,11 +186,10 @@ class SearchStudentsAttendance extends React.Component{
     }
 
     getSpecificStudentAttendance(rowProps) {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch(`/api/attendances?student_number=${rowProps.student_number}`, {
             method: 'GET',
             headers:{
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             }
         }).then(response => {
             response.json().then(data => {

@@ -5,6 +5,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import ProfileSearch from "../Searches/SearchProfile.jsx";
 import CoursesList from "../MenuLists/SubjectList.jsx";
 
+import getCsrfToken from "../../functions/csrf.js";
+
 
 class StudentMenu extends React.Component {
     constructor(props) {
@@ -14,14 +16,14 @@ class StudentMenu extends React.Component {
             userid: null,
             courses: [],
         };
+        this.csrfmiddlewaretoken = getCsrfToken();
     }
 
     componentDidMount() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch('api/student/describe_self', {
             method: 'GET',
             headers: {
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
             response.json().then(data => {
@@ -31,7 +33,7 @@ class StudentMenu extends React.Component {
                 fetch(`api/student/${this.state.userid}/subjects`, {
                     method: 'GET',
                     headers: {
-                        "X-CSRFToken": csrfmiddlewaretoken,
+                        "X-CSRFToken": this.csrfmiddlewaretoken,
                     },
                 }).then(response => {
                     response.json().then(data => {

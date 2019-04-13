@@ -3,6 +3,7 @@ import Image from "react-bootstrap/Image";
 import StudentMenu from "./Menus/StudentMenu.jsx";
 import ProfessorMenu from "./Menus/ProfessorMenu.jsx";
 
+import getCsrfToken from "../functions/csrf.js";
 
 class MainMenu extends React.Component {
     constructor(props) {
@@ -12,14 +13,14 @@ class MainMenu extends React.Component {
         this.state = {
             userRole: null,
         };
+        this.csrfmiddlewaretoken = getCsrfToken();
     }
 
     componentDidMount() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch("/api/appuser/describe_self/", {
             method: "GET",
             headers: {
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
             response.json().then(data => {
@@ -37,7 +38,7 @@ class MainMenu extends React.Component {
         } else if (this.state.userRole === "Professor") {
             menu = <ProfessorMenu />;
         }
-        
+
         return (
             <div>
                 <div id="img">

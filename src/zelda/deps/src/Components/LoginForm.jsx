@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
+import getCsrfToken from "../functions/csrf.js";
+
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -18,21 +20,21 @@ class LoginForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
+        this.csrfmiddlewaretoken = getCsrfToken();
     }
 
     login() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch(this.props.url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             },
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
-                csrfmiddlewaretoken: csrfmiddlewaretoken,
+                csrfmiddlewaretoken: this.csrfmiddlewaretoken,
             })
         }).then(response => {
             response.json().then(json => {

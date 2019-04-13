@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import SubjectList from "./MenuLists/SubjectList.jsx";
 
+import getCsrfToken from "../functions/csrf.js";
 
 class GetProfessorSubjects extends React.Component{
     constructor(props) {
@@ -12,15 +13,15 @@ class GetProfessorSubjects extends React.Component{
             userid: null,
             courses: [],
         };
+        this.csrfmiddlewaretoken = getCsrfToken();
     }
 
     componentDidMount() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         if (this.state.userid === null) {
             fetch('/api/professor/describe_self/', {
                 method: 'GET',
                 headers:{
-                    "X-CSRFToken": csrfmiddlewaretoken,
+                    "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
                 response.json().then(data => {
@@ -34,11 +35,10 @@ class GetProfessorSubjects extends React.Component{
     }
 
     getSubjects() {
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
             headers:{
-                "X-CSRFToken": csrfmiddlewaretoken,
+                "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
             response.json().then(data => {
