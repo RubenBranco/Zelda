@@ -1,1 +1,10 @@
 {% extends 'base.html' %}
+{% block footjs %}
+<script>
+    {% if app_user.user_type == "Professor" %}
+        var viewAttendancesUrl = "{% url 'prof_view_attendances' %}";
+    {% elif app_user.user_type == "Student" %}
+        var viewAttendancesUrl = "{% url 'student_view_attendances' %}";
+    {% endif %}
+</script>
+{% endblock footjs %}

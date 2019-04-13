@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification
 from common.views import AbstractLoggedInAppView
-from users.serializers import ProfessorSerializer
+from users.serializers import ProfessorRestrictedSerializer
 from timetable.models import Shift
 from timetable.serializers import ShiftSerializer
 
@@ -47,7 +47,7 @@ class SubjectViewSet(ModelViewSet):
         subject = get_object_or_404(Subject, id=pk)
         shifts = Shift.objects.filter(subject=subject)
         return Response(
-            ProfessorSerializer(
+            ProfessorRestrictedSerializer(
                 list(set(list(map(lambda shift: shift.professor, shifts)))),
                 many=True
             ).data

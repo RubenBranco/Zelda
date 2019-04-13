@@ -56,3 +56,11 @@ class ProfessorSerializer(ModelSerializer):
     class Meta:
         model = Professor
         fields = "__all__"
+
+
+class ProfessorRestrictedSerializer(ModelSerializer):
+    app_user = RestrictedAppUserSerializer(read_only=True)
+    
+    class Meta:
+        model = Professor
+        fields = "__all__"

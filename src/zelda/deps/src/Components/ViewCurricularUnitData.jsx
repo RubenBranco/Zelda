@@ -5,44 +5,93 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 
+import getCsrfToken from "../functions/csrf.js";
+
+
 class ViewCurricularUnitData extends React.Component{
     constructor() {
         super();
         this.state = {
-            subjectData: [],
+            subjectSpecId: null,
+            designation: null,
+            objectives: null,
+            programme: null,
+            evaluation: null,
+            bibliography: null,
+            ects: null,
+            code: null,
+            schedule: [],
+            professors: [],
         };
+        this.csrfmiddlewaretoken = getCsrfToken();
+        this.subjectId = window.location.pathname.split("/").pop();
+        this.hasFetched = false;
     }
 
     componentDidMount() {
-        // tenho que receber algo por props
-        // falta o nome da cadeira
-        let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-        fetch("/api/subject_spec/2/", {
+        if (!this.hasFetched) {
+            fetch(`/api/subject/${this.subjectId}/`, {
+                method: "GET",
+                headers: {
+                    "X-CSRFToken": this.csrfmiddlewaretoken,
+                }
+            }).then(response => {
+                response.json().then(data => {
+                    this.setState({
+                        subjectSpecId: data.subject_spec
+                    });
+                    this.fetchSubjectInfo();
+                    this.getProfessors();
+                });
+            });
+            this.hasFetched = true;
+        }
+    }
+
+    fetchSubjectInfo() {
+        fetch(`/api/subject_spec/${this.state.subjectSpecId}/`, {
             method: "GET",
             headers: {
-                "X-CSRFToken": csrfmiddlewaretoken,
-            },
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            }
         }).then(response => {
             response.json().then(data => {
                 this.setState({
-                    subjectData: data,
-                })
-                console.log(this.state.subjectData);
-            })
+                    ects: data.ects,
+                    code: data.code,
+                    programme: data.programme,
+                    objectives: data.objectives,
+                    evaluation: data.evaluation_method,
+                    bibliography: data.bibliography
+                });
+            });
         });
     }
 
-
+    getProfessors() {
+        fetch(`/api/subject/${this.subjectId}/professors/`, {
+            method: "GET",
+            headers: {
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            }
+        }).then(response => {
+            response.json().then(data => {
+                this.setState({
+                    professors: data
+                });
+            });
+        });
+    }
 
     render () {
         return (
             <Container>
-                <Tab.Container defaultActiveKey="goals">
+                <Tab.Container defaultActiveKey="objectives">
                     <Row>
                         <Col sm={3}>
                         <Nav variant="pills" className="flex-column">
                             <Nav.Item>
-                            <Nav.Link eventKey="goals">{gettext("Goals")}</Nav.Link>
+                            <Nav.Link eventKey="objectives">{gettext("Objectives")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                             <Nav.Link eventKey="program">{gettext("Program")}</Nav.Link>
@@ -63,53 +112,62 @@ class ViewCurricularUnitData extends React.Component{
                             <Nav.Link eventKey="teachers">{gettext("Teachers")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="attendance">{gettext("Attendance")}</Nav.Link>
+                            <Nav.Link
+                                eventKey="attendance"
+                                href={window.viewAttendancesUrl}
+                                target="_blank"
+                            >{gettext("Attendance")}</Nav.Link>
                             </Nav.Item>
                         </Nav>
                         </Col>
                         <Col sm={9}>
                         <Tab.Content>
-                            <Tab.Pane eventKey="goals">
-                                <h2>{gettext("Goals")}</h2>
+                            <Tab.Pane eventKey="objectives">
+                                <h2>{gettext("Objectives")}</h2>
                                 <hr />
-                                <p>{gettext(this.state.subjectData.objectives)}</p>
+                                {this.state.objectives !== null ?
+                                    <p>{this.state.objectives}</p> : null }
                             </Tab.Pane>
                             <Tab.Pane eventKey="program">
                                 <h2>{gettext("Program")}</h2>
                                 <hr />
-                                <p>{gettext(this.state.subjectData.programme)}</p>
+                                {this.state.programme !== null ?
+                                    <p>{this.state.programme}</p> : null }
                             </Tab.Pane>
                             <Tab.Pane eventKey="evaluation">
                                 <h2>{gettext("Evaluation")}</h2>
                                 <hr />
-                                <p>{gettext(this.state.subjectData.evaluation_method)}</p>
+                                {this.state.evaluation !== null ?
+                                    <p>{this.state.evaluation}</p> : null }
                             </Tab.Pane>
                             <Tab.Pane eventKey="bibliography">
                                 <h2>{gettext("Bibliography")}</h2>
                                 <hr />
-                                <p>{gettext(this.state.subjectData.bibliography)}</p>
+                                {this.state.bibliography !== null ?
+                                    <p>{this.state.bibliography}</p> : null }
                             </Tab.Pane>
                             <Tab.Pane eventKey="details">
                                 <h2>{gettext("Details")}</h2>
                                 <hr />
                                 <h4>{gettext("ECTS")}</h4>
-                                <p>{gettext(this.state.subjectData.ects)}</p>
+                                {this.state.ects !== null ?
+                                    <p>{this.state.ects}</p> : null }
                                 <br />
                                 <h4>{gettext("Code")}</h4>
-                                <p>{gettext(this.state.subjectData.code)}</p>
+                                {this.state.code !== null ?
+                                    <p>{this.state.code}</p> : null }
                             </Tab.Pane>
                             <Tab.Pane eventKey="schedule">
                                 <h2>{gettext("Schedule")}</h2>
                                 <hr />
-                                
+
                             </Tab.Pane>
                             <Tab.Pane eventKey="teachers">
                                 <h2>{gettext("Teachers")}</h2>
                                 <hr />
-                                
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="attendance">
-                                <h1>Isto é um link para consultar as presenças dos alunos na respetiva cadeira</h1>
+                                {this.state.professors.map(professor =>
+                                    <p>{professor.app_user.first_name} {professor.app_user.last_name}</p>
+                                )}
                             </Tab.Pane>
                         </Tab.Content>
                         </Col>
