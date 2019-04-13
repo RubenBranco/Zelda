@@ -4,19 +4,19 @@ import Navigator from "../Components/Navigator.jsx";
 import SearchStudentsAttendance from "../Components/Searches/SearchStudentsAttendance.jsx";
 
 class ProfAttendances extends React.Component {
-  constructor() {
-    super();
-    this.state;
-  }
+    constructor() {
+        super();
+        this.state;
+    }
 
-  render() {
-    return (
-      <div>
-        <Navigator />
-        <SearchStudentsAttendance />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Navigator />
+                <SearchStudentsAttendance />
+            </div>
+        );
+    }
 }
 
 ReactDOM.render(<ProfAttendances />, document.getElementById("main"));
