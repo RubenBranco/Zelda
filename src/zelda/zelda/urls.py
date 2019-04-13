@@ -77,6 +77,11 @@ urlpatterns = [
         users_views.UserProfileView.as_view(),
         name='view_user',
     ),
+    path(
+        'subjects/<identifier>',
+        course_views.ViewSubjectInfoView.as_view(),
+        name='view_subject',
+    ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('api/', include(api.urls)),
