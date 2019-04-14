@@ -28,12 +28,16 @@ body {
 }
 .button_form_switch {
   text-decoration: underline;
+  background-color: transparent;
+  color:black;
+  border-color: transparent;
 }
 
 #formLanguageSwitch {
   position: relative;
   display: inline;
   float: left;
+ 
 }
 
 .button_form_switch :active {
