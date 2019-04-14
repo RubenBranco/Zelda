@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification
+from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade
 
 
 class CourseSerializer(ModelSerializer):
@@ -30,4 +30,10 @@ class SubjectSerializer(ModelSerializer):
 class SubjectSpecificationSerializer(ModelSerializer):
     class Meta:
         model = SubjectSpecification
+        fields = "__all__"
+
+
+class GradeSerializer(ModelSerializer):
+    class Meta:
+        model = Grade
         fields = "__all__"
