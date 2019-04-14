@@ -12,6 +12,11 @@ class SubjectSpecification(models.Model):
     objectives = models.TextField()
     evaluation_method = models.TextField()
     bibliography = models.TextField()
+    # Number of shifts per student
+    theory_shifts = models.SmallIntegerField()
+    practice_shifts = models.SmallIntegerField()
+    lab_shifts = models.SmallIntegerField()
+    field_shifts = models.SmallIntegerField()
 
 
 class Subject(models.Model):
