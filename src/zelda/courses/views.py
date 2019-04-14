@@ -6,6 +6,7 @@ from rest_framework.response import Response
 
 from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification
+from .permissions import SubjectPermission
 from common.views import AbstractLoggedInAppView
 from users.serializers import ProfessorRestrictedSerializer, RestrictedAppUserSerializer, StudentSerializer
 from timetable.models import Shift, LessonSpecification
@@ -41,7 +42,7 @@ class CourseSubjectViewSet(ModelViewSet):
 class SubjectViewSet(ModelViewSet):
     serializer_class = SubjectSerializer
     queryset = Subject.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (SubjectPermission,)
 
     @action(detail=True)
     def professors(self, request, pk=None):
