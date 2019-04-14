@@ -1,5 +1,6 @@
 from rest_framework.permissions import BasePermission, IsAdminUser
 
+
 class BaseAppPermission(BasePermission):
     def has_permission(self, request, view):
         if view.action == "list":
