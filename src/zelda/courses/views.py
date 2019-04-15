@@ -4,10 +4,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer
-from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification
+from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer
+from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade
+from .permissions import SubjectPermission
 from common.views import AbstractLoggedInAppView
+from common.permissions import BaseAppPermission
+from common.utils import get_user_from_request
 from users.serializers import ProfessorRestrictedSerializer, RestrictedAppUserSerializer, StudentSerializer
+from users.models import Student
 from timetable.models import Shift, LessonSpecification
 from timetable.serializers import ShiftSerializer
 
@@ -18,6 +22,7 @@ class ViewCourseInfoView(AbstractLoggedInAppView):
 
 class ViewSubjectInfoView(AbstractLoggedInAppView):
     pass
+
 
 class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
@@ -40,7 +45,7 @@ class CourseSubjectViewSet(ModelViewSet):
 class SubjectViewSet(ModelViewSet):
     serializer_class = SubjectSerializer
     queryset = Subject.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (SubjectPermission,)
 
     @action(detail=True)
     def professors(self, request, pk=None):
@@ -92,6 +97,21 @@ class SubjectViewSet(ModelViewSet):
                 student_info.update(dict(shiftless=student_classes))
                 shiftless_students.append(student_info)
         return Response(shiftless_students)
+
+    @action(detail=True)
+    def my_grades(self, request, pk=None):
+        subject = get_object_or_404(Subject, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Student):
+            return Response(None)
+
+        return Response(
+            GradeSerializer(
+                Grade.objects.filter(subject=subject, student=user),
+                many=True,
+            ).data
+        )
 
 
 class SubjectSpecificationViewSet(ModelViewSet):
