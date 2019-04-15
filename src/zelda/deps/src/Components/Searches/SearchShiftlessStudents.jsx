@@ -17,7 +17,7 @@ class SearchShiftlessStudents extends React.Component{
         this.state = {
             userid: null,
             courses: [],
-            shiftLessStudentsData: [],
+            shiftlessStudentsData: [],
         };
 
         this.csrfmiddlewaretoken = getCsrfToken();
@@ -40,9 +40,6 @@ class SearchShiftlessStudents extends React.Component{
                 });
             })
         }
-        console.log(1);
-        console.log(this.state);
-        console.log(2);
     }
 
     getSubjects() {
@@ -54,18 +51,16 @@ class SearchShiftlessStudents extends React.Component{
         }).then(response => {
             response.json().then(data => {
                 let subjects = [];
-                let counter = 0;
-                data.map(subjectList => {
+                data.map((subjectList, index) => {
                     subjects.push(
                         {
-                            id: subjectList[counter].subject,
+                            id: subjectList[index].subject,
                             designation: subjectList.map(subject =>
                                     subject.designation
                                 ).join(" / "),
                             href: "",
                         }
                     )
-                    counter++;
                 });
                 this.setState({
                     courses: subjects,
@@ -76,8 +71,6 @@ class SearchShiftlessStudents extends React.Component{
     }
 
     getShiftlessStudentsData() {
-        let shiftLessStudentsData = [];
-        let counter2 = 0;
         this.state.courses.map(subject => {
             fetch(`/api/subject/${subject.id}/shiftless_students/`, {
                 method: 'GET',
@@ -86,25 +79,26 @@ class SearchShiftlessStudents extends React.Component{
                 },
             }).then(response => {
                 response.json().then(data => {
-                    shiftLessStudentsData.push({
-                        entryTableId: counter2,
-                        first_name: data[0].first_name,
-                        last_name: data[0].last_name,
-                        institutional_email: data[0].institutional_email,
-                        shiftless: data[0].shiftless,
-                    })
+                    let shiftlessStudentsData = [];
+                    data.map((student, index) => {
+                        shiftlessStudentsData.push({
+                            entryTableId: index + 1,
+                            first_name: student.first_name,
+                            last_name: student.last_name,
+                            institutional_email: student.institutional_email,
+                            shiftless: student.shiftless,
+                        })
+                    });
+                    this.setState({ shiftlessStudentsData });
                 })
             })
-            counter2++;
         });
-        this.setState({ shiftLessStudentsData });
-        console.log(this.state);
     }
 
     render () {
         return (
             <Container>
-                 <Form> 
+                 <Form>
                     <Form.Group as={Col}>
                         <Form.Label>{gettext("Subject")}</Form.Label>
                         <Form.Control
@@ -124,8 +118,8 @@ class SearchShiftlessStudents extends React.Component{
                             name="Subject"
                             as="select"
                             >
-                            {this.state.shiftLessStudentsData.map(shiftLessStudentsData =>
-                                <option>{shiftLessStudentsData.first_name}</option>
+                            {this.state.shiftlessStudentsData.map(shiftlessStudentsData =>
+                                <option>{shiftlessStudentsData.first_name}</option>
                             )}
                         </Form.Control>
                     </Form.Group>

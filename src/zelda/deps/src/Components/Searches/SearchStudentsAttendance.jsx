@@ -166,11 +166,9 @@ class SearchStudentsAttendance extends React.Component{
                 this.setState({
                     results: data
                 });
-                let counter = 0;
                 var resultsId = [...this.state.results];
-                resultsId.forEach(function(result) {
-                    counter++;
-                    result.tableEntryId = counter;
+                resultsId.forEach((result, index) => {
+                    result.tableEntryId = index + 1;
                 })
                 this.setState({results: resultsId});
             });
@@ -193,10 +191,8 @@ class SearchStudentsAttendance extends React.Component{
             }
         }).then(response => {
             response.json().then(data => {
-                let counter2 = 0;
-                data.forEach(function(studentAttendance) {
-                    counter2++;
-                    studentAttendance.tableEntryId = counter2;
+                data.forEach((studentAttendance, index) => {
+                    studentAttendance.tableEntryId = index + 1;
                 })
                 this.setState({ studentAttendances: data })
                 this.handleShow();

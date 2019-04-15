@@ -133,11 +133,9 @@ class SearchOwnAttendances extends React.Component {
                 this.setState({
                     results: data
                 });
-                let counter = 0;
                 var resultsId = [...this.state.results];
-                resultsId.forEach(function(result) {
-                    counter++;
-                    result.tableEntryId = counter;
+                resultsId.forEach((result, index) => {
+                    result.tableEntryId = index + 1;
                 })
                 this.setState({results: resultsId});
             });
