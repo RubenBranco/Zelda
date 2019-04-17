@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade
 from .permissions import SubjectPermission
-from common.views import AbstractLoggedInAppView
+from common.views import AbstractLoggedInAppView, AbstractProfessorAppView, AbstractStudentAppView
 from common.permissions import BaseAppPermission
 from common.utils import get_user_from_request
 from users.serializers import ProfessorRestrictedSerializer, RestrictedAppUserSerializer, StudentSerializer
@@ -21,6 +21,14 @@ class ViewCourseInfoView(AbstractLoggedInAppView):
 
 
 class ViewSubjectInfoView(AbstractLoggedInAppView):
+    pass
+
+
+class ProfessorViewGradesView(AbstractProfessorAppView):
+    pass
+
+
+class StudentViewGradesView(AbstractStudentAppView):
     pass
 
 

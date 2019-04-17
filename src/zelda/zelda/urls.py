@@ -82,6 +82,16 @@ urlpatterns = [
         course_views.ViewSubjectInfoView.as_view(),
         name='view_subject',
     ),
+    path(
+        'professor/grades',
+        course_views.ProfessorViewGradesView.as_view(),
+        name='professor_view_grades',
+    ),
+    path(
+        'student/grades',
+        course_views.StudentViewGradesView.as_view(),
+        name='student_view_grades',
+    ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('api/', include(api.urls)),
