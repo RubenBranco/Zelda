@@ -9,7 +9,6 @@ import ReactTable from "react-table";
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import ListGroup from 'react-bootstrap/ListGroup';
-import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProfExportAllShiftLessStudentSubject from "../Exports/ProfExportAllShiftLessStudentsSubject.jsx";
 
 import 'react-table/react-table.css'
