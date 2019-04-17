@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
-class ProfExportAllSubjectAttendances extends React.Component{
+class ProfExportAllShiftLessStudentSubject extends React.Component{
     constructor(props) {
         super(props);
     }
@@ -12,17 +12,16 @@ class ProfExportAllSubjectAttendances extends React.Component{
                 <ReactHTMLTableToExcel
                     id="test-table-xls-button"
                     className="btn btn-primary"
-                    table="SubjectAllAttendances-xls"
-                    filename={gettext(this.props.subject + ' All Students Attendances')}
+                    table="ProfExportAllShiftLessStudentSubject-xls"
+                    filename={gettext('All Shiftless Students of ' + this.props.subject)}
                     sheet="tablexls"
-                    buttonText="Export Attendances"/>
-                <table hidden={true} id="SubjectAllAttendances-xls" >
+                    buttonText={gettext("Export Shiftless Students Data")}/>
+                <table hidden={true} id="ProfExportAllShiftLessStudentSubject-xls" >
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>{gettext('Student Number')}</th>
                             <th>{gettext('Student Name')}</th>
-                            <th>{gettext('Total Attendances')}</th>
                             <th>{gettext('Student Email')}</th>
                         </tr>
                     </thead>
@@ -33,8 +32,7 @@ class ProfExportAllSubjectAttendances extends React.Component{
                                     <td>{result.tableEntryId}</td>
                                     <td>{result.student_number}</td>
                                     <td>{result.name}</td>
-                                    <td>{result.attendances}</td>
-                                    <td>{result.email}</td>
+                                    <td>{result.institutional_email}</td>
                                 </tr>
                             );
                         })}
@@ -45,4 +43,4 @@ class ProfExportAllSubjectAttendances extends React.Component{
     }
 }
 
-export default ProfExportAllSubjectAttendances;
+export default ProfExportAllShiftLessStudentSubject;

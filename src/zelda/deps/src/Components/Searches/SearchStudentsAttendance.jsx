@@ -428,7 +428,7 @@ class SearchStudentsAttendance extends React.Component{
                         return (
                             <div>
                                 {filtredData()}
-                                <ProfExportAllSubjectAttendances results={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} />
+                                <ProfExportAllSubjectAttendances results={this.reactTable}  />
                             </div>
                             );
                         } : null
