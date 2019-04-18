@@ -14,11 +14,12 @@ body {
   margin-right: -10%;
 }
 
-#img_background_all {
-  width: 40%;
-  height: auto;
+#img_background {
+  height:auto; 
+  width:auto; 
   position: fixed;
-  position: absolute;
+  
+
 }
 
 .button_login {
@@ -65,14 +66,16 @@ body {
 #logos {
   margin-left: auto;
 }
+
+
 @media only screen and (max-width: 810px) {
   /* For mobile phones: */
   #img_background {
-    display: none;
-    width: 0%;
-    margin: auto;
-    padding-right: 3%;
-    padding-left: 3%;
+    display:none;
+    margin-top: 0%;
+    position: fixed;
+    position: absolute;
+    height: 100%;
   }
   #login > #form {
     padding-top: 50%;
@@ -103,14 +106,19 @@ body {
 @media only screen and (min-height: 1006px) {
   /* For mobile phones: */
   #img_background {
-    display: none;
-    width: 0%;
-    margin: auto;
+    display:none;
+    margin-top: 0%;
+    position: fixed;
+    position: absolute;
+    height: 100%;
+  
   }
   #login > #form {
-    margin-top: 60%;
-    width: 80%;
-    margin-left: 0%;
+    padding-top: 50%;
+    width: 100%;
+    padding-right: 3%;
+    padding-left: 3%;
+    margin: auto;
   }
   #img_form {
     width: 15%;
@@ -303,7 +311,7 @@ body {
 .dropdown-menu.show{
   height: 90%;
   position: absolute;
-  margin-top:-40%;
+  margin-top:50%;
 
   
 }
