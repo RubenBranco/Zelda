@@ -5,7 +5,7 @@ import SubjectList from "./MenuLists/SubjectList.jsx";
 
 import getCsrfToken from "../functions/csrf.js";
 
-class GetProfessorSubjects extends React.Component{
+class GetProfessorSubjects extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +20,7 @@ class GetProfessorSubjects extends React.Component{
         if (this.state.userid === null) {
             fetch('/api/professor/describe_self/', {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
@@ -37,7 +37,7 @@ class GetProfessorSubjects extends React.Component{
     getSubjects() {
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
@@ -48,8 +48,8 @@ class GetProfessorSubjects extends React.Component{
                         {
                             id: subjectList[0].subject,
                             designation: subjectList.map(subject =>
-                                    subject.designation
-                                ).join(" / "),
+                                subject.designation
+                            ).join(" / "),
                             href: "",
                         }
                     )
@@ -61,24 +61,25 @@ class GetProfessorSubjects extends React.Component{
         });
     }
 
-    render () {
+    render() {
         return (
             <div>
                 {this.props.display == 'select' ?
+
                     <Form.Group as={Col} controlId="Subject">
                         <Form.Label>{gettext("Subject")}</Form.Label>
                         <Form.Control
                             id="Subject"
                             name="Subject"
                             as="select"
-                            >
+                        >
                             {this.state.courses.map(course =>
                                 <option>{course.designation}</option>
                             )}
                         </Form.Control>
                     </Form.Group>
-                :
-                <SubjectList courses={this.state.courses}/>
+                    :
+                    <SubjectList courses={this.state.courses} />
                 }
             </div>
         );

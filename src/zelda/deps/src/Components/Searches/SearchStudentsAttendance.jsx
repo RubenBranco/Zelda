@@ -10,6 +10,7 @@ import DatePicker from 'react-datepicker';
 import ProfExportAllSubjectAttendances from "../Exports/ProfExportAllSubjectAttendances.jsx";
 import ProfExportSpecificStudentAttendances from "../Exports/ProfExportSpecificStudentAttendances.jsx";
 import ReactTable from "react-table";
+import Image from "react-bootstrap/Image";
 import { urlParamEncode } from "../../functions/url.js";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,8 +19,8 @@ import 'react-table/react-table.css'
 import getCsrfToken from "../../functions/csrf.js";
 
 
-class SearchStudentsAttendance extends React.Component{
-    constructor(){
+class SearchStudentsAttendance extends React.Component {
+    constructor() {
         super();
         this.state = {
             userid: null,
@@ -51,7 +52,7 @@ class SearchStudentsAttendance extends React.Component{
         if (this.state.userid === null) {
             fetch('/api/professor/describe_self', {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
@@ -68,7 +69,7 @@ class SearchStudentsAttendance extends React.Component{
     getSubjects() {
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
@@ -105,13 +106,13 @@ class SearchStudentsAttendance extends React.Component{
             });
             fetch(`/api/subject/${subjectId}/shifts`, {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
                 response.json().then(data => {
                     this.setState((prevState, _) => ({
-                            classes: Object.assign(prevState.classes, {[subjectId]: prevState.classes[subjectId].concat(data)})
+                        classes: Object.assign(prevState.classes, { [subjectId]: prevState.classes[subjectId].concat(data) })
                     }));
                 });
             });
@@ -158,7 +159,7 @@ class SearchStudentsAttendance extends React.Component{
 
         fetch(`/api/attendances/summary/?${urlParamEncode(payload)}`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             }
         }).then(response => {
@@ -170,7 +171,7 @@ class SearchStudentsAttendance extends React.Component{
                 resultsId.forEach((result, index) => {
                     result.tableEntryId = index + 1;
                 })
-                this.setState({results: resultsId});
+                this.setState({ results: resultsId });
             });
         });
     }
@@ -186,7 +187,7 @@ class SearchStudentsAttendance extends React.Component{
     getSpecificStudentAttendance(rowProps) {
         fetch(`/api/attendances?student_number=${rowProps.student_number}`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             }
         }).then(response => {
@@ -200,109 +201,114 @@ class SearchStudentsAttendance extends React.Component{
         });
     }
 
-    render () {
+    render() {
         const classes = this.state.chosenSubject !== null && this.state.classes.hasOwnProperty(this.state.chosenSubject) ?
             this.state.classes[this.state.chosenSubject] : null;
 
         const columns = [
             {
-            Header: '#',
-            accessor: 'tableEntryId',
-            filterable: true,
-            style: {
-                textAlign: 'right',
-            },
-            width: 100,
-            maxWidth: 100,
-            minWidth: 100,
-            },
-            {
-            Header: gettext('Student Number'),
-            accessor: 'student_number',
-            filterable: true,
-            style: {
-                textAlign: 'right',
-            },
-            width: 200,
-            maxWidth: 200,
-            minWidth: 200,
+                Header: '#',
+                accessor: 'tableEntryId',
+                filterable: true,
+                style: {
+                    textAlign: 'right',
+                },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
             },
             {
-            Header: gettext('Student Name'),
-            accessor: 'name',
-            filterable: true,
-            style: {
-                textAlign: 'right',
-            }
+                Header: gettext('Student Number'),
+                accessor: 'student_number',
+                filterable: true,
+                style: {
+                    textAlign: 'right',
+                },
+                width: 200,
+                maxWidth: 200,
+                minWidth: 200,
             },
             {
-            Header: gettext('Total Attendances'),
-            accessor: 'attendances',
-            filterable: true,
-            style: {
-                textAlign: 'right',
-            },
-            width: 200,
-            maxWidth: 200,
-            minWidth: 200,
+                Header: gettext('Student Name'),
+                accessor: 'name',
+                filterable: true,
+                style: {
+                    textAlign: 'right',
+                }
             },
             {
-            Header: gettext('Student Email'),
-            accessor: 'email',
-            sortable: false,
-            filterable: false,
-            style: {
-                textAlign: 'right',
-            }
+                Header: gettext('Total Attendances'),
+                accessor: 'attendances',
+                filterable: true,
+                style: {
+                    textAlign: 'right',
+                },
+                width: 200,
+                maxWidth: 200,
+                minWidth: 200,
             },
             {
-            Cell: props =>{
-                return (
-                    <Button variant="link"
-                    onClick={() => {this.getSpecificStudentAttendance(props.original);}}
-                    >{gettext('+ More Details')}</Button>
-                )
+                Header: gettext('Student Email'),
+                accessor: 'email',
+                sortable: false,
+                filterable: false,
+                style: {
+                    textAlign: 'right',
+                }
             },
-            sortable: false,
-            filterable: false,
-            style: {
-                textAlign: 'right',
-            }
+            {
+                Cell: props => {
+                    return (
+                        <Button variant="link"
+                            onClick={() => { this.getSpecificStudentAttendance(props.original); }}
+                        >{gettext('+ More Details')}</Button>
+                    )
+                },
+                sortable: false,
+                filterable: false,
+                style: {
+                    textAlign: 'right',
+                }
             }
         ];
 
         const columnsModal = [
             {
-            Header: '#',
-            accessor: 'tableEntryId',
-            style: {
-                textAlign: 'right',
-            },
-            width: 100,
-            maxWidth: 100,
-            minWidth: 100,
-            },
-            {
-            Header: gettext('Class Type'),
-            accessor: 'lesson_type',
-            style: {
-                textAlign: 'center',
-            }
+                Header: '#',
+                accessor: 'tableEntryId',
+                style: {
+                    textAlign: 'right',
+                },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
             },
             {
-            Header: gettext('Date'),
-            accessor: 'date',
-            style: {
-                textAlign: 'right',
+                Header: gettext('Class Type'),
+                accessor: 'lesson_type',
+                style: {
+                    textAlign: 'center',
+                }
             },
-            width: 110,
-            maxWidth: 110,
-            minWidth: 110,
+            {
+                Header: gettext('Date'),
+                accessor: 'date',
+                style: {
+                    textAlign: 'right',
+                },
+                width: 110,
+                maxWidth: 110,
+                minWidth: 110,
             }
         ];
 
-        return(
+        return (
             <div>
+
+                <div id="img">
+
+                    <Image src={window.backgroundImg} id="img_background_all" />
+                </div>
 
                 <Modal
                     size="lg"
@@ -320,18 +326,18 @@ class SearchStudentsAttendance extends React.Component{
                             columns={columnsModal}
                             defaultPageSize={5}
                         >
-                        {
-                            this.state.studentAttendances.length > 0 ?
-                            (state, filtredData, instace) => {
-                                this.reactTable = state.pageRows.map(result => {return result._original });
-                            return (
-                                <div>
-                                    {filtredData()}
-                                    <ProfExportSpecificStudentAttendances studentAttendances={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} student={this.reactTable[0].student}/>
-                                </div>
-                                );
-                            } : null
-                        }
+                            {
+                                this.state.studentAttendances.length > 0 ?
+                                    (state, filtredData, instace) => {
+                                        this.reactTable = state.pageRows.map(result => { return result._original });
+                                        return (
+                                            <div>
+                                                {filtredData()}
+                                                <ProfExportSpecificStudentAttendances studentAttendances={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} student={this.reactTable[0].student} />
+                                            </div>
+                                        );
+                                    } : null
+                            }
 
                         </ReactTable>
                     </Modal.Body>
@@ -341,7 +347,7 @@ class SearchStudentsAttendance extends React.Component{
                 </Modal>
 
                 <Container>
-                    <h2>{gettext("Consult Students Attendances")}</h2>
+                    <h2 class="title_main_menu">{gettext("Consult Students Attendances")}</h2>
                     <hr />
 
                     <Form>
@@ -421,18 +427,18 @@ class SearchStudentsAttendance extends React.Component{
                         filterable
                     >
 
-                    {
-                        this.state.results.length > 0 ?
-                        (state, filtredData, instace) => {
-                        this.reactTable = state.pageRows.map(result => {return result._original });
-                        return (
-                            <div>
-                                {filtredData()}
-                                <ProfExportAllSubjectAttendances results={this.reactTable}  />
-                            </div>
-                            );
-                        } : null
-                    }
+                        {
+                            this.state.results.length > 0 ?
+                                (state, filtredData, instace) => {
+                                    this.reactTable = state.pageRows.map(result => { return result._original });
+                                    return (
+                                        <div>
+                                            {filtredData()}
+                                            <ProfExportAllSubjectAttendances results={this.reactTable} />
+                                        </div>
+                                    );
+                                } : null
+                        }
 
                     </ReactTable>
                 </Container>

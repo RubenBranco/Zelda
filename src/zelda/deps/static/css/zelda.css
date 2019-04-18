@@ -14,7 +14,7 @@ body {
   margin-right: -10%;
 }
 
-#img_background {
+#img_background_all {
   width: 40%;
   height: auto;
   position: fixed;
@@ -100,7 +100,7 @@ body {
     padding-left: 3%;
   }
 }
-@media only screen and (min-height: 1300px) {
+@media only screen and (min-height: 1006px) {
   /* For mobile phones: */
   #img_background {
     display: none;
@@ -137,13 +137,31 @@ body {
 /* ---------------------------------------------LOGIN END ---------------------------------  */
 
 /* --------------------------------------------- FRONTPAGE START  ---------------------------------  */
-#img_background_all {
-  height: auto;
-  display: inline-block;
-  position: fixed;
-  margin-top: -30%;
-  transform: rotate(90deg);
+#img{
+  width: 100%;
+  float:right;
 }
+#img_background_all {
+  margin-top: 0%;
+  position: fixed;
+  position: absolute;
+  height: 100%;
+  margin-left: 60%;
+  
+
+ 
+}
+
+@media only screen and (max-width: 1256px){
+  /* For mobile phones: */
+  #img_background_all {
+    visibility: hidden;
+    width: 0%;
+    margin: auto;
+  }
+  
+}
+
 /* --------------------------------------------- FRONTPAGE END  ---------------------------------  */
 
 /* --------------------------------------------- NAVIGATOR START  ---------------------------------  */
@@ -162,9 +180,9 @@ body {
 }
 .nomedoUser {
   padding-left: 10px;
-  color: white;
-  font-weight: bold;
   display: inline;
+  font-family: 'Karla', sans-serif;
+  font-size: 120%;
 }
 
 #navbar {
@@ -186,16 +204,47 @@ body {
 /* --------------------------------------------- MAINMENU START  ---------------------------------  */
 
 #mainMenu {
+
   width: 90%;
   margin: auto;
   margin-top: 5%;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
 }
+
+.card-deck{
+  margin-top: 2%;
+  text-align: center;
+} 
+
+#card_prof{
+  background-color: transparent;
+  border: none;
+}
+
+.card-header , .card-footer{
+  background-color: white;
+  font-size: 125%;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-weight: lighter !important;
+}
+
+
+.list-group-item > a {
+  color: black;
+  font-size: 100%;
+}
+
 
 #searchProfile {
   margin-top: 5%;
 }
 
+.list-group-item.active{
+  background-color: #b77668;
+}
 .backgroundFrontPage {
   height: auto;
   margin-bottom: 0;
@@ -211,4 +260,19 @@ body {
 .fa-search {
   color: white;
 }
-/* --------------------------------------------- NAVIGATOR END  ---------------------------------  */
+
+
+.title_main_menu{
+  font-size: 200%;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-weight: lighter !important;
+  text-align: center;
+ padding: 2%;
+ position: relative;
+}
+/* --------------------------------------------- MAIN MENU END  ---------------------------------  */
+
+.ReactTable{
+  background-color: white;
+}

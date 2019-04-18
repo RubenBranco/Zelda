@@ -15,33 +15,36 @@ class ProfessorMenu extends React.Component {
     render() {
         return (
             <div>
-                <GetProfessorSubjects display="card" />
                 <CardDeck>
+                    <Card id="card_prof">
+                        <GetProfessorSubjects className="text-center font-weight-bold" />
+                    </Card>
+
                     <Card>
-                        <Card.Header className="text-center font-weight-bold">
-                        {gettext("Consult")}
+                        <Card.Header className="text-center font-weight-bold ">
+                            {gettext("Consult")}
                         </Card.Header>
                         <Card.Body>
                             <ListGroup variant="flush">
-                                <ListGroup.Item action>
-                                    <a href={window.viewAttendancesUrl}>{gettext("Attendance")}</a>
+                                <ListGroup.Item action href={window.viewAttendancesUrl}>
+                                    <a >{gettext("Attendance")}</a>
                                 </ListGroup.Item>
-                                <ListGroup.Item action><a href="#">{gettext("Profile")}</a></ListGroup.Item>
+                                <ListGroup.Item action href="#"><a >{gettext("Profile")}</a></ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
                         <Card.Footer />
                     </Card>
                     <Card>
                         <Card.Header className="text-center font-weight-bold">
-                        {gettext("Requests")}
+                            {gettext("Requests")}
                         </Card.Header>
                         <Card.Body>
                             <ListGroup variant="flush">
-                                <ListGroup.Item action>
-                                    <a href="#">{gettext("Room Change")}</a>
+                                <ListGroup.Item action href="#">
+                                    <a >{gettext("Room Change")}</a>
                                 </ListGroup.Item>
-                                <ListGroup.Item action>
-                                    <a href="#">{gettext("Room Reservation")}</a>
+                                <ListGroup.Item action href="#">
+                                    <a >{gettext("Room Reservation")}</a>
                                 </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
