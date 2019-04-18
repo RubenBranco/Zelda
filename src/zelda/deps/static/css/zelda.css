@@ -103,7 +103,7 @@ body {
     padding-left: 3%;
   }
 }
-@media only screen and (min-height: 1006px) {
+@media only screen and (min-width: 1006px) and (max-height:1006px){
   /* For mobile phones: */
   #img_background {
     display:none;
