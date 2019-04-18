@@ -257,6 +257,11 @@ body {
 .searchButton {
   background-color: #623725;
 }
+
+.searchButton:hover {
+  background-color: #ae6857;
+}
+
 .fa-search {
   color: white;
 }
@@ -268,7 +273,7 @@ body {
   font-family: 'Karla', sans-serif;
   font-weight: lighter !important;
   text-align: center;
- padding: 2%;
+ padding: 5%;
  position: relative;
 }
 /* --------------------------------------------- MAIN MENU END  ---------------------------------  */
@@ -276,3 +281,57 @@ body {
 .ReactTable{
   background-color: white;
 }
+
+.search_students_attendances{
+  width: 100%;
+  position: relative;
+  margin-bottom: 2%;
+  background-color: #ae6857;
+  color: white;
+  border: none;
+}
+
+.search_students_attendances:hover{
+  background-color: #b77668;
+}
+
+.search_students_attendances:active{
+  background-color: #b77668;
+}
+
+
+.dropdown-menu.show{
+  height: 90%;
+  position: absolute;
+  margin-top:-40%;
+
+  
+}
+
+.dropdown-menu.show > .dropdown-header{
+  font-size: 120%;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-weight: lighter !important;
+  text-align: center;
+}
+
+#navigation_Menu{
+  margin-left:10%;
+  margin-top:1% !important;
+  display: inline;
+  position: absolute;
+  font-family: 'Karla', sans-serif;
+  font-weight: lighter !important;
+  font-size:110%;
+  
+}
+
+#navigation_Menu > a {
+ color:black;
+}
+
+#navigation_Menu > a:link {
+  color:#ae6857;
+  text-decoration: underline;
+ }

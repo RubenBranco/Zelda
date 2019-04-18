@@ -9,6 +9,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 import ProfExportAllSubjectAttendances from "../Exports/ProfExportAllSubjectAttendances.jsx";
 import ProfExportSpecificStudentAttendances from "../Exports/ProfExportSpecificStudentAttendances.jsx";
+
 import ReactTable from "react-table";
 import Image from "react-bootstrap/Image";
 import { urlParamEncode } from "../../functions/url.js";
@@ -305,8 +306,8 @@ class SearchStudentsAttendance extends React.Component {
         return (
             <div>
 
-                <div id="img">
 
+                <div id="img">
                     <Image src={window.backgroundImg} id="img_background_all" />
                 </div>
 
@@ -407,7 +408,7 @@ class SearchStudentsAttendance extends React.Component {
                         </Form.Row>
                         <Button
                             variant="primary"
-                            className="btn btn-primary"
+                            className="btn btn-primary search_students_attendances"
                             onClick={this.handleSearchRequest}
                         >
                             {gettext("Search")}{" "}
@@ -442,7 +443,7 @@ class SearchStudentsAttendance extends React.Component {
 
                     </ReactTable>
                 </Container>
-            </div>
+            </div >
         )
     }
 }

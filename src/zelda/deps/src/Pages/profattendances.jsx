@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 import SearchStudentsAttendance from "../Components/Searches/SearchStudentsAttendance.jsx";
-
+import MenuProfLateral from "../Components/Menus/MenuProfLateral.jsx";
 class ProfAttendances extends React.Component {
     constructor() {
         super();
@@ -12,7 +12,12 @@ class ProfAttendances extends React.Component {
     render() {
         return (
             <div>
+
                 <Navigator />
+                <div id="navigation_Menu">
+                    <a href="#">Menu</a> > <a> Consult Students Attendances</a>
+                </div>
+                <MenuProfLateral />
                 <SearchStudentsAttendance />
             </div>
         );
