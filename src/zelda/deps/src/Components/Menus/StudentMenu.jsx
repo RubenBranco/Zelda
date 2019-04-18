@@ -57,11 +57,14 @@ class StudentMenu extends React.Component {
     render() {
         return (
             <div>
-                <CoursesList courses={this.state.courses} />
+
+
                 <CardDeck>
+                    <CoursesList courses={this.state.courses} />
+
                     <Card>
                         <Card.Header className="text-center font-weight-bold">
-                        {gettext("Consult")}
+                            {gettext("Consult")}
                         </Card.Header>
                         <Card.Body>
                             <ListGroup variant="flush">
@@ -81,7 +84,7 @@ class StudentMenu extends React.Component {
                     </Card>
                     <Card>
                         <Card.Header className="text-center font-weight-bold">
-                        {gettext("Schedule")}
+                            {gettext("Schedule")}
                         </Card.Header>
                         <Card.Body>
                             <ListGroup variant="flush">
