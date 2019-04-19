@@ -281,8 +281,8 @@ body {
   font-family: 'Karla', sans-serif;
   font-weight: lighter !important;
   text-align: center;
- padding: 5%;
- position: relative;
+  padding-top: 5%;
+  position: relative;
 }
 /* --------------------------------------------- MAIN MENU END  ---------------------------------  */
 

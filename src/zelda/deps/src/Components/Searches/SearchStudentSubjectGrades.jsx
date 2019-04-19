@@ -83,6 +83,7 @@ class SearchStudentSubjectGrades extends React.Component{
                             grade: subject_grades.grade,
                             designation: subject_grades.designation,
                             subject: subject_grades.subject,
+                            percentage: subject_grades.percentage,
                         })
                     })
                     this.setState({ student_grades });
@@ -120,6 +121,16 @@ class SearchStudentSubjectGrades extends React.Component{
             {
             Header: gettext('Grade'),
             accessor: 'grade',
+            style: {
+                textAlign: 'right',
+            },
+            width: 100,
+            maxWidth: 100,
+            minWidth: 100,
+            },
+            {
+            Header: gettext('Percentage'),
+            accessor: 'percentage',
             style: {
                 textAlign: 'right',
             },

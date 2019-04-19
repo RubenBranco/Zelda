@@ -11,7 +11,6 @@ import ProfExportAllSubjectAttendances from "../Exports/ProfExportAllSubjectAtte
 import ProfExportSpecificStudentAttendances from "../Exports/ProfExportSpecificStudentAttendances.jsx";
 
 import ReactTable from "react-table";
-import Image from "react-bootstrap/Image";
 import { urlParamEncode } from "../../functions/url.js";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -305,12 +304,6 @@ class SearchStudentsAttendance extends React.Component {
 
         return (
             <div>
-
-
-                <div id="img">
-                    <Image src={window.backgroundImg} id="img_background_all" />
-                </div>
-
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"

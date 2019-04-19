@@ -15,7 +15,7 @@ class ProfExportSpecificStudentAttendances extends React.Component{
                     table="SubjectSpecificStudentAttendances-xls"
                     filename={gettext('All Student Number: ' + this.props.student + ' Attendances to ' + this.props.subject)}
                     sheet="tablexls"
-                    buttonText={gettext('Export Student Number ' + this.props.student + ' Attendances')}/>
+                    buttonText={gettext('Export Student Number: ' + this.props.student + ' Attendances')}/>
                 <table hidden={true} id="SubjectSpecificStudentAttendances-xls" >
                     <thead>
                         <tr>
