@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 import MainMenu from '../Components/MainMenu.jsx';
-import LanguageSwitch from "../Components/LanguageSwitch.jsx"
 
 class FrontPage extends React.Component {
   constructor() {
@@ -13,10 +12,8 @@ class FrontPage extends React.Component {
   render() {
     return (
       <div>
-
         <Navigator />
         <MainMenu />
-        <footer><LanguageSwitch /> </footer>
       </div>
     );
   }

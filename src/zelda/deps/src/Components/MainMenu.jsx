@@ -41,10 +41,6 @@ class MainMenu extends React.Component {
 
         return (
             <div>
-                <div id="img">
-
-                    <Image src={window.backgroundImg} id="img_background_all" />
-                </div>
                 <div id="mainMenu">
                     {menu}
                 </div>

@@ -18,8 +18,6 @@ body {
   height:auto; 
   width:auto; 
   position: fixed;
-  
-
 }
 
 .button_login {
@@ -36,17 +34,17 @@ body {
 
 
 #formLanguageSwitch {
-  position: absolute;
+  position: relative;
   display: inline;
   float: left;
- 
 }
-.button_form_switch :hover{
+
+.button_form_switch:hover {
   background-color: #ae6857 !important;
   color: white;
-  border: none;
+  border: 1px solid black;
 }
-.button_form_switch :active {
+.button_form_switch:active {
   text-decoration: none;
 }
 

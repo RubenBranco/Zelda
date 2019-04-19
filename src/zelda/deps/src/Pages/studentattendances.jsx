@@ -14,7 +14,6 @@ class StudentAttendances extends React.Component {
         return (
             <div>
                 <Navigator />
-                <LanguageSwitch />
                 <SearchOwnAttendances />
             </div>
         );

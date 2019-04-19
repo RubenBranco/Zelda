@@ -203,7 +203,7 @@ class SearchOwnAttendances extends React.Component {
         return (
             <div>
                 <Container>
-                    <h2 class="title_main_menu">{gettext("Consult Attendances")}</h2>
+                    <h2 className="title_main_menu">{gettext("Consult Attendances")}</h2>
                     <hr />
 
                     <Form>

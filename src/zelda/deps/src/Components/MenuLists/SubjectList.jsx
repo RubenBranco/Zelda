@@ -22,7 +22,6 @@ class SubjectList extends React.Component{
                         )}
                     </ListGroup>
                 </Card.Body>
-                <Card.Footer />
             </Card>
         );
     }

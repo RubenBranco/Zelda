@@ -80,7 +80,6 @@ class StudentMenu extends React.Component {
                                 <ListGroup.Item action><a href="#">{gettext("Profile")}</a></ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
-                        <Card.Footer />
                     </Card>
                     <Card>
                         <Card.Header className="text-center font-weight-bold">
@@ -102,7 +101,6 @@ class StudentMenu extends React.Component {
                                 </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
-                        <Card.Footer />
                     </Card>
                 </CardDeck>
                 <ProfileSearch />
