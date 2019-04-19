@@ -40,7 +40,7 @@ class SearchOwnAttendances extends React.Component {
         if (this.state.userid === null) {
             fetch('/api/student/describe_self', {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
@@ -57,7 +57,7 @@ class SearchOwnAttendances extends React.Component {
     getSubjects() {
         fetch(`/api/student/${this.state.userid}/course_subjects/`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
@@ -92,13 +92,13 @@ class SearchOwnAttendances extends React.Component {
             });
             fetch(`/api/subject/${subjectId}/shifts`, {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
                 response.json().then(data => {
                     this.setState((prevState, _) => ({
-                            classes: Object.assign(prevState.classes, {[subjectId]: prevState.classes[subjectId].concat(data)})
+                        classes: Object.assign(prevState.classes, { [subjectId]: prevState.classes[subjectId].concat(data) })
                     }));
                 });
             });
@@ -125,7 +125,7 @@ class SearchOwnAttendances extends React.Component {
 
         fetch(`/api/attendances/my_attendances/?${urlParamEncode(payload)}`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             }
         }).then(response => {
@@ -137,7 +137,7 @@ class SearchOwnAttendances extends React.Component {
                 resultsId.forEach((result, index) => {
                     result.tableEntryId = index + 1;
                 })
-                this.setState({results: resultsId});
+                this.setState({ results: resultsId });
             });
         });
     }
@@ -161,49 +161,49 @@ class SearchOwnAttendances extends React.Component {
         });
     }
 
-    render () {
+    render() {
         const classes = this.state.chosenSubject !== null && this.state.classes.hasOwnProperty(this.state.chosenSubject) ?
             this.state.classes[this.state.chosenSubject] : null;
 
-            const columns = [
-                {
-                    Header: '#',
-                    accessor: 'tableEntryId',
-                    filterable: true,
-                    style: {
-                        textAlign: 'right',
-                    },
-                    width: 100,
-                    maxWidth: 100,
-                    minWidth: 100,
+        const columns = [
+            {
+                Header: '#',
+                accessor: 'tableEntryId',
+                filterable: true,
+                style: {
+                    textAlign: 'right',
                 },
-                {
-                    Header: gettext('Subject'),
-                    accessor: 'subject_designation',
-                    style: {
-                        textAlign: 'right',
-                    },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
+            },
+            {
+                Header: gettext('Subject'),
+                accessor: 'subject_designation',
+                style: {
+                    textAlign: 'right',
                 },
-                {
-                    Header: gettext('Class Type'),
-                    accessor: 'lesson_type',
-                    style: {
-                        textAlign: 'right',
-                    },
+            },
+            {
+                Header: gettext('Class Type'),
+                accessor: 'lesson_type',
+                style: {
+                    textAlign: 'right',
                 },
-                {
-                    Header: gettext('Date'),
-                    accessor: 'date',
-                    style: {
-                        textAlign: 'right',
-                    },
-                }
-            ];
+            },
+            {
+                Header: gettext('Date'),
+                accessor: 'date',
+                style: {
+                    textAlign: 'right',
+                },
+            }
+        ];
 
         return (
             <div>
                 <Container>
-                    <h2>{gettext("Consult Attendances")}</h2>
+                    <h2 class="title_main_menu">{gettext("Consult Attendances")}</h2>
                     <hr />
 
                     <Form>
@@ -236,7 +236,7 @@ class SearchOwnAttendances extends React.Component {
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId="Date">
-                                <Form.Label>{gettext("Start Date")}</Form.Label>
+                                <Form.Label>{gettext("Start Date")}</Form.Label><br></br>
                                 <DatePicker
                                     selected={this.state.startDate}
                                     onChange={this.handleDateChange}
@@ -245,7 +245,7 @@ class SearchOwnAttendances extends React.Component {
                         </Form.Row>
                         <Button
                             variant="primary"
-                            className="btn btn-primary"
+                            className="btn btn-primary search_students_attendances"
                             onClick={this.handleSearchRequest}
                         >
                             {gettext("Search")}{" "}

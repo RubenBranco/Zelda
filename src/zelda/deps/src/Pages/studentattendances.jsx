@@ -13,6 +13,9 @@ class StudentAttendances extends React.Component {
         return (
             <div>
                 <Navigator />
+                <div id="navigation_Menu">
+                    <a href="#">Menu</a> > <a> Consult Own Attendances</a>
+                </div>
                 <SearchOwnAttendances />
             </div>
         );
