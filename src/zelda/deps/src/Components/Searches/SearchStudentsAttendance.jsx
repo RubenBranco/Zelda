@@ -305,12 +305,6 @@ class SearchStudentsAttendance extends React.Component {
 
         return (
             <div>
-
-
-                <div id="img">
-                    <Image src={window.backgroundImg} id="img_background_all" />
-                </div>
-
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
