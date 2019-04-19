@@ -13,6 +13,7 @@ class StudentAttendances extends React.Component {
         return (
             <div>
                 <Navigator />
+                <LanguageSwitch />
                 <div id="navigation_Menu">
                     <a href="#">Menu</a> > <a> Consult Own Attendances</a>
                 </div>
