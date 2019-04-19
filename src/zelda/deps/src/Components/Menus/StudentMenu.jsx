@@ -75,9 +75,9 @@ class StudentMenu extends React.Component {
                                     <a href="#">{gettext("Curriculum")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action>
-                                    <a href="#">{gettext("Grades")}</a>
+                                    <a href={window.viewGradesUrl}>{gettext("Grades")}</a>
                                 </ListGroup.Item>
-                                <ListGroup.Item action><a href="#">{gettext("Profile")}</a></ListGroup.Item>
+                                <ListGroup.Item action><a href={window.viewProfileUrl}>{gettext("Profile")}</a></ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
                     </Card>
