@@ -13,15 +13,9 @@ class ProfAttendances extends React.Component {
     render() {
         return (
             <div>
-
                 <Navigator />
-                <footer><LanguageSwitch /> </footer>
-                <div id="navigation_Menu">
-                    <a href="#">Menu</a> > <a> Consult Students Attendances</a>
-                </div>
                 <MenuProfLateral />
                 <SearchStudentsAttendance />
-
             </div>
         );
     }
