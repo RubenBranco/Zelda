@@ -10,15 +10,15 @@ class MenuProfLateral extends React.Component {
     render() {
         return (
             <Dropdown.Menu show className="MenuProfLateral">
-                <Dropdown.Header>Cadeiras</Dropdown.Header>
+                <Dropdown.Header>{gettext("Cadeiras")}</Dropdown.Header>
                 <Dropdown.Item eventKey="1">Another action</Dropdown.Item>
                 <Dropdown.Item eventKey="2">Something else here</Dropdown.Item>
                 <Dropdown.Header>Consultar</Dropdown.Header>
-                <Dropdown.Item eventKey="4">Presenças</Dropdown.Item>
-                <Dropdown.Item eventKey="5">Perfil</Dropdown.Item>
+                <Dropdown.Item eventKey="4">{gettext("Presenças")}</Dropdown.Item>
+                <Dropdown.Item eventKey="5">{gettext("Perfil")}</Dropdown.Item>
                 <Dropdown.Header>Requests</Dropdown.Header>
-                <Dropdown.Item eventKey="6">Room Change</Dropdown.Item>
-                <Dropdown.Item eventKey="7">Room Reservation</Dropdown.Item>
+                <Dropdown.Item eventKey="6">{gettext("Room Change")}</Dropdown.Item>
+                <Dropdown.Item eventKey="7">{gettext("Room Reservation")}</Dropdown.Item>
             </Dropdown.Menu>
         );
     }
