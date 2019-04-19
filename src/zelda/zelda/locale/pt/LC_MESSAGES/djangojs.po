@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-30 00:27+0000\n"
-"PO-Revision-Date: 2019-04-06 17:40+0100\n"
+"POT-Creation-Date: 2019-04-19 22:50+0000\n"
+"PO-Revision-Date: 2019-04-20 00:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -19,18 +19,19 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 
 #: deps/static/js/frontpage.js:42
+msgid "Search Profile"
+msgstr "Procurar perfil"
+
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:75
+#: deps/static/js/professorgrades.js:50 deps/static/js/studentattendances.js:76
 msgid "Subjects"
 msgstr "Cadeiras"
-
-#: deps/static/js/frontpage.js:42
-msgid "Courses"
-msgstr "Cursos"
 
 #: deps/static/js/frontpage.js:42
 msgid "Consult"
 msgstr "Consultar"
 
-#: deps/static/js/frontpage.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/subjectinfo.js:42
 msgid "Attendance"
 msgstr "Presenças"
 
@@ -39,10 +40,14 @@ msgid "Curriculum"
 msgstr "Currículo"
 
 #: deps/static/js/frontpage.js:42
+msgid "Grades"
+msgstr "Notas"
+
+#: deps/static/js/frontpage.js:42
 msgid "Profile"
 msgstr "Perfil"
 
-#: deps/static/js/frontpage.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/subjectinfo.js:42
 msgid "Schedule"
 msgstr "Horário"
 
@@ -63,8 +68,24 @@ msgid "Enroll / Unsubscribe in Shifts"
 msgstr "Inscrever / Desinscrever de turnos"
 
 #: deps/static/js/frontpage.js:42
-msgid "Search Profile"
-msgstr "Procurar perfil"
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/studentattendances.js:76 deps/static/js/studentgrades.js:42
+#, fuzzy
+#| msgid "Subjects"
+msgid "Subject"
+msgstr "Cadeiras"
+
+#: deps/static/js/frontpage.js:42
+msgid "Requests"
+msgstr "Pedidos"
+
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:75
+msgid "Room Change"
+msgstr "Mudança de sala"
+
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:75
+msgid "Room Reservation"
+msgstr "Reserva de sala"
 
 #: deps/static/js/login.js:42
 msgid "Invalid credentials."
@@ -85,3 +106,228 @@ msgstr "Password"
 #: deps/static/js/login.js:42
 msgid "Login"
 msgstr "Entrar"
+
+#: deps/static/js/profattendances.js:75
+msgid " All Students Attendances"
+msgstr "Todas as presenças de alunos"
+
+#: deps/static/js/profattendances.js:75
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/professorgrades.js:50
+msgid "Student Number"
+msgstr "Número de Aluno"
+
+#: deps/static/js/profattendances.js:75
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/professorgrades.js:50
+msgid "Student Name"
+msgstr "Nome de Aluno"
+
+#: deps/static/js/profattendances.js:75
+#, fuzzy
+#| msgid "Attendance"
+msgid "Total Attendances"
+msgstr "Presenças"
+
+#: deps/static/js/profattendances.js:75
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/professorgrades.js:50
+msgid "Student Email"
+msgstr "E-mail de Aluno"
+
+#: deps/static/js/profattendances.js:75
+msgid "All Student Number: "
+msgstr "Todos os números de Alunos:"
+
+#: deps/static/js/profattendances.js:75
+msgid "Export Student Number "
+msgstr "Exportar número de Aluno"
+
+#: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:76
+msgid "Class Type"
+msgstr "Tipo de aula"
+
+#: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:76
+msgid "Date"
+msgstr "Data"
+
+#: deps/static/js/profattendances.js:75
+msgid "+ More Details"
+msgstr "+ Mais Detalhes"
+
+#: deps/static/js/profattendances.js:75
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/professorgrades.js:50 deps/static/js/studentattendances.js:76
+#: deps/static/js/studentgrades.js:42
+msgid "No Results Found"
+msgstr "Nenhum resultado encontrado"
+
+#: deps/static/js/profattendances.js:75
+msgid "Consult Students Attendances"
+msgstr "Consultar Presenças de Alunos"
+
+#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:50
+msgid "First Name"
+msgstr "Primeiro Nome"
+
+#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:50
+msgid "Last Name"
+msgstr "Apelido"
+
+#: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:76
+msgid "Class"
+msgstr "Aula"
+
+#: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:76
+msgid "Start Date"
+msgstr "Data de começo"
+
+#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:50
+#: deps/static/js/studentattendances.js:76
+#, fuzzy
+#| msgid "Search Profile"
+msgid "Search"
+msgstr "Procurar perfil"
+
+#: deps/static/js/profattendances.js:75
+msgid "Cadeiras"
+msgstr ""
+
+#: deps/static/js/profattendances.js:75
+msgid "Presenças"
+msgstr ""
+
+#: deps/static/js/profattendances.js:75
+msgid "Perfil"
+msgstr ""
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "All Shiftless Students of "
+msgstr "Todos alunos sem turno"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "Export Shiftless Students Data"
+msgstr "Exportar dados sobre alunos sem turno"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "Information"
+msgstr "Informação"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "Missing:"
+msgstr "Ausente:"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "Theory"
+msgstr "Teórica"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "Practice"
+msgstr "Teórico-Prática"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "Laboratory"
+msgstr "Laboratório"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "+ Info"
+msgstr "+ Informação"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "Action"
+msgstr "Ação"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+msgid "+ Add Student to Subject"
+msgstr "+ Inscrever estudante na cadeira"
+
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/studentgrades.js:42
+#, fuzzy
+#| msgid "Search Profile"
+msgid "Search "
+msgstr "Procurar perfil"
+
+#: deps/static/js/professorgrades.js:50
+msgid "Actions"
+msgstr "Ações"
+
+#: deps/static/js/professorgrades.js:50
+msgid "+ Evaluation Details"
+msgstr "+ Detalhes de Avaliação"
+
+#: deps/static/js/professorgrades.js:50 deps/static/js/studentgrades.js:42
+#: deps/static/js/subjectinfo.js:42
+msgid "Evaluation"
+msgstr "Avaliação"
+
+#: deps/static/js/professorgrades.js:50 deps/static/js/studentgrades.js:42
+msgid "Grade"
+msgstr "Nota"
+
+#: deps/static/js/professorgrades.js:50 deps/static/js/studentgrades.js:42
+msgid "Percentage"
+msgstr "Percentagem"
+
+#: deps/static/js/professorgrades.js:50
+msgid "Consult Student Grades"
+msgstr "Consultar Notas de Alunos"
+
+#: deps/static/js/studentattendances.js:42
+msgid "button"
+msgstr "Butão"
+
+#: deps/static/js/studentattendances.js:76
+#, fuzzy
+#| msgid "Attendance"
+msgid "Consult Attendances"
+msgstr "Presenças"
+
+#: deps/static/js/subjectinfo.js:42
+#, fuzzy
+#| msgid "Subjects"
+msgid "Objectives"
+msgstr "Cadeiras"
+
+#: deps/static/js/subjectinfo.js:42
+msgid "Program"
+msgstr "Programa"
+
+#: deps/static/js/subjectinfo.js:42
+msgid "Bibliography"
+msgstr "Bibliografia"
+
+#: deps/static/js/subjectinfo.js:42
+msgid "Details"
+msgstr "Detalhes"
+
+#: deps/static/js/subjectinfo.js:42
+msgid "Teachers"
+msgstr "Docentes"
+
+#: deps/static/js/subjectinfo.js:42
+msgid "ECTS"
+msgstr "ECTS"
+
+#: deps/static/js/subjectinfo.js:42
+msgid "Code"
+msgstr "Código"
+
+#: deps/static/js/userprofile.js:42
+msgid "Your Name"
+msgstr "Nome"
+
+#: deps/static/js/userprofile.js:42
+msgid "Institutional Email"
+msgstr "E-mail Institucional"
+
+#: deps/static/js/userprofile.js:42
+msgid "Gender"
+msgstr "Género"
+
+#: deps/static/js/userprofile.js:42
+msgid "Country"
+msgstr "País"
+
+#~ msgid "Courses"
+#~ msgstr "Cursos"
