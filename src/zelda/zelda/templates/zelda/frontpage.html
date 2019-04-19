@@ -1,9 +1,11 @@
 {% extends 'base.html' %} {% load static %} {% block footjs %}
 <script>
+    var viewProfileUrl = "{% url 'view_user' app_user.id %}";
     {% if app_user.user_type == "Professor" %}
         var viewAttendancesUrl = "{% url 'prof_view_attendances' %}";
     {% elif app_user.user_type == "Student" %}
         var viewAttendancesUrl = "{% url 'student_view_attendances' %}";
+        var viewGradesUrl = "{% url 'student_view_grades' %}";
     {% endif %}
 </script>
 {% endblock footjs %}
