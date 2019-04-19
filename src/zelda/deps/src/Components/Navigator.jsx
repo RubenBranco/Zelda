@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faSignOutAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
+import LanguageSwitch from './LanguageSwitch.jsx';
 
 
 class Navigator extends React.Component {
@@ -36,6 +37,9 @@ class Navigator extends React.Component {
           </Nav>
 
           <Nav className="ml-auto">
+            <Nav.Link>
+              <LanguageSwitch />
+            </Nav.Link>
             <Nav.Link
               className="navlinks"
               href={window.webmailUrl}

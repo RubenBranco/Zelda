@@ -8,9 +8,8 @@ class MenuProfLateral extends React.Component {
     }
 
     render() {
-
         return (
-            <Dropdown.Menu show class="MenuProfLateral">
+            <Dropdown.Menu show className="MenuProfLateral">
                 <Dropdown.Header>Cadeiras</Dropdown.Header>
                 <Dropdown.Item eventKey="1">Another action</Dropdown.Item>
                 <Dropdown.Item eventKey="2">Something else here</Dropdown.Item>

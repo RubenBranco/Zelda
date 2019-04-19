@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 import SearchOwnAttendances from "../Components/Searches/SearchOwnAttendances.jsx";
+import LanguageSwitch from "../Components/LanguageSwitch.jsx";
 
 
 class StudentAttendances extends React.Component {
@@ -14,9 +15,6 @@ class StudentAttendances extends React.Component {
             <div>
                 <Navigator />
                 <LanguageSwitch />
-                <div id="navigation_Menu">
-                    <a href="#">Menu</a> > <a> Consult Own Attendances</a>
-                </div>
                 <SearchOwnAttendances />
             </div>
         );
