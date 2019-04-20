@@ -153,6 +153,11 @@ class SubjectViewSet(ModelViewSet):
             ).data
         )
 
+    # @action(detail=True)
+    # def subject_signing(self, request, pk=None):
+    #     subject = get_object_or_404(Subject, id=pk) #obj subject
+    #     user = get_user_from_request(request) # user
+
 
 class SubjectSpecificationViewSet(ModelViewSet):
     serializer_class = SubjectSpecificationSerializer
