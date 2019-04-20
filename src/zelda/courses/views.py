@@ -3,6 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import exceptions
 
 from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade
@@ -11,7 +12,7 @@ from common.views import AbstractLoggedInAppView, AbstractProfessorAppView, Abst
 from common.permissions import BaseAppPermission
 from common.utils import get_user_from_request
 from users.serializers import ProfessorRestrictedSerializer, RestrictedAppUserSerializer, StudentSerializer
-from users.models import Student
+from users.models import Student, Professor
 from timetable.models import Shift, LessonSpecification
 from timetable.serializers import ShiftSerializer
 
@@ -54,6 +55,11 @@ class SubjectViewSet(ModelViewSet):
     serializer_class = SubjectSerializer
     queryset = Subject.objects.all()
     permission_classes = (SubjectPermission,)
+    filter_queries = dict(
+        first_name="student__app_user__first_name",
+        last_name="student__app_user__last_name",
+        student_number="student__number",
+    )
 
     @action(detail=True)
     def professors(self, request, pk=None):
@@ -112,11 +118,37 @@ class SubjectViewSet(ModelViewSet):
         user = get_user_from_request(request)
 
         if not isinstance(user, Student):
-            return Response(None)
+            return exceptions.PermissionDenied()
 
         return Response(
             GradeSerializer(
                 Grade.objects.filter(subject=subject, student=user),
+                many=True,
+            ).data
+        )
+
+    @action(detail=True)
+    def grades(self, request, pk=None):
+        subject = get_object_or_404(Subject, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Professor):
+            return exceptions.PermissionDenied()
+
+        students = subject.students.all()
+        filters = dict()
+
+        for query_param in self.filter_queries:
+            query_value = request.query_params.get(query_param, None)
+            if query_value is not None:
+                filters[self.filter_queries[query_param]] = query_value
+
+        if filters:
+            students = students.filter(**filters)
+
+        return Response(
+            GradeSerializer(
+                Grade.objects.filter(subject=subject, student__in=students),
                 many=True,
             ).data
         )
