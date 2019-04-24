@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [ 'zelda-edu.me', 'localhost', '127.0.0.1' ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+CSRF_COOKIE_SECURE = DEBUG
+
 CSRF_TRUSTED_ORIGINS = [
     'localhost',
     'zelda-edu.me',
