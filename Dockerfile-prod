@@ -26,6 +26,6 @@ ENV PROJECT_DIR=/zelda/code \
     MEDIA_DIR=/zelda/data/media \
     STATIC_DIR=/zelda/static \
     DEBUG=no \
-    MEMCACHED_HOST="memcached:11211"
+    MEMCACHED_HOST="cache:11211"
 
 ENTRYPOINT [ "code/scripts/start-prod.sh" ]
