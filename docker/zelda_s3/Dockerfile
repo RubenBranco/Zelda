@@ -19,6 +19,7 @@ VOLUME [ \
 
 ENV MEDIA_ROOT=/zelda_s3/data \
     PIDS_DIR=/zelda_s3/pids \
-    LOGS_DIR=/zelda_s3/logs
+    LOGS_DIR=/zelda_s3/logs \
+    PROJECT_DIR=/zelda_s3/code
 
 ENTRYPOINT [ "code/scripts/start-prod.sh" ]
