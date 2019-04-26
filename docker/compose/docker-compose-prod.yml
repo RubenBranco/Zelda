@@ -19,6 +19,7 @@ services:
       - ~/nginx/conf.d:/etc/nginx/conf.d:ro
       - ~/nginx/logs/zelda:/zelda/logs:rw
       - ~/zelda/static:/zelda/static:ro
+      - ~/zelda_s3/data:/zelda/s3:ro
   zelda:
     image: zelda:latest
     networks:
