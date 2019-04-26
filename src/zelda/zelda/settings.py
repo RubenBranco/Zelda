@@ -231,3 +231,6 @@ if not DEBUG:
         },
     }
 
+# S3
+
+S3_HOST = f"http://{os.getenv('S3_HOST')}"

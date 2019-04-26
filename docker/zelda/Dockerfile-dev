@@ -16,6 +16,8 @@ VOLUME [ "/zelda/code" ]
 
 ENV PROJECT_DIR=/zelda/code \
     STATIC_DIR=/zelda/static \
-    DEBUG=yes
+    DEBUG=yes \
+    MEDIA_DIR="" \
+    S3_HOST="zelda_s3:8000"
 
 ENTRYPOINT [ "code/scripts/start-dev.sh" ]
