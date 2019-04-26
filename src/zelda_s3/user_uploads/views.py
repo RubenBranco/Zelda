@@ -8,12 +8,7 @@ from django.conf import settings
 
 class UserImageView(View):
     def post(self, request):
-        if request.content_type == "application/json":
-            data = json.loads(request.body)
-        else:
-            data = QueryDict(request.body)
-
-        base_path = os.path.join(settings.MEDIA_ROOT, data['path'])
+        base_path = os.path.join(settings.MEDIA_ROOT, request.POST['path'])
         os.makedirs(base_path, exist_ok=True)
         self.save_file(
             request.FILES['image'],
