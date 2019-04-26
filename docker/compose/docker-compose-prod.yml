@@ -37,6 +37,20 @@ services:
       - ~/zelda/code/backups:/zelda/code/backups:rw
     env_file:
       - docker.env
+  zelda_s3:
+    image: zelda_s3:latest
+    networks:
+      zelda: {}
+    deploy:
+      replicas: ${DJANGO_REPLICAS}
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - ~/zelda_s3/logs:/zelda_s3/logs:rw
+      - ~/zelda_s3/data:/zelda_s3/data:rw
   cache:
     image: memcached:latest
     networks:
