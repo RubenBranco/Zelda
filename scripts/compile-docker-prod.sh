@@ -3,4 +3,4 @@
 cd .. > /dev/null
 source env.sh
 
-docker build -f Dockerfile-prod -t zelda:latest .
+docker build -f docker/zelda/Dockerfile-prod -t zelda:latest .
