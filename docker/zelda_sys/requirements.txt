@@ -1,0 +1,5 @@
+django
+gunicorn
+django_cron
+django-dbbackup
+python-gnupg

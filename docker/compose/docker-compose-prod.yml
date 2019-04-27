@@ -38,6 +38,19 @@ services:
       - ~/zelda/code/backups:/zelda/code/backups:rw
     env_file:
       - docker.env
+  zelda_sys:
+    image: zelda_sys:latest
+    networks:
+      zelda: {}
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - ~/zelda_sys/logs:/zelda_sys/logs:rw
+      - ~/zelda_sys/backups:/zelda_sys/backups:rw
+    env_file:
+      - docker.env
   zelda_s3:
     image: zelda_s3:latest
     networks:
