@@ -5,6 +5,7 @@ import ProfessorMenu from "./Menus/ProfessorMenu.jsx";
 
 import getCsrfToken from "../functions/csrf.js";
 
+
 class MainMenu extends React.Component {
     constructor(props) {
         super(props);
