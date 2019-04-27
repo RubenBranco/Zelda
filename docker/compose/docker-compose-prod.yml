@@ -95,7 +95,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - ~/portainer/data:/data:rw
-    command: --admin-password "$$2y$$05$$ZrXRrnLwGNwp5pmcgVsT/uME9DFmS9Z7MfYlOrymX5kmOJTkY7Hy."
+    command: --admin-password "$$2y$$05$$ychP0ktGYkWyojgBDLBa5.FvodZBCsqGT1nV1LnbnE2CPq4myWlqW"
     deploy:
       restart_policy:
         condition: on-failure
