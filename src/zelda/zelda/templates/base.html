@@ -38,15 +38,14 @@
         var fculLogo = "{% static 'img/logofcul.png' %}";
         var logoutUrl = "{% url 'logout' %}";
         var webmailUrl = "{{ webmail_url }}";
-        var userImageUrl = "{% static 'img/profileImage.png' %}";
         var fculLogoBranco ="{% static 'img/logofculbranco.png' %}";
         var backgroundImg = "{% static 'img/background.png' %}";
 
         {% if app_user != None %}
             var firstName = "{{ app_user.first_name }}";
             var lastName = "{{ app_user.last_name }}";
-            {% if app_user.display_image.name %}
-                var userImageUrl = "{{ app_user.display_image.url }}";
+            {% if app_user.display_image %}
+                var userImageUrl = "/s3/{{ app_user.display_image }}";
             {% else %}
                 var userImageUrl = "{% static 'img/profileImage.png' %}";
             {% endif %}
