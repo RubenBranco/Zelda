@@ -90,5 +90,19 @@ services:
       - ~/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:rw
     env_file:
       - docker.env
+  portainer:
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - ~/portainer/data:/data:rw
+    command: --admin-password "$2y$05$ZrXRrnLwGNwp5pmcgVsT/uME9DFmS9Z7MfYlOrymX5kmOJTkY7Hy."
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      zelda: {}
 networks:
   zelda: {}
