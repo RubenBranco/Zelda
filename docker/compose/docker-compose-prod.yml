@@ -102,6 +102,8 @@ services:
       placement:
         constraints:
           - node.role == manager
+    ports:
+      - "9000:9000"
     networks:
       zelda: {}
 networks:
