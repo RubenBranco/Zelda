@@ -3,3 +3,4 @@ gunicorn
 django_cron
 django-dbbackup
 python-gnupg
+psycopg2-binary
