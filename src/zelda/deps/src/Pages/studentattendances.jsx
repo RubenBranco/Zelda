@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 import SearchOwnAttendances from "../Components/Searches/SearchOwnAttendances.jsx";
 import LanguageSwitch from "../Components/LanguageSwitch.jsx";
+import MenuStudLateral from "../Components/Menus/MenuStudLateral.jsx";
 
 
 class StudentAttendances extends React.Component {
@@ -14,7 +15,11 @@ class StudentAttendances extends React.Component {
         return (
             <div>
                 <Navigator />
+                <MenuStudLateral />
+                <div id="webcrumbs"> <a>{gettext("Home")}</a> > <a> {gettext("Consult Attendances")}</a> </div>
                 <SearchOwnAttendances />
+
+
             </div>
         );
     }
