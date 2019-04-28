@@ -104,11 +104,12 @@ services:
     env_file:
       - docker.env
   portainer:
-    image: portainer/portainer
+    image: zelda-portainer:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - ~/portainer/data:/data:rw
-    command: --admin-password "$$2y$$05$$ychP0ktGYkWyojgBDLBa5.FvodZBCsqGT1nV1LnbnE2CPq4myWlqW"
+      - ~/certbot/etc/letsencrypt/live/zelda-edu.me:/etc/letsencrypt/live/zelda-edu.me:rw
+    command: --admin-password "$$2y$$05$$ychP0ktGYkWyojgBDLBa5.FvodZBCsqGT1nV1LnbnE2CPq4myWlqW" --ssl --sslcert "/etc/letsencrypt/live/zelda-edu.me/fullchain.pem" --sslkey "/etc/letsencrypt/live/zelda-edu.me/privkey.pem"
     deploy:
       restart_policy:
         condition: on-failure
