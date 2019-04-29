@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 
 # DBBACKUP
 
-DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 BACKUP_DIR = os.getenv("BACKUP_DIR")
 DBBACKUP_STORAGE_OPTIONS = {
     'location': BACKUP_DIR,
