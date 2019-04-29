@@ -2,6 +2,7 @@
 
 
 cd $PROJECT_DIR
+python3 manage.py migrate django_cron
 python3 manage.py runcrons
 gunicorn \
     --bind 0.0.0.0:8000 \
