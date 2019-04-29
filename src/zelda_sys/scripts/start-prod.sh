@@ -2,6 +2,7 @@
 
 
 cd $PROJECT_DIR
+sleep 1m
 python3 manage.py migrate django_cron
 python3 manage.py runcrons
 gunicorn \
