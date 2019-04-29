@@ -14,8 +14,9 @@ class ProfAttendances extends React.Component {
         return (
             <div>
                 <Navigator />
+                <div id="webcrumbs"> <a>{gettext("Home")}</a> > <a> {gettext("Consult Students Attendances")}</a> </div>
                 <MenuProfLateral />
-                <SearchStudentsAttendance />    
+                <SearchStudentsAttendance />
             </div>
         );
     }

@@ -8,6 +8,11 @@ body {
   background-color: #fbfbff;
 }
 
+#webcrumbs{
+  margin-top:1%;
+  margin-left:4%;
+}
+
 #login > #img {
   float: right !important;
   width: 50%;
@@ -310,8 +315,9 @@ body {
 
 .dropdown-menu.show{
   height: 90%;
+  width: 50%;
   position: absolute;
-  margin-top:50%;
+ 
 
   
 }
@@ -342,4 +348,9 @@ body {
 #navigation_Menu > a:link {
   color:#ae6857;
   text-decoration: underline;
+ }
+
+ .searchOwnAttendance{
+
+  width: 30%;
  }
