@@ -9,6 +9,7 @@ COPY src/zelda_sys \
      docker/zelda_sys/gpg/gpg.key \
      code/
 
+RUN apt update && apt-get install -y postgresql-client
 RUN pip3 install -r code/requirements.txt
 
 RUN rm code/requirements.txt
