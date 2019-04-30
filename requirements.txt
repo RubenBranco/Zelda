@@ -12,3 +12,5 @@ coreapi
 pyyaml
 psycopg2-binary
 requests
+django_cron
+python-gnupg

@@ -6,6 +6,7 @@ RUN mkdir code/ pids/ static/
 
 COPY src/zelda \
      requirements.txt \
+     gpg/gpg.key \
      code/
 
 RUN pip3 install -r code/requirements.txt
@@ -16,7 +17,7 @@ VOLUME [ \
     "/zelda/data", \
     "/zelda/logs", \
     "/zelda/static", \
-    "/zelda/code/backups" \
+    "/zelda/backups" \
 ]
 
 ENV PROJECT_DIR=/zelda/code \
@@ -25,8 +26,11 @@ ENV PROJECT_DIR=/zelda/code \
     DATA_DIR=/zelda/data \
     MEDIA_DIR=/zelda/data/media \
     STATIC_DIR=/zelda/static \
+    BACKUP_DIR=/zelda/backups \
     DEBUG=no \
     MEMCACHED_HOST="cache:11211" \
-    S3_HOST="zelda_s3:8000"
+    S3_HOST="zelda_s3:8000" \
+    GPG_KEY_PATH=/zelda/code/gpg.key \
+    GPG_RECIPIENT="zelda@zelda-edu.me"
 
 ENTRYPOINT [ "code/scripts/start-prod.sh" ]

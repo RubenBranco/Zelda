@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'common',
     'zelda',
     'rest_framework',
+    'django_cron',
+    'db_management',
 ]
 
 MIDDLEWARE = [
@@ -233,3 +236,26 @@ if not DEBUG:
 # S3
 
 S3_HOST = f"http://{os.getenv('S3_HOST')}"
+
+# DB Management
+
+DBBACKUP_DIR = os.getenv("BACKUP_DIR")
+GPG_KEY_PATH = os.getenv("GPG_KEY_PATH")
+GPG_RECIPIENT = os.getenv("GPG_RECIPIENT")
+DBBACKUP_DATE_FORMAT = '%Y-%m-%d-%H%M%S'
+TMP_FILE_MAX_SIZE = 10 * 1024 * 1024
+GPG_ALWAYS_TRUST = False
+
+BACKUP_TIMES = [
+    '8:00',
+    '20:00'
+]
+
+# How much older from the most recent backup should backups be kept
+ARCHIVE_DELTA = timedelta(days=7)
+
+# CRON
+
+CRON_CLASSES = [
+    'db.routines.DBBackup',
+]

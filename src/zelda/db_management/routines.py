@@ -1,9 +1,12 @@
 import os
 from datetime import datetime
+from shutil import copyfileobj
 
 from django.core import management
 from django.conf import settings
 from django_cron import CronJobBase, Schedule
+
+from .utils import encrypt_file, unencrypt_file, compress_file, uncompress_file
 
 
 class DBBackup(CronJobBase):
@@ -13,11 +16,23 @@ class DBBackup(CronJobBase):
 
     def do(self):
         self.remove_old_backups()
-        management.call_command('dbbackup', '--encrypt')
+        file_name = f"{datetime.now().strftime(settings.DBBACKUP_DATE_FORMAT)}.json"
+        file_path = os.path.join(
+            settings.DBBACKUP_DIR,
+            file_name,
+        )
+        management.call_command('dumpdata', '--all', f'--output={file_path}')
+        encrypt_file(
+            open(file_name, "rb"),
+            os.path.join(settings.DBBACKUP_DIR, file_name)
+        )
+
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
     def remove_old_backups(self):
         now = datetime.now()
-        backup_dir = settings.BACKUP_DIR
+        backup_dir = settings.DBBACKUP_DIR
 
         for backup in os.listdir(backup_dir):
             time, _ = backup.split(".")
