@@ -19,6 +19,7 @@ services:
       - ~/nginx/conf.d:/etc/nginx/conf.d:ro
       - ~/nginx/logs/zelda:/zelda/logs:rw
       - ~/zelda/static:/zelda/static:ro
+      - ~/zelda_s3/data:/zelda/s3:ro
   zelda:
     image: zelda:latest
     networks:
@@ -37,6 +38,33 @@ services:
       - ~/zelda/code/backups:/zelda/code/backups:rw
     env_file:
       - docker.env
+  zelda_sys:
+    image: zelda_sys:latest
+    networks:
+      zelda: {}
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - ~/zelda_sys/logs:/zelda_sys/logs:rw
+      - ~/zelda_sys/backups:/zelda_sys/backups:rw
+    env_file:
+      - docker.env
+  zelda_s3:
+    image: zelda_s3:latest
+    networks:
+      zelda: {}
+    deploy:
+      replicas: ${DJANGO_REPLICAS}
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - ~/zelda_s3/logs:/zelda_s3/logs:rw
+      - ~/zelda_s3/data:/zelda_s3/data:rw
   cache:
     image: memcached:latest
     networks:
@@ -75,5 +103,22 @@ services:
       - ~/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:rw
     env_file:
       - docker.env
+  portainer:
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - ~/portainer/data:/data:rw
+      - ~/certbot/etc/letsencrypt/:/certs:rw
+    command: --admin-password "$$2y$$05$$ychP0ktGYkWyojgBDLBa5.FvodZBCsqGT1nV1LnbnE2CPq4myWlqW" --ssl --sslcert "/certs/live/zelda-edu.me/fullchain.pem" --sslkey "/certs/live/zelda-edu.me/privkey.pem"
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+    ports:
+      - "9000:9000"
+    networks:
+      zelda: {}
 networks:
   zelda: {}

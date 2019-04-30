@@ -26,20 +26,25 @@ class AttendanceSerializer(ModelSerializer):
             subject=attendance.lesson.lesson_spec.shift.subject,
         ).designation
 
+
 class AppUserSerializer(ModelSerializer):
     class Meta:
         model = AppUser
-        exclude = ('password', 'is_superuser', 'is_staff', 'is_active')
+        exclude = ('password', 'is_superuser', 'is_staff', 'is_active', 'display_image')
 
 
 class RestrictedAppUserSerializer(ModelSerializer):
+    display_image = SerializerMethodField()
+
+    def get_display_image(self, app_user):
+        return f"/s3/{app_user.display_image}"
+
     class Meta:
         model = AppUser
         fields = (
             "first_name",
             "last_name",
             "institutional_email",
-            "display_image",
             "display_image",
             "country",
             "gender",
@@ -60,7 +65,7 @@ class ProfessorSerializer(ModelSerializer):
 
 class ProfessorRestrictedSerializer(ModelSerializer):
     app_user = RestrictedAppUserSerializer(read_only=True)
-    
+
     class Meta:
         model = Professor
         fields = "__all__"

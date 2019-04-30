@@ -38,9 +38,6 @@ CSRF_TRUSTED_ORIGINS = [
     '127.0.0.1',
 ]
 
-if not DEBUG:
-    CSRF_COOKIE_DOMAIN = '.zelda-edu.me'
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -140,7 +137,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -234,3 +230,6 @@ if not DEBUG:
         },
     }
 
+# S3
+
+S3_HOST = f"http://{os.getenv('S3_HOST')}"

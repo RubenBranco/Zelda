@@ -11,13 +11,13 @@ import 'react-table/react-table.css'
 
 import getCsrfToken from "../../functions/csrf.js";
 
-class SearchStudentSubjectGrades extends React.Component{
-    constructor(){
+class SearchStudentSubjectGrades extends React.Component {
+    constructor() {
         super();
         this.state = {
             userid: null,
             student_number: null,
-            chosenSubject : null,
+            chosenSubject: null,
             student_grades: [],
             student_subjects: [],
         }
@@ -32,7 +32,7 @@ class SearchStudentSubjectGrades extends React.Component{
         if (this.state.userid === null) {
             fetch('/api/student/describe_self/', {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
@@ -48,15 +48,15 @@ class SearchStudentSubjectGrades extends React.Component{
     }
 
     getStudentSubjects() {
-        fetch(`/api/student/${this.state.userid}/subjects/` ,{
+        fetch(`/api/student/${this.state.userid}/subjects/`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
             response.json().then(data => {
                 let student_subjects = [];
-                data.map((subject, index ) => {
+                data.map((subject, index) => {
                     student_subjects.push({
                         id: subject.id,
                         designation: subject.designation,
@@ -72,7 +72,7 @@ class SearchStudentSubjectGrades extends React.Component{
         this.state.student_subjects.map(subject => {
             fetch(`/api/subject/${subject.id}/my_grades/`, {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
@@ -105,43 +105,45 @@ class SearchStudentSubjectGrades extends React.Component{
         });
     }
 
-    render () {
+    render() {
 
         const columns = [
             {
-            Header: gettext('Evaluation'),
-            accessor: 'designation',
-            style: {
-                textAlign: 'right',
-            },
-            width: 150,
-            maxWidth: 150,
-            minWidth: 150,
-            },
-            {
-            Header: gettext('Grade'),
-            accessor: 'grade',
-            style: {
-                textAlign: 'right',
-            },
-            width: 100,
-            maxWidth: 100,
-            minWidth: 100,
+                Header: gettext('Evaluation'),
+                accessor: 'designation',
+                style: {
+                    textAlign: 'right',
+                },
+                width: 150,
+                maxWidth: 150,
+                minWidth: 150,
             },
             {
-            Header: gettext('Percentage'),
-            accessor: 'percentage',
-            style: {
-                textAlign: 'right',
+                Header: gettext('Grade'),
+                accessor: 'grade',
+                style: {
+                    textAlign: 'right',
+                },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
             },
-            width: 100,
-            maxWidth: 100,
-            minWidth: 100,
+            {
+                Header: gettext('Percentage'),
+                accessor: 'percentage',
+                style: {
+                    textAlign: 'right',
+                },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
             },
         ]
 
         return (
             <Container>
+                <h2 className="title_main_menu">{gettext("Consultar Notas")}</h2>
+                <hr />
                 <Form>
                     <Form.Group as={Col}>
                         <Form.Label>{gettext("Subject")}</Form.Label>
@@ -150,7 +152,7 @@ class SearchStudentSubjectGrades extends React.Component{
                             name="Subject"
                             as="select"
                             onChange={this.handleSubjectChange}
-                            >
+                        >
                             {this.state.student_subjects.map(subject =>
                                 <option>{subject.designation}</option>
                             )}
@@ -158,7 +160,7 @@ class SearchStudentSubjectGrades extends React.Component{
                     </Form.Group>
                     <Button
                         variant="primary"
-                        className="btn btn-primary"
+                        className="btn btn-primary search_students_attendances"
                         onClick={this.getStudentSubjectGradesData}
                     >
                         {gettext("Search ")}
@@ -177,7 +179,7 @@ class SearchStudentSubjectGrades extends React.Component{
                 >
                 </ReactTable>
             </Container>
-            )
+        )
     }
 }
 

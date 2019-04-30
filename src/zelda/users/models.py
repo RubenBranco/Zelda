@@ -30,7 +30,7 @@ class AppUser(AbstractUser):
     contact = models.PositiveIntegerField(null=True, blank=True)
     emergency_contact = models.PositiveIntegerField(null=True, blank=True)
     professional_occupation = models.TextField(max_length=512, null=True, blank=True)
-    display_image = models.ImageField(null=True, blank=True)
+    display_image = models.FilePathField()
     country = CountryField(null=True, blank=True)
     marital_status = models.CharField(
         max_length=8,
@@ -47,6 +47,7 @@ class AppUser(AbstractUser):
     user_type = models.CharField(max_length=13, choices=USER_TYPE_OPTIONS, null=True, blank=True)
 
     USERNAME_FIELD = 'institutional_email'
+
 
 class Student(models.Model):
     CALL = (

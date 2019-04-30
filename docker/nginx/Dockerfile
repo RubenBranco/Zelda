@@ -9,6 +9,7 @@ VOLUME [ \
     "/var/www/certbot", \
     "/zelda/logs", \
     "/zelda/static", \
+    "/zelda/s3", \
     "/etc/nginx/conf.d" \
 ]
 

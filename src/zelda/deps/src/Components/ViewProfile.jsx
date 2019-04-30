@@ -10,7 +10,7 @@ import Tab from 'react-bootstrap/Tab';
 import getCsrfToken from "../functions/csrf.js";
 
 
-class ViewProfile extends React.Component{
+class ViewProfile extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -21,7 +21,7 @@ class ViewProfile extends React.Component{
     }
 
     componentDidMount() {
-        if(!this.hasFetched){
+        if (!this.hasFetched) {
             fetch(`/api/appuser/${window.location.pathname.split("/").pop()}/`, {
                 method: "GET",
                 headers: {
@@ -38,36 +38,36 @@ class ViewProfile extends React.Component{
         }
     }
 
-    render () {
+    render() {
         return (
             <Container>
-                <h2>Profile</h2>
+                <h2 class="title_main_menu">{gettext("Perfl")}</h2>
                 <hr />
 
                 <Row>
                     <Col xs={2} md={3}>
-                        <Image src={this.state.userData.display_image} rounded/>
+                        <Image src={this.state.userData.display_image} rounded />
                     </Col>
                     <Col xs={2} md={5}>
-                        <Tabs defaultActiveKey="Personal Data">
+                        <Tabs defaultActiveKey="Info">
                             <Tab eventKey="Personal Data" title="Personal Data">
                                 <Table bordered hover responsive size='sm'>
                                     <tbody>
                                         <tr>
-                                        <td>{gettext("Your Name")}</td>
-                                        <td>{this.state.userData.first_name + " " + this.state.userData.last_name}</td>
+                                            <td>{gettext("Your Name")}</td>
+                                            <td>{this.state.userData.first_name + " " + this.state.userData.last_name}</td>
                                         </tr>
                                         <tr>
-                                        <td>{gettext("Institutional Email")}</td>
-                                        <td>{this.state.userData.institutional_email}</td>
+                                            <td>{gettext("Institutional Email")}</td>
+                                            <td>{this.state.userData.institutional_email}</td>
                                         </tr>
                                         <tr>
-                                        <td>{gettext("Gender")}</td>
-                                        <td>{this.state.userData.gender == "m" ? 'Male' : 'Female'}</td>
+                                            <td>{gettext("Gender")}</td>
+                                            <td>{this.state.userData.gender == "m" ? 'Male' : 'Female'}</td>
                                         </tr>
                                         <tr>
-                                        <td>{gettext("Country")}</td>
-                                        <td>{this.state.userData.country}</td>
+                                            <td>{gettext("Country")}</td>
+                                            <td>{this.state.userData.country}</td>
                                         </tr>
                                     </tbody>
                                 </Table>
