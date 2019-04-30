@@ -6,7 +6,7 @@ RUN mkdir code/ pids/ static/
 
 COPY src/zelda \
      requirements.txt \
-     gpg/gpg.key \
+     docker/zelda/gpg/gpg.key \
      code/
 
 RUN pip3 install -r code/requirements.txt
