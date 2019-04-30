@@ -15,6 +15,7 @@ from users.serializers import ProfessorRestrictedSerializer, RestrictedAppUserSe
 from users.models import Student, Professor
 from timetable.models import Shift, LessonSpecification
 from timetable.serializers import ShiftSerializer
+from django.conf import settings
 
 
 class ViewCourseInfoView(AbstractLoggedInAppView):
@@ -175,7 +176,7 @@ class SubjectViewSet(ModelViewSet):
 
         final_grades = FinalGrade.objects.filter(student=user)
         for grade in final_grades:
-            if grade.grade >= 9.5:
+            if grade.grade >= settings.MIN_GRADE_APPROVATION:
                 subject_code = grade.subject.subject_spec.code
                 for subj in student_subjects:
                     if subject_code == subj.subject_spec.code:
