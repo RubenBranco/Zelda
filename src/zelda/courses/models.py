@@ -47,6 +47,10 @@ class CourseSubject(models.Model):
         Subject,
         on_delete=models.CASCADE,
     )
+    course = models.ForeignKey(
+        'courses.Course',
+        on_delete=models.CASCADE,
+    )
     designation = models.CharField(max_length=100)
     course_year = models.PositiveSmallIntegerField()
 
@@ -98,7 +102,7 @@ class CourseSpecification(models.Model):
         Department,
         on_delete=models.CASCADE,
     )
-    course_programme = models.ManyToManyField(CourseSubject)
+    course_programme = models.ManyToManyField(SubjectSpecification)
 
 
 class Course(models.Model):
