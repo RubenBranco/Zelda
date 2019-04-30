@@ -257,5 +257,5 @@ ARCHIVE_DELTA = timedelta(days=7)
 # CRON
 
 CRON_CLASSES = [
-    'db.routines.DBBackup',
+    'db_management.routines.DBBackup',
 ]

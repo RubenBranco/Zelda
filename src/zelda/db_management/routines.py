@@ -15,8 +15,9 @@ class DBBackup(CronJobBase):
     code = 'db.DBBackup'
 
     def do(self):
-        self.remove_old_backups()
-        file_name = f"{datetime.now().strftime(settings.DBBACKUP_DATE_FORMAT)}.json"
+        now = datetime.now()
+        self.remove_old_backups(now)
+        file_name = f"{now.strftime(settings.DBBACKUP_DATE_FORMAT)}.json"
         file_path = os.path.join(
             settings.DBBACKUP_DIR,
             file_name,
@@ -30,8 +31,7 @@ class DBBackup(CronJobBase):
         if os.path.exists(file_path):
             os.remove(file_path)
 
-    def remove_old_backups(self):
-        now = datetime.now()
+    def remove_old_backups(self, now):
         backup_dir = settings.DBBACKUP_DIR
 
         for backup in os.listdir(backup_dir):
