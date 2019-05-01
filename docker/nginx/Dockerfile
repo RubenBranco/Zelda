@@ -1,8 +1,8 @@
 FROM nginx:latest
 
-COPY init-nginx.sh \
-     config/ \
-     ./
+COPY init-nginx.sh .
+
+COPY config/ /etc/nginx/
 
 COPY conf.d/zelda-edu.conf /etc/nginx/conf.d/zelda-edu.conf
 
