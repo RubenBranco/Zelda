@@ -1,7 +1,7 @@
 #! /bin/bash
 
 function sync_etc_letsencrypt {
-    rsync -avzh /etc/letsencrypt /share/etc/letsencrypt
+    rsync -avzh /etc/letsencrypt/ /share/etc/letsencrypt
 }
 
 sleep 1m
