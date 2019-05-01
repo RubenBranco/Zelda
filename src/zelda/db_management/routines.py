@@ -24,7 +24,7 @@ class DBBackup(CronJobBase):
         )
         management.call_command('dumpdata', '--all', f'--output={file_path}')
         encrypt_file(
-            open(file_name, "rb"),
+            open(file_path, "rb"),
             os.path.join(settings.DBBACKUP_DIR, file_name)
         )
 

@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand, CommandError
 from db_management.utils import unencrypt_file
 
 
-class RestoreDB(BaseCommand):
+class Command(BaseCommand):
     help = 'Restores database info from encrypted file with GPG'
 
     def add_arguments(self, parser):
