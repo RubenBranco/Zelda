@@ -16,7 +16,6 @@ services:
     volumes:
       - shared-etc-letsencrypt:/etc/letsencrypt:rw
       - var-www-certbot:/var/www/certbot:rw
-      - ~/nginx/conf.d:/etc/nginx/conf.d:ro
       - ~/nginx/logs/zelda:/zelda/logs:rw
       - ~/zelda/static:/zelda/static:ro
       - ~/zelda_s3/data:/zelda/s3:ro
