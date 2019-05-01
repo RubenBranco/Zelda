@@ -2,7 +2,7 @@ FROM nginx:latest
 
 COPY init-nginx.sh \
      config/ \
-     .
+     ./
 
 COPY conf.d/zelda-edu.conf /etc/nginx/conf.d/zelda-edu.conf
 
