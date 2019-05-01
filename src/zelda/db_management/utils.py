@@ -91,6 +91,7 @@ def unencrypt_file(inputfile, out_filename, passphrase=None):
 
     inputfile.seek(0)
     g = gnupg.GPG()
+    assert os.path.exists(settings.GPG_KEY_PATH)
     with open(settings.GPG_KEY_PATH) as fr:
         key = fr.read()
     g.import_keys(key)
