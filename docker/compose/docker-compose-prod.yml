@@ -42,7 +42,7 @@ services:
     networks:
       zelda: {}
     deploy:
-      replicas: ${DJANGO_REPLICAS}
+      replicas: ${DJANGO_S3_REPLICAS}
       restart_policy:
         condition: on-failure
       placement:
