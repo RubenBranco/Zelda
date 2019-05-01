@@ -1,5 +1,9 @@
 #! /bin/bash
 
+function sync_etc_letsencrypt {
+    rsync -avzh /etc/letsencrypt /share/etc/letsencrypt
+}
+
 sleep 1m
 
 domains=(
@@ -28,5 +32,6 @@ certbot certonly --webroot -w /var/www/certbot \
 trap exit TERM;
 while :; do
     certbot renew;
+    sync_etc_letsencrypt;
     sleep 12h;
 done;
