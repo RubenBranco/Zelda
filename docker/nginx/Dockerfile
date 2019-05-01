@@ -1,8 +1,7 @@
 FROM nginx:latest
 
 COPY init-nginx.sh \
-     config/options-ssl-nginx.config \
-     config/ssl-dhparams.pem \
+     config/ \
      .
 
 COPY conf.d/zelda-edu.conf /etc/nginx/conf.d/zelda-edu.conf
