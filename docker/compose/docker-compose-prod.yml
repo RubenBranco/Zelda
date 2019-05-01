@@ -5,6 +5,7 @@ services:
     networks:
       zelda: {}
     deploy:
+      mode: global
       restart_policy:
         condition: on-failure
       placement:
