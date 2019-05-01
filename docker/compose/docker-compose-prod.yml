@@ -84,7 +84,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.role == manager
+          - node.labels.postgres_host == True
     volumes:
       - ~/postgres/var/lib/postgresql/data:/var/lib/postgresql/data:rw
       - ~/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:rw
