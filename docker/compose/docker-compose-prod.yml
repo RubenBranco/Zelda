@@ -10,16 +10,36 @@ services:
         condition: on-failure
       placement:
         constraints:
+          - node.hostname == pti-ptr-1
           - node.labels.nginx_host == True
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - shared-etc-letsencrypt:/etc/letsencrypt:rw
-      - var-www-certbot:/var/www/certbot:rw
+      - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
+      - ~/certbot/var/www/certbot:/var/www/certbot:rw
       - ~/nginx/logs/zelda:/zelda/logs:rw
       - ~/zelda/static:/zelda/static:ro
       - ~/zelda_s3/data:/zelda/s3:ro
+  nginx-secondary:
+    image: zelda-nginx-secondary:latest
+    networks:
+      zelda: {}
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.hostname != pti-ptr-1
+          - node.labels.nginx_host == True
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
+      - ~/nginx/logs/zelda:/zelda/logs:rw
+      - ~/zelda/static:/zelda/static:ro
   zelda:
     image: zelda:latest
     networks:
@@ -73,9 +93,8 @@ services:
         constraints:
           - node.role == manager
     volumes:
-      - shared-etc-letsencrypt:/share/etc/letsencrypt:rw
       - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
-      - var-www-certbot:/var/www/certbot:rw
+      - ~/certbot/var/www/certbot:/var/www/certbot:rw
   postgres:
     image: zelda-postgres:latest
     networks:
@@ -103,13 +122,10 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.role == manager
+          - node.hostname == pti-ptr-1
     ports:
       - "9000:9000"
     networks:
       zelda: {}
-volumes:
-  var-www-certbot: {}
-  shared-etc-letsencrypt: {}
 networks:
   zelda: {}

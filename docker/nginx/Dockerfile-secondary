@@ -1,0 +1,26 @@
+FROM nginx:latest
+
+RUN apt update && apt install openssh-server
+
+RUN mkdir /var/run/sshd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+RUN echo "export VISIBLE=now" >> /etc/profile
+
+COPY init-nginx-secondary.sh init-nginx.sh
+
+COPY config/ /etc/nginx/
+
+COPY conf.d/zelda-edu-secondary.conf /etc/nginx/conf.d/zelda-edu.conf
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+VOLUME [ \
+    "/etc/letsencrypt", \
+    "/zelda/logs", \
+    "/zelda/static" \
+]
+
+EXPOSE 22
+
+CMD [ "./init-nginx.sh" ]
