@@ -1,7 +1,7 @@
 #! /bin/bash
 
 function sync_etc_letsencrypt {
-    rsync -avzh --rsh="/usr/bin/sshpass -p zelda2019 ssh -y -l root" /etc/letsencrypt/ cert_sync:/etc/letsencrypt
+    rsync -avzh --rsh="/usr/bin/sshpass -p zelda2019 ssh -o StrictHostKeyChecking=no -l root" /etc/letsencrypt/ cert_sync:/etc/letsencrypt
 }
 
 sleep 1m
