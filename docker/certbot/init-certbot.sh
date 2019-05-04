@@ -1,7 +1,7 @@
 #! /bin/bash
 
 function sync_etc_letsencrypt {
-    rsync -avzh /etc/letsencrypt/ root@cert_sync:/etc/letsencrypt
+    rsync -avzh --rsh="/usr/bin/sshpass -p zelda2019 -l root" /etc/letsencrypt/ /etc/letsencrypt
 }
 
 sleep 1m
@@ -31,6 +31,7 @@ certbot certonly --webroot -w /var/www/certbot \
 
 trap exit TERM;
 while :; do
+    sync_etc_letsencrypt;
     certbot renew;
     sync_etc_letsencrypt;
     sleep 12h;
