@@ -96,7 +96,7 @@ services:
       restart_policy:
         condition: on-failure
       placement:
-        constraint:
+        constraints:
           - node.labels.nginx_host == True
           - node.hostname != pti-ptr-1
     volumes:
