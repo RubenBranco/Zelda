@@ -1,7 +1,7 @@
 #! /bin/bash
 
 function sync_etc_letsencrypt {
-    rsync -avzh /etc/letsencrypt/ root@nginx-secondary:/etc/letsencrypt
+    rsync -avzh /etc/letsencrypt/ root@cert_sync:/etc/letsencrypt
 }
 
 sleep 1m
