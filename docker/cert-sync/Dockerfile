@@ -1,6 +1,6 @@
 FROM debian
 
-RUN apt update && apt install -y openssh-server
+RUN apt update && apt install -y openssh-server rsync
 
 RUN mkdir /var/run/sshd
 RUN echo "root:zelda2019" | chpasswd
