@@ -92,6 +92,7 @@ services:
     image: cert-sync:latest
     networks:
       zelda: {}
+    mode: global
     deploy:
       restart_policy:
         condition: on-failure
