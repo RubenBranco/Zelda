@@ -1,7 +1,5 @@
 #! /bin/bash
 
-/usr/sbin/sshd -D
-
 while :; do
     sleep 6h;
     nginx -s reload;
