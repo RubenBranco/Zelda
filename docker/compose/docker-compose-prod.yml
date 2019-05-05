@@ -114,7 +114,20 @@ services:
           - node.labels.postgres_host == True
     volumes:
       - ~/postgres/var/lib/postgresql/data:/var/lib/postgresql/data:rw
-      - ~/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:rw
+    env_file:
+      - docker.env
+  postgres_slave:
+    image: zelda-postgres-slave:latest
+    networks:
+      zelda: {}
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.labels.postgres_slave == True
+    volumes:
+      - ~/postgres/var/lib/postgresql/data:/var/lib/postgresql/data:rw
     env_file:
       - docker.env
   portainer:

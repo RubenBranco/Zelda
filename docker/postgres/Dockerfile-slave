@@ -1,0 +1,10 @@
+FROM postgres:11
+
+RUN apt update && apt install iputils
+
+COPY init-slave.sh .
+
+ENTRYPOINT [ "init-slave.sh" ]
+
+CMD ["gosu", "postgres", "postgres"]
+
