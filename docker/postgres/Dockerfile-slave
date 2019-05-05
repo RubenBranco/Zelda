@@ -1,6 +1,6 @@
 FROM postgres:11
 
-RUN apt update && apt install iputils-ping
+RUN apt update && apt install -y iputils-ping
 
 COPY init-slave.sh .
 
