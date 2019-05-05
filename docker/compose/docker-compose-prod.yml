@@ -48,7 +48,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.hostname == pti-ptr-1
+          - node.labels.primary_node == True
     volumes:
       - ~/zelda_s3/logs:/zelda_s3/logs:rw
       - ~/zelda_s3/data:/zelda_s3/data:rw
@@ -61,7 +61,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.hostname == pti-ptr-1
+          - node.labels.primary_node == True
   certbot:
     image: zelda-certbot:latest
     networks:
@@ -71,7 +71,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.hostname == pti-ptr-1
+          - node.labels.primary_node == True
     volumes:
       - ~/certbot/etc/letsencrypt:/etc/letsencrypt:rw
       - ~/certbot/var/www/certbot:/var/www/certbot:rw
@@ -84,7 +84,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.hostname == pti-ptr-1
+          - node.labels.primary_node == True
     volumes:
       - ~/certbot/var/www/certbot:/var/www/certbot:rw
       - ~/cert_mgmt/mgmt/logs:/mgmt/logs:rw
@@ -129,7 +129,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - node.hostname == pti-ptr-1
+          - node.labels.primary_node == True
     ports:
       - "9000:9000"
     networks:
