@@ -21,7 +21,7 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
 set -e
 cat > ${PGDATA}/recovery.conf <<EOF
 standby_mode = on
-primary_conninfo = 'host=postgres port=5432 user=zelda password=JZOwO$Q&De0Fp$2%k$6Bu7Gg^kPIf'
+primary_conninfo = 'host=postgres port=5432 user=zelda password=zelda2019'
 trigger_file = '/tmp/touch_me_to_promote_to_me_master'
 EOF
 

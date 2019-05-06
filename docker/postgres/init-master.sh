@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "host replication all 0.0.0.0/0 md5" >> "$PGDATA/pg_hba.conf"
+echo "host    replication     all             0.0.0.0/0               md5" >> "$PGDATA/pg_hba.conf"
 
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "zelda" --dbname "zelda" <<-EOSQL
-    CREATE USER zelda REPLICATION LOGIN CONNECTION LIMIT 100 ENCRYPTED PASSWORD 'JZOwO$Q&De0Fp$2%k$6Bu7Gg^kPIf';
+    CREATE USER zelda REPLICATION LOGIN CONNECTION LIMIT 100 ENCRYPTED PASSWORD '4c9b9b2b8bf8b9c80a53086c231140e5';
     CREATE DATABASE zelda;
     ALTER ROLE zelda SET client_encoding TO 'utf8';
     ALTER ROLE zelda SET default_transaction_isolation TO 'read committed';
