@@ -2,6 +2,8 @@ FROM python:3.6
 
 WORKDIR /zelda
 
+RUN apt update && apt install -y cron
+
 RUN mkdir code/ pids/ static/
 
 COPY src/zelda \
