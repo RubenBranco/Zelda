@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [ ! -s "$PGDATA/PG_VERSION" ]; then
-    echo "*:*:*:zelda:JZOwO\$Q&De0Fp\$2%k\$6Bu7Gg^kPIf" > ~/.pgpass
+    echo "*:*:*:zelda:zelda2019" > ~/.pgpass
     chmod 0600 ~/.pgpass
 
     until ping -c 1 -W 1 postgres
