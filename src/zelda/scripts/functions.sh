@@ -18,7 +18,7 @@ function start_dev {
 }
 
 function start_celery {
-    celery -A zelda beat -s /zelda/celery/ &
+    celery -A zelda beat -s /zelda/celery/celerybeat-schedule &
 }
 
 function migrate {

@@ -57,7 +57,7 @@ services:
     networks:
       zelda: {}
     deploy:
-      mode: global
+      replicas: ${RABBITMQ_REPLICAS}
       restart_policy:
         condition: on-failure
     environment:
