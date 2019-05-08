@@ -52,6 +52,17 @@ services:
     volumes:
       - ~/zelda_s3/logs:/zelda_s3/logs:rw
       - ~/zelda_s3/data:/zelda_s3/data:rw
+  rabbitmq:
+    image: rabbitmq:latest
+    networks:
+      zelda: {}
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    environment:
+      - RABBITMQ_DEFAULT_USER=zelda
+      - RABBITMQ_DEFAULT_PASS=zelda2019
   cache:
     image: memcached:latest
     networks:

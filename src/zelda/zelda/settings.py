@@ -247,15 +247,18 @@ TMP_FILE_MAX_SIZE = 10 * 1024 * 1024
 GPG_ALWAYS_TRUST = False
 
 BACKUP_TIMES = [
-    '8:00',
-    '20:00'
+    '8',
+    '20'
 ]
 
 # How much older from the most recent backup should backups be kept
 ARCHIVE_DELTA = timedelta(days=7)
 
-# CRON
+# CELERY
 
-CRON_CLASSES = [
-    'db_management.routines.DBBackup',
-]
+CELERY_BROKER_URL = 'amqp://zelda:zelda2019@rabbitmq:5672'
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'

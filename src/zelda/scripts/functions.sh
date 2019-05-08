@@ -17,6 +17,10 @@ function start_dev {
     manage runserver 0.0.0.0:8000
 }
 
+function start_celery {
+    celery -A zelda beat -s /zelda/celery/ &
+}
+
 function migrate {
     manage makemigrations
     manage migrate

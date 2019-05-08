@@ -9,11 +9,7 @@ from django_cron import CronJobBase, Schedule
 from .utils import encrypt_file, unencrypt_file, compress_file, uncompress_file
 
 
-class DBBackup(CronJobBase):
-    RUN_AT_TIMES = settings.BACKUP_TIMES
-    schedule = Schedule(run_at_times=RUN_AT_TIMES)
-    code = 'db.DBBackup'
-
+class DBBackup(object):
     def do(self):
         now = datetime.now()
         self.remove_old_backups(now)

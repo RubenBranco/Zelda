@@ -6,6 +6,6 @@ create_deps_dirs
 collect_static
 sleep 1m
 migrate
-manage runcrons
 cd $PROJECT_DIR
+start_celery
 start_prod
