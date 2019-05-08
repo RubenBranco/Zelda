@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'common',
     'zelda',
     'rest_framework',
-    'django_cron',
     'db_management',
 ]
 
