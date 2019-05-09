@@ -18,7 +18,7 @@ function start_dev {
 }
 
 function start_celery {
-    celery -A zelda beat -s /zelda/celery/celerybeat-schedule &
+    celery -A zelda beat -s /zelda/celery/celerybeat-schedule > $LOGS_DIR/celery.log 2>&1 &
 }
 
 function migrate {
