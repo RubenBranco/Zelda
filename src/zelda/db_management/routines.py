@@ -4,7 +4,6 @@ from shutil import copyfileobj
 
 from django.core import management
 from django.conf import settings
-from django_cron import CronJobBase, Schedule
 
 from .utils import encrypt_file, unencrypt_file, compress_file, uncompress_file
 
