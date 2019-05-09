@@ -17,8 +17,12 @@ function start_dev {
     manage runserver 0.0.0.0:8000
 }
 
-function start_celery {
-    celery -A zelda beat -s /zelda/celery/celerybeat-schedule > $LOGS_DIR/celery.log 2>&1 &
+function start_celery_workers {
+    celery -A zelda worker -l info > $LOGS_DIR/celery_worker.log 2>&1 &
+}
+
+function start_celery_beat {
+    celery -A zelda beat -s /zelda/celery/celerybeat-schedule > $LOGS_DIR/celery_beat.log 2>&1 &
 }
 
 function migrate {

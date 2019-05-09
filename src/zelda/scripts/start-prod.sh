@@ -7,5 +7,8 @@ collect_static
 sleep 1m
 migrate
 cd $PROJECT_DIR
-start_celery
+start_celery_workers
+sleep 5s
+start_celery_beat
+sleep 5s
 start_prod

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 from datetime import timedelta
+from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -261,3 +262,15 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+CELERY_BEAT_SCHEDULE = {
+    'backup-db': {
+        'task': 'db_management.tasks.backup_db_task',
+        'schedule': crontab(
+            minute=0,
+            hour=','.join(BACKUP_TIMES),
+            day_of_week='*',
+            day_of_month='*',
+            month_of_year='*',
+        ),
+    },
+}

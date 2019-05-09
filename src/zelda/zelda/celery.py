@@ -12,11 +12,3 @@ app = Celery('zelda')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
-
-app.conf.beat_schedule = {
-    'backup-db': {
-        'task': 'db_management.tasks.backup_db_task',
-        'schedule': crontab(minute=0, hour=','.join(settings.BACKUP_TIMES)),
-    },
-}
-
