@@ -50,7 +50,7 @@ def logout(l):
 
 class StudentTaskSet(TaskSet):
     def on_start(self):
-        r = login(self, "student")
+        login(self, "student")
 
     def on_stop(self):
         logout(self)
@@ -76,6 +76,35 @@ class StudentTaskSet(TaskSet):
         self.client.get("/courses/1")
 
 
+class ProfessorTaskSet(TaskSet):
+    def on_start(self):
+        login(self, "professor")
+
+    def on_stop(self):
+        logout(self)
+
+    @task
+    def get_frontpage(self):
+        self.client.get("/")
+
+    @task
+    def get_profile(self):
+        self.client.get("/users/2")
+
+    @task
+    def get_attendances(self):
+        self.client.get("/professor/view_attendances")
+
+    @task
+    def get_subject(self):
+        self.client.get("/subjects/2")
+
+
 class StudentClient(HttpLocust):
     task_set = StudentTaskSet
+    wait_function = lambda self: random.expovariate(1) * 5000
+
+
+class ProfessorClient(HttpLocust):
+    task_set = ProfessorTaskSet
     wait_function = lambda self: random.expovariate(1) * 5000
