@@ -166,7 +166,7 @@ services:
     volumes:
       - ~/prometheus/data:/prometheus:rw
       - ~/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:rw
-    command: --config.file=/etc/prometheus/prometheus.yml --web.external-url=https://zelda-edu.me/prometheus --web.route-prefix="/"
+    command: --config.file=/etc/prometheus/prometheus.yml --web.external-url=https://zelda-edu.me/prometheus --web.route-prefix=/prometheus
     deploy:
       restart_policy:
         condition: on-failure
