@@ -1,34 +1,22 @@
 import React from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
+
 class WebCrumbs extends React.Component {
     constructor(props) {
         super(props);
-
-        // this.state = {
-        //     items: [],
-        // };
-        // this.csrfmiddlewaretoken = getCsrfToken();
+        this.props = props;
     }
 
-
     render() {
-        console.log(this.props.webcrumbs)
-        return
-        // this.items.map((item, index) =>
-
-
-        // <Breadcrumb>
-        //     if(i.equals("atual")){
-
-        //         < Breadcrumb.Item active>item.i</Breadcrumb.Item>
-        //     }else{
-        //         <Breadcrumb.Item href={i}>item.i</Breadcrumb.Item>
-        //     }
-        // </Breadcrumb >
-
-        //)
-
-
+        return (
+            <Breadcrumb>
+                {this.props.pages.map((page) =>
+                    page.href === "" ? <Breadcrumb.Item active>{page.name}</Breadcrumb.Item> :
+                    <Breadcrumb.Item href={page.href}>{page.name}</Breadcrumb.Item>
+                )}
+            </Breadcrumb>
+        )
     }
 }
 

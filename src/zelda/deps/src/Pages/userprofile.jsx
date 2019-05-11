@@ -11,15 +11,11 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    // var items = {
-    //   Home = window.frontpageUrl;
-    //   Profile = "atual"
-    // };
-    const items = [{ "Home": window.frontpageUrl }, { "Profile": "atual" }];
+    const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Profile"), href: "" }];
     return (
       <div>
         <Navbar />
-        <WebCrumbs webcrumbs={items} />
+        <WebCrumbs pages={pages} />
         <ViewProfile />
       </div >
     );
