@@ -203,7 +203,9 @@ services:
         constraints:
           - node.labels.primary_node == True
     environment:
+      - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=zelda2019
       - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_USERS_ALLOW_ORG_CREATE=false
 networks:
   zelda: {}
