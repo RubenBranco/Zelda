@@ -16,7 +16,6 @@ class StudentAttendances extends React.Component {
             <div>
                 <Navigator />
                 <MenuStudLateral />
-                <div id="webcrumbs"> <a>{gettext("Home")}</a> > <a> {gettext("Consult Attendances")}</a> </div>
                 <SearchOwnAttendances />
 
 

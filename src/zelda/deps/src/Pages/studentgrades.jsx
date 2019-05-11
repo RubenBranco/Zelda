@@ -13,7 +13,6 @@ class StudentGrades extends React.Component {
     return (
       <div>
         <Navigator />
-        <div id="webcrumbs"> <a>{gettext("Home")}</a> > <a> {gettext(" Consultar Notas")}</a> </div>
         <SearchStudentSubjectGrades />
       </div>
     );

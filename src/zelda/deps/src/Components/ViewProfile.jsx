@@ -41,7 +41,7 @@ class ViewProfile extends React.Component {
     render() {
         return (
             <Container>
-                <h2 class="title_main_menu">{gettext("Perfl")}</h2>
+                <h2 class="title_main_menu">{gettext("Profile")}</h2>
                 <hr />
 
                 <Row>
