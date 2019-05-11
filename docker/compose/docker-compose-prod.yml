@@ -158,5 +158,50 @@ services:
       - "9000:9000"
     networks:
       zelda: {}
+  prometheus:
+    image: prom/prometheus
+    networks:
+      zelda: {}
+    volumes:
+      - ~/prometheus/data:/prometheus:rw
+      - ~/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:rw
+    command: --web.external-url=https://zelda-edu.me/prometheus --web.route-prefix="/"
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.labels.primary_node == True
+    depends_on:
+      - cadvisor
+  cadvisor:
+    image: google/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      zelda: {}
+    deploy:
+      restart_policy:
+        condition: on-failure
+      mode: global
+  grafana:
+    image:
+    volumes:
+      - ~/grafana/grafana.ini:/etc/grafana/grafana.ini:rw
+      - ~/grafana/var/lib/grafana:/var/lib/grafana:rw
+    networks:
+      zelda: {}
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.labels.primary_node == True
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=zelda2019
+      - GF_USERS_ALLOW_SIGN_UP=false
 networks:
   zelda: {}
