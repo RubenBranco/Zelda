@@ -50,7 +50,7 @@ class GetProfessorSubjects extends React.Component {
                             designation: subjectList.map(subject =>
                                 subject.designation
                             ).join(" / "),
-                            href: "",
+                            href: `/subjects/${subjectList[0].subject}`,
                         }
                     )
                 });

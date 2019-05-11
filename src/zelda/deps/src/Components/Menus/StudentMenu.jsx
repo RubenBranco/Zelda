@@ -42,7 +42,7 @@ class StudentMenu extends React.Component {
                             subjects.push({
                                 id: subject.id,
                                 designation: subject.designation,
-                                href: "",
+                                href: `/subjects/${subject.id}`,
                             })
                         });
                         this.setState({
