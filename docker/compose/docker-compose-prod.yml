@@ -188,7 +188,7 @@ services:
         condition: on-failure
       mode: global
   grafana:
-    image:
+    image: grafana/grafana
     volumes:
       - ~/grafana/grafana.ini:/etc/grafana/grafana.ini:rw
       - ~/grafana/var/lib/grafana:/var/lib/grafana:rw
