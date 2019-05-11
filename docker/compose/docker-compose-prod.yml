@@ -160,6 +160,7 @@ services:
       zelda: {}
   prometheus:
     image: prom/prometheus
+    user: "0"
     networks:
       zelda: {}
     volumes:
@@ -189,6 +190,7 @@ services:
       mode: global
   grafana:
     image: grafana/grafana
+    user: "0"
     volumes:
       - ~/grafana/grafana.ini:/etc/grafana/grafana.ini:rw
       - ~/grafana/var/lib/grafana:/var/lib/grafana:rw
