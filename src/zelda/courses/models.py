@@ -110,6 +110,12 @@ class Course(models.Model):
         CourseSpecification,
         on_delete=models.CASCADE,
     )
+    # f = first
+    f_semester_begin_date = models.DateField(null=True)
+    f_semester_end_date = models.DateField(null=True)
+    # s = second
+    s_semester_begin_date = models.DateField(null=True)
+    s_semester_end_date = models.DateField(null=True)
     lective_year = models.DateField()
     vacancies = models.PositiveIntegerField()
     coordinator = models.ForeignKey(
