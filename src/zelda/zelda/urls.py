@@ -39,6 +39,7 @@ api.register("course_spec", course_views.CourseSpecificationViewSet, base_name="
 api.register("course_subject", course_views.CourseSubjectViewSet, base_name="course_subject")
 api.register("subject", course_views.SubjectViewSet, base_name="subject")
 api.register("subject_spec", course_views.SubjectSpecificationViewSet, base_name="subject_spec")
+api.register("timetable_lesson_spec", timetable_views.TimetableLessonSpecViewSet, base_name="timetable_lesson_spec")
 
 
 urlpatterns = [
