@@ -57,11 +57,8 @@ class StudentMenu extends React.Component {
     render() {
         return (
             <div>
-
-
                 <CardDeck>
                     <CoursesList courses={this.state.courses} />
-
                     <Card>
                         <Card.Header className="text-center font-weight-bold">
                             {gettext("Consult")}
@@ -88,7 +85,7 @@ class StudentMenu extends React.Component {
                         <Card.Body>
                             <ListGroup variant="flush">
                                 <ListGroup.Item action>
-                                    <a href="#">{gettext("Personal")}</a>
+                                    <a href={window.viewTimetableUrl}>{gettext("Personal")}</a>
                                 </ListGroup.Item>
                                 <ListGroup.Item action>
                                     <a href="#">{gettext("By Subjects")}</a>

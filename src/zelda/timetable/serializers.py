@@ -12,6 +12,9 @@ class ShiftSerializer(ModelSerializer):
 class TimeTableLessonSpecificationSerializer(ModelSerializer):
     dates = SerializerMethodField()
     room = SerializerMethodField()
+    semester = SerializerMethodField()
+    subject_designation = SerializerMethodField()
+    subject_id = SerializerMethodField()
 
     class Meta:
         model = LessonSpecification
@@ -29,3 +32,14 @@ class TimeTableLessonSpecificationSerializer(ModelSerializer):
     def get_room(self, lesson_spec):
         room = lesson_spec.room
         return f"{room.building}.{room.floor}.{room.door}"
+
+    def get_semester(self, lesson_spec):
+        return lesson_spec.shift.subject.semester
+
+    def get_subject_designation(self, lesson_spec):
+        subject = lesson_spec.shift.subject
+        course = self.context['course']
+        return CourseSubject.objects.get(subject=subject, course=course).designation
+
+    def get_subject_id(self, lesson_spec):
+        return lesson_spec.shift.subject.id

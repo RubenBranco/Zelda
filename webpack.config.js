@@ -28,6 +28,7 @@ module.exports = {
         subjectinfo: path.resolve(baseSrcPath, "Pages", "subjectinfo.jsx"),
         studentgrades: path.resolve(baseSrcPath, "Pages", "studentgrades.jsx"),
         professorgrades: path.resolve(baseSrcPath, "Pages", "profcheckgrades.jsx"),
+        studenttimetable: path.resolve(baseSrcPath, "Pages", "studenttimetable.jsx"),
     },
     output: {
         filename: '[name].js',

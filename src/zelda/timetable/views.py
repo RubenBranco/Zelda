@@ -24,6 +24,10 @@ class StudentViewAttendancesView(AbstractStudentAppView):
     pass
 
 
+class StudentViewTimetableView(AbstractStudentAppView):
+    pass
+
+
 class ShiftViewSet(viewsets.ModelViewSet):
     queryset = Shift.objects.all()
     permissions = (IsAuthenticated, ShiftPermission)
