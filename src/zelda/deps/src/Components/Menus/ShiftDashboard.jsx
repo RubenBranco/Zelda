@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChalkboard, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import getCsrfToken from "../../functions/csrf.js";
 
@@ -69,11 +69,8 @@ class ShiftDashboard extends React.Component {
                                         {this.state.courseYearMapping[courseYear].map(courseSubjectId =>
                                             <ListGroup.Item action>
                                                 {this.state.subjects[courseSubjectId].designation}
-                                                <Button variant="outline-primary">
-                                                    <FontAwesomeIcon icon={faChalkboard}/> {gettext("Enroll in Shifts")}
-                                                </Button>
-                                                <Button variant="outline-primary">
-                                                        <FontAwesomeIcon icon={faEdit}/> {gettext("Change Shifts")}
+                                                <Button variant="outline-primary" href={subjectShiftManagementUrl.replace("0", this.state.subjects[courseSubjectId].subjectId)}>
+                                                    <FontAwesomeIcon icon={faEdit}/>
                                                 </Button>
                                             </ListGroup.Item>
                                         )}
