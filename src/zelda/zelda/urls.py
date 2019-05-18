@@ -98,6 +98,11 @@ urlpatterns = [
         timetable_views.StudentViewTimetableView.as_view(),
         name='student_view_timetable',
     ),
+    path(
+        'student/shift_management',
+        timetable_views.StudentShiftManagementView.as_view(),
+        name='student_shift_management',
+    ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('api/', include(api.urls)),
