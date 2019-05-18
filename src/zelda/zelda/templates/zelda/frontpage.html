@@ -1,4 +1,10 @@
-{% extends 'base.html' %} {% load static %} {% block footjs %}
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Dashboard' %}{% endblock %}
+
+{% block footjs %}
 <script>
     var viewProfileUrl = "{% url 'view_user' app_user.id %}";
     {% if app_user.user_type == "Professor" %}
