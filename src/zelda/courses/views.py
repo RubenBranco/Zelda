@@ -7,7 +7,7 @@ from rest_framework import exceptions
 
 from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade
-from .permissions import SubjectPermission
+from .permissions import SubjectPermission, CourseSubjectPermission
 from common.views import AbstractLoggedInAppView, AbstractProfessorAppView, AbstractStudentAppView
 from common.permissions import BaseAppPermission
 from common.utils import get_user_from_request
@@ -48,7 +48,26 @@ class CourseSpecificationViewSet(ModelViewSet):
 class CourseSubjectViewSet(ModelViewSet):
     serializer_class = CourseSubjectSerializer
     queryset = CourseSubject.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, CourseSubjectPermission)
+
+    @action(detail=False)
+    def my_subjects(self, request):
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Student):
+            return exceptions.PermissionDenied()
+
+        course = user.course.all().last()
+        course_subjects = CourseSubject.objects.filter(
+            subject__in=Subject.objects.filter(students=user),
+            course=course,
+        )
+        return Response(
+            self.serializer_class(
+                course_subjects,
+                many=True,
+            ).data
+        )
 
 
 class SubjectViewSet(ModelViewSet):

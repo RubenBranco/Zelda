@@ -5,6 +5,10 @@ from common.utils import get_user_from_request
 from users.models import Professor
 
 
+class CourseSubjectPermission(BaseAppPermission):
+    pass
+
+
 class SubjectPermission(BaseAppPermission):
     def has_permission(self, request, view):
         if view.action in ["list", "shiftless_students"]:
