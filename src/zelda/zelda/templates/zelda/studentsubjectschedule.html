@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Student Subject Schedule' %}{% endblock %}
+
+{% block footjs %}
+    <script>
+        var subjectUrl = "{% url 'view_subject' 0 %}";
+    </script>
+{% endblock footjs %}

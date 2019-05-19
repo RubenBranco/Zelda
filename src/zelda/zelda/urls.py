@@ -59,6 +59,11 @@ urlpatterns = [
         name='prof_view_attendances',
     ),
     path(
+        'professor/subject/schedule',
+        timetable_views.ProfViewSubjectScheduleView.as_view(),
+        name='prof_view_subject_schedule',
+    ),
+    path(
         'students/view_attendances',
         timetable_views.StudentViewAttendancesView.as_view(),
         name='student_view_attendances',
@@ -107,6 +112,11 @@ urlpatterns = [
         'student/subject_shift_management/<subject_id>',
         timetable_views.StudentSubjectShiftManagementView.as_view(),
         name='student_subject_shift_management',
+    ),
+    path(
+        'student/subject/schedule',
+        timetable_views.StudentViewSubjectScheduleView.as_view(),
+        name='student_view_subject_schedule',
     ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),

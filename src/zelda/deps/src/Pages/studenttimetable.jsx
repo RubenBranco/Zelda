@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
-import Schedule from "../Components/Schedule.jsx";
+import Schedule from "../Components/Schedules/Schedule.jsx";
 
 import getCsrfToken from "../functions/csrf.js";
 
