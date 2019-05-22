@@ -172,10 +172,38 @@ class SubjectViewSet(ModelViewSet):
             ).data
         )
 
-    # @action(detail=True)
-    # def subject_signing(self, request, pk=None):
-    #     subject = get_object_or_404(Subject, id=pk) #obj subject
-    #     user = get_user_from_request(request) # user
+    @action(detail=True)
+    def subject_signing(self, request, pk=None):
+        
+        subject = get_object_or_404(Subject, id=pk) #obj subject
+        user = get_user_from_request(request) # user
+        
+        if not isinstance(user, Student):
+            return exceptions.PermissionDenied()
+        
+        student_info = StudentSerializer(user).data
+        student_subjects = list()
+        courses = student_info.course.all()
+
+        for course in courses:
+            course_spec = course.specification
+            course_prog = course_spec.course_programme.all()
+            for course_subject in course_prog:
+                subject = course_subject.subject
+                student_subjects.append(subject)
+
+        final_grades = FinalGrade.objects.filter(student=user)
+        for grade in final_grades:
+            if grade.grade >= settings.MIN_GRADE_APPROVATION:
+                subject_code = grade.subject.subject_spec.code
+                for subj in student_subjects:
+                    if subject_code == subj.subject_spec.code:
+                        student_subjects.remove(subj)
+                        break
+            
+            
+
+
 
 
 class SubjectSpecificationViewSet(ModelViewSet):
