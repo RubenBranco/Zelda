@@ -8,6 +8,14 @@ body {
   background-color: #fbfbff;
 }
 
+a{
+  color: black;
+  
+}
+a:hover{
+  color: #ae6857;
+}
+
 #webcrumbs{
   margin-top:1%;
   margin-left:4%;
@@ -366,3 +374,26 @@ body {
 }
 
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
+
+/* --------------------------------------------- PROFILE START ---------------------------------  */
+
+.profile_photo{
+  display: inline-block;
+  margin: auto;
+  border: 3px solid #ae6857;
+  border-radius: 100%;
+}
+
+
+/* --------------------------------------------- PROFILE END ---------------------------------  */
+
+/* ---------------------------------------------  Subject INFO START ---------------------------------  */
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: #ae6857;
+  color:white;
+}
+
+
+
+/* ---------------------------------------------  Subject INFO END ---------------------------------  */

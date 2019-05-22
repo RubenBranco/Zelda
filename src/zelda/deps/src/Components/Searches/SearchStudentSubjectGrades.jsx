@@ -142,7 +142,7 @@ class SearchStudentSubjectGrades extends React.Component {
 
         return (
             <Container>
-                <h2 className="title_main_menu">{gettext("Consultar Notas")}</h2>
+                <h2 className="title_main_menu">{gettext("Grades")}</h2>
                 <hr />
                 <Form>
                     <Form.Group as={Col}>

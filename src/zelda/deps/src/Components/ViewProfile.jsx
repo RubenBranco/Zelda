@@ -41,20 +41,24 @@ class ViewProfile extends React.Component {
     render() {
         return (
             <Container>
+
                 <h2 class="title_main_menu">{gettext("Profile")}</h2>
                 <hr />
+
 
                 <Row>
                     <Col xs={2} md={3}>
                         <Image src={this.state.userData.display_image} rounded />
                     </Col>
                     <Col xs={2} md={5}>
-                        <Tabs defaultActiveKey="Info">
-                            <Tab eventKey="Personal Data" title="Personal Data">
+                        <Tabs defaultActiveKey="Personal Data" id="uncontrolled-tab-example">
+                            <Tab eventKey="Personal Data" title={gettext("Personal Data")}>
                                 <Table bordered hover responsive size='sm'>
                                     <tbody>
+
+
                                         <tr>
-                                            <td>{gettext("Your Name")}</td>
+                                            <td>{gettext("Name")}</td>
                                             <td>{this.state.userData.first_name + " " + this.state.userData.last_name}</td>
                                         </tr>
                                         <tr>

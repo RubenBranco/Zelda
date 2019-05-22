@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 import Schedule from "../Components/Schedules/Schedule.jsx";
+import WebCrumbs from "../Components/WebCrumbs.jsx";
 
 import getCsrfToken from "../functions/csrf.js";
 
 
-class StudentTimeTable extends React.Component{
+class StudentTimeTable extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -32,14 +33,16 @@ class StudentTimeTable extends React.Component{
         }
     }
 
-    render () {
+    render() {
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Personal Schedule"), href: "" }];
         return (
-         <div>
-            <Navigator />
-            {!this.state.classes.length ? null :
-                <Schedule classes={this.state.classes}/>
-            }
-          </div>
+            <div>
+                <Navigator />
+                <WebCrumbs pages={pages} />
+                {!this.state.classes.length ? null :
+                    <Schedule classes={this.state.classes} />
+                }
+            </div>
         );
     }
 }
