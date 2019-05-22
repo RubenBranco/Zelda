@@ -67,7 +67,7 @@ class Schedule extends React.Component {
                         room: _class.room,
                     },
                 });
-                
+
             }
         });
         if (!isEqual(this.state.events, events)) {
@@ -85,12 +85,12 @@ class Schedule extends React.Component {
         title.innerHTML = `<div>${designation} (${this.cTypeMapping[event.extendedProps.cType]})</div><div><span><i class="fas fa-chair"></i> ${event.extendedProps.room}</span></div>`;
     }
 
-    render () {
+    render() {
         return (
             <div>
                 <FullCalendar
                     defaultView="timeGridWeek"
-                    plugins={[ timeGridPlugin, momentPlugin ]}
+                    plugins={[timeGridPlugin, momentPlugin]}
                     weekends={true}
                     events={this.state.events}
                     validRange={{
@@ -101,8 +101,9 @@ class Schedule extends React.Component {
                     eventRender={this.handleEventRender}
                     nowIndicator={true}
                     displayEventTime={false}
+                    minTime="8:00"
                 />
-                
+
             </div>
         )
     }

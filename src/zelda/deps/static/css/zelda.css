@@ -129,6 +129,11 @@ a:hover{
     height: 100%;
   
   }
+
+  .fc-button-primary:disabled{
+
+    margin-left: 15% !important;
+  }
   #login > #form {
     padding-top: 50%;
     width: 100%;
@@ -175,6 +180,8 @@ a:hover{
 
 @media only screen and (max-width: 1256px){
   /* For mobile phones: */
+
+  
   #img_background_all {
     visibility: hidden;
     width: 0%;
@@ -371,6 +378,11 @@ a:hover{
 
 .schedule_subjects {
   margin-top: 25%;
+}
+
+.fc-button-primary{
+  background-color:#ae6857 !important;
+  color:white !important;
 }
 
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */

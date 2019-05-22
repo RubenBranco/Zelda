@@ -1,11 +1,13 @@
 import React from 'react';
-import Navigator from "../Navigator.jsx";
 import Schedule from "./Schedule.jsx";
 import Container from "react-bootstrap/Container";
 import ListGroup from 'react-bootstrap/ListGroup';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tab from "react-bootstrap/Tab";
+
+
+
 
 import getCsrfToken from "../../functions/csrf.js"
 
@@ -21,9 +23,9 @@ class SubjectSchedule extends React.Component {
         this.csrfmiddlewaretoken = getCsrfToken();
 
         this.handleChosenSubjectChange = this.handleChosenSubjectChange.bind(this);
-      }
-  
-      componentDidMount() {
+    }
+
+    componentDidMount() {
         if (!this.state.userid) {
             fetch('/api/appuser/describe_self/', {
                 method: 'GET',
@@ -36,13 +38,13 @@ class SubjectSchedule extends React.Component {
                     else this.getStudent();
                 })
             })
-          }
+        }
         if (!this.state.classes.length) {
             this.getClasses();
         }
-      }
+    }
 
-      getClasses() {
+    getClasses() {
         fetch('/api/timetable_lesson_spec/my_timetable/', {
             method: 'GET',
             headers: {
@@ -51,7 +53,7 @@ class SubjectSchedule extends React.Component {
         }).then(response => {
             response.json().then(data => {
                 data.map(aula => {
-                    if(this.state.chosenSubject === null) {
+                    if (this.state.chosenSubject === null) {
                         this.setState(prevState => ({
                             classes: [...prevState.classes, aula]
                         }))
@@ -61,61 +63,61 @@ class SubjectSchedule extends React.Component {
                     } else {
                         this.setState({ classes: [] })
                     }
-                })                
+                })
             })
         })
-      }
+    }
 
-      handleChosenSubjectChange(chosenSubject) {
+    handleChosenSubjectChange(chosenSubject) {
         this.setState({ chosenSubject })
         this.getClasses();
         console.log(this.state.classes);
-      }
+    }
 
-      getStudentSubjects() {
-          fetch(`/api/student/${this.state.userid}/course_subjects/`, {
-              method: 'GET',
-              headers: {
-                  "X-CSRFToken": this.csrfmiddlewaretoken,
-              },
-          }).then(response => {
-              response.json().then(data => {
-                  let subjects = [];
-                  data.map(subjectInfo =>
-                      this.populateSubjects(subjects, subjectInfo)
-                  );
-                  this.setState({
-                      subjects: subjects,
-                      chosenSubject: subjects[0],
-                  });
-              });
-          });
-      }
-  
-      populateSubjects(subjectList, subjectInfo) {
-          let subject = {};
-          subject.id = subjectInfo.subject;
-          subject.designation = subjectInfo.designation;
-          subjectList.push(subject);
-      }
-  
-      getStudent() {
-        fetch('/api/student/describe_self/', {
-        method: 'GET',
-        headers: {
-            "X-CSRFToken": this.csrfmiddlewaretoken,
-        },
+    getStudentSubjects() {
+        fetch(`/api/student/${this.state.userid}/course_subjects/`, {
+            method: 'GET',
+            headers: {
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            },
         }).then(response => {
-        response.json().then(data => {
-            this.setState({
-                userid: data.id,
-            });
-            this.getStudentSubjects();
+            response.json().then(data => {
+                let subjects = [];
+                data.map(subjectInfo =>
+                    this.populateSubjects(subjects, subjectInfo)
+                );
+                this.setState({
+                    subjects: subjects,
+                    chosenSubject: subjects[0],
+                });
             });
         });
-      }
+    }
 
-      getProfessor() {
+    populateSubjects(subjectList, subjectInfo) {
+        let subject = {};
+        subject.id = subjectInfo.subject;
+        subject.designation = subjectInfo.designation;
+        subjectList.push(subject);
+    }
+
+    getStudent() {
+        fetch('/api/student/describe_self/', {
+            method: 'GET',
+            headers: {
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            },
+        }).then(response => {
+            response.json().then(data => {
+                this.setState({
+                    userid: data.id,
+                });
+                this.getStudentSubjects();
+            });
+        });
+    }
+
+    getProfessor() {
         fetch('/api/professor/describe_self/', {
             method: 'GET',
             headers: {
@@ -129,9 +131,9 @@ class SubjectSchedule extends React.Component {
                 this.getProfessorSubjects();
             });
         });
-      }
+    }
 
-      getProfessorSubjects() {
+    getProfessorSubjects() {
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
             headers: {
@@ -154,40 +156,38 @@ class SubjectSchedule extends React.Component {
                 this.setState({ subjects });
             });
         });
-        }
-  
-      render () {
-  
+    }
+
+    render() {
+
         return (
             <div>
-              <Navigator />
-              <Container className="schedule">
-                <Tab.Container id="list-group-tabs-example" >
-                  <Row>
-                    <Col sm={3}>
-                      <ListGroup className="schedule_subjects">
-                        {this.state.subjects.map(subject =>
-                              <ListGroup.Item action variant="light" onClick={()=>this.handleChosenSubjectChange(subject.designation)}>
-                                {subject.designation}
-                              </ListGroup.Item>
-                          )}
-                            <ListGroup.Item action variant="light" onClick={()=>this.handleChosenSubjectChange("hello")}>
-                                hello
-                            </ListGroup.Item>
-                      </ListGroup>
-                    </Col>
-                    <Col>
-                      {!this.state.classes.length ? null :
-                            <Schedule classes={this.state.classes}/>
-                      }
-                    </Col>
-                  </Row>
-                </Tab.Container>
 
-              </Container>
+                <Container className="schedule">
+                    <Tab.Container id="list-group-tabs-example" >
+                        <Row>
+                            <Col sm={3}>
+                                <ListGroup className="schedule_subjects">
+                                    {this.state.subjects.map(subject =>
+                                        <ListGroup.Item action variant="light" onClick={() => this.handleChosenSubjectChange(subject.designation)}>
+                                            {subject.designation}
+                                        </ListGroup.Item>
+                                    )}
+
+                                </ListGroup>
+                            </Col>
+                            <Col>
+                                {!this.state.classes.length ? null :
+                                    <Schedule classes={this.state.classes} />
+                                }
+                            </Col>
+                        </Row>
+                    </Tab.Container>
+
+                </Container>
             </div>
-          );
-      }
+        );
+    }
 }
 
 export default SubjectSchedule;

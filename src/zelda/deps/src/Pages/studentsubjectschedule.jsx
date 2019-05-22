@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-
+import WebCrumbs from "../Components/WebCrumbs.jsx";
 import SubjectSchedule from "../Components/Schedules/subjectSchedule.jsx";
+import Navigator from "../Components/Navigator.jsx"
 
 class StudentSubjectsSchedule extends React.Component {
   constructor() {
@@ -14,8 +15,10 @@ class StudentSubjectsSchedule extends React.Component {
     const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Subject Schedule"), href: "" }];
     return (
       <div>
-        <SubjectSchedule />
+        <Navigator />
         <WebCrumbs pages={pages} />
+        <SubjectSchedule />
+
       </div>
     );
   }
