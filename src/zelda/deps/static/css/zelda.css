@@ -380,7 +380,6 @@ a:hover{
   margin-top: 25%;
 }
 
-<<<<<<< HEAD
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
 /* --------------------------------------------- MENU BEM POSICIONADO ---------------------------------  */
 .MenuProfLateral{
@@ -410,34 +409,3 @@ a:hover{
     position: absolute !important;
      }
 }
-=======
-.fc-button-primary{
-  background-color:#ae6857 !important;
-  color:white !important;
-}
-
-/* --------------------------------------------- SCHEDULE END ---------------------------------  */
-
-/* --------------------------------------------- PROFILE START ---------------------------------  */
-
-.profile_photo{
-  display: inline-block;
-  margin: auto;
-  border: 3px solid #ae6857;
-  border-radius: 100%;
-}
-
-
-/* --------------------------------------------- PROFILE END ---------------------------------  */
-
-/* ---------------------------------------------  Subject INFO START ---------------------------------  */
-
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  background-color: #ae6857;
-  color:white;
-}
-
-
-
-/* ---------------------------------------------  Subject INFO END ---------------------------------  */
->>>>>>> 77919d740b9e260ec6f7fad249ef298291cc2d1e

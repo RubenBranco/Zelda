@@ -15,14 +15,9 @@ class ProfAttendances extends React.Component {
         const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Consult Attendance"), href: "" }];
         return (
             <div>
-<<<<<<< HEAD
             <Navigator />
-=======
-                <Navigator />
-                <WebCrumbs pages={pages} />
->>>>>>> 77919d740b9e260ec6f7fad249ef298291cc2d1e
-                <MenuProfLateral />
-                <SearchStudentsAttendance />
+            <MenuProfLateral />
+            <SearchStudentsAttendance />
             </div>
         );
     }
