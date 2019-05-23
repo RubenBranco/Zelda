@@ -303,7 +303,7 @@ class SearchStudentsAttendance extends React.Component {
         ];
 
         return (
-            <div>
+            <div class="resto-pagina">
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
@@ -340,6 +340,7 @@ class SearchStudentsAttendance extends React.Component {
                     </Modal.Footer>
                 </Modal>
 
+            <div class="consultStudentsAttendance"></div>
                 <Container>
                     <h2 class="title_main_menu">{gettext("Consult Students Attendances")}</h2>
                     <hr />

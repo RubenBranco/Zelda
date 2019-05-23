@@ -366,3 +366,31 @@ body {
 }
 
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
+/* --------------------------------------------- MENU BEM POSICIONADO ---------------------------------  */
+.MenuProfLateral{
+  width: 25% !important;
+  float: top !important;
+  display: relative !important;
+  position: static !important;
+  
+}
+
+.resto-pagina{
+  width: 75% !important;
+  float: right;
+}
+
+@media only screen and (max-width: 580px){
+  /* For mobile phones: */
+  .MenuProfLateral {
+    visibility: hidden;
+    width: 0%;
+    margin: auto;
+  }
+  
+  .resto-pagina{
+    width: 100%;
+    margin-left: 10%;
+    position: absolute !important;
+     }
+}

@@ -13,7 +13,7 @@ class ProfAttendances extends React.Component {
     render() {
         return (
             <div>
-                <Navigator />
+            <Navigator />
                 <MenuProfLateral />
                 <SearchStudentsAttendance />
             </div>

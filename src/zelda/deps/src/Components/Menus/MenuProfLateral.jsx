@@ -9,10 +9,11 @@ class MenuProfLateral extends React.Component {
 
     render() {
         return (
+            <div class="menu-prof">
             <Dropdown.Menu show className="MenuProfLateral">
                 <Dropdown.Header>{gettext("Cadeiras")}</Dropdown.Header>
-                <Dropdown.Item eventKey="1">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Something else here</Dropdown.Item>
+                <Dropdown.Item eventKey="1">Another action!</Dropdown.Item>
+                <Dropdown.Item eventKey="2">Something else</Dropdown.Item>
                 <Dropdown.Header>Consultar</Dropdown.Header>
                 <Dropdown.Item eventKey="4">{gettext("Presenças")}</Dropdown.Item>
                 <Dropdown.Item eventKey="5">{gettext("Perfil")}</Dropdown.Item>
@@ -20,8 +21,11 @@ class MenuProfLateral extends React.Component {
                 <Dropdown.Item eventKey="6">{gettext("Room Change")}</Dropdown.Item>
                 <Dropdown.Item eventKey="7">{gettext("Room Reservation")}</Dropdown.Item>
             </Dropdown.Menu>
+            </div>
         );
     }
+
+
 }
 
 export default MenuProfLateral;
