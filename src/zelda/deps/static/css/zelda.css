@@ -8,6 +8,14 @@ body {
   background-color: #fbfbff;
 }
 
+a{
+  color: black;
+  
+}
+a:hover{
+  color: #ae6857;
+}
+
 #webcrumbs{
   margin-top:1%;
   margin-left:4%;
@@ -121,6 +129,11 @@ body {
     height: 100%;
   
   }
+
+  .fc-button-primary:disabled{
+
+    margin-left: 15% !important;
+  }
   #login > #form {
     padding-top: 50%;
     width: 100%;
@@ -167,6 +180,8 @@ body {
 
 @media only screen and (max-width: 1256px){
   /* For mobile phones: */
+
+  
   #img_background_all {
     visibility: hidden;
     width: 0%;
@@ -365,6 +380,7 @@ body {
   margin-top: 25%;
 }
 
+<<<<<<< HEAD
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
 /* --------------------------------------------- MENU BEM POSICIONADO ---------------------------------  */
 .MenuProfLateral{
@@ -394,3 +410,34 @@ body {
     position: absolute !important;
      }
 }
+=======
+.fc-button-primary{
+  background-color:#ae6857 !important;
+  color:white !important;
+}
+
+/* --------------------------------------------- SCHEDULE END ---------------------------------  */
+
+/* --------------------------------------------- PROFILE START ---------------------------------  */
+
+.profile_photo{
+  display: inline-block;
+  margin: auto;
+  border: 3px solid #ae6857;
+  border-radius: 100%;
+}
+
+
+/* --------------------------------------------- PROFILE END ---------------------------------  */
+
+/* ---------------------------------------------  Subject INFO START ---------------------------------  */
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: #ae6857;
+  color:white;
+}
+
+
+
+/* ---------------------------------------------  Subject INFO END ---------------------------------  */
+>>>>>>> 77919d740b9e260ec6f7fad249ef298291cc2d1e
