@@ -201,6 +201,7 @@ class SearchOwnAttendances extends React.Component {
         ];
 
         return (
+            <div class="resto-pagina">
             <div className="searchOwnAttendance">
                 <Container className="searchOwnAttendance">
                     <h2 className="title_main_menu">{gettext("Consult Attendances")}</h2>
@@ -254,7 +255,7 @@ class SearchOwnAttendances extends React.Component {
                     </Form>
                 </Container>
 
-                <Container>
+                <Container class="resultadosownat">
                     <ReactTable
                         noDataText={gettext('No Results Found')}
                         keyField='#'
@@ -265,6 +266,7 @@ class SearchOwnAttendances extends React.Component {
                         filterable
                     />
                 </Container>
+            </div>
             </div>
         )
     }

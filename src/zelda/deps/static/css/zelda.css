@@ -382,7 +382,11 @@ a:hover{
 
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
 /* --------------------------------------------- MENU BEM POSICIONADO ---------------------------------  */
-.MenuProfLateral{
+.MenuStudLateral, .MenuProfLateral{
+  word-wrap: break-word;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
   width: 25% !important;
   float: top !important;
   display: relative !important;
@@ -393,6 +397,15 @@ a:hover{
 .resto-pagina{
   width: 75% !important;
   float: right;
+}
+
+.searchOwnAttendance{
+  width: 100% !important;
+
+}
+
+.resultadosownat{
+background-color: pink;
 }
 
 @media only screen and (max-width: 580px){

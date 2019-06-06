@@ -32,6 +32,7 @@ module.exports = {
         studentshiftmanagement: path.resolve(baseSrcPath, "Pages", "studentshiftmanagement.jsx"),
         studentsubjectschedule: path.resolve(baseSrcPath, "Pages", "studentsubjectschedule.jsx"),
         profsubjectschedule: path.resolve(baseSrcPath, "Pages", "profsubjectschedule.jsx"),
+        studentsubjectshiftmanagement: path.resolve(baseSrcPath, "Pages", "studentsubjectshiftmanagement.jsx"),
     },
     output: {
         filename: '[name].js',

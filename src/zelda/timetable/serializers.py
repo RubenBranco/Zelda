@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import Shift, LessonSpecification
 from courses.models import CourseSubject
+from users.serializers import ProfessorRestrictedSerializer
 
 
 class ShiftSerializer(ModelSerializer):
@@ -43,3 +44,23 @@ class TimeTableLessonSpecificationSerializer(ModelSerializer):
 
     def get_subject_id(self, lesson_spec):
         return lesson_spec.shift.subject.id
+
+
+class SummaryShiftSerializer(ShiftSerializer):
+    enrolled = SerializerMethodField()
+    lesson_spec = SerializerMethodField()
+    professor = ProfessorRestrictedSerializer()
+    enrolled_students = SerializerMethodField()
+
+    def get_enrolled(self, _):
+        return self.context['enrolled']
+
+    def get_lesson_spec(self, _):
+        return TimeTableLessonSpecificationSerializer(
+            self.context['lesson_spec'],
+            many=True,
+            context=dict(course=self.context['course']),
+        ).data
+
+    def get_enrolled_students(self, shift):
+        return len(shift.student.all())
