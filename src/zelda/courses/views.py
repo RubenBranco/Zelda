@@ -14,7 +14,7 @@ from common.utils import get_user_from_request
 from users.serializers import ProfessorRestrictedSerializer, RestrictedAppUserSerializer, StudentSerializer
 from users.models import Student, Professor
 from timetable.models import Shift, LessonSpecification
-from timetable.serializers import ShiftSerializer
+from timetable.serializers import ShiftSerializer, SummaryShiftSerializer
 
 
 class ViewCourseInfoView(AbstractLoggedInAppView):
@@ -172,10 +172,32 @@ class SubjectViewSet(ModelViewSet):
             ).data
         )
 
-    # @action(detail=True)
-    # def subject_signing(self, request, pk=None):
-    #     subject = get_object_or_404(Subject, id=pk) #obj subject
-    #     user = get_user_from_request(request) # user
+    @action(detail=True)
+    def shift_report(self, request, pk=None):
+        subject = get_object_or_404(Subject, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Student):
+            return exceptions.PermissionDenied()
+
+        course = user.course.all().last()
+        shifts = Shift.objects.filter(subject=subject)
+
+        return Response(
+            dict(
+                shifts=[SummaryShiftSerializer(
+                    shift,
+                    context=dict(
+                        course=course,
+                        enrolled=user in shift.student.all(),
+                        lesson_spec=LessonSpecification.objects.filter(shift=shift),
+                    )
+                ).data for shift in shifts],
+                subject_spec=SubjectSpecificationSerializer(
+                    subject.subject_spec
+                ).data,
+            )
+        )
 
 
 class SubjectSpecificationViewSet(ModelViewSet):
