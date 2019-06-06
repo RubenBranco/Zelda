@@ -11,8 +11,7 @@ class MenuStudLateral extends React.Component {
         return (
             <Dropdown.Menu show className="MenuStudLateral">
                 <Dropdown.Header>{gettext("Cadeiras")}</Dropdown.Header>
-                <Dropdown.Item eventKey="1">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Something else here</Dropdown.Item>
+
                 <Dropdown.Header>{gettext("Consultar")}</Dropdown.Header>
                 <Dropdown.Item eventKey="4">{gettext("Presenças")}</Dropdown.Item>
                 <Dropdown.Item eventKey="5">{gettext("Currículo")}</Dropdown.Item>
