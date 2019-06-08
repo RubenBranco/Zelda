@@ -17,7 +17,7 @@ class Shift(models.Model):
         Professor,
         on_delete=models.CASCADE,
     )
-    student = models.ManyToManyField(Student, db_table='ShiftStudent')
+    student = models.ManyToManyField(Student, blank=True, db_table='ShiftStudent')
 
 
 class LessonSpecification(models.Model):
