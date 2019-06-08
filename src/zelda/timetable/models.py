@@ -20,6 +20,21 @@ class Shift(models.Model):
     student = models.ManyToManyField(Student, blank=True, db_table='ShiftStudent')
 
 
+class ShiftExchangeRequest(models.Model):
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+    )
+    shift = models.ForeignKey(
+        Shift,
+        on_delete=models.CASCADE,
+    )
+    acceptance = models.BooleanField(
+        default=None,
+        null=True,
+    )
+
+
 class LessonSpecification(models.Model):
     WEEKDAYS = (
         ("monday", _("Monday")),
@@ -89,6 +104,7 @@ class Attendance(models.Model):
 ADMIN_MODELS = [
     LessonSpecification,
     Shift,
+    ShiftExchangeRequest,
     Lesson,
     Class,
     Attendance,
