@@ -40,6 +40,7 @@ api.register("course_subject", course_views.CourseSubjectViewSet, base_name="cou
 api.register("subject", course_views.SubjectViewSet, base_name="subject")
 api.register("subject_spec", course_views.SubjectSpecificationViewSet, base_name="subject_spec")
 api.register("timetable_lesson_spec", timetable_views.TimetableLessonSpecViewSet, base_name="timetable_lesson_spec")
+api.register("shift", timetable_views.ShiftViewSet, base_name="shift")
 
 
 urlpatterns = [
