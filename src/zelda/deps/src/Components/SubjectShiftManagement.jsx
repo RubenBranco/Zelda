@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import ListGroup from "react-bootstrap/ListGroup";
 import moment from 'moment';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCheck, faClock, faExchangeAlt, faDoorClosed, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faUserCheck, faClock, faExchangeAlt, faDoorClosed, faUserPlus, faShippingFast } from "@fortawesome/free-solid-svg-icons";
 import { toast } from 'react-toastify';
 
 import getCsrfToken from "../functions/csrf.js";
@@ -86,7 +86,7 @@ class SubjectShiftManagement extends React.Component{
                 });
                 this.setState({
                     shifts: newShiftList
-                })
+                });
             } else if (response.status === 403) {
                 toast.error(gettext(
                     "Something went wrong with your request. Try again later."
@@ -96,7 +96,32 @@ class SubjectShiftManagement extends React.Component{
     }
 
     handleExchangeShift(shift, e) {
-
+        fetch(`/api/shift/${shift.id}/request_exchange`, {
+            method: 'GET',
+            headers: {
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            },
+        }).then(response => {
+            if (response.status === 200) {
+                toast.success(gettext(
+                    `Successfully requested enrollment in ${shift.code}`
+                ), this.toastSettings);
+                let newShiftList = [];
+                this.state.shifts.map(_shift => {
+                    if (_shift.id === shift.id) {
+                        _shift.under_exchange_review = true;
+                    }
+                    newShiftList.push(_shift);
+                });
+                this.setState({
+                    shifts: newShiftList
+                });
+            } else if (response.status === 403) {
+                toast.error(gettext(
+                    "Something went wrong with your request. Try again later."
+                ), this.toastSettings);
+            }
+        });
     }
 
     render () {
@@ -110,6 +135,9 @@ class SubjectShiftManagement extends React.Component{
                                     <Button variant="outline-dark" onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
                                     :
                                     this.checkAvailability(shift) ?
+                                    shift.under_exchange_review ?
+                                    <FontAwesomeIcon icon={faShippingFast} />
+                                    :
                                     <Button variant="outline-dark" onClick={this.handleExchangeShift.bind(this, shift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button> :
                                     <FontAwesomeIcon icon={faDoorClosed} />
                                 }

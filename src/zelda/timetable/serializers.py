@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Shift, LessonSpecification
+from .models import Shift, LessonSpecification, ShiftExchangeRequest
 from courses.models import CourseSubject
 from users.serializers import ProfessorRestrictedSerializer
 
@@ -48,6 +48,7 @@ class TimeTableLessonSpecificationSerializer(ModelSerializer):
 
 class SummaryShiftSerializer(ShiftSerializer):
     enrolled = SerializerMethodField()
+    under_exchange_review = SerializerMethodField()
     lesson_spec = SerializerMethodField()
     professor = ProfessorRestrictedSerializer()
     enrolled_students = SerializerMethodField()
@@ -64,3 +65,19 @@ class SummaryShiftSerializer(ShiftSerializer):
 
     def get_enrolled_students(self, shift):
         return len(shift.student.all())
+
+    def get_under_exchange_review(self, shift):
+        student = self.context['student']
+        requests = ShiftExchangeRequest.objects.filter(
+            student=student,
+            shift=shift,
+            acceptance=None,
+        )
+
+        return len(requests) > 0
+
+
+class ShiftExchangeRequestSerializer(ModelSerializer):
+    class Meta:
+        model = ShiftExchangeRequest
+        fields = "__all__"

@@ -7,3 +7,7 @@ class ShiftPermission(BaseAppPermission):
 
 class LessonSpecPermission(BaseAppPermission):
     pass
+
+
+class ShiftExchangeRequestPermission(BaseAppPermission):
+    pass

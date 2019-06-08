@@ -8,9 +8,9 @@ from rest_framework import exceptions
 from common.views import AbstractProfessorAppView, AbstractStudentAppView
 from common.utils import get_user_from_request
 from users.models import Student, Professor
-from .models import Shift, LessonSpecification
-from .permissions import ShiftPermission, LessonSpecPermission
-from .serializers import ShiftSerializer, TimeTableLessonSpecificationSerializer
+from .models import Shift, LessonSpecification, ShiftExchangeRequest
+from .permissions import ShiftPermission, LessonSpecPermission, ShiftExchangeRequestPermission
+from .serializers import ShiftSerializer, TimeTableLessonSpecificationSerializer, ShiftExchangeRequestSerializer
 
 
 class ProfViewAttendancesView(AbstractProfessorAppView):
@@ -63,6 +63,19 @@ class ShiftViewSet(viewsets.ModelViewSet):
 
         return Response(status=200)
 
+    @action(detail=True)
+    def request_exchange(self, request, pk=None):
+        shift = get_object_or_404(Shift, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Student) or self.is_eligible(shift, user):
+            raise exceptions.PermissionDenied()
+
+        request = ShiftExchangeRequest(student=user, shift=shift)
+        request.save()
+
+        return Response(status=200)
+
     def is_eligible(self, shift, user):
         lesson_spec = LessonSpecification.objects.get(shift=shift)
         subject = shift.subject
@@ -77,6 +90,12 @@ class ShiftViewSet(viewsets.ModelViewSet):
                 subject.subject_spec,
                 f"{lesson_spec.c_type}_shifts",
             ) and len(shift.student.all()) + 1 <= shift.vacancies
+
+
+class ShiftExchangeRequestViewSet(viewsets.ModelViewSet):
+    queryset = ShiftExchangeRequest.objects.all()
+    permissions = (IsAuthenticated, ShiftExchangeRequestPermission)
+    serializer_class = ShiftExchangeRequestSerializer
 
 
 class TimetableLessonSpecViewSet(viewsets.ModelViewSet):

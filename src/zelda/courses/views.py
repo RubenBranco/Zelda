@@ -191,6 +191,7 @@ class SubjectViewSet(ModelViewSet):
                         course=course,
                         enrolled=user in shift.student.all(),
                         lesson_spec=LessonSpecification.objects.filter(shift=shift),
+                        student=user,
                     )
                 ).data for shift in shifts],
                 subject_spec=SubjectSpecificationSerializer(
