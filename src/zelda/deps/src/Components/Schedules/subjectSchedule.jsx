@@ -58,7 +58,6 @@ class SubjectSchedule extends React.Component {
                             classes: [...prevState.classes, aula]
                         }))
                     } else if (this.state.chosenSubject === aula.subject_designation) {
-                        console.log(1);
                         this.setState({ classes: [aula] })
                     } else {
                         this.setState({ classes: [] })
@@ -71,7 +70,6 @@ class SubjectSchedule extends React.Component {
     handleChosenSubjectChange(chosenSubject) {
         this.setState({ chosenSubject })
         this.getClasses();
-        console.log(this.state.classes);
     }
 
     getStudentSubjects() {
