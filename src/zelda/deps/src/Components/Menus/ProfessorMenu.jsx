@@ -39,6 +39,9 @@ class ProfessorMenu extends React.Component {
                         </Card.Header>
                         <Card.Body>
                             <ListGroup variant="flush">
+                                <ListGroup.Item action href={window.viewShiftRequestsUrl}>
+                                    <a >{gettext("Shift Exchange Requests")}</a>
+                                </ListGroup.Item>
                                 <ListGroup.Item action href="#">
                                     <a >{gettext("Room Change")}</a>
                                 </ListGroup.Item>

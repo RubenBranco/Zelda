@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -100,6 +102,55 @@ class ShiftExchangeRequestViewSet(viewsets.ModelViewSet):
     queryset = ShiftExchangeRequest.objects.all()
     permissions = (IsAuthenticated, ShiftExchangeRequestPermission)
     serializer_class = ShiftExchangeRequestSerializer
+
+    @action(detail=False)
+    def my_requests(self, request):
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Professor):
+            raise exceptions.PermissionDenied()
+
+        return Response(ShiftExchangeRequestSerializer(
+            ShiftExchangeRequest.objects.filter(
+                shift__professor=user,
+                acceptance=None,
+            ),
+            many=True,
+        ).data)
+
+    @action(detail=True)
+    def modify(self, request, pk=None):
+        xg_request = get_object_or_404(ShiftExchangeRequest, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Professor) or xg_request.shift.professor != user:
+            raise exceptions.PermissionDenied()
+
+        acceptance = request.query_params.get("acceptance", None)
+
+        if acceptance is not None:
+            acceptance = True if acceptance == "true" else False
+            xg_request.acceptance = acceptance
+            xg_request.save()
+
+            if acceptance:
+                enrolled_shifts = Shift.objects.filter(
+                    subject=xg_request.shift.subject,
+                    student=xg_request.student,
+                )
+                shift_ctype = LessonSpecification.objects.filter(shift=xg_request.shift)[0].c_type
+
+                for shift in enrolled_shifts:
+                    _c_type = LessonSpecification.objects.filter(shift=shift)[0].c_type
+                    if _c_type == shift_ctype:
+                        old_shift = shift
+                        break
+
+                old_shift.student.remove(xg_request.student)
+                xg_request.shift.student.add(xg_request.student)
+
+        return Response(status=200)
+
 
 
 class TimetableLessonSpecViewSet(viewsets.ModelViewSet):

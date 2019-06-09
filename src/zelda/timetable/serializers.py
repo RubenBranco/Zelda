@@ -1,7 +1,8 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import Shift, LessonSpecification, ShiftExchangeRequest
 from courses.models import CourseSubject
-from users.serializers import ProfessorRestrictedSerializer
+from courses.serializers import SubjectSerializer
+from users.serializers import ProfessorRestrictedSerializer, StudentSerializer, RestrictedAppUserSerializer
 
 
 class ShiftSerializer(ModelSerializer):
@@ -78,6 +79,24 @@ class SummaryShiftSerializer(ShiftSerializer):
 
 
 class ShiftExchangeRequestSerializer(ModelSerializer):
+    shift = ShiftSerializer()
+    student = StudentSerializer()
+    user = SerializerMethodField()
+    subject_name = SerializerMethodField()
+    capacity = SerializerMethodField()
+
     class Meta:
         model = ShiftExchangeRequest
         fields = "__all__"
+
+    def get_user(self, request):
+        return RestrictedAppUserSerializer(request.student.app_user).data
+
+    def get_subject_name(self, request):
+        subject = request.shift.subject
+        course_subjects = CourseSubject.objects.filter(subject=subject)
+
+        return " / ".join(map(lambda cs: cs.designation, course_subjects))
+
+    def get_capacity(self, request):
+        return f"{len(request.shift.student.all())} / {request.shift.vacancies}"

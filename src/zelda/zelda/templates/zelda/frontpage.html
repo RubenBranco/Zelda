@@ -9,6 +9,7 @@
     var viewProfileUrl = "{% url 'view_user' app_user.id %}";
     {% if app_user.user_type == "Professor" %}
         var viewAttendancesUrl = "{% url 'prof_view_attendances' %}";
+        var viewShiftRequestsUrl = "{% url 'professor_view_shift_xg_requests' %}";
     {% elif app_user.user_type == "Student" %}
         var viewAttendancesUrl = "{% url 'student_view_attendances' %}";
         var viewTimetableUrl = "{% url 'student_view_timetable' %}";
