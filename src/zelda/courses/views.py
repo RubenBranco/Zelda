@@ -55,7 +55,7 @@ class CourseSubjectViewSet(ModelViewSet):
         user = get_user_from_request(request)
 
         if not isinstance(user, Student):
-            return exceptions.PermissionDenied()
+            raise exceptions.PermissionDenied()
 
         course = user.course.all().last()
         course_subjects = CourseSubject.objects.filter(
@@ -137,7 +137,7 @@ class SubjectViewSet(ModelViewSet):
         user = get_user_from_request(request)
 
         if not isinstance(user, Student):
-            return exceptions.PermissionDenied()
+            raise exceptions.PermissionDenied()
 
         return Response(
             GradeSerializer(
@@ -152,7 +152,7 @@ class SubjectViewSet(ModelViewSet):
         user = get_user_from_request(request)
 
         if not isinstance(user, Professor):
-            return exceptions.PermissionDenied()
+            raise exceptions.PermissionDenied()
 
         students = subject.students.all()
         filters = dict()
@@ -178,7 +178,7 @@ class SubjectViewSet(ModelViewSet):
         user = get_user_from_request(request)
 
         if not isinstance(user, Student):
-            return exceptions.PermissionDenied()
+            raise exceptions.PermissionDenied()
 
         course = user.course.all().last()
         shifts = Shift.objects.filter(subject=subject)

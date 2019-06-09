@@ -115,7 +115,7 @@ class TimetableLessonSpecViewSet(viewsets.ModelViewSet):
         elif isinstance(user, Professor):
             return self.timetable_professor(request, user)
         else:
-            return exceptions.PermissionDenied()
+            raise exceptions.PermissionDenied()
 
     def timetable_student(self, request, student):
         return Response(
