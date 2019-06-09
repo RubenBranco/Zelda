@@ -120,6 +120,11 @@ urlpatterns = [
         timetable_views.StudentViewSubjectScheduleView.as_view(),
         name='student_view_subject_schedule',
     ),
+    path(
+        'professor/shift_management/requests',
+        timetable_views.ReviewShiftExchangeRequestsView.as_view(),
+        name='professor_view_shift_xg_requests',
+    ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('api/', include(api.urls)),
