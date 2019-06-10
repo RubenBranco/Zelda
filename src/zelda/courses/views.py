@@ -110,13 +110,12 @@ class SubjectViewSet(ModelViewSet):
         c_types = LessonSpecification.LESSON_TYPE
 
         for student in subject.students.all():
-            student_shifts = shifts.filter(student=student)
+            student_shifts = shifts.filter(student=student, subject=subject)
             student_classes = dict()
             for shift in student_shifts:
-                lesson_spec = LessonSpecification.objects.get(shift=shift)
-                if lesson_spec.c_type not in student_classes:
-                    student_classes[lesson_spec.c_type] = 0
-                student_classes[lesson_spec.c_type] += 1
+                lesson_spec = LessonSpecification.objects.filter(shift=shift)
+                if lesson_spec and lesson_spec[0].c_type not in student_classes:
+                    student_classes[lesson_spec[0].c_type] = 1
             for c_type, trans_c_type in c_types:
                 subject_min_value = getattr(subject_spec, f"{c_type}_shifts")
                 if subject_min_value != student_classes.get(c_type, 0):

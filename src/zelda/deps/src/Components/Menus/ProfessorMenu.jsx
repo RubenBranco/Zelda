@@ -29,6 +29,9 @@ class ProfessorMenu extends React.Component {
                                 <ListGroup.Item action href={window.viewAttendancesUrl}>
                                     <a >{gettext("Attendance")}</a>
                                 </ListGroup.Item>
+                                <ListGroup.Item action href={window.viewShiftlessStudentsUrl}>
+                                    <a>{gettext("Shiftless Students")}</a>
+                                </ListGroup.Item>
                                 <ListGroup.Item action href={window.viewProfileUrl}><a >{gettext("Profile")}</a></ListGroup.Item>
                             </ListGroup>
                         </Card.Body>

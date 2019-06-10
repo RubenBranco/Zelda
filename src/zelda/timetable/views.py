@@ -152,7 +152,6 @@ class ShiftExchangeRequestViewSet(viewsets.ModelViewSet):
         return Response(status=200)
 
 
-
 class TimetableLessonSpecViewSet(viewsets.ModelViewSet):
     queryset = LessonSpecification.objects.all()
     permissions = (IsAuthenticated, LessonSpecPermission)
