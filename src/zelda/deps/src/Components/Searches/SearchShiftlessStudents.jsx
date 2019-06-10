@@ -177,15 +177,15 @@ class SearchShiftlessStudents extends React.Component{
                             <Popover title={gettext("Missing:")}>
                                 <ListGroup variant="flush">
                                     {props.original.shiftless.Theory !== undefined ?
-                                        <ListGroup.Item>{gettext('Theory') + ": " + props.original.shiftless.Theory}</ListGroup.Item>
+                                        <ListGroup.Item>{gettext('Theory')}</ListGroup.Item>
                                         : null
                                     }
                                     {props.original.shiftless.Practice !== undefined ?
-                                        <ListGroup.Item>{gettext('Practice') + ": " + props.original.shiftless.Practice}</ListGroup.Item>
+                                        <ListGroup.Item>{gettext('Practice')}</ListGroup.Item>
                                         : null
                                     }
                                     {props.original.shiftless.Laboratory !== undefined ?
-                                        <ListGroup.Item>{gettext('Laboratory') + ": " + props.original.shiftless.Laboratory}</ListGroup.Item>
+                                        <ListGroup.Item>{gettext('Laboratory')}</ListGroup.Item>
                                         : null
                                     }
                                     </ListGroup>
