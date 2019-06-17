@@ -35,11 +35,12 @@ class Schedule extends React.Component {
             lab: 'PL',
             field: 'F',
         };
-
-        this.firstSemesterBeginDate = moment(this.props.classes[0].dates.first_semester_begin_date);
-        this.firstSemesterEndDate = moment(this.props.classes[0].dates.first_semester_end_date);
-        this.secondSemesterBeginDate = moment(this.props.classes[0].dates.second_semester_begin_date);
-        this.secondSemesterEndDate = moment(this.props.classes[0].dates.second_semester_end_date);
+        if (this.props.classes.length) {
+            this.firstSemesterBeginDate = moment(this.props.classes[0].dates.first_semester_begin_date);
+            this.firstSemesterEndDate = moment(this.props.classes[0].dates.first_semester_end_date);
+            this.secondSemesterBeginDate = moment(this.props.classes[0].dates.second_semester_begin_date);
+            this.secondSemesterEndDate = moment(this.props.classes[0].dates.second_semester_end_date);
+        }
 
         this.state = {
             events: [],
@@ -54,8 +55,7 @@ class Schedule extends React.Component {
             let classStart = classDay.add(moment.duration(_class.time));
             let classDuration = moment.duration(_class.duration, 'minutes');
             let classEnd = classStart.add(classDuration);
-            if (classDay.isBetween(this.firstSemesterBeginDate._i, this.firstSemesterEndDate._i) && _class.semester === "1" || classDay.isBetween(this.secondSemesterBeginDate._i, this.secondSemesterEndDate._i) && _class.semester === "1") {
-                console.log("b");
+            if (classDay.isBetween(this.firstSemesterBeginDate._i, this.firstSemesterEndDate._i) && _class.semester === "1" || classDay.isBetween(this.secondSemesterBeginDate._i, this.secondSemesterEndDate._i) && _class.semester === "2") {
                 events.push({
                     id: _class.id,
                     title: _class.subject_designation,
@@ -94,8 +94,8 @@ class Schedule extends React.Component {
                     weekends={true}
                     events={this.state.events}
                     validRange={{
-                        start: this.props.classes[0].dates.first_semester_begin_date,
-                        end: this.props.classes[0].dates.second_semester_end_date
+                        start: this.props.classes.length ? this.props.classes[0].dates.first_semester_begin_date : null,
+                        end: this.props.classes.length ? this.props.classes[0].dates.second_semester_end_date: null
                     }}
                     datesRender={this.handleDatesRender}
                     eventRender={this.handleEventRender}
