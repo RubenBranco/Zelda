@@ -19,19 +19,11 @@ class ProfViewAttendancesView(AbstractProfessorAppView):
     pass
 
 
-class ProfViewSubjectScheduleView(AbstractProfessorAppView):
-    pass
-
-
 class ProfCheckShiftlessStudentsView(AbstractProfessorAppView):
     pass
 
 
 class StudentViewAttendancesView(AbstractStudentAppView):
-    pass
-
-
-class StudentViewSubjectScheduleView(AbstractStudentAppView):
     pass
 
 
