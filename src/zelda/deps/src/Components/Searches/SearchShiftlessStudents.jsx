@@ -208,6 +208,8 @@ class SearchShiftlessStudents extends React.Component{
 
         return (
             <Container>
+                <h2 class="title_main_menu">Shiftless Students</h2>
+                    <hr />
                  <Form>
                     <Form.Group as={Col}>
                         <Form.Label>{gettext("Subject")}</Form.Label>

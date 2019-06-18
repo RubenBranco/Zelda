@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import MenuProfLateral from "../Components/Menus/MenuProfLateral.jsx";
+
 import Navbar from "../Components/Navigator.jsx";
 import ViewProfile from "../Components/ViewProfile.jsx";
 import WebCrumbs from "../Components/WebCrumbs.jsx";
@@ -16,7 +18,10 @@ class UserProfile extends React.Component {
       <div>
         <Navbar />
         <WebCrumbs pages={pages} />
+        <MenuProfLateral />
+        <div class="resto-pagina">
         <ViewProfile />
+        </div>
       </div >
     );
   }

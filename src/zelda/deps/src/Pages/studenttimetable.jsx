@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom";
+import MenuStudLateral from "../Components/Menus/MenuStudLateral.jsx";
 import Navigator from "../Components/Navigator.jsx";
 import Schedule from "../Components/Schedules/Schedule.jsx";
 import WebCrumbs from "../Components/WebCrumbs.jsx";
@@ -42,8 +43,9 @@ class StudentTimeTable extends React.Component {
         return (
             <div>
                 <Navigator />
+                <MenuStudLateral />
                 <WebCrumbs pages={pages} />
-
+                <div class="resto-pagina">
                 <Container className="schedule">
                     <Tab.Container id="list-group-tabs-example" >
                         <Row>
@@ -58,6 +60,7 @@ class StudentTimeTable extends React.Component {
                     </ Tab.Container>
                 </ Container >
 
+            </div>
             </div>
         );
     }

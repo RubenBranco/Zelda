@@ -216,6 +216,9 @@ a:hover{
 #navbar {
   background-color: #b77668;
   padding: 0;
+  position: fixed !important;
+  width:100% !important;
+  z-index: 10;
 }
 
 .fa-sign-out-alt {
@@ -331,10 +334,7 @@ a:hover{
 .dropdown-menu.show{
   height: 90%;
   width: 50%;
-  position: absolute;
- 
-
-  
+  position: absolute; 
 }
 
 .dropdown-menu.show > .dropdown-header{
@@ -383,20 +383,35 @@ a:hover{
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
 /* --------------------------------------------- MENU BEM POSICIONADO ---------------------------------  */
 .MenuStudLateral, .MenuProfLateral{
-  word-wrap: break-word;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  width: 25% !important;
+  overflow: auto !important;
+  width: 20% !important;
   float: top !important;
   display: relative !important;
-  position: static !important;
-  
+  position: fixed !important;
+  top: 45px !important;
+  scrollbar-color: rgb(221, 221, 221) white;
+  text-align: left;
 }
 
-.resto-pagina{
-  width: 75% !important;
+.dropdown-item{
+  word-wrap:  normal;
+  white-space: normal !important;
+  text-overflow: ellipsis;
+}
+
+.dropdown-item:hover{
+  background-color:#b77668;
+  color: white;
+}
+
+
+.resto-pagina, .resto-pagina2{
+  width: 80% !important;
   float: right;
+}
+
+.resto-pagina2{
+  margin-top: 40px;
 }
 
 .searchOwnAttendance{
@@ -404,21 +419,22 @@ a:hover{
 
 }
 
-.resultadosownat{
-background-color: pink;
-}
 
 @media only screen and (max-width: 580px){
   /* For mobile phones: */
-  .MenuProfLateral {
+  .MenuProfLateral, .MenuStudLateral {
+    position: relative;
     visibility: hidden;
     width: 0%;
     margin: auto;
   }
   
-  .resto-pagina{
+  .resto-pagina, .resto-pagina2{
     width: 100%;
     margin-left: 10%;
     position: absolute !important;
      }
-}
+    }
+
+
+ 

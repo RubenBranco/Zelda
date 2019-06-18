@@ -193,6 +193,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
         ];
 
         return(
+            <div class="resto-pagina">
             <Container>
 
                 <Modal
@@ -230,10 +231,12 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                         <Button onClick={this.handleClose}>Close</Button>
                     </Modal.Footer>
                 </Modal>
-
+                
+                
                 <Container>
                     <h2 className="title_main_menu">{gettext("Consult Student Grades")}</h2>
                     <hr />
+                    <h2>ola</h2>
 
                     <Form>
                         <Form.Row>
@@ -290,7 +293,9 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                         filterable
                     />
                 </Container>
+                
             </Container>
+            </div>
         )
     }
 }
