@@ -80,7 +80,6 @@ class StudentTimeTable extends React.Component {
                     <Tab.Container id="list-group-tabs-example" >
                         <Row>
                             <Col sm={3}>
-
                                     {Object.keys(this.state.selectedSubjects).map(subject =>
                                         <div>
                                             <input
