@@ -3,9 +3,16 @@ import tempfile
 from getpass import getpass
 from shutil import copyfileobj
 import gzip
+import random
 
 import gnupg
 from django.conf import settings
+from django.db import IntegrityError
+from faker import Faker
+import pyprind
+
+from users import models as user_models
+from courses.models import Course
 
 
 """
@@ -140,3 +147,48 @@ def uncompress_file(inputfile, filename):
         zipfile.close()
     new_basename = os.path.basename(filename).replace('.gz', '')
     return outputfile, new_basename
+
+
+def generate_fake_appuser(user_type, fake):
+    institutional_email = fake.email(domain="ulisboa.pt")
+    password = fake.password(length=16)
+    return institutional_email, password, user_models.AppUser(
+        username=fake.profile(fields=["username"])["username"],
+        password=password,
+        first_name=fake.first_name(),
+        last_name=fake.last_name(),
+        email=fake.email(),
+        user_type=user_type,
+        institutional_email=institutional_email,
+    )
+
+
+def generate_fake_students(n, course_id, auth_file):
+    i = 0
+    fake = Faker()
+    student_number = max(map(lambda s: s.number, user_models.Student.objects.all())) + 1
+    course = Course.objects.get(id=course_id)
+    bar = pyprind.ProgBar(n, bar_char='█', title='Generating fake students')
+
+    with open(auth_file, "w") as fw:
+        while i < n:
+            try:
+                institutional_email, password, app_user = generate_fake_appuser("Student", fake)
+                app_user.save()
+
+                student = user_models.Student(
+                    app_user=app_user,
+                    number=student_number,
+                    call=random.choice(["1", "2"]),
+                    entry_grade=random.randrange(0, 200, 1),
+                )
+                student.save()
+                student.course.add(course)
+                student.save()
+                fw.write(f"{institutional_email}\t{password}\n")
+
+                i += 1
+                student_number += 1
+                bar.update()
+            except IntegrityError:
+                pass

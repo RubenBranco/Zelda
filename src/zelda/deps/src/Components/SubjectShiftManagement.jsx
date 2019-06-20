@@ -138,13 +138,13 @@ class SubjectShiftManagement extends React.Component{
                         {this.state.shifts.map(shift =>
                             <ListGroup.Item>
                                 {shift.code} {shift.enrolled ? <FontAwesomeIcon icon={faUserCheck} /> : this.canEnroll(shift) ?
-                                    <Button variant="outline-dark" onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
+                                    <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
                                     :
                                     this.checkAvailability(shift) ?
                                     shift.under_exchange_review ?
                                     <FontAwesomeIcon icon={faShippingFast} />
                                     :
-                                    <Button variant="outline-dark" onClick={this.handleExchangeShift.bind(this, shift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button> :
+                                    <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleExchangeShift.bind(this, shift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button> :
                                     <FontAwesomeIcon icon={faDoorClosed} />
                                 }
                                 <Row>

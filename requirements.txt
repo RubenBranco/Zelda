@@ -14,3 +14,5 @@ psycopg2-binary
 requests
 python-gnupg
 celery
+faker
+pyprind
