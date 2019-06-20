@@ -417,6 +417,7 @@ a:hover{
 
 .searchOwnAttendance{
   width: 100% !important;
+<<<<<<< Updated upstream
 }
 
 .menu2{
@@ -491,6 +492,8 @@ a.btn.btn-outline-primary:active{
 .shift-card{
   width: 96%;
   margin-left: 2%;
+=======
+>>>>>>> Stashed changes
 }
 
 
@@ -517,6 +520,14 @@ a.btn.btn-outline-primary:active{
     }
 
     }
+
+
+/* --------------------------------------------- UTILS START ------------------------------------------ */
+.titulosCentrados{
+  text-align: center;
+}
+
+/* --------------------------------------------- UTILS END ------------------------------------------ */
 
 
  
