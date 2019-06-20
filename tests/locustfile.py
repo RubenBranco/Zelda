@@ -31,7 +31,7 @@ def login(l, creds):
            "Content-Type": "application/json",
            "Host": TEST_HOST.strip("https://"),
            "Origin": TEST_HOST,
-           "Referer": f"{TEST_HOST}",
+           "Referer": f"{TEST_HOST}/login/",
         },
         cookies={
             "csrftoken": l.client.cookies.get('csrftoken'),
