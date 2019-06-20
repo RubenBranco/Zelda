@@ -64,7 +64,6 @@ class StudentTimeTable extends React.Component {
                 selectedSubjects.push(this.state.selectedSubjects[subject].id);
             }
         });
-        console.log(this.state.classes.filter(lesson => selectedSubjects.indexOf(lesson.subject_id) !== -1));
         return this.state.classes.filter(lesson => selectedSubjects.indexOf(lesson.subject_id) !== -1);
     }
 

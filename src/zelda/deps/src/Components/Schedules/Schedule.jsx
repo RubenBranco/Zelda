@@ -50,7 +50,6 @@ class Schedule extends React.Component {
     handleDatesRender(event) {
         let activeStart = moment(event.view.activeStart);
         let events = [];
-        console.log(this.props);
         this.props.classes.map(_class => {
             let classDay = activeStart.add(this.deltas[_class.weekday]);
             let classStart = classDay.add(moment.duration(_class.time));
@@ -69,17 +68,11 @@ class Schedule extends React.Component {
                     },
                 });
             }
-            console.log("a");
-            console.log(this.state.events);
-            console.log("b");
         });
         if (!isEqual(this.state.events, events)) {
             this.setState({
                 events: events
             });
-            console.log(1);
-            console.log(this.state);
-            console.log(2);
         }
     }
 

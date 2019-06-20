@@ -132,15 +132,15 @@ class SubjectShiftManagement extends React.Component{
             <div>
                 <MenuStudLateral />
                 <Container>
-                    <h3 className="titulosCentrados">{gettext("Shift Management")} - Nome da Cadeira</h3>     
+                    <h3 className="titulosCentrados">{gettext("Shift Management")} - Nome da Cadeira</h3>
                     <Row>
                         <Col sm="4">
                             <Card bg="light">
                                 <Card.Header>{gettext("Enrolled In")}</Card.Header>
                                 <Card.Body>
-                                    <Card.Text> 
+                                    <Card.Text>
                                         <ListGroup variant="flush">
-                                            {this.state.shifts.map(shift => 
+                                            {this.state.shifts.map(shift =>
                                                 shift.enrolled ?
                                                 <ListGroup.Item variant="success">
                                                     {shift.code} <FontAwesomeIcon icon={faUserCheck} />
@@ -166,14 +166,14 @@ class SubjectShiftManagement extends React.Component{
                          </Col>
                          <Col sm="4">
                             <Card bg="light">
-                                <Card.Header>{gettext("Enrroll In")}</Card.Header>
+                                <Card.Header>{gettext("Enroll In")}</Card.Header>
                                 <Card.Body>
                                     <Card.Text>
                                         <ListGroup variant="flush">
                                             {this.state.shifts.map(shift =>
                                                 shift.enrolled == false ? this.canEnroll(shift) ? this.checkAvailability(shift) ? shift.under_exchange_review == false ?
                                                     <ListGroup.Item variant="primary">
-                                                    {shift.code} <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button> 
+                                                    {shift.code} <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
                                                     <Row>
                                                         <Col>
                                                         <ListGroup variant="flush">
@@ -196,13 +196,13 @@ class SubjectShiftManagement extends React.Component{
                          </Col>
                          <Col sm="4">
                             <Card>
-                                <Card.Header>{gettext("Shift Shifting")}</Card.Header>
+                                <Card.Header>{gettext("Changing Shifts")}</Card.Header>
                                 <Card.Body>
                                     <Card.Text>
                                         <ListGroup>
                                             {this.state.shifts.map(shift =>
                                                 shift.enrolled ?
-                                                    this.state.shifts.map(toshift => 
+                                                    this.state.shifts.map(toshift =>
                                                         toshift.enrolled == false ? this.canEnroll(shift) == false ? this.checkAvailability(toshift) ? toshift.under_exchange_review == false ? toshift.lesson_spec[0].c_type == shift.lesson_spec[0].c_type ? toshift.code != shift.code ?
                                                         <ListGroup.Item variant="primary">
                                                             {shift.code}
@@ -222,7 +222,7 @@ class SubjectShiftManagement extends React.Component{
                                                             </Row>
                                                         </ListGroup.Item>:null:null:null:null:null:null
                                                     )
-                                                    :null                                        
+                                                    :null
                                             )}
                                         </ListGroup>
                                     </Card.Text>
@@ -235,7 +235,7 @@ class SubjectShiftManagement extends React.Component{
                                         <ListGroup>
                                             {this.state.shifts.map(shift =>
                                                 shift.enrolled ?
-                                                    this.state.shifts.map(toshift => 
+                                                    this.state.shifts.map(toshift =>
                                                         toshift.enrolled == false ? this.canEnroll(shift) == false ? this.checkAvailability(toshift) ? toshift.under_exchange_review ? toshift.lesson_spec[0].c_type == shift.lesson_spec[0].c_type ? toshift.code != shift.code ?
                                                         <ListGroup.Item variant="warning">
                                                             {shift.code}
@@ -255,7 +255,7 @@ class SubjectShiftManagement extends React.Component{
                                                             </Row>
                                                         </ListGroup.Item>:null:null:null:null:null:null
                                                     )
-                                                    :null                                        
+                                                    :null
                                             )}
                                         </ListGroup>
                                     </Card.Text>
