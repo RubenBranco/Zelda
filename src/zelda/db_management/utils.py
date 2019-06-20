@@ -12,7 +12,7 @@ from faker import Faker
 import pyprind
 
 from users import models as user_models
-from courses.models import Course
+from courses.models import Course, Subject
 
 
 """
@@ -152,23 +152,25 @@ def uncompress_file(inputfile, filename):
 def generate_fake_appuser(user_type, fake):
     institutional_email = fake.email(domain="ulisboa.pt")
     password = fake.password(length=16)
-    return institutional_email, password, user_models.AppUser(
-        username=fake.profile(fields=["username"])["username"],
+    return institutional_email, password, user_models.AppUser.objects.create_user(
+        fake.profile(fields=["username"])["username"],
         password=password,
         first_name=fake.first_name(),
         last_name=fake.last_name(),
         email=fake.email(),
         user_type=user_type,
         institutional_email=institutional_email,
+        country="PT",
     )
 
 
-def generate_fake_students(n, course_id, auth_file):
+def generate_fake_students(n, course_id, subject_id, auth_file):
     i = 0
     fake = Faker()
     student_number = max(map(lambda s: s.number, user_models.Student.objects.all())) + 1
     course = Course.objects.get(id=course_id)
     bar = pyprind.ProgBar(n, bar_char='█', title='Generating fake students')
+    subject = Subject.objects.get(id=subject_id)
 
     with open(auth_file, "w") as fw:
         while i < n:
@@ -185,6 +187,9 @@ def generate_fake_students(n, course_id, auth_file):
                 student.save()
                 student.course.add(course)
                 student.save()
+                subject.students.add(student)
+                subject.save()
+
                 fw.write(f"{institutional_email}\t{password}\n")
 
                 i += 1
