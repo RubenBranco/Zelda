@@ -6,7 +6,7 @@ from locust import HttpLocust, TaskSet, task
 from lxml import html
 
 
-TEST_HOST = "http://localhost:8000"
+TEST_HOST = "https://zelda-edu.me"
 AUTH_SERVER = "http://localhost:9022"
 
 
@@ -29,7 +29,7 @@ def login(l, creds):
         headers={
            "X-CSRFToken": csrfmiddleware_token,
            "Content-Type": "application/json",
-           "Host": TEST_HOST.strip("http://").rstrip(":8000"),
+           "Host": TEST_HOST.strip("https://"),
            "Origin": TEST_HOST,
            "Referer": f"{TEST_HOST}",
         },
