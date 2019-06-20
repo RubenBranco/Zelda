@@ -226,7 +226,7 @@ class SearchShiftlessStudents extends React.Component{
                     </Form.Group>
                     <Button
                         variant="primary"
-                        className="btn btn-primary"
+                        className="searchButton-shiftless"
                         onClick={this.getShiftlessStudentsData}
                     >
                         {gettext("Search ")}

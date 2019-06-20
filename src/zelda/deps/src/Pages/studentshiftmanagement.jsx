@@ -15,7 +15,7 @@ class StudentShiftManagement extends React.Component {
             <div>
                 <Navigator />
                 <MenuStudLateral />
-                <div class="resto-pagina">
+                <div class="resto-pagina2">
                 <ShiftDashboard />
                 </div>
             </div>

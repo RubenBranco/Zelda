@@ -56,11 +56,14 @@ class ShiftDashboard extends React.Component {
         let courseYearKeys = Object.keys(this.state.courseYearMapping).sort();
         return (
             <div>
+                <h2 className="title_main_menu">{gettext("Shift Management")}</h2>
+
                 {!courseYearKeys.length ?
                     null :
+                    <div className="shift-card">
                     <CardDeck>
                         {courseYearKeys.map(courseYear =>
-                            <Card>
+                            <Card >
                                 <Card.Body>
                                     <Card.Title>
                                         {gettext("Year") + ` ${courseYear}`}
@@ -69,7 +72,7 @@ class ShiftDashboard extends React.Component {
                                         {this.state.courseYearMapping[courseYear].map(courseSubjectId =>
                                             <ListGroup.Item action>
                                                 {this.state.subjects[courseSubjectId].designation}
-                                                <Button variant="outline-primary" href={subjectShiftManagementUrl.replace("0", this.state.subjects[courseSubjectId].subjectId)}>
+                                                <Button variant="outline-primary" id="button-shift-dash" href={subjectShiftManagementUrl.replace("0", this.state.subjects[courseSubjectId].subjectId)}>
                                                     <FontAwesomeIcon icon={faEdit}/>
                                                 </Button>
                                             </ListGroup.Item>
@@ -80,6 +83,7 @@ class ShiftDashboard extends React.Component {
                         )
                         }
                     </CardDeck>
+                    </div>
                 }
             </div>
         );

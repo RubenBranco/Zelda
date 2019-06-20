@@ -286,11 +286,11 @@ a:hover{
 }
 
 .searchButton {
-  background-color: #623725;
+  background-color: #623725 !important;
 }
 
 .searchButton:hover {
-  background-color: #ae6857;
+  background-color: #ae6857 !important;
 }
 
 .fa-search {
@@ -412,17 +412,92 @@ a:hover{
 
 .resto-pagina2{
   margin-top: 40px;
+  width: 80% !important;
 }
 
 .searchOwnAttendance{
   width: 100% !important;
-
 }
+
+.menu2{
+  margin-left: 150px;
+}
+
+a.nav-link.active{
+  color: white !important;
+  background-color:  #ae6857 !important;
+  border: 1px solid #ae6857 !important;
+}
+
+a.nav-link{
+  font-size: 15px;
+}
+
+.flex-column{
+  width: 20px;
+}
+
+.searchButton-shiftless:hover{
+  background-color: #b77668 !important;
+  color: white !important;
+}
+
+.searchButton-shiftless{
+  margin-left: 0px;
+  background-color: #ae6857 !important;
+  color: white !important;
+  border: 0px;
+  width: 598px;
+}
+
+#Subject.form-control{
+  width: 598px;
+  margin-left: -15px;
+}
+
+.col-sm-9{
+  margin-left: -20px;
+}
+
+.sift-requests-table{
+font-size: 15px;
+margin-top:25px;
+}
+
+a.btn.btn-outline-primary{
+margin-left:25px;
+border: 1px solid  rgb(208, 208, 208);
+color:  rgb(56, 56, 56);
+background-color: white;
+-webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    outline: 0;
+}
+
+a.btn.btn-outline-primary:hover{
+  color: white;
+  background-color: #b77668;
+}
+
+a.btn.btn-outline-primary:active{
+  border: 0px !important;
+  -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    outline: 0;
+    color: white;
+  background-color: #b77668;
+}
+
+.shift-card{
+  width: 96%;
+  margin-left: 2%;
+}
+
 
 
 @media only screen and (max-width: 580px){
   /* For mobile phones: */
-  .MenuProfLateral, .MenuStudLateral {
+  .MenuProfLateral, .MenuStudLateral, a.nav-link {
     position: relative;
     visibility: hidden;
     width: 0%;
@@ -434,6 +509,13 @@ a:hover{
     margin-left: 10%;
     position: absolute !important;
      }
+
+    .col-sm-9{
+      margin-left: -150px;
+      width: 100%;
+      position: absolute !important;
+    }
+
     }
 
 

@@ -246,7 +246,7 @@ class SearchOwnAttendances extends React.Component {
                         </Form.Row>
                         <Button
                             variant="primary"
-                            className="btn btn-primary search_students_attendances"
+                            className="btn btn-primary searsearch_students_attendances"
                             onClick={this.handleSearchRequest}
                         >
                             {gettext("Search")}{" "}

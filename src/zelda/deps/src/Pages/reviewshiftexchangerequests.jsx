@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import Navigator from "../Components/Navigator.jsx";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import WebCrumbs from "../Components/WebCrumbs.jsx";
+import MenuProfLateral from "../Components/Menus/MenuProfLateral.jsx";
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import { ToastContainer, toast } from 'react-toastify';
@@ -81,7 +83,11 @@ class ReviewExchangeRequests extends React.Component{
       return (
           <div>
                 <Navigator />
-                <Table>
+                <MenuProfLateral />
+                <div class="resto-pagina2">
+                <h2 className="title_main_menu">{gettext("Shift Exchange Requests")}</h2>
+
+                <Table className="sift-requests-table">
                     <thead>
                         <tr>
                             <th>{gettext("Subject")}</th>
@@ -118,6 +124,7 @@ class ReviewExchangeRequests extends React.Component{
                         )}
                     </tbody>
                 </Table>
+                </div>
                 <ToastContainer
                     position="top-right"
                     autoClose={10000}

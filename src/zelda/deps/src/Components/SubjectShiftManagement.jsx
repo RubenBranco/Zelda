@@ -2,6 +2,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import MenuStudLateral from "../Components/Menus/MenuStudLateral.jsx";
 import ListGroup from "react-bootstrap/ListGroup";
 import moment from 'moment';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -126,6 +127,11 @@ class SubjectShiftManagement extends React.Component{
 
     render () {
         return (
+            <div>
+            <MenuStudLateral />
+            <div className="resto-pagina2">
+            <h2 className="title_main_menu">{gettext("Subject Shifts")}</h2>
+            <hr />
             <Row>
                 <Col lg="3" md="3" sm="3" xl="3" xs="3">
                     <ListGroup variant="flush">
@@ -163,6 +169,8 @@ class SubjectShiftManagement extends React.Component{
 
                 </Col>
             </Row>
+            </div>
+            </div>
         );
     }
 }

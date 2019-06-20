@@ -91,25 +91,25 @@ class ViewCurricularUnitData extends React.Component{
                         <Col sm={3}>
                         <Nav variant="pills" className="flex-column">
                             <Nav.Item>
-                            <Nav.Link eventKey="objectives">{gettext("Objectives")}</Nav.Link>
+                            <Nav.Link id="item-menu2" eventKey="objectives">{gettext("Objectives")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="program">{gettext("Program")}</Nav.Link>
+                            <Nav.Link id="item-menu2" eventKey="program">{gettext("Program")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="evaluation">{gettext("Evaluation")}</Nav.Link>
+                            <Nav.Link id="item-menu2" eventKey="evaluation">{gettext("Evaluation")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="bibliography">{gettext("Bibliography")}</Nav.Link>
+                            <Nav.Link id="item-menu2" eventKey="bibliography">{gettext("Bibliography")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="details">{gettext("Details")}</Nav.Link>
+                            <Nav.Link id="item-menu2" eventKey="details">{gettext("Details")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="schedule">{gettext("Schedule")}</Nav.Link>
+                            <Nav.Link id="item-menu2" eventKey="schedule">{gettext("Schedule")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="teachers">{gettext("Teachers")}</Nav.Link>
+                            <Nav.Link id="item-menu2" eventKey="teachers">{gettext("Teachers")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                             <Nav.Link
