@@ -32,6 +32,7 @@ module.exports = {
         studentshiftmanagement: path.resolve(baseSrcPath, "Pages", "studentshiftmanagement.jsx"),
         studentsubjectshiftmanagement: path.resolve(baseSrcPath, "Pages", "studentsubjectshiftmanagement.jsx"),
         reviewshiftexchangerequests: path.resolve(baseSrcPath, "Pages", "reviewshiftexchangerequests.jsx"),
+        reviewshiftstatus: path.resolve(baseSrcPath, "Pages", "reviewshiftstatus.jsx"),
     },
     output: {
         filename: '[name].js',

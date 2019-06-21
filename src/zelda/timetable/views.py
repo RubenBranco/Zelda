@@ -43,6 +43,10 @@ class ReviewShiftExchangeRequestsView(AbstractProfessorAppView):
     pass
 
 
+class ReviewShiftStatusView(AbstractProfessorAppView):
+    pass
+
+
 class ShiftViewSet(viewsets.ModelViewSet):
     queryset = Shift.objects.all()
     permissions = (IsAuthenticated, ShiftPermission)
@@ -75,7 +79,9 @@ class ShiftViewSet(viewsets.ModelViewSet):
         return Response(status=200)
 
     def is_eligible(self, shift, user):
-        lesson_spec = LessonSpecification.objects.get(shift=shift)
+        lesson_spec = LessonSpecification.objects.filter(shift=shift).first()
+        if lesson_spec is None:
+            return False
         subject = shift.subject
         enrolled_lessons = LessonSpecification.objects.filter(
             shift__student=user,

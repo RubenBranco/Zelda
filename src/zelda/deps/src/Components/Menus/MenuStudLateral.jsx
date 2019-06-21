@@ -1,7 +1,5 @@
 import React from "react";
-import Image from "react-bootstrap/Image";
 import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
 class MenuStudLateral extends React.Component {
     constructor(props) {
         super();
@@ -13,15 +11,14 @@ class MenuStudLateral extends React.Component {
                 <Dropdown.Header>{gettext("Cadeiras")}</Dropdown.Header>
 
                 <Dropdown.Header>{gettext("Consultar")}</Dropdown.Header>
-                <Dropdown.Item eventKey="4">{gettext("Presenças")}</Dropdown.Item>
-                <Dropdown.Item eventKey="5">{gettext("Currículo")}</Dropdown.Item>
-                <Dropdown.Item eventKey="6">{gettext("Notas")}</Dropdown.Item>
-                <Dropdown.Item eventKey="7">{gettext("Perfil")}</Dropdown.Item>
-                <Dropdown.Header>{gettext("Horário")}</Dropdown.Header>
-                <Dropdown.Item eventKey="8">{gettext("Pessoal")}</Dropdown.Item>
-                <Dropdown.Item eventKey="9">{gettext("Por Cadeira")}</Dropdown.Item>
-                <Dropdown.Item eventKey="10">{gettext("Enroll / Unsubscribe in Curricular Units")}</Dropdown.Item>
-                <Dropdown.Item eventKey="11">{gettext("Enroll / Unsubscribe in Shifts")}</Dropdown.Item>
+                <Dropdown.Item eventKey="1">{gettext("Attendances")}</Dropdown.Item>
+                <Dropdown.Item eventKey="2">{gettext("Curriculum")}</Dropdown.Item>
+                <Dropdown.Item eventKey="3">{gettext("Grades")}</Dropdown.Item>
+                <Dropdown.Item eventKey="4">{gettext("Profile")}</Dropdown.Item>
+                <Dropdown.Item eventKey="5">{gettext("Schedule")}</Dropdown.Item>
+                <Dropdown.Header>{gettext("Management")}</Dropdown.Header>
+                <Dropdown.Item eventKey="6">{gettext("Curricular Units")}</Dropdown.Item>
+                <Dropdown.Item eventKey="7">{gettext("Shifts")}</Dropdown.Item>
             </Dropdown.Menu>
         );
     }

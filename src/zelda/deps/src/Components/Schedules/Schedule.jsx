@@ -67,7 +67,6 @@ class Schedule extends React.Component {
                         room: _class.room,
                     },
                 });
-
             }
         });
         if (!isEqual(this.state.events, events)) {
