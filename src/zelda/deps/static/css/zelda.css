@@ -533,30 +533,6 @@ a.btn.btn-outline-primary:active{
   margin-left: 2%;
 }
 
-.btn-outline-success, .btn-outline-danger{
-  font-size: 13px;
-  padding: 5px;
-}
-
-.th-capacity, .th-subject, .th-name, .th-number, .th-options, .th-shift{
-  margin-left: -10px;
-}
-
-.th-capacity{
- width: 122px;
-}
-
-.th-name{
-
-}
-
-.th-number{
-
-}
-
-.sift-requests-table{
-  text-align: center;
-}
 
 
 @media only screen and (max-width: 580px){
