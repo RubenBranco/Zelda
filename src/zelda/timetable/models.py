@@ -17,6 +17,7 @@ class Shift(models.Model):
         Professor,
         on_delete=models.CASCADE,
     )
+    is_open = models.BooleanField(default=True)
     student = models.ManyToManyField(Student, blank=True, db_table='ShiftStudent')
 
 

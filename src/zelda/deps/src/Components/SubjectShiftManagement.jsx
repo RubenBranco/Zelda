@@ -307,7 +307,6 @@ class SubjectShiftManagement extends React.Component {
                         </Col>
                     </Row>
                 </Container>
->>>>>>> 1a7d3be9679e4dfd3f8df93eac186325828d98eb
             </div>
         );
     }
