@@ -12,7 +12,7 @@ from common.utils import get_user_from_request
 from users.models import Student, Professor
 from .models import Shift, LessonSpecification, ShiftExchangeRequest
 from .permissions import ShiftPermission, LessonSpecPermission, ShiftExchangeRequestPermission
-from .serializers import ShiftSerializer, TimeTableLessonSpecificationSerializer, ShiftExchangeRequestSerializer
+from .serializers import ShiftSerializer, TimeTableLessonSpecificationSerializer, ShiftExchangeRequestSerializer, LecturedShiftSerializer
 
 
 class ProfViewAttendancesView(AbstractProfessorAppView):
@@ -53,6 +53,36 @@ class ShiftViewSet(viewsets.ModelViewSet):
     serializer_class = ShiftSerializer
 
     @action(detail=True)
+    def change_open_state(self, request, pk=None):
+        shift = get_object_or_404(Shift, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Professor) and shift.professor != user:
+            raise exceptions.PermissionDenied()
+
+        is_open = request.query_params.get("is_open", None)
+
+        if is_open is not None:
+            shift.is_open = is_open == "true"
+            shift.student.clear()
+            shift.save()
+
+        return Response(status=200)
+
+    @action(detail=False)
+    def lectured_shifts(self, request):
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Professor):
+            raise exceptions.PermissionDenied()
+
+        return Response(LecturedShiftSerializer(
+            Shift.objects.filter(professor=user),
+            many=True,
+        ).data)
+
+
+    @action(detail=True)
     def sign_up(self, request, pk=None):
         shift = get_object_or_404(Shift, id=pk)
         user = get_user_from_request(request)
@@ -90,6 +120,7 @@ class ShiftViewSet(viewsets.ModelViewSet):
 
         return user in subject.students.all() and \
             user not in shift.student.all() and \
+            shift.open and \
             len(enrolled_lessons) < getattr(
                 subject.subject_spec,
                 f"{lesson_spec.c_type}_shifts",
@@ -127,7 +158,7 @@ class ShiftExchangeRequestViewSet(viewsets.ModelViewSet):
         acceptance = request.query_params.get("acceptance", None)
 
         if acceptance is not None:
-            acceptance = True if acceptance == "true" else False
+            acceptance = acceptance == "true"
             xg_request.acceptance = acceptance
             xg_request.save()
 

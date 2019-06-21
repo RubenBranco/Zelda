@@ -7,6 +7,7 @@ from users.models import Professor
 class Faculty(models.Model):
     code = models.CharField(max_length=10)
     designation = models.CharField(max_length=200)
+    max_ects_per_semester = models.PositiveSmallIntegerField(default=42)
 
     class Meta:
         verbose_name = _('faculty')
