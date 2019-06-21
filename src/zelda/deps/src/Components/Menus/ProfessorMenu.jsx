@@ -2,7 +2,6 @@ import React from "react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import ProfileSearch from "../Searches/SearchProfile.jsx";
 import GetProfessorSubjects from "../GetProfessorSubjects.jsx";
 
 class ProfessorMenu extends React.Component {
@@ -58,7 +57,6 @@ class ProfessorMenu extends React.Component {
                         </Card.Body>
                     </Card>
                 </CardDeck>
-                <ProfileSearch />
             </div>
         );
     }

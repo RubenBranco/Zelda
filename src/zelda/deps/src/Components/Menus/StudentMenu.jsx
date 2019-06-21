@@ -2,7 +2,6 @@ import React from "react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import ProfileSearch from "../Searches/SearchProfile.jsx";
 import CoursesList from "../MenuLists/SubjectList.jsx";
 
 import getCsrfToken from "../../functions/csrf.js";
@@ -97,7 +96,6 @@ class StudentMenu extends React.Component {
                         </Card.Body>
                     </Card>
                 </CardDeck>
-                <ProfileSearch />
             </div>
         );
     }
