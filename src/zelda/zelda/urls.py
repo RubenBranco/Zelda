@@ -115,6 +115,11 @@ urlpatterns = [
         timetable_views.ReviewShiftExchangeRequestsView.as_view(),
         name='professor_view_shift_xg_requests',
     ),
+    path(
+        'professor/shift_status_review',
+        timetable_views.ReviewShiftStatusView.as_view(),
+        name='professor_review_shift_status',
+    ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('api/', include(api.urls)),
