@@ -15,13 +15,13 @@ import 'react-table/react-table.css'
 
 import getCsrfToken from "../../functions/csrf.js";
 
-class SearchShiftlessStudents extends React.Component{
+class SearchShiftlessStudents extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             userid: null,
-            chosenSubject : null,
+            chosenSubject: null,
             subjects: [],
             shiftlessStudentsData: [],
         };
@@ -38,7 +38,7 @@ class SearchShiftlessStudents extends React.Component{
         if (this.state.userid === null) {
             fetch('/api/professor/describe_self/', {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
@@ -55,7 +55,7 @@ class SearchShiftlessStudents extends React.Component{
     getSubjects() {
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
-            headers:{
+            headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
             },
         }).then(response => {
@@ -66,8 +66,8 @@ class SearchShiftlessStudents extends React.Component{
                         {
                             id: subjectList[index].subject,
                             designation: subjectList.map(subject =>
-                                    subject.designation
-                                ).join(" / "),
+                                subject.designation
+                            ).join(" / "),
                             href: "",
                         }
                     )
@@ -85,7 +85,7 @@ class SearchShiftlessStudents extends React.Component{
         this.state.subjects.map(subject => {
             fetch(`/api/subject/${subject.id}/shiftless_students/`, {
                 method: 'GET',
-                headers:{
+                headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,
                 },
             }).then(response => {
@@ -121,96 +121,96 @@ class SearchShiftlessStudents extends React.Component{
         });
     }
 
-    render () {
+    render() {
 
         const columns = [
             {
-            Header: '#',
-            accessor: 'tableEntryId',
-            filterable: true,
-            sortable: true,
-            style: {
-                textAlign: 'right',
-            },
-            width: 100,
-            maxWidth: 100,
-            minWidth: 100,
-            },
-            {
-            Header: gettext('Student Number'),
-            accessor: 'student_number',
-            filterable: true,
-            sortable: true,
-            style: {
-                textAlign: 'right',
-            },
-            width: 200,
-            maxWidth: 200,
-            minWidth: 200,
+                Header: '#',
+                accessor: 'tableEntryId',
+                filterable: true,
+                sortable: true,
+                style: {
+                    textAlign: 'right',
+                },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
             },
             {
-            Header: gettext('Student Name'),
-            accessor: 'name',
-            filterable: true,
-            sortable: true,
-            style: {
-                textAlign: 'right',
-            }
+                Header: gettext('Student Number'),
+                accessor: 'student_number',
+                filterable: true,
+                sortable: true,
+                style: {
+                    textAlign: 'right',
+                },
+                width: 200,
+                maxWidth: 200,
+                minWidth: 200,
             },
             {
-            Header: gettext('Student Email'),
-            accessor: 'institutional_email',
-            sortable: false,
-            filterable: false,
-            style: {
-                textAlign: 'right',
-            }
+                Header: gettext('Student Name'),
+                accessor: 'name',
+                filterable: true,
+                sortable: true,
+                style: {
+                    textAlign: 'right',
+                }
             },
             {
-            Header: gettext('Information'),
-            Cell: props =>{
-                return (
-                    <OverlayTrigger
-                        trigger="click"
-                        placement="left"
-                        overlay={
-                            <Popover title={gettext("Missing:")}>
-                                <ListGroup variant="flush">
-                                    {props.original.shiftless.Theory !== undefined ?
-                                        <ListGroup.Item>{gettext('Theory')}</ListGroup.Item>
-                                        : null
-                                    }
-                                    {props.original.shiftless.Practice !== undefined ?
-                                        <ListGroup.Item>{gettext('Practice')}</ListGroup.Item>
-                                        : null
-                                    }
-                                    {props.original.shiftless.Laboratory !== undefined ?
-                                        <ListGroup.Item>{gettext('Laboratory')}</ListGroup.Item>
-                                        : null
-                                    }
+                Header: gettext('Student Email'),
+                accessor: 'institutional_email',
+                sortable: false,
+                filterable: false,
+                style: {
+                    textAlign: 'right',
+                }
+            },
+            {
+                Header: gettext('Information'),
+                Cell: props => {
+                    return (
+                        <OverlayTrigger
+                            trigger="click"
+                            placement="left"
+                            overlay={
+                                <Popover title={gettext("Missing:")}>
+                                    <ListGroup variant="flush">
+                                        {props.original.shiftless.Theory !== undefined ?
+                                            <ListGroup.Item>{gettext('Theory')}</ListGroup.Item>
+                                            : null
+                                        }
+                                        {props.original.shiftless.Practice !== undefined ?
+                                            <ListGroup.Item>{gettext('Practice')}</ListGroup.Item>
+                                            : null
+                                        }
+                                        {props.original.shiftless.Laboratory !== undefined ?
+                                            <ListGroup.Item>{gettext('Laboratory')}</ListGroup.Item>
+                                            : null
+                                        }
                                     </ListGroup>
-                            </Popover>
-                        }
+                                </Popover>
+                            }
                         >
-                        <Button variant="link">
-                            {gettext('+ Info')}
-                        </Button>
-                    </OverlayTrigger>
-                )
-            },
-            sortable: false,
-            filterable: false,
-            style: {
-                textAlign: 'right',
-            }
+                            <Button variant="link">
+                                {gettext('+ Info')}
+                            </Button>
+                        </OverlayTrigger>
+                    )
+                },
+                sortable: false,
+                filterable: false,
+                style: {
+                    textAlign: 'right',
+                }
             },
         ];
 
         return (
             <Container>
                 <h2 class="title_main_menu">Shiftless Students</h2>
-                    <hr />
-                 <Form>
+                <hr />
+                <Form>
                     <Form.Group as={Col}>
                         <Form.Label>{gettext("Subject")}</Form.Label>
                         <Form.Control
@@ -218,7 +218,7 @@ class SearchShiftlessStudents extends React.Component{
                             name="Subject"
                             as="select"
                             onChange={this.handleSubjectChange}
-                            >
+                        >
                             {this.state.subjects.map(subject =>
                                 <option>{subject.designation}</option>
                             )}
@@ -226,7 +226,7 @@ class SearchShiftlessStudents extends React.Component{
                     </Form.Group>
                     <Button
                         variant="primary"
-                        className="searchButton-shiftless"
+                        className="btn btn-primary search_students_attendances"
                         onClick={this.getShiftlessStudentsData}
                     >
                         {gettext("Search ")}
@@ -245,18 +245,18 @@ class SearchShiftlessStudents extends React.Component{
                     defaultPageSize={5}
                     filterable
                 >
-                {
-                    this.state.shiftlessStudentsData.length > 0 ?
-                    (state, filtredData, instace) => {
-                        this.reactTable = state.pageRows.map(result => {return result._original });
-                    return (
-                        <div>
-                            {filtredData()}
-                            <ProfExportAllShiftLessStudentSubject results={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation}/>
-                        </div>
-                        );
-                    } : null
-                }
+                    {
+                        this.state.shiftlessStudentsData.length > 0 ?
+                            (state, filtredData, instace) => {
+                                this.reactTable = state.pageRows.map(result => { return result._original });
+                                return (
+                                    <div>
+                                        {filtredData()}
+                                        <ProfExportAllShiftLessStudentSubject results={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} />
+                                    </div>
+                                );
+                            } : null
+                    }
 
                 </ReactTable>
             </Container>

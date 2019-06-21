@@ -202,71 +202,71 @@ class SearchOwnAttendances extends React.Component {
 
         return (
             <div className="resto-pagina">
-            <div className="searchOwnAttendance">
-                <Container className="searchOwnAttendance">
-                    <h2 className="title_main_menu">{gettext("Consult Attendances")}</h2>
-                    <hr />
+                <div className="searchOwnAttendance">
+                    <Container className="searchOwnAttendance">
+                        <h2 className="title_main_menu">{gettext("Consult Attendances")}</h2>
+                        <hr />
 
-                    <Form>
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="Subjects">
-                                <Form.Label>{gettext("Subjects")}</Form.Label>
-                                <Form.Control
-                                    name="subject"
-                                    as="select"
-                                    onChange={this.handleSubjectChange}
-                                >
-                                    {this.state.subjects.map(subject =>
-                                        <option value={subject.id}>{subject.designation}</option>
-                                    )}
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="Class">
-                                <Form.Label>{gettext("Class")}</Form.Label>
-                                <Form.Control
-                                    name="Class"
-                                    as="select"
-                                    onChange={this.handleChange}
-                                    multiple
-                                >
-                                    {classes !== null ?
-                                        classes.map(classObj =>
-                                            <option value={classObj.id}>{classObj.code}</option>
-                                        ) : null
-                                    }
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="Date">
-                                <Form.Label>{gettext("Start Date")}</Form.Label><br></br>
-                                <DatePicker
-                                    selected={this.state.startDate}
-                                    onChange={this.handleDateChange}
-                                />
-                            </Form.Group>
-                        </Form.Row>
-                        <Button
-                            variant="primary"
-                            className="btn btn-primary searsearch_students_attendances"
-                            onClick={this.handleSearchRequest}
-                        >
-                            {gettext("Search")}{" "}
-                            <FontAwesomeIcon icon={faSearch} />
-                        </Button>
-                    </Form>
-                </Container>
+                        <Form>
+                            <Form.Row>
+                                <Form.Group as={Col} controlId="Subjects">
+                                    <Form.Label>{gettext("Subjects")}</Form.Label>
+                                    <Form.Control
+                                        name="subject"
+                                        as="select"
+                                        onChange={this.handleSubjectChange}
+                                    >
+                                        {this.state.subjects.map(subject =>
+                                            <option value={subject.id}>{subject.designation}</option>
+                                        )}
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="Class">
+                                    <Form.Label>{gettext("Class")}</Form.Label>
+                                    <Form.Control
+                                        name="Class"
+                                        as="select"
+                                        onChange={this.handleChange}
+                                        multiple
+                                    >
+                                        {classes !== null ?
+                                            classes.map(classObj =>
+                                                <option value={classObj.id}>{classObj.code}</option>
+                                            ) : null
+                                        }
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="Date">
+                                    <Form.Label>{gettext("Start Date")}</Form.Label><br></br>
+                                    <DatePicker
+                                        selected={this.state.startDate}
+                                        onChange={this.handleDateChange}
+                                    />
+                                </Form.Group>
+                            </Form.Row>
+                            <Button
+                                variant="primary"
+                                className="btn btn-primary search_students_attendances"
+                                onClick={this.handleSearchRequest}
+                            >
+                                {gettext("Search")}{" "}
+                                <FontAwesomeIcon icon={faSearch} />
+                            </Button>
+                        </Form>
+                    </Container>
 
-                <Container className="resultadosownat">
-                    <ReactTable
-                        noDataText={gettext('No Results Found')}
-                        keyField='#'
-                        data={this.state.results}
-                        resolveData={data => data.map(row => row)}
-                        columns={columns}
-                        defaultPageSize={5}
-                        filterable
-                    />
-                </Container>
-            </div>
+                    <Container className="resultadosownat">
+                        <ReactTable
+                            noDataText={gettext('No Results Found')}
+                            keyField='#'
+                            data={this.state.results}
+                            resolveData={data => data.map(row => row)}
+                            columns={columns}
+                            defaultPageSize={5}
+                            filterable
+                        />
+                    </Container>
+                </div>
             </div>
         )
     }
