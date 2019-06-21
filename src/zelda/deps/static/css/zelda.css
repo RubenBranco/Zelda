@@ -83,6 +83,9 @@ a:hover{
   margin-left: auto;
 }
 
+.table-responsive{
+  overflow-x: visible;
+}
 
 @media only screen and (max-width: 810px) {
   /* For mobile phones: */
@@ -381,6 +384,43 @@ a:hover{
 }
 
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
+
+/* --------------------------------------------- Profile START ---------------------------------  */
+
+#img_user{
+
+  width: 20%;
+  height: 20%;
+  border-radius:60%;
+margin: auto;
+display: block;
+  border: 1px solid #623725;
+}
+
+#profile_box.row{
+  margin:auto;
+  width: 100%;
+
+}
+
+@media only screen and (max-width: 580px){
+  /* For mobile phones: */
+  #profile_box.row{
+width: 50%;
+    position: absolute;
+
+  }
+  #rowProfile{
+    margin-left: -60px !important;
+  }
+
+
+
+
+
+    }
+/* --------------------------------------------- profile END ---------------------------------  */
+
 /* --------------------------------------------- MENU BEM POSICIONADO ---------------------------------  */
 .MenuStudLateral, .MenuProfLateral{
   overflow: auto !important;

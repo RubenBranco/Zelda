@@ -43,6 +43,10 @@ class ReviewShiftExchangeRequestsView(AbstractProfessorAppView):
     pass
 
 
+class ReviewShiftStatusView(AbstractProfessorAppView):
+    pass
+
+
 class ShiftViewSet(viewsets.ModelViewSet):
     queryset = Shift.objects.all()
     permissions = (IsAuthenticated, ShiftPermission)

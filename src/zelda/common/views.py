@@ -67,6 +67,11 @@ class FrontpageView(AbstractLoggedInAppView):
 
 class LoginView(AbstractAppView):
 
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('frontpage')
+        return super().dispatch(request, *args, **kwargs)
+
     @method_decorator(sensitive_post_parameters())
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
