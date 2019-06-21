@@ -417,7 +417,6 @@ a:hover{
 
 .searchOwnAttendance{
   width: 100% !important;
-<<<<<<< Updated upstream
 }
 
 .menu2{
@@ -492,10 +491,32 @@ a.btn.btn-outline-primary:active{
 .shift-card{
   width: 96%;
   margin-left: 2%;
-=======
->>>>>>> Stashed changes
 }
 
+.btn-outline-success, .btn-outline-danger{
+  font-size: 13px;
+  padding: 5px;
+}
+
+.th-capacity, .th-subject, .th-name, .th-number, .th-options, .th-shift{
+  margin-left: -10px;
+}
+
+.th-capacity{
+ width: 122px;
+}
+
+.th-name{
+
+}
+
+.th-number{
+
+}
+
+.sift-requests-table{
+  text-align: center;
+}
 
 
 @media only screen and (max-width: 580px){

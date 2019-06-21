@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import MenuStudLateral from "../Components/Menus/MenuStudLateral.jsx";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from 'react-bootstrap/Container';
-import MenuStudLateral from '../Components/Menus/MenuStudLateral.jsx';
 import Card from 'react-bootstrap/Card';
 import moment from 'moment';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -132,7 +131,6 @@ class SubjectShiftManagement extends React.Component{
     render () {
         return (
             <div>
-<<<<<<< Updated upstream
             <MenuStudLateral />
             <div className="resto-pagina2">
             <h2 className="title_main_menu">{gettext("Subject Shifts")}</h2>
@@ -175,174 +173,6 @@ class SubjectShiftManagement extends React.Component{
                 </Col>
             </Row>
             </div>
-=======
-                <MenuStudLateral />
-                <Container>
-                    <h3 className="titulosCentrados">{gettext("Shift Management")} - Nome da Cadeira</h3>     
-                    <Row>
-                        <Col sm="4">
-                            <Card bg="light">
-                                <Card.Header>{gettext("Enrolled In")}</Card.Header>
-                                <Card.Body>
-                                    <Card.Text> 
-                                        <ListGroup variant="flush">
-                                            {this.state.shifts.map(shift => 
-                                                shift.enrolled ?
-                                                <ListGroup.Item variant="success">
-                                                    {shift.code} <FontAwesomeIcon icon={faUserCheck} />
-                                                    <Row>
-                                                        <Col>
-                                                        <ListGroup variant="flush">
-                                                            {shift.lesson_spec.map(lesson_spec =>
-                                                                <ListGroup.Item variant="success">
-                                                                    <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
-                                                                    {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
-                                                                </ListGroup.Item>
-                                                            )}
-                                                        </ListGroup>
-                                                        </Col>
-                                                    </Row>
-                                                </ListGroup.Item>
-                                                : null
-                                            )}
-                                        </ListGroup>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                         </Col>
-                         <Col sm="4">
-                            <Card bg="light">
-                                <Card.Header>{gettext("Enrroll In")}</Card.Header>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <ListGroup variant="flush">
-                                            {this.state.shifts.map(shift =>
-                                                shift.enrolled == false ? this.canEnroll(shift) ? this.checkAvailability(shift) ? shift.under_exchange_review == false ?
-                                                    <ListGroup.Item variant="primary">
-                                                    {shift.code} <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button> 
-                                                    <Row>
-                                                        <Col>
-                                                        <ListGroup variant="flush">
-                                                            {shift.lesson_spec.map(lesson_spec =>
-                                                                <ListGroup.Item variant="primary">
-                                                                    <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
-                                                                    {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
-                                                                </ListGroup.Item>
-                                                            )}
-                                                        </ListGroup>
-                                                        </Col>
-                                                    </Row>
-                                                    </ListGroup.Item>
-                                                    :null:null:null:null
-                                           )}
-                                        </ListGroup>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                         </Col>
-                         <Col sm="4">
-                            <Card>
-                                <Card.Header>{gettext("Shift Shifting")}</Card.Header>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <ListGroup>
-                                            {this.state.shifts.map(shift =>
-                                                shift.enrolled ?
-                                                    this.state.shifts.map(toshift => 
-                                                        toshift.enrolled == false ? this.canEnroll(shift) == false ? this.checkAvailability(toshift) ? toshift.under_exchange_review == false ? toshift.lesson_spec[0].c_type == shift.lesson_spec[0].c_type ? toshift.code != shift.code ?
-                                                        <ListGroup.Item variant="primary">
-                                                            {shift.code}
-                                                            <Button variant="outline-dark" onClick={this.handleExchangeShift.bind(this, toshift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button>
-                                                            {toshift.code}
-                                                            <Row>
-                                                                <Col>
-                                                                <ListGroup variant="flush">
-                                                                    {toshift.lesson_spec.map(lesson_spec =>
-                                                                        <ListGroup.Item variant="primary">
-                                                                            <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
-                                                                            {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
-                                                                        </ListGroup.Item>
-                                                                    )}
-                                                                </ListGroup>
-                                                                </Col>
-                                                            </Row>
-                                                        </ListGroup.Item>:null:null:null:null:null:null
-                                                    )
-                                                    :null                                        
-                                            )}
-                                        </ListGroup>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                            <Card>
-                                <Card.Header>{gettext("Change Shift Orders")}</Card.Header>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <ListGroup>
-                                            {this.state.shifts.map(shift =>
-                                                shift.enrolled ?
-                                                    this.state.shifts.map(toshift => 
-                                                        toshift.enrolled == false ? this.canEnroll(shift) == false ? this.checkAvailability(toshift) ? toshift.under_exchange_review ? toshift.lesson_spec[0].c_type == shift.lesson_spec[0].c_type ? toshift.code != shift.code ?
-                                                        <ListGroup.Item variant="warning">
-                                                            {shift.code}
-                                                            <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleExchangeShift.bind(this, toshift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button>
-                                                            {toshift.code}
-                                                            <Row>
-                                                                <Col>
-                                                                <ListGroup variant="flush">
-                                                                    {toshift.lesson_spec.map(lesson_spec =>
-                                                                        <ListGroup.Item variant="warning">
-                                                                            <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
-                                                                            {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
-                                                                        </ListGroup.Item>
-                                                                    )}
-                                                                </ListGroup>
-                                                                </Col>
-                                                            </Row>
-                                                        </ListGroup.Item>:null:null:null:null:null:null
-                                                    )
-                                                    :null                                        
-                                            )}
-                                        </ListGroup>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                         </Col>
-                        {/*<Col sm="4">
-                            <ListGroup variant="flush">
-                                {this.state.shifts.map(shift =>
-                                    <ListGroup.Item>
-                                        {shift.code} {shift.enrolled ? <FontAwesomeIcon icon={faUserCheck} /> : this.canEnroll(shift) ?
-                                            <Button variant="outline-dark" onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
-                                            :
-                                            this.checkAvailability(shift) ?
-                                            shift.under_exchange_review ?
-                                            <FontAwesomeIcon icon={faShippingFast} />
-                                            :
-                                            <Button variant="outline-dark" onClick={this.handleExchangeShift.bind(this, shift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button> :
-                                            <FontAwesomeIcon icon={faDoorClosed} />
-                                        }
-                                        <Row>
-                                            <Col lg="3" md="3" sm="3" xl="3" xs="3">
-                                            </Col>
-                                            <Col>
-                                            <ListGroup variant="flush">
-                                                {shift.lesson_spec.map(lesson_spec =>
-                                                    <ListGroup.Item>
-                                                        <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
-                                                        {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
-                                                    </ListGroup.Item>
-                                                )}
-                                            </ListGroup>
-                                            </Col>
-                                        </Row>
-                                    </ListGroup.Item>
-                                )}
-                            </ListGroup>
-                                                </Col>*/}
-                    </Row>
-                </Container>
->>>>>>> Stashed changes
             </div>
         );
     }

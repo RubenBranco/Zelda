@@ -90,12 +90,12 @@ class ReviewExchangeRequests extends React.Component{
                 <Table className="sift-requests-table">
                     <thead>
                         <tr>
-                            <th>{gettext("Subject")}</th>
-                            <th>{gettext("Shift")}</th>
-                            <th>{gettext("Shift Capacity")}</th>
-                            <th>{gettext("Student Name")}</th>
-                            <th>{gettext("Student Number")}</th>
-                            <th>{gettext("Options")}</th>
+                            <th className="th-subject">{gettext("Subject")}</th>
+                            <th className="th-shift">{gettext("Shift")}</th>
+                            <th className="th-capacity">{gettext("Shift Capacity")}</th>
+                            <th className="th-name">{gettext("Student Name")}</th>
+                            <th className="th-number">{gettext("Student Number")}</th>
+                            <th className="th-options">{gettext("Options")}</th>
                         </tr>
                     </thead>
                     <tbody>
