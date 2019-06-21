@@ -11,6 +11,20 @@ class ShiftSerializer(ModelSerializer):
         exclude = ("student",)
 
 
+class LecturedShiftSerializer(ShiftSerializer):
+    enrolled_students = SerializerMethodField()
+    subject_name = SerializerMethodField()
+
+    def get_subject_name(self, shift):
+        subject = shift.subject
+        course_subjects = CourseSubject.objects.filter(subject=subject)
+
+        return " / ".join(map(lambda cs: cs.designation, course_subjects))
+
+    def get_enrolled_students(self, shift):
+        return len(shift.student.all())
+
+
 class TimeTableLessonSpecificationSerializer(ModelSerializer):
     dates = SerializerMethodField()
     room = SerializerMethodField()
