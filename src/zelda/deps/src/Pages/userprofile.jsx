@@ -20,7 +20,7 @@ class UserProfile extends React.Component {
         <WebCrumbs pages={pages} />
         <MenuProfLateral />
         <div class="resto-pagina">
-        <ViewProfile />
+          <ViewProfile />
         </div>
       </div >
     );
