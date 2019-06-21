@@ -46,12 +46,26 @@
         {% if app_user != None %}
             var firstName = "{{ app_user.first_name }}";
             var lastName = "{{ app_user.last_name }}";
+            
             {% if app_user.display_image %}
                 var userImageUrl = "/s3/{{ app_user.display_image }}";
             {% else %}
                 var userImageUrl = "{% static 'img/profileImage.png' %}";
             {% endif %}
         {% endif %}
+
+        {% if app_user.user_type == "Professor" %}
+            var viewAttendancesUrl = "{% url 'prof_view_attendances' %}";
+            var viewShiftlessStudentsUrl = "{% url 'prof_view_shiftless_students' %}";
+            var viewShiftRequestsUrl = "{% url 'professor_view_shift_xg_requests' %}";
+        {% elif app_user.user_type == "Student" %}
+            var viewAttendancesUrl = "{% url 'student_view_attendances' %}";
+            var viewGradesUrl = "{% url 'student_view_grades' %}";
+            var viewTimetableUrl = "{% url 'student_view_timetable' %}";
+            var viewShiftManagementUrl = "{% url 'student_shift_management' %}";
+        {% endif %}
+
+
 
         var changeLangUrl = "{% url 'set_language' %}";
         var currentLanguage = {
