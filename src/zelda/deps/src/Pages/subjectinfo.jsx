@@ -18,7 +18,7 @@ class SubjectInfo extends React.Component {
         <Navigator />
         <MenuStudLateral />
         <WebCrumbs pages={pages} />
-        <div class="menu2">
+        <div className="menu2">
         <ViewCurricularUnitData />
         </div>
 
