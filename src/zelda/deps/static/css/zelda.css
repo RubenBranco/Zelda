@@ -380,8 +380,16 @@ a:hover{
 }
 
 .schedule_subjects {
-  margin-top: 25%;
+  
 }
+
+@media (min-width: 576px){
+.col-sm-3 {
+  margin-left:5% ;
+  margin-right: -17%;
+}
+}
+
 
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
 

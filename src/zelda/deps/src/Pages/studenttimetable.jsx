@@ -42,14 +42,14 @@ class StudentTimeTable extends React.Component {
                     });
                     this.setState(prevState => ({
                         classes: [...prevState.classes, ...data],
-                        selectedSubjects: {...prevState.selectedSubjects, ...subjects},
+                        selectedSubjects: { ...prevState.selectedSubjects, ...subjects },
                     }));
                 });
             });
         }
     }
 
-    selectSubjectHandle (subject, e) {
+    selectSubjectHandle(subject, e) {
         let selectedSubjects = this.state.selectedSubjects;
         selectedSubjects[subject].active = !selectedSubjects[subject].active;
         this.setState({
@@ -57,7 +57,7 @@ class StudentTimeTable extends React.Component {
         });
     }
 
-    filterClasses () {
+    filterClasses() {
         let selectedSubjects = [];
         Object.keys(this.state.selectedSubjects).map(subject => {
             if (this.state.selectedSubjects[subject].active) {
@@ -75,12 +75,12 @@ class StudentTimeTable extends React.Component {
                 <MenuStudLateral />
                 <WebCrumbs pages={pages} />
                 <div class="resto-pagina">
-                <Container className="schedule">
-                    <Tab.Container id="list-group-tabs-example" >
-                        <Row>
-                            <Col sm={3}>
+                    <Container className="schedule">
+                        <Tab.Container id="list-group-tabs-example" >
+                            <Row >
+                                <Col sm={3}>
                                     {Object.keys(this.state.selectedSubjects).map(subject =>
-                                        <div>
+                                        <div >
                                             <input
                                                 type="checkbox"
                                                 name={`${subject}-checkbox`} className="form-check-input"
@@ -93,16 +93,16 @@ class StudentTimeTable extends React.Component {
                                         </div>
                                     )}
 
-                            </Col>
-                            <Col>
-                                {!this.state.classes.length ? null :
-                                    <Schedule classes={this.filterClasses()} />
-                                }
-                            </Col>
-                        </Row>
-                    </Tab.Container>
-                </ Container >
-            </div>
+                                </Col>
+                                <Col>
+                                    {!this.state.classes.length ? null :
+                                        <Schedule classes={this.filterClasses()} />
+                                    }
+                                </Col>
+                            </Row>
+                        </Tab.Container>
+                    </ Container >
+                </div>
             </div>
         );
     }
