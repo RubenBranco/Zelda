@@ -78,7 +78,8 @@ class StudentTimeTable extends React.Component {
                     <Container className="schedule">
                         <Tab.Container id="list-group-tabs-example" >
                             <Row >
-                                <Col sm={3}>
+                                <Col sm={1}> </Col>
+                                <Col sm={1}>
                                     {Object.keys(this.state.selectedSubjects).map(subject =>
                                         <div >
                                             <input
@@ -94,6 +95,7 @@ class StudentTimeTable extends React.Component {
                                     )}
 
                                 </Col>
+
                                 <Col>
                                     {!this.state.classes.length ? null :
                                         <Schedule classes={this.filterClasses()} />

@@ -377,17 +377,7 @@ a:hover{
 
 .schedule{
   margin-top: 2%;
-}
-
-.schedule_subjects {
-  
-}
-
-@media (min-width: 576px){
-.col-sm-3 {
-  margin-left:5% ;
-  margin-right: -17%;
-}
+  margin-left: 1%;
 }
 
 
