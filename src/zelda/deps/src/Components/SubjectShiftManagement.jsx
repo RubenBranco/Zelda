@@ -131,49 +131,6 @@ class SubjectShiftManagement extends React.Component {
         return (
             <div>
                 <MenuStudLateral />
-                <div className="resto-pagina2">
-                    <h2 className="title_main_menu">{gettext("Subject Shifts")}</h2>
-                    <hr />
-                    <Row>
-                        <Col lg="3" md="3" sm="3" xl="3" xs="3">
-                            <ListGroup variant="flush">
-                                {this.state.shifts.map(shift =>
-                                    <ListGroup.Item>
-                                        {shift.code} {shift.enrolled ? <FontAwesomeIcon icon={faUserCheck} /> : this.canEnroll(shift) ?
-                                            <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
-                                            :
-                                            this.checkAvailability(shift) ?
-                                                shift.under_exchange_review ?
-                                                    <FontAwesomeIcon icon={faShippingFast} />
-                                                    :
-                                                    <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleExchangeShift.bind(this, shift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button> :
-                                                <FontAwesomeIcon icon={faDoorClosed} />
-                                        }
-                                        <Row>
-                                            <Col lg="3" md="3" sm="3" xl="3" xs="3">
-                                            </Col>
-                                            <Col>
-                                                <ListGroup variant="flush">
-                                                    {shift.lesson_spec.map(lesson_spec =>
-                                                        <ListGroup.Item>
-                                                            <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
-                                                {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
-                                                        </ListGroup.Item>
-                                                    )}
-                                                </ListGroup>
-                                            </Col>
-                                        </Row>
-                                    </ListGroup.Item>
-                                )}
-                            </ListGroup>
-                        </Col>
-                        <Col>
-
-                        </Col>
-                    </Row>
-                </div>
-
-                <MenuStudLateral />
                 <Container>
                     <h3 className="titulosCentrados">{gettext("Shift Management")} - Nome da Cadeira</h3>
                     <Row>
