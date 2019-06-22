@@ -1,3 +1,6 @@
+from datetime import date
+from functools import reduce
+
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
@@ -5,9 +8,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import exceptions
 
-from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer
+from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer, RestrictedSubjectSerializer
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade
-from .permissions import SubjectPermission, CourseSubjectPermission
+from .permissions import SubjectPermission, CourseSubjectPermission, CoursePermission
 from common.views import AbstractLoggedInAppView, AbstractProfessorAppView, AbstractStudentAppView
 from common.permissions import BaseAppPermission
 from common.utils import get_user_from_request
@@ -40,7 +43,44 @@ class SubjectSignUpView(AbstractStudentAppView):
 class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, CoursePermission)
+
+    @action(detail=False)
+    def my_curriculum(self, request):
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Student):
+            raise exceptions.PermissionDenied()
+
+        course = user.course.last()
+        max_ects_per_semester = course.specification.department.faculty.max_ects_per_semester
+        course_subjects = CourseSubject.objects.filter(course=course)
+        subjects = []
+        first_semester_ects = 0
+        second_semester_ects = 0
+
+        for course_subject in course_subjects:
+            subject = dict()
+
+            is_enrolled = user in course_subject.subject.students.all()
+            if is_enrolled and course_subject.subject.semester == "1":
+                first_semester_ects += course_subject.subject.subject_spec.ects
+            elif is_enrolled and course_subject.subject.semester == "2":
+                second_semester_ects += course_subject.subject.subject_spec.ects
+
+            subject['course_subject'] = CourseSubjectSerializer(course_subject).data
+            subject['subject'] = RestrictedSubjectSerializer(course_subject.subject).data
+            subject['subject_spec'] = SubjectSpecificationSerializer(course_subject.subject.subject_spec).data
+            subject['is_enrolled'] = is_enrolled
+            subjects.append(subject)
+
+        return Response(dict(
+            max_ects_per_semester=max_ects_per_semester,
+            subjects=subjects,
+            first_semester_ects=first_semester_ects,
+            second_semester_ects=second_semester_ects,
+            current_semester="1" if course.f_semester_begin_date <= date.today() <= course.f_semester_end_date else "2",
+        ))
 
 
 class CourseSpecificationViewSet(ModelViewSet):
@@ -202,6 +242,52 @@ class SubjectViewSet(ModelViewSet):
                 ).data,
             )
         )
+
+    @action(detail=True)
+    def sign_up(self, request, pk=None):
+        subject = get_object_or_404(Subject, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Student):
+            raise exceptions.PermissionDenied()
+
+        course = user.course.last()
+        max_ects_per_semester = course.specification.department.faculty.max_ects_per_semester
+        current_semester = "1" if course.f_semester_begin_date <= date.today() <= course.f_semester_end_date else "2"
+
+        sign_up = request.query_params.get("sign_up", None)
+
+        if sign_up is None:
+            raise exceptions.PermissionDenied()
+
+        if current_semester == "2" and subject.semester == "1":
+            raise exceptions.PermissionDenied()
+
+        sign_up = sign_up == "true"
+        if sign_up and user in subject.students.all():
+            raise exceptions.PermissionDenied()
+
+        if sign_up:
+            current_semester_ects = self.check_current_ects(user, course, current_semester)
+            if current_semester_ects + subject.subject_spec.ects <= max_ects_per_semester:
+                subject.students.add(user)
+                subject.save()
+            else:
+                raise exceptions.PermissionDenied()
+        else:
+            for shift in Shift.objects.filter(student=user):
+                shift.student.remove(user)
+                shift.save()
+            subject.students.remove(user)
+            subject.save()
+
+        return Response(status=200)
+
+
+    def check_current_ects(self, student, course, current_semester):
+        course_subjects = CourseSubject.objects.filter(subject__students=student, subject__semester=current_semester)
+
+        return reduce(lambda acc, y: acc + y.subject.subject_spec.ects, course_subjects, 0)
 
 
 class SubjectSpecificationViewSet(ModelViewSet):
