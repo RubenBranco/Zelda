@@ -69,12 +69,13 @@ class StudentTimeTable extends React.Component {
 
     render() {
         const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Personal Schedule"), href: "" }];
+        console.log(pages);
         return (
             <div>
                 <Navigator />
                 <MenuStudLateral />
                 <WebCrumbs pages={pages} />
-                <div class="resto-pagina">
+                <div className="resto-pagina">
                     <Container className="schedule">
                         <Tab.Container id="list-group-tabs-example" >
                             <Row >
