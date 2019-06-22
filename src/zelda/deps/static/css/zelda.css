@@ -19,6 +19,7 @@ a:hover{
 #webcrumbs{
   margin-top:1%;
   margin-left:4%;
+  position: fixed;
 }
 
 #login > #img {
@@ -377,7 +378,8 @@ a:hover{
 
 .schedule{
   margin-top: 2%;
-  margin-left: 1%;
+  margin-left: 1%; 
+  height: 50% !important;
 }
 
 
