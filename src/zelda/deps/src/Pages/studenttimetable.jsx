@@ -73,13 +73,12 @@ class StudentTimeTable extends React.Component {
             <div>
                 <Navigator />
                 <MenuStudLateral />
+                <div class="resto-pagina2">
                 <WebCrumbs pages={pages} />
-                <div class="resto-pagina">
-                    <Container className="schedule">
-                        <Tab.Container id="list-group-tabs-example" >
-                            <Row >
-                                <Col sm={1}> </Col>
-                                <Col sm={1}>
+                <Container className="schedule">
+                    <Tab.Container id="list-group-tabs-example" >
+                        <Row>
+                            <Col sm={3}>
                                     {Object.keys(this.state.selectedSubjects).map(subject =>
                                         <div >
                                             <input
