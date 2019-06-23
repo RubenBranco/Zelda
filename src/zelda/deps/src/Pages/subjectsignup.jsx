@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from "react-dom";
 
 import Navigator from "../Components/Navigator.jsx";
-import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/CardDeck";
-import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
-import Badge from 'react-bootstrap/Badge';
 import { ToastContainer, toast } from 'react-toastify';
+import Container from 'react-bootstrap/Container';
+import MenuStudLateral from '../Components/Menus/MenuStudLateral.jsx';
+import Table from 'react-bootstrap/Table';
 
 import getCsrfToken from "../functions/csrf.js";
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -119,35 +118,38 @@ class SubjectSignup extends React.Component {
 
     render() {
         let courseYearKeys = Object.keys(this.state.courseYearMap).sort();
+
         return (
             <div>
                 <Navigator />
-                <h2 className="title_main_menu">{gettext("Subject Management")}</h2>
-
-                {!courseYearKeys.length ?
-                    null
-                    :
-                    <div className="shift-card">
-                        <CardDeck>
-                            {courseYearKeys.map(courseYear =>
-                                <Card>
-                                    <Card.Body>
-                                        <Card.Title>
-                                            {gettext("Year") + ` ${courseYear}`}
-                                        </Card.Title>
-                                        <ListGroup>
-                                            {this.state.courseYearMap[courseYear].map(subjectId =>
-                                                <ListGroup.Item action>
-                                                    <Badge pill variant="info">
-                                                    {this.state.subjects[subjectId].is_enrolled ?
-                                                    gettext("Enrolled")
-                                                    :
-                                                    gettext("Not Enrolled")
-                                                    }
-                                                    </Badge>
-                                                    {this.state.subjects[subjectId].course_subject.designation}
-                                                    <Button href={window.viewSubjectUrl.replace("0", subjectId.toString())} variant="outline-info">{gettext("Subject Info")}</Button>
-                                                    {this.state.subjects[subjectId].is_enrolled ?
+                <Container>
+                    <h2>Subject Management</h2>
+                    <Table responsive="sm" size="sm" striped={true}>
+                        <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>{gettext("Name")}</th>
+                            <th>{gettext("Status")}</th>
+                            <th>{gettext("Course Year")}</th>
+                            <th>{gettext("Carried Out In")}</th>
+                            <th>{gettext("ECTS")}</th>
+                            <th>{gettext("Action")}</th>
+                            <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {!courseYearKeys.length ? null :
+                                courseYearKeys.map(courseYear =>
+                                    this.state.courseYearMap[courseYear].map((subjectId, index) =>
+                                        <tr>
+                                            <td>{index + 1}</td>
+                                            <td>{this.state.subjects[subjectId].course_subject.designation}</td>
+                                            <td>{this.state.subjects[subjectId].is_enrolled.toString() ? "Enrolled": "Not Enrolled"}</td>
+                                            <td>{this.state.subjects[subjectId].course_subject.course_year}</td>
+                                            <td>{this.state.subjects[subjectId].subject.semester}</td>
+                                            <td>{this.state.subjects[subjectId].subject_spec.ects}</td>
+                                            <td>
+                                                {this.state.subjects[subjectId].is_enrolled ?
                                                         this.canUnenroll(this.state.subjects[subjectId]) ?
                                                         <Button onClick={this.enrollOrUnenrollSubject.bind(this, this.state.subjects[subjectId], false)} variant="outline-danger">{gettext("Unenroll")}</Button>
                                                         :
@@ -157,16 +159,20 @@ class SubjectSignup extends React.Component {
                                                         <Button onClick={this.enrollOrUnenrollSubject.bind(this, this.state.subjects[subjectId], true)} variant="outline-success">{gettext("Enroll")}</Button>
                                                         :
                                                         null
-                                                    }
-                                                </ListGroup.Item>
-                                            )}
-                                        </ListGroup>
-                                    </Card.Body>
-                                </Card>
-                            )}
-                        </CardDeck>
-                    </div>
-                }
+                                                }
+                                            </td>
+                                            <td>
+                                            <Button href={window.viewSubjectUrl.replace("0", subjectId.toString())} variant="outline-info">{gettext("Subject Info")}</Button>
+                                            </td>
+                                        </tr>
+                                    )
+                            )
+                            }
+
+                        </tbody>
+                    </Table>
+                </Container>
+
                 <ToastContainer
                     position="top-right"
                     autoClose={10000}

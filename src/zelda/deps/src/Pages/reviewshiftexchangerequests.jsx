@@ -80,11 +80,14 @@ class ReviewExchangeRequests extends React.Component{
     }
 
     render () {
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Shift Exchange Requests"), href: "" }];
+
       return (
           <div>
                 <Navigator />
                 <MenuProfLateral />
                 <div class="resto-pagina2">
+                <WebCrumbs pages={pages} />
                 <h2 className="title_main_menu">{gettext("Shift Exchange Requests")}</h2>
                 <Table className="sift-requests-table">
                     <thead>

@@ -201,11 +201,11 @@ class SearchOwnAttendances extends React.Component {
         ];
 
         return (
-            <div className="resto-pagina">
-                <div className="searchOwnAttendance">
-                    <Container className="searchOwnAttendance">
-                        <h2 className="title_main_menu">{gettext("Consult Attendances")}</h2>
-                        <hr />
+            <div>
+            <div className="searchOwnAttendance">
+                <Container className="searchOwnAttendance">
+                    <h2 className="title_main_menu">{gettext("Consult Attendances")}</h2>
+                    <hr />
 
                         <Form>
                             <Form.Row>

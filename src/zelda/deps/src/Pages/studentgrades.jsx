@@ -17,8 +17,8 @@ class StudentGrades extends React.Component {
       <div>
         <Navigator />
         <MenuStudLateral />
-        <WebCrumbs pages={pages} />
-        <div class="resto-pagina">
+        <div class="resto-pagina2">
+          <WebCrumbs pages={pages} />
         <SearchStudentSubjectGrades />
         </div>
       </div>

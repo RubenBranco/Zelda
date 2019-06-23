@@ -274,3 +274,5 @@ CELERY_BEAT_SCHEDULE = {
         ),
     },
 }
+
+PASSING_GRADE = 9.5

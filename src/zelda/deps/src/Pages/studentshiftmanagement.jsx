@@ -21,7 +21,8 @@ class StudentShiftManagement extends React.Component {
                 <WebCrumbs pages={pages} />
                 <MenuStudLateral />
                 <div class="resto-pagina2">
-                    <ShiftDashboard />
+                <WebCrumbs pages={pages} />
+                <ShiftDashboard />
                 </div>
             </div>
         );
