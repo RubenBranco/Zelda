@@ -1,6 +1,7 @@
 from datetime import date
 from functools import reduce
 
+from django.conf import settings
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
@@ -8,8 +9,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import exceptions
 
-from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer, RestrictedSubjectSerializer
-from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade
+from .serializers import CourseSerializer, CourseSpecificationSerializer, CourseSubjectSerializer, SubjectSerializer, SubjectSpecificationSerializer, GradeSerializer, RestrictedSubjectSerializer, FinalGradeSerializer
+from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade, FinalGrade
 from .permissions import SubjectPermission, CourseSubjectPermission, CoursePermission
 from common.views import AbstractLoggedInAppView, AbstractProfessorAppView, AbstractStudentAppView
 from common.permissions import BaseAppPermission
@@ -81,6 +82,36 @@ class CourseViewSet(ModelViewSet):
             second_semester_ects=second_semester_ects,
             current_semester="1" if course.f_semester_begin_date <= date.today() <= course.f_semester_end_date else "2",
         ))
+
+    @action(detail=False)
+    def my_global_curriculum(self, request):
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Student):
+            raise exceptions.PermissionDenied()
+
+        course_spec = user.course.last().specification
+
+        subjects = Subject.objects.filter(students=user)
+        subject_specs = list(set(map(lambda subj: subj.subject_spec, subjects)))
+        curriculum = []
+
+        for subject_spec in subject_specs:
+            subject = {}
+            latest_subject = subjects.filter(subject_spec=subject_spec).latest('lective_year')
+            course_subject = CourseSubject.objects.get(subject=latest_subject, course__specification=course_spec)
+
+            subject['course_subject'] = CourseSubjectSerializer(course_subject).data
+            subject['subject'] = RestrictedSubjectSerializer(latest_subject).data
+
+            final_grade = FinalGrade.objects.filter(student=user, subject__subject_spec=subject_spec).order_by("-grade").first()
+
+            if final_grade is not None and final_grade.grade >= settings.PASSING_GRADE:
+                subject['grade'] = FinalGradeSerializer(final_grade).data
+
+            curriculum.append(subject)
+
+        return Response(curriculum)
 
 
 class CourseSpecificationViewSet(ModelViewSet):
