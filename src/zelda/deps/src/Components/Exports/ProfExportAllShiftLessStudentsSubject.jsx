@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
-class ProfExportAllShiftLessStudentSubject extends React.Component{
+class ProfExportAllShiftLessStudentSubject extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    render () {
+    render() {
         return (
             <div>
                 <ReactHTMLTableToExcel
                     id="test-table-xls-button"
-                    className="btn btn-primary"
+                    className="btn btn-primary export_student"
                     table="ProfExportAllShiftLessStudentSubject-xls"
                     filename={gettext('All Shiftless Students of ' + this.props.subject)}
                     sheet="tablexls"
-                    buttonText={gettext("Export Shiftless Students Data")}/>
+                    buttonText={gettext("Export Shiftless Students Data")} />
                 <table hidden={true} id="ProfExportAllShiftLessStudentSubject-xls" >
                     <thead>
                         <tr>

@@ -22,6 +22,13 @@ a:hover{
   position: fixed;
 }
 
+#test-table-xls-button{
+  margin-top:2% !important;
+  background-color:#623725 !important;
+  color:white !important;
+}
+
+
 #login > #img {
   float: right !important;
   width: 50%;
