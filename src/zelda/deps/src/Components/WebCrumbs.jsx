@@ -16,7 +16,7 @@ class WebCrumbs extends React.Component {
         this.csrfmiddlewaretoken = getCsrfToken();
     }
 
-    componentDidMount () {
+    componentDidMount() {
         if (this.props.subjectId != null) {
             fetch(`/api/student/${this.props.subjectId}/subjects/`, {
                 method: 'GET',
@@ -35,20 +35,20 @@ class WebCrumbs extends React.Component {
 
     render() {
         return (
-            <Breadcrumb>
-                {this.props.subjectId != undefined 
+            <Breadcrumb id="webcrumbs">
+                {this.props.subjectId != undefined
                     ?
                     <Row>
-                    {this.props.pages.map((page) => 
-                        <Breadcrumb.Item href={page.href}>{page.name}</Breadcrumb.Item>
-                    )}
-                    <Breadcrumb.Item active>{this.state.subjectDesignation}</Breadcrumb.Item>
+                        {this.props.pages.map((page) =>
+                            <Breadcrumb.Item href={page.href}>{page.name}</Breadcrumb.Item>
+                        )}
+                        <Breadcrumb.Item active>{this.state.subjectDesignation}</Breadcrumb.Item>
                     </Row>
-                    : 
+                    :
                     this.props.pages.map((page) =>
-                    page.href === "" ? <Breadcrumb.Item active>{page.name}</Breadcrumb.Item> :
-                    <Breadcrumb.Item href={page.href}>{page.name}</Breadcrumb.Item>
-                )}
+                        page.href === "" ? <Breadcrumb.Item active>{page.name}</Breadcrumb.Item> :
+                            <Breadcrumb.Item href={page.href}>{page.name}</Breadcrumb.Item>
+                    )}
             </Breadcrumb>
         )
     }

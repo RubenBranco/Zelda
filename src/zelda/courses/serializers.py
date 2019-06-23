@@ -27,6 +27,12 @@ class SubjectSerializer(ModelSerializer):
         fields = "__all__"
 
 
+class RestrictedSubjectSerializer(SubjectSerializer):
+    class Meta:
+        model = Subject
+        exclude = ("students",)
+
+
 class SubjectSpecificationSerializer(ModelSerializer):
     class Meta:
         model = SubjectSpecification

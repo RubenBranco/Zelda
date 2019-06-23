@@ -24,7 +24,8 @@ class ViewCurricularUnitData extends React.Component{
             professors: [],
         };
         this.csrfmiddlewaretoken = getCsrfToken();
-        this.subjectId = window.location.pathname.split("/").pop();
+        let pathName = window.location.pathname.split("/");
+        this.subjectId = pathName[pathName.length - 2];
         this.hasFetched = false;
     }
 

@@ -22,7 +22,9 @@ class ViewProfile extends React.Component {
 
     componentDidMount() {
         if (!this.hasFetched) {
-            fetch(`/api/appuser/${window.location.pathname.split("/").pop()}/`, {
+            let pathName = window.location.pathname.split("/");
+            let userId = pathName[pathName.length - 2];
+            fetch(`/api/appuser/${userId}/`, {
                 method: "GET",
                 headers: {
                     "X-CSRFToken": this.csrfmiddlewaretoken,

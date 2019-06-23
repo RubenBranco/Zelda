@@ -94,13 +94,20 @@ class Schedule extends React.Component {
                     events={this.state.events}
                     validRange={{
                         start: this.props.classes.length ? this.props.classes[0].dates.first_semester_begin_date : null,
-                        end: this.props.classes.length ? this.props.classes[0].dates.second_semester_end_date: null
+                        end: this.props.classes.length ? this.props.classes[0].dates.second_semester_end_date : null
                     }}
                     datesRender={this.handleDatesRender}
                     eventRender={this.handleEventRender}
                     nowIndicator={true}
                     displayEventTime={false}
                     minTime="8:00"
+                    aspectRatio="35"
+                    windowResize =" function(view) {
+                        alert('The calendar has adjusted to a window resize');
+                      }"
+
+
+
                 />
 
             </div>

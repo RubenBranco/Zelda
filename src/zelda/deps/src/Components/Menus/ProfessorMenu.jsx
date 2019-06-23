@@ -2,7 +2,6 @@ import React from "react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import ProfileSearch from "../Searches/SearchProfile.jsx";
 import GetProfessorSubjects from "../GetProfessorSubjects.jsx";
 
 class ProfessorMenu extends React.Component {
@@ -26,6 +25,9 @@ class ProfessorMenu extends React.Component {
                         </Card.Header>
                         <Card.Body>
                             <ListGroup variant="flush">
+                                <ListGroup.Item action href={window.viewShiftStatusUrl}>
+                                    <a >{gettext("Shift Statuses")}</a>
+                                </ListGroup.Item>
                                 <ListGroup.Item action href={window.viewAttendancesUrl}>
                                     <a >{gettext("Attendance")}</a>
                                 </ListGroup.Item>
@@ -55,7 +57,6 @@ class ProfessorMenu extends React.Component {
                         </Card.Body>
                     </Card>
                 </CardDeck>
-                <ProfileSearch />
             </div>
         );
     }

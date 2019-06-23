@@ -10,7 +10,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 class StudentSubjectShiftManagement extends React.Component {
     constructor() {
         super();
-        this.subjectId = window.location.pathname.split("/").pop();
+        let pathName = window.location.pathname.split("/");
+        this.subjectId = pathName[pathName.length - 2];
     }
 
     render() {

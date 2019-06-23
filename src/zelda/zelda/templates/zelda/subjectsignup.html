@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Subject Enrollment' %}{% endblock %}
+
+{% block footjs %}
+<script>
+    var viewSubjectUrl = "{% url 'view_subject' 0 %}";
+</script>
+{% endblock footjs %}
+

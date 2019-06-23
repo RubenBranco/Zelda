@@ -42,14 +42,14 @@ class StudentTimeTable extends React.Component {
                     });
                     this.setState(prevState => ({
                         classes: [...prevState.classes, ...data],
-                        selectedSubjects: {...prevState.selectedSubjects, ...subjects},
+                        selectedSubjects: { ...prevState.selectedSubjects, ...subjects },
                     }));
                 });
             });
         }
     }
 
-    selectSubjectHandle (subject, e) {
+    selectSubjectHandle(subject, e) {
         let selectedSubjects = this.state.selectedSubjects;
         selectedSubjects[subject].active = !selectedSubjects[subject].active;
         this.setState({
@@ -57,7 +57,7 @@ class StudentTimeTable extends React.Component {
         });
     }
 
-    filterClasses () {
+    filterClasses() {
         let selectedSubjects = [];
         Object.keys(this.state.selectedSubjects).map(subject => {
             if (this.state.selectedSubjects[subject].active) {
@@ -69,18 +69,28 @@ class StudentTimeTable extends React.Component {
 
     render() {
         const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Personal Schedule"), href: "" }];
+        console.log(pages);
         return (
             <div>
                 <Navigator />
                 <MenuStudLateral />
                 <div class="resto-pagina2">
                 <WebCrumbs pages={pages} />
+<<<<<<< HEAD
                 <Container className="schedule">
                     <Tab.Container id="list-group-tabs-example" >
                         <Row>
                             <Col sm={3}>
+=======
+                <div className="resto-pagina">
+                    <Container className="schedule">
+                        <Tab.Container id="list-group-tabs-example" >
+                            <Row >
+                                <Col sm={1}> </Col>
+                                <Col sm={1}>
+>>>>>>> 9f73be4921b888a9732458bb39aa862a949cfb59
                                     {Object.keys(this.state.selectedSubjects).map(subject =>
-                                        <div>
+                                        <div >
                                             <input
                                                 type="checkbox"
                                                 name={`${subject}-checkbox`} className="form-check-input"
@@ -93,16 +103,17 @@ class StudentTimeTable extends React.Component {
                                         </div>
                                     )}
 
-                            </Col>
-                            <Col>
-                                {!this.state.classes.length ? null :
-                                    <Schedule classes={this.filterClasses()} />
-                                }
-                            </Col>
-                        </Row>
-                    </Tab.Container>
-                </ Container >
-            </div>
+                                </Col>
+
+                                <Col>
+                                    {!this.state.classes.length ? null :
+                                        <Schedule classes={this.filterClasses()} />
+                                    }
+                                </Col>
+                            </Row>
+                        </Tab.Container>
+                    </ Container >
+                </div>
             </div>
         );
     }
