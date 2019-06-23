@@ -17,9 +17,10 @@ class UserProfile extends React.Component {
     return (
       <div>
         <Navbar />
-        <WebCrumbs pages={pages} />
+        
         <MenuProfLateral />
-        <div class="resto-pagina">
+        <div class="resto-pagina2">
+        <WebCrumbs pages={pages} />
           <ViewProfile />
         </div>
       </div >

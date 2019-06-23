@@ -303,7 +303,7 @@ class SearchStudentsAttendance extends React.Component {
         ];
 
         return (
-            <div class="resto-pagina2">
+            <div>
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"

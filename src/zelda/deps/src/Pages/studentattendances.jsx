@@ -17,8 +17,10 @@ class StudentAttendances extends React.Component {
             <div>
                 <Navigator />
                 <MenuStudLateral />
+                <div className= "resto-pagina2">
                 <WebCrumbs pages={pages} />
                 <SearchOwnAttendances />
+                </div>
 
 
             </div>

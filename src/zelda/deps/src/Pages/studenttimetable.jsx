@@ -73,8 +73,8 @@ class StudentTimeTable extends React.Component {
             <div>
                 <Navigator />
                 <MenuStudLateral />
+                <div class="resto-pagina2">
                 <WebCrumbs pages={pages} />
-                <div class="resto-pagina">
                 <Container className="schedule">
                     <Tab.Container id="list-group-tabs-example" >
                         <Row>

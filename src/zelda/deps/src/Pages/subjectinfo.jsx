@@ -12,14 +12,16 @@ class SubjectInfo extends React.Component {
   }
 
   render() {
-    const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Subject Info"), href: "" }];
+    const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Subject Information"), href: "" }];
     return (
       <div>
         <Navigator />
         <MenuStudLateral />
+        <div class="resto-pagina2">
         <WebCrumbs pages={pages} />
         <div class="menu2">
         <ViewCurricularUnitData />
+        </div>
         </div>
 
       </div>

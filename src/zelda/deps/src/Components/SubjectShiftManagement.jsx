@@ -1,5 +1,6 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
+import WebCrumbs from "../Components/WebCrumbs.jsx";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import MenuStudLateral from "../Components/Menus/MenuStudLateral.jsx";
@@ -128,10 +129,12 @@ class SubjectShiftManagement extends React.Component{
     }
 
     render () {
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Profile"), href: "" }];
         return (
             <div>
             <MenuStudLateral />
             <div className="resto-pagina2">
+            <WebCrumbs pages={pages} />
             <h2 className="title_main_menu">{gettext("Subject Shifts")}</h2>
             <hr />
             <Row>
