@@ -1,0 +1,29 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django-countries = "*"
+djangorestframework = "*"
+django-filter = "*"
+django-jet = "*"
+gunicorn = "*"
+pandas = "*"
+numpy = "*"
+coreapi = "*"
+psycopg2-binary = "*"
+requests = "*"
+python-gnupg = "*"
+celery = "*"
+pyprind = "*"
+Django = "*"
+Markdown = "*"
+Pillow = "*"
+PyYAML = "*"
+Faker = "*"
+
+[requires]
+python_version = "3.6"
