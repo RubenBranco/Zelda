@@ -103,6 +103,7 @@ class CourseViewSet(ModelViewSet):
 
             subject['course_subject'] = CourseSubjectSerializer(course_subject).data
             subject['subject'] = RestrictedSubjectSerializer(latest_subject).data
+            subject['subject_spec'] = SubjectSpecificationSerializer(subject_spec).data
 
             final_grade = FinalGrade.objects.filter(student=user, subject__subject_spec=subject_spec).order_by("-grade").first()
 
