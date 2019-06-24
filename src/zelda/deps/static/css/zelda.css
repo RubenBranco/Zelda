@@ -17,8 +17,8 @@ a:hover{
 }
 
 #webcrumbs{
+  width:80%;
   margin-top:1%;
-  margin-left:4%;
   position: fixed;
 }
 
@@ -317,6 +317,7 @@ a:hover{
   text-align: center;
   padding-top: 5%;
   position: relative;
+  margin-top:10%;
 }
 /* --------------------------------------------- MAIN MENU END  ---------------------------------  */
 
@@ -458,7 +459,7 @@ width: 50%;
 }
 
 .resto-pagina2{
-  margin-top: 40px;
+  margin-top: 5%;
   width: 80% !important;
 }
 
@@ -467,7 +468,7 @@ width: 50%;
 }
 
 .menu2{
-  margin-top:30px;
+  margin-top:12%;
   margin-left: 0px;
 }
 
