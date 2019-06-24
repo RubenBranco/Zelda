@@ -15,7 +15,7 @@ class CoursePermission(BaseAppPermission):
 
 class SubjectPermission(BaseAppPermission):
     def has_permission(self, request, view):
-        if view.action in ["list", "shiftless_students"]:
+        if view.action in ["list", "shiftless_students", "batch_grades"]:
             return IsAdminUser().has_permission(request, view) or \
                 isinstance(get_user_from_request(request), Professor)
         return super().has_permission(request, view)
