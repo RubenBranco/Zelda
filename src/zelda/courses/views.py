@@ -319,6 +319,40 @@ class SubjectViewSet(ModelViewSet):
 
         return Response(status=200)
 
+    @action(detail=True, methods=["post"])
+    def batch_grades(self, request, pk=None):
+        """
+        Expects json data in the format of a list containing grades,
+        each grade is a dictionary with the following keys:
+            string: int -> 'student_number': number
+            string: string -> 'eecc': 'a'|'b'|'c'|'d'|'e'
+            string: float -> 'grade': 0.0 <= grade <= 20.0
+        """
+        subject = get_object_or_404(Subject, id=pk)
+        user = get_user_from_request(request)
+
+        if not isinstance(user, Professor) or not Shift.objects.filter(subject=subject, professor=user):
+            raise exceptions.PermissionDenied()
+
+        if request.content_type == "application/json" and request.data:
+            for grade in request.data:
+                student = Student.objects.get(number=grade['student_number'])
+                potential_grade = FinalGrade.objects.get(subject=subject, student=student)
+
+                if potential_grade is not None:
+                    potential_grade.eecc = grade['eecc']
+                    potential_grade.grade = grade['grade']
+                    potential_grade.save()
+                else:
+                    new_grade = FinalGrade(
+                        subject=subject,
+                        student=student,
+                        eecc=grade['eecc'],
+                        grade=grade['grade']
+                    )
+                    new_grade.save()
+
+        return Response(status=200)
 
     def check_current_ects(self, student, course, current_semester):
         course_subjects = CourseSubject.objects.filter(subject__students=student, subject__semester=current_semester)
