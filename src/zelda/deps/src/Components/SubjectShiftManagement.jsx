@@ -10,12 +10,12 @@ import Card from 'react-bootstrap/Card';
 import moment from 'moment';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck, faClock, faExchangeAlt, faDoorClosed, faUserPlus, faShippingFast } from "@fortawesome/free-solid-svg-icons";
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import getCsrfToken from "../functions/csrf.js";
 
 
-class SubjectShiftManagement extends React.Component{
+class SubjectShiftManagement extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
@@ -44,7 +44,7 @@ class SubjectShiftManagement extends React.Component{
         };
     }
 
-    componentDidMount () {
+    componentDidMount() {
         if (!this.state.shifts.length) {
             fetch(`/api/subject/${this.props.subjectId}/shift_report`, {
                 method: 'GET',
@@ -66,11 +66,11 @@ class SubjectShiftManagement extends React.Component{
         return !this.state.shifts.filter(_shift => shift.lesson_spec[0].c_type === _shift.lesson_spec[0].c_type && _shift.enrolled).length;
     }
 
-    checkAvailability (shift) {
+    checkAvailability(shift) {
         return shift.enrolled_students < shift.vacancies;
     }
 
-    handleEnrollShift(shift , e) {
+    handleEnrollShift(shift, e) {
         fetch(`/api/shift/${shift.id}/sign_up`, {
             method: 'GET',
             headers: {
@@ -128,53 +128,53 @@ class SubjectShiftManagement extends React.Component{
         });
     }
 
-    render () {
-        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Profile"), href: "" }];
+    render() {
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Subject Shifts"), href: "" }];
         return (
             <div>
-            <MenuStudLateral />
-            <div className="resto-pagina2">
-            <WebCrumbs pages={pages} />
-            <h2 className="title_main_menu">{gettext("Subject Shifts")}</h2>
-            <hr />
-            <Row>
-                <Col lg="3" md="3" sm="3" xl="3" xs="3">
-                    <ListGroup variant="flush">
-                        {this.state.shifts.map(shift =>
-                            <ListGroup.Item>
-                                {shift.code} {shift.enrolled ? <FontAwesomeIcon icon={faUserCheck} /> : this.canEnroll(shift) ?
-                                    <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
-                                    :
-                                    this.checkAvailability(shift) ?
-                                    shift.under_exchange_review ?
-                                    <FontAwesomeIcon icon={faShippingFast} />
-                                    :
-                                    <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleExchangeShift.bind(this, shift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button> :
-                                    <FontAwesomeIcon icon={faDoorClosed} />
-                                }
-                                <Row>
-                                    <Col lg="3" md="3" sm="3" xl="3" xs="3">
-                                    </Col>
-                                    <Col>
-                                    <ListGroup variant="flush">
-                                        {shift.lesson_spec.map(lesson_spec =>
-                                            <ListGroup.Item>
-                                                <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
+                <MenuStudLateral />
+                <div className="resto-pagina2">
+                    <WebCrumbs pages={pages} />
+                    <h2 className="title_main_menu">{gettext("Subject Shifts")}</h2>
+                    <hr />
+                    <Row>
+                        <Col lg="3" md="3" sm="3" xl="3" xs="3">
+                            <ListGroup variant="flush">
+                                {this.state.shifts.map(shift =>
+                                    <ListGroup.Item>
+                                        {shift.code} {shift.enrolled ? <FontAwesomeIcon icon={faUserCheck} /> : this.canEnroll(shift) ?
+                                            <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleEnrollShift.bind(this, shift)}><FontAwesomeIcon icon={faUserPlus} /></Button>
+                                            :
+                                            this.checkAvailability(shift) ?
+                                                shift.under_exchange_review ?
+                                                    <FontAwesomeIcon icon={faShippingFast} />
+                                                    :
+                                                    <Button variant="outline-dark" data-shift-id={shift.id} onClick={this.handleExchangeShift.bind(this, shift)}><FontAwesomeIcon icon={faExchangeAlt} /></Button> :
+                                                <FontAwesomeIcon icon={faDoorClosed} />
+                                        }
+                                        <Row>
+                                            <Col lg="3" md="3" sm="3" xl="3" xs="3">
+                                            </Col>
+                                            <Col>
+                                                <ListGroup variant="flush">
+                                                    {shift.lesson_spec.map(lesson_spec =>
+                                                        <ListGroup.Item>
+                                                            <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
                                                 {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
-                                            </ListGroup.Item>
-                                        )}
-                                    </ListGroup>
-                                    </Col>
-                                </Row>
-                            </ListGroup.Item>
-                        )}
-                    </ListGroup>
-                </Col>
-                <Col>
+                                                        </ListGroup.Item>
+                                                    )}
+                                                </ListGroup>
+                                            </Col>
+                                        </Row>
+                                    </ListGroup.Item>
+                                )}
+                            </ListGroup>
+                        </Col>
+                        <Col>
 
-                </Col>
-            </Row>
-            </div>
+                        </Col>
+                    </Row>
+                </div>
             </div>
         );
     }

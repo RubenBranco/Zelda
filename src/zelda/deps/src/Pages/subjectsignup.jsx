@@ -7,9 +7,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import Container from 'react-bootstrap/Container';
 import MenuStudLateral from '../Components/Menus/MenuStudLateral.jsx';
 import Table from 'react-bootstrap/Table';
-
+import WebCrumbs from "../Components/WebCrumbs.jsx";
 import getCsrfToken from "../functions/csrf.js";
 import 'react-toastify/dist/ReactToastify.min.css';
+
+
 
 
 
@@ -38,7 +40,7 @@ class SubjectSignup extends React.Component {
         };
     }
 
-    componentDidMount () {
+    componentDidMount() {
         if (!Object.keys(this.state.subjects).length) {
             fetch("/api/course/my_curriculum/", {
                 method: 'GET',
@@ -118,72 +120,79 @@ class SubjectSignup extends React.Component {
 
     render() {
         let courseYearKeys = Object.keys(this.state.courseYearMap).sort();
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Enroll / Unsubscribe in Curricular Units"), href: "" }];
 
         return (
             <div>
+
                 <Navigator />
-                <Container>
-                    <h2>{gettext("Subject Management")}</h2>
-                    <Table responsive="sm" size="sm" striped={true}>
-                        <thead>
-                            <tr>
-                            <th>#</th>
-                            <th>{gettext("Name")}</th>
-                            <th>{gettext("Status")}</th>
-                            <th>{gettext("Course Year")}</th>
-                            <th>{gettext("Carried Out In")}</th>
-                            <th>{gettext("ECTS")}</th>
-                            <th>{gettext("Action")}</th>
-                            <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {!courseYearKeys.length ? null :
-                                courseYearKeys.map(courseYear =>
-                                    this.state.courseYearMap[courseYear].map((subjectId, index) =>
-                                        <tr>
-                                            <td>{index + 1}</td>
-                                            <td>{this.state.subjects[subjectId].course_subject.designation}</td>
-                                            <td>{this.state.subjects[subjectId].is_enrolled.toString() ? gettext("Enrolled"): gettext("Not Enrolled")}</td>
-                                            <td>{this.state.subjects[subjectId].course_subject.course_year}</td>
-                                            <td>{this.state.subjects[subjectId].subject.semester}</td>
-                                            <td>{this.state.subjects[subjectId].subject_spec.ects}</td>
-                                            <td>
-                                                {this.state.subjects[subjectId].is_enrolled ?
+                <MenuStudLateral />
+                <div class="resto-pagina2">
+                    <WebCrumbs pages={pages} />
+
+                    <Container>
+                        <h2 className="title_main_menu">{gettext("Enroll / Unsubscribe in Curricular Units")}</h2>
+                        <Table responsive="sm" size="sm" striped={true}>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{gettext("Name")}</th>
+                                    <th>{gettext("Status")}</th>
+                                    <th>{gettext("Course Year")}</th>
+                                    <th>{gettext("Carried Out In")}</th>
+                                    <th>{gettext("ECTS")}</th>
+                                    <th>{gettext("Action")}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {!courseYearKeys.length ? null :
+                                    courseYearKeys.map(courseYear =>
+                                        this.state.courseYearMap[courseYear].map((subjectId, index) =>
+                                            <tr>
+                                                <td>{index + 1}</td>
+                                                <td>{this.state.subjects[subjectId].course_subject.designation}</td>
+                                                <td>{this.state.subjects[subjectId].is_enrolled.toString() ? gettext("Enrolled") : gettext("Not Enrolled")}</td>
+                                                <td>{this.state.subjects[subjectId].course_subject.course_year}</td>
+                                                <td>{this.state.subjects[subjectId].subject.semester}</td>
+                                                <td>{this.state.subjects[subjectId].subject_spec.ects}</td>
+                                                <td>
+                                                    {this.state.subjects[subjectId].is_enrolled ?
                                                         this.canUnenroll(this.state.subjects[subjectId]) ?
-                                                        <Button onClick={this.enrollOrUnenrollSubject.bind(this, this.state.subjects[subjectId], false)} variant="outline-danger">{gettext("Unenroll")}</Button>
-                                                        :
-                                                        null
+                                                            <Button onClick={this.enrollOrUnenrollSubject.bind(this, this.state.subjects[subjectId], false)} variant="outline-danger">{gettext("Unenroll")}</Button>
+                                                            :
+                                                            null
                                                         :
                                                         this.canEnroll(this.state.subjects[subjectId]) ?
-                                                        <Button onClick={this.enrollOrUnenrollSubject.bind(this, this.state.subjects[subjectId], true)} variant="outline-success">{gettext("Enroll")}</Button>
-                                                        :
-                                                        null
-                                                }
-                                            </td>
-                                            <td>
-                                            <Button href={window.viewSubjectUrl.replace("0", subjectId.toString())} variant="outline-info">{gettext("Subject Info")}</Button>
-                                            </td>
-                                        </tr>
+                                                            <Button onClick={this.enrollOrUnenrollSubject.bind(this, this.state.subjects[subjectId], true)} variant="outline-success">{gettext("Enroll")}</Button>
+                                                            :
+                                                            null
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <Button href={window.viewSubjectUrl.replace("0", subjectId.toString())} variant="outline-info">{gettext("Subject Info")}</Button>
+                                                </td>
+                                            </tr>
+                                        )
                                     )
-                            )
-                            }
+                                }
 
-                        </tbody>
-                    </Table>
-                </Container>
+                            </tbody>
+                        </Table>
+                    </Container>
 
-                <ToastContainer
-                    position="top-right"
-                    autoClose={10000}
-                    hideProgressBar={false}
-                    newestOnTop={true}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnVisibilityChange
-                    draggable
-                    pauseOnHover
-                />
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={10000}
+                        hideProgressBar={false}
+                        newestOnTop={true}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnVisibilityChange
+                        draggable
+                        pauseOnHover
+                    />
+                </div>
             </div>
         );
     }

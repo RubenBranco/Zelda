@@ -15,8 +15,10 @@ class StudentSubjectShiftManagement extends React.Component {
     }
 
     render() {
+        
         return (
             <div>
+
                 <Navigator />
                 <SubjectShiftManagement subjectId={this.subjectId} />
                 <ToastContainer

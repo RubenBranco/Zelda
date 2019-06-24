@@ -74,13 +74,14 @@ class StudentTimeTable extends React.Component {
                 <Navigator />
                 <MenuStudLateral />
                 <div class="resto-pagina2">
-                <WebCrumbs pages={pages} />
-                <Container className="schedule">
-                    <Tab.Container id="list-group-tabs-example" >
-                        <Row>
-                            <Col sm={3}>
+                    <WebCrumbs pages={pages} />
+                    <Container className="schedule">
+                        <h2 className="title_main_menu">{gettext("Personal Schedule")}</h2>
+                        <Tab.Container id="list-group-tabs-example" >
+                            <Row>
+                                <Col sm={3}>
                                     {Object.keys(this.state.selectedSubjects).map(subject =>
-                                        <div >
+                                        <div id="selectsubject_horario">
                                             <input
                                                 type="checkbox"
                                                 name={`${subject}-checkbox`} className="form-check-input"
