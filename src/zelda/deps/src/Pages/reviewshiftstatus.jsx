@@ -91,7 +91,7 @@ class ReviewShiftStatus extends React.Component {
                 <div class="resto-pagina2">
                     <WebCrumbs pages={pages} />
                     <h2 className="title_main_menu">{gettext("Shift Status Review")}</h2>
-                    <Table className="sift-requests-table">
+                    <Table className="shift-requests-table">
                         <thead>
                             <tr>
                                 <th>{gettext("Subject")}</th>

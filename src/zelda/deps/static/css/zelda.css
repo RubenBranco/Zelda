@@ -16,6 +16,10 @@ a:hover{
   color: #ae6857;
 }
 
+p{
+  font-size: 16px;
+}
+
 #webcrumbs{
   width:80%;
   margin-top:1%;
@@ -311,14 +315,16 @@ a:hover{
 
 
 .title_main_menu{
-  font-size: 200%;
+  font-size: 30px;
   color: black;
   font-family: 'Karla', sans-serif;
   font-weight: lighter !important;
   text-align: center;
-  padding-top: 5%;
+  padding-top: 6%;
   position: relative;
-  margin-top:10%;
+  margin-bottom: 4%;
+
+  
 }
 /* --------------------------------------------- MAIN MENU END  ---------------------------------  */
 
@@ -383,6 +389,7 @@ a:hover{
   width: 30%;
  }
 
+
 /* --------------------------------------------- SCHEDULE START ---------------------------------  */
 
 .schedule{
@@ -391,6 +398,17 @@ a:hover{
   height: 50% !important;
 }
 
+
+#selectsubject_horario{
+  background-color:#b77668;
+  text-align: center;
+  color:white;
+}
+
+.fc-button-primary{
+  background-color: #ae6857 !important;
+  border:none !important;
+}
 
 /* --------------------------------------------- SCHEDULE END ---------------------------------  */
 
@@ -590,7 +608,58 @@ a.btn.btn-outline-primary:active{
 .badge-info{
   background-color: #add8e6;
 }
+
+.fc-toolbar h2 {
+  font-size:100% !important;
+}
+
+.fc-view-container *, .fc-view-container *:before, .fc-view-container *:after{
+
+  font-size:12px;
+}
+
+.btn-outline-info{
+  background-color:#b77668 !important;
+  color:white !important;
+  border:none !important;
+}
+
+.table thead th{
+  background-color:rgb(241, 241, 241)!important;
+
+}
+
+.shift-requests-table{
+
+ width: 70%;
+ margin-left: 15%;
+ border:1px solid #dee2e6;
+}
+
 /* --------------------------------------------- UTILS END ------------------------------------------ */
 
 
+/* --------------------------------------------- SUBJECTS INFO STARTT ------------------------------------------ */
+#sub-menu-cadeira{
+  margin-left: -1%;
+
+}
+
+#tit_sub_menu_sub{
+font-size:16px;
+}
+
+#tit_sub_menu{
+  font-size:20px;
+  text-align: center;
+}
  
+#titnomecadeira{
+  margin-top:-5%;
+  font-size:24px;
+  margin-bottom: 1%;
+  margin-left: 40%;
+  font-weight: 100;
+}
+ 
+/* --------------------------------------------- SUBJECTS INFO END ------------------------------------------ */
