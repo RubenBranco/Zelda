@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-18 12:05+0000\n"
-"PO-Revision-Date: 2019-05-18 13:12+0100\n"
+"POT-Creation-Date: 2019-06-24 18:47+0000\n"
+"PO-Revision-Date: 2019-06-24 20:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -18,36 +18,67 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: deps/static/js/frontpage.js:42
-msgid "Search Profile"
-msgstr "Procurar perfil"
-
 #: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:75
-#: deps/static/js/professorgrades.js:50 deps/static/js/studentattendances.js:67
+#: deps/static/js/professorgrades.js:75 deps/static/js/studentattendances.js:67
 msgid "Subjects"
 msgstr "Cadeiras"
 
-#: deps/static/js/frontpage.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:67
+#: deps/static/js/profcheckshiftlessstudents.js:67
+#: deps/static/js/professorgrades.js:67
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+#: deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67 deps/static/js/userprofile.js:67
 msgid "Consult"
 msgstr "Consultar"
 
-#: deps/static/js/frontpage.js:42 deps/static/js/subjectinfo.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/subjectinfo.js:67
 msgid "Attendance"
 msgstr "Presenças"
 
-#: deps/static/js/frontpage.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67
 msgid "Curriculum"
 msgstr "Currículo"
 
-#: deps/static/js/frontpage.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67
 msgid "Grades"
 msgstr "Notas"
 
-#: deps/static/js/frontpage.js:42 deps/static/js/userprofile.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:67
+#: deps/static/js/profcheckshiftlessstudents.js:67
+#: deps/static/js/professorgrades.js:67
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+#: deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67 deps/static/js/userprofile.js:67
 msgid "Profile"
 msgstr "Perfil"
 
-#: deps/static/js/frontpage.js:42 deps/static/js/subjectinfo.js:42
+#: deps/static/js/frontpage.js:42 deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67
 msgid "Schedule"
 msgstr "Horário"
 
@@ -56,68 +87,107 @@ msgid "Personal"
 msgstr "Pessoal"
 
 #: deps/static/js/frontpage.js:42
-msgid "By Subjects"
-msgstr "Por cadeira"
-
-#: deps/static/js/frontpage.js:42 deps/static/js/studentattendances.js:67
 msgid "Enroll / Unsubscribe in Curricular Units"
 msgstr "Inscrever / Desinscrever de Unidades Currículares"
 
-#: deps/static/js/frontpage.js:42 deps/static/js/studentattendances.js:67
+#: deps/static/js/frontpage.js:42
 msgid "Enroll / Unsubscribe in Shifts"
 msgstr "Inscrever / Desinscrever de turnos"
 
 #: deps/static/js/frontpage.js:42
 #: deps/static/js/profcheckshiftlessstudents.js:75
-#: deps/static/js/studentattendances.js:67 deps/static/js/studentgrades.js:42
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+#: deps/static/js/studentattendances.js:67 deps/static/js/studentgrades.js:67
 msgid "Subject"
 msgstr "Cadeira"
 
 #: deps/static/js/frontpage.js:42
+msgid "Shift Statuses"
+msgstr "Estado do turno"
+
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:67
+#: deps/static/js/profcheckshiftlessstudents.js:67
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/professorgrades.js:67
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67 deps/static/js/userprofile.js:67
+msgid "Shiftless Students"
+msgstr "Todos os alunos sem turno"
+
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:67
+#: deps/static/js/profcheckshiftlessstudents.js:67
+#: deps/static/js/professorgrades.js:67
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67 deps/static/js/userprofile.js:67
 msgid "Requests"
 msgstr "Pedidos"
 
-#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:75
+#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:67
+#: deps/static/js/profcheckshiftlessstudents.js:67
+#: deps/static/js/professorgrades.js:67
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67 deps/static/js/userprofile.js:67
+msgid "Shift Exchange Requests"
+msgstr "Pedido de troca de turno"
+
+#: deps/static/js/frontpage.js:42
 msgid "Room Change"
 msgstr "Mudança de sala"
 
-#: deps/static/js/frontpage.js:42 deps/static/js/profattendances.js:75
+#: deps/static/js/frontpage.js:42
 msgid "Room Reservation"
 msgstr "Reserva de sala"
 
-#: deps/static/js/login.js:12
+#: deps/static/js/login.js:1
 msgid "Invalid credentials."
 msgstr "Credenciais inválidas."
 
-#: deps/static/js/login.js:12
+#: deps/static/js/login.js:1
 msgid "Unable to connect. Try again later."
 msgstr "Não foi possível estabelecer ligação. Tente novamente mais tarde."
 
-#: deps/static/js/login.js:12
+#: deps/static/js/login.js:1
 msgid "Enter email"
 msgstr "Introduza o seu email"
 
-#: deps/static/js/login.js:12
+#: deps/static/js/login.js:1
 msgid "Password"
 msgstr "Password"
 
-#: deps/static/js/login.js:12
+#: deps/static/js/login.js:1
 msgid "Login"
 msgstr "Entrar"
 
+#: deps/static/js/profattendances.js:67
+#: deps/static/js/profcheckshiftlessstudents.js:67
+#: deps/static/js/professorgrades.js:67
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+#: deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67 deps/static/js/userprofile.js:67
+msgid "Attendances"
+msgstr "Presenças"
+
 #: deps/static/js/profattendances.js:75
 msgid " All Students Attendances"
-msgstr "Todas as presenças de alunos"
+msgstr " Todas as presenças de alunos"
 
 #: deps/static/js/profattendances.js:75
 #: deps/static/js/profcheckshiftlessstudents.js:75
-#: deps/static/js/professorgrades.js:50
+#: deps/static/js/professorgrades.js:75
+#: deps/static/js/reviewshiftexchangerequests.js:67
 msgid "Student Number"
 msgstr "Número de Aluno"
 
 #: deps/static/js/profattendances.js:75
 #: deps/static/js/profcheckshiftlessstudents.js:75
-#: deps/static/js/professorgrades.js:50
+#: deps/static/js/professorgrades.js:75
+#: deps/static/js/reviewshiftexchangerequests.js:67
 msgid "Student Name"
 msgstr "Nome de Aluno"
 
@@ -127,19 +197,17 @@ msgstr "Presenças Totais"
 
 #: deps/static/js/profattendances.js:75
 #: deps/static/js/profcheckshiftlessstudents.js:75
-#: deps/static/js/professorgrades.js:50
+#: deps/static/js/professorgrades.js:75
 msgid "Student Email"
 msgstr "E-mail de Aluno"
 
 #: deps/static/js/profattendances.js:75
 msgid "All Student Number: "
-msgstr "Todos os números de Alunos:"
+msgstr "Todos os números de Alunos: "
 
 #: deps/static/js/profattendances.js:75
-#, fuzzy
-#| msgid "Export Student Number "
 msgid "Export Student Number: "
-msgstr "Exportar número de Aluno"
+msgstr "Exportar número de Aluno: "
 
 #: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:67
 msgid "Class Type"
@@ -155,8 +223,8 @@ msgstr "+ Mais Detalhes"
 
 #: deps/static/js/profattendances.js:75
 #: deps/static/js/profcheckshiftlessstudents.js:75
-#: deps/static/js/professorgrades.js:50 deps/static/js/studentattendances.js:67
-#: deps/static/js/studentgrades.js:42
+#: deps/static/js/professorgrades.js:75 deps/static/js/studentattendances.js:67
+#: deps/static/js/studentgrades.js:67
 msgid "No Results Found"
 msgstr "Nenhum resultado encontrado"
 
@@ -164,11 +232,11 @@ msgstr "Nenhum resultado encontrado"
 msgid "Consult Students Attendances"
 msgstr "Consultar Presenças de Alunos"
 
-#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:50
+#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:75
 msgid "First Name"
 msgstr "Primeiro Nome"
 
-#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:50
+#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:75
 msgid "Last Name"
 msgstr "Apelido"
 
@@ -180,26 +248,30 @@ msgstr "Aula"
 msgid "Start Date"
 msgstr "Data de começo"
 
-#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:50
+#: deps/static/js/profattendances.js:75 deps/static/js/professorgrades.js:75
 #: deps/static/js/studentattendances.js:67
 msgid "Search"
 msgstr "Procurar perfil"
 
-#: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:67
-msgid "Cadeiras"
-msgstr ""
+#: deps/static/js/profattendances.js:75
+#: deps/static/js/profcheckshiftlessstudents.js:75
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+#: deps/static/js/studentattendances.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:138 deps/static/js/subjectinfo.js:67
+#: deps/static/js/userprofile.js:67
+msgid "Home"
+msgstr "Início"
 
-#: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:67
-msgid "Presenças"
-msgstr ""
-
-#: deps/static/js/profattendances.js:75 deps/static/js/studentattendances.js:67
-msgid "Perfil"
-msgstr ""
+#: deps/static/js/profattendances.js:75
+msgid "Consult Attendance"
+msgstr "Consultar Presenças"
 
 #: deps/static/js/profcheckshiftlessstudents.js:75
 msgid "All Shiftless Students of "
-msgstr "Todos alunos sem turno"
+msgstr "Todos alunos sem turno "
 
 #: deps/static/js/profcheckshiftlessstudents.js:75
 msgid "Export Shiftless Students Data"
@@ -230,143 +302,315 @@ msgid "+ Info"
 msgstr "+ Informação"
 
 #: deps/static/js/profcheckshiftlessstudents.js:75
-msgid "Action"
-msgstr "Ação"
-
-#: deps/static/js/profcheckshiftlessstudents.js:75
-msgid "+ Add Student to Subject"
-msgstr "+ Inscrever estudante na cadeira"
-
-#: deps/static/js/profcheckshiftlessstudents.js:75
-#: deps/static/js/studentgrades.js:42
-#, fuzzy
-#| msgid "Search Profile"
+#: deps/static/js/studentgrades.js:67
 msgid "Search "
-msgstr "Procurar perfil"
+msgstr "Procurar "
 
-#: deps/static/js/professorgrades.js:50
+#: deps/static/js/professorgrades.js:75
 msgid "Actions"
 msgstr "Ações"
 
-#: deps/static/js/professorgrades.js:50
+#: deps/static/js/professorgrades.js:75
 msgid "+ Evaluation Details"
 msgstr "+ Detalhes de Avaliação"
 
-#: deps/static/js/professorgrades.js:50 deps/static/js/studentgrades.js:42
-#: deps/static/js/subjectinfo.js:42
+#: deps/static/js/professorgrades.js:75 deps/static/js/studentgrades.js:67
+#: deps/static/js/subjectinfo.js:67
 msgid "Evaluation"
 msgstr "Avaliação"
 
-#: deps/static/js/professorgrades.js:50 deps/static/js/studentgrades.js:42
+#: deps/static/js/professorgrades.js:75 deps/static/js/studentcurriculum.js:67
+#: deps/static/js/studentgrades.js:67
 msgid "Grade"
 msgstr "Nota"
 
-#: deps/static/js/professorgrades.js:50 deps/static/js/studentgrades.js:42
+#: deps/static/js/professorgrades.js:75 deps/static/js/studentgrades.js:67
 msgid "Percentage"
 msgstr "Percentagem"
 
-#: deps/static/js/professorgrades.js:50
+#: deps/static/js/professorgrades.js:75
 msgid "Consult Student Grades"
 msgstr "Consultar Notas de Alunos"
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+msgid "accepted"
+msgstr "aceite"
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+msgid "denied"
+msgstr "negado"
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67 deps/static/js/subjectsignup.js:67
+msgid "Successfully "
+msgstr "Com sucesso "
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/subjectsignup.js:67
+msgid "Something went wrong with your request. Try again later."
+msgstr "Aconteceu algo de errado com o seu pedido. Tente novamente mais tarde."
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Shift"
+msgstr "Turno"
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+msgid "Shift Capacity"
+msgstr "Capacidade do turno"
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Options"
+msgstr "Opções"
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+msgid "Accept"
+msgstr "Aceitar"
+
+#: deps/static/js/reviewshiftexchangerequests.js:67
+msgid "Deny"
+msgstr "Negar"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "opened"
+msgstr "aberto"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "closed"
+msgstr "fechado"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Shift Status Review"
+msgstr "Revisão do Estado do Turno"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Enrolled Students"
+msgstr "Alunos Inscritos"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Total Vacancies"
+msgstr "Férias Totais"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "State"
+msgstr "Estado"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Open"
+msgstr "Abrir"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Closed"
+msgstr "Fechado"
+
+#: deps/static/js/reviewshiftstatus.js:67
+msgid "Close"
+msgstr "Fechar"
+
+#: deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67
+msgid "Management"
+msgstr "Gestão"
+
+#: deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67
+msgid "Curricular Units"
+msgstr "Unidades Curriculares"
+
+#: deps/static/js/studentattendances.js:67
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/studentgrades.js:67
+#: deps/static/js/studentshiftmanagement.js:67
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+#: deps/static/js/studenttimetable.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67
+msgid "Shifts"
+msgstr "Turnos"
 
 #: deps/static/js/studentattendances.js:67
 msgid "Consult Attendances"
 msgstr "Consultar Presenças"
 
-#: deps/static/js/studentattendances.js:67
-#, fuzzy
-#| msgid "Consult"
-msgid "Consultar"
-msgstr "Consultar"
+#: deps/static/js/studentcurriculum.js:67
+msgid "Your Curriculum"
+msgstr "O Meu Currículo"
 
-#: deps/static/js/studentattendances.js:67
-#, fuzzy
-#| msgid "Curriculum"
-msgid "Currículo"
-msgstr "Currículo"
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/subjectsignup.js:67
+msgid "Course Year"
+msgstr "Ano do Curso"
 
-#: deps/static/js/studentattendances.js:67
-msgid "Notas"
-msgstr ""
-
-#: deps/static/js/studentattendances.js:67
-msgid "Horário"
-msgstr ""
-
-#: deps/static/js/studentattendances.js:67
-msgid "Pessoal"
-msgstr ""
-
-#: deps/static/js/studentattendances.js:67
-msgid "Por Cadeira"
-msgstr ""
-
-#: deps/static/js/studentgrades.js:42
-msgid "Consultar Notas"
-msgstr ""
-
-#: deps/static/js/studenttimetable.js:12
-msgid "classes"
-msgstr ""
-
-#: deps/static/js/studenttimetable.js:12
-msgid "transform"
-msgstr ""
-
-#: deps/static/js/studenttimetable.js:12
-msgid "mask"
-msgstr ""
-
-#: deps/static/js/subjectinfo.js:42
-msgid "Objectives"
-msgstr "Objetivos"
-
-#: deps/static/js/subjectinfo.js:42
-msgid "Program"
-msgstr "Programa"
-
-#: deps/static/js/subjectinfo.js:42
-msgid "Bibliography"
-msgstr "Bibliografia"
-
-#: deps/static/js/subjectinfo.js:42
-msgid "Details"
-msgstr "Detalhes"
-
-#: deps/static/js/subjectinfo.js:42
-msgid "Teachers"
-msgstr "Docentes"
-
-#: deps/static/js/subjectinfo.js:42
-msgid "ECTS"
-msgstr "ECTS"
-
-#: deps/static/js/subjectinfo.js:42
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/subjectinfo.js:67
 msgid "Code"
 msgstr "Código"
 
-#: deps/static/js/userprofile.js:42
-msgid "Your Name"
+#: deps/static/js/studentcurriculum.js:67
+msgid "Designation"
+msgstr "Designação"
+
+#: deps/static/js/studentcurriculum.js:67 deps/static/js/subjectinfo.js:67
+#: deps/static/js/subjectsignup.js:67
+msgid "ECTS"
+msgstr "ECTS"
+
+#: deps/static/js/studentcurriculum.js:67
+msgid "EECC"
+msgstr "EECC"
+
+#: deps/static/js/studentshiftmanagement.js:67
+msgid "Shift Management"
+msgstr "Gestão de Turnos"
+
+#: deps/static/js/studentshiftmanagement.js:67
+msgid "Year"
+msgstr "Ano"
+
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+msgid "Successfully enrolled in "
+msgstr "Inscrito com sucesso em "
+
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+msgid "Successfully requested enrollment in "
+msgstr "Pedido de incrição efetuado com sucesso "
+
+#: deps/static/js/studentsubjectshiftmanagement.js:67
+msgid "Subject Shifts"
+msgstr "Turnos da Cadeira"
+
+#: deps/static/js/studenttimetable.js:12
+msgid "classes"
+msgstr "turmas"
+
+#: deps/static/js/studenttimetable.js:12
+msgid "transform"
+msgstr "transformar"
+
+#: deps/static/js/studenttimetable.js:12
+msgid "mask"
+msgstr "máscara"
+
+#: deps/static/js/studenttimetable.js:138
+msgid "Personal Schedule"
+msgstr "Horário Pessoal"
+
+#: deps/static/js/subjectinfo.js:67
+msgid "Objectives"
+msgstr "Objetivos"
+
+#: deps/static/js/subjectinfo.js:67
+msgid "Program"
+msgstr "Programa"
+
+#: deps/static/js/subjectinfo.js:67
+msgid "Bibliography"
+msgstr "Bibliografia"
+
+#: deps/static/js/subjectinfo.js:67
+msgid "Details"
+msgstr "Detalhes"
+
+#: deps/static/js/subjectinfo.js:67
+msgid "Teachers"
+msgstr "Docentes"
+
+#: deps/static/js/subjectinfo.js:67
+msgid "Subject Information"
+msgstr "Informação da Cadeira"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Enrolled in"
+msgstr "Inscrito em"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Unenrolled from"
+msgstr "Desinscrito de"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Subject Management"
+msgstr "Gestão de Cadeiras"
+
+#: deps/static/js/subjectsignup.js:67 deps/static/js/userprofile.js:67
+msgid "Name"
 msgstr "Nome"
 
-#: deps/static/js/userprofile.js:42
+#: deps/static/js/subjectsignup.js:67
+msgid "Status"
+msgstr "Estado"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Carried Out In"
+msgstr "Realizado em"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Action"
+msgstr "Ação"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Enrolled"
+msgstr "Inscrito"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Not Enrolled"
+msgstr "Não Inscrito"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Unenroll"
+msgstr "Desinscrever"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Enroll"
+msgstr "Inscrever"
+
+#: deps/static/js/subjectsignup.js:67
+msgid "Subject Info"
+msgstr "Informação da Cadeira"
+
+#: deps/static/js/userprofile.js:67
+msgid "Personal Data"
+msgstr "Dados Pessoais"
+
+#: deps/static/js/userprofile.js:67
 msgid "Institutional Email"
 msgstr "E-mail Institucional"
 
-#: deps/static/js/userprofile.js:42
+#: deps/static/js/userprofile.js:67
 msgid "Gender"
 msgstr "Género"
 
-#: deps/static/js/userprofile.js:42
+#: deps/static/js/userprofile.js:67
 msgid "Country"
 msgstr "País"
 
-#: deps/static/js/userprofile.js:42
-msgid "Home"
-msgstr "Início"
+#~ msgid "Search Profile"
+#~ msgstr "Procurar perfil"
+
+#~ msgid "By Subjects"
+#~ msgstr "Por cadeira"
+
+#~ msgid "+ Add Student to Subject"
+#~ msgstr "+ Inscrever estudante na cadeira"
+
+#, fuzzy
+#~| msgid "Consult"
+#~ msgid "Consultar"
+#~ msgstr "Consultar"
+
+#, fuzzy
+#~| msgid "Curriculum"
+#~ msgid "Currículo"
+#~ msgstr "Currículo"
+
+#~ msgid "Your Name"
+#~ msgstr "Nome"
 
 #~ msgid "button"
 #~ msgstr "Butão"
-
-#~ msgid "Courses"
-#~ msgstr "Cursos"
