@@ -12,7 +12,7 @@ class StudentShiftManagement extends React.Component {
     }
 
     render() {
-        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Shift Management"), href: "" }];
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Enroll / Unsubscribe in Shifts"), href: "" }];
         return (
 
             <div>

@@ -20,6 +20,7 @@ a:hover{
   width:80%;
   margin-top:1%;
   position: fixed;
+  z-index: 10;
 }
 
 #test-table-xls-button{
@@ -551,6 +552,18 @@ a.btn.btn-outline-primary:active{
     visibility: hidden;
     width: 0%;
     margin: auto;
+  }
+
+  #webcrumbs{
+    margin-left: -10%;
+    width: 100%;
+    margin-top:6%;
+    position: fixed;
+    z-index: 10;
+  }
+
+  .title_main_menu{
+    margin-top: 25% !important;
   }
   
   .resto-pagina, .resto-pagina2{
