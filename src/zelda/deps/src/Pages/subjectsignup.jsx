@@ -132,7 +132,7 @@ class SubjectSignup extends React.Component {
 
                     <Container>
                         <h2 className="title_main_menu">{gettext("Enroll / Unsubscribe in Curricular Units")}</h2>
-                        <Table responsive="sm" size="sm" striped={true}>
+                        <Table className="shift-requests-table" responsive="sm" size="sm" striped={true}>
                             <thead>
                                 <tr>
                                     <th>#</th>
