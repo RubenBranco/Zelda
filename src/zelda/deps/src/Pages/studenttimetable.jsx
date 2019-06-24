@@ -69,7 +69,6 @@ class StudentTimeTable extends React.Component {
 
     render() {
         const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Personal Schedule"), href: "" }];
-        console.log(pages);
         return (
             <div>
                 <Navigator />

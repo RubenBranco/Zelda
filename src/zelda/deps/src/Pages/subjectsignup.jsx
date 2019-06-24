@@ -66,15 +66,12 @@ class SubjectSignup extends React.Component {
                         maxEctsPerSemester: data.max_ects_per_semester,
                         currentSemester: data.current_semester,
                     });
-                    console.log(this.state);
                 });
             });
         }
     }
 
     canUnenroll(subject) {
-        console.log("1111111111111");
-        console.log(subject);
         return subject.subject.semester === "2" || this.state.currentSemester !== "2";
     }
 
@@ -142,8 +139,8 @@ class SubjectSignup extends React.Component {
                         </thead>
                         <tbody>
                             {!courseYearKeys.length ? null :
-                                courseYearKeys.map(courseYear => 
-                                    this.state.courseYearMap[courseYear].map((subjectId, index) => 
+                                courseYearKeys.map(courseYear =>
+                                    this.state.courseYearMap[courseYear].map((subjectId, index) =>
                                         <tr>
                                             <td>{index + 1}</td>
                                             <td>{this.state.subjects[subjectId].course_subject.designation}</td>
@@ -171,11 +168,11 @@ class SubjectSignup extends React.Component {
                                     )
                             )
                             }
-                            
+
                         </tbody>
                     </Table>
                 </Container>
-                
+
                 <ToastContainer
                     position="top-right"
                     autoClose={10000}
