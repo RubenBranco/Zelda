@@ -111,6 +111,11 @@ urlpatterns = [
         name='student_shift_management',
     ),
     path(
+        'student/curriculum',
+        course_views.StudentCurriculumView.as_view(),
+        name='student_curriculum',
+    ),
+    path(
         'student/subject_shift_management/<subject_id>/',
         timetable_views.StudentSubjectShiftManagementView.as_view(),
         name='student_subject_shift_management',
