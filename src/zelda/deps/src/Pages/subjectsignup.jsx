@@ -123,7 +123,7 @@ class SubjectSignup extends React.Component {
             <div>
                 <Navigator />
                 <Container>
-                    <h2>Subject Management</h2>
+                    <h2>{gettext("Subject Management")}</h2>
                     <Table responsive="sm" size="sm" striped={true}>
                         <thead>
                             <tr>
@@ -144,7 +144,7 @@ class SubjectSignup extends React.Component {
                                         <tr>
                                             <td>{index + 1}</td>
                                             <td>{this.state.subjects[subjectId].course_subject.designation}</td>
-                                            <td>{this.state.subjects[subjectId].is_enrolled.toString() ? "Enrolled": "Not Enrolled"}</td>
+                                            <td>{this.state.subjects[subjectId].is_enrolled.toString() ? gettext("Enrolled"): gettext("Not Enrolled")}</td>
                                             <td>{this.state.subjects[subjectId].course_subject.course_year}</td>
                                             <td>{this.state.subjects[subjectId].subject.semester}</td>
                                             <td>{this.state.subjects[subjectId].subject_spec.ects}</td>
