@@ -21,9 +21,10 @@ p{
 }
 
 #webcrumbs{
-  width:80%;
+  margin-left: 0%;
+  display: block;
+  width:100%;
   margin-top:1%;
-  position: fixed;
   z-index: 10;
 }
 
@@ -99,6 +100,7 @@ p{
 .table-responsive{
   overflow-x: visible;
 }
+
 
 @media only screen and (max-width: 810px) {
   /* For mobile phones: */
@@ -440,11 +442,6 @@ width: 50%;
   #rowProfile{
     margin-left: -60px !important;
   }
-
-
-
-
-
     }
 /* --------------------------------------------- profile END ---------------------------------  */
 
@@ -598,6 +595,17 @@ a.btn.btn-outline-primary:active{
 
     }
 
+    @media only screen and (max-width: 414px){
+      #webcrumbs{
+        margin-top: 22px;
+      }
+    }
+
+    @media only screen and (max-width: 415px) and (min-width:413px){
+      #webcrumbs{
+        margin-top: 20px;
+      }
+    }
 
 /* --------------------------------------------- UTILS START ------------------------------------------ */
 .titulosCentrados{
