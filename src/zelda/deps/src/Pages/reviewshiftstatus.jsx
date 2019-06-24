@@ -6,7 +6,8 @@ import Badge from 'react-bootstrap/Badge'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
-
+import WebCrumbs from "../Components/WebCrumbs.jsx";
+import MenuProfLateral from "../Components/Menus/MenuProfLateral.jsx";
 import 'react-toastify/dist/ReactToastify.min.css';
 import getCsrfToken from "../functions/csrf.js";
 
@@ -28,7 +29,7 @@ class ReviewShiftStatus extends React.Component {
         };
     }
 
-    componentDidMount () {
+    componentDidMount() {
         if (!this.state.shifts.length) {
             fetch('/api/shift/lectured_shifts/', {
                 method: 'GET',
@@ -81,64 +82,71 @@ class ReviewShiftStatus extends React.Component {
 
 
     render() {
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Shift Status Review"), href: "" }];
+
         return (
             <div>
                 <Navbar />
-                <Table className="sift-requests-table">
-                    <thead>
-                        <tr>
-                            <th>{gettext("Subject")}</th>
-                            <th>{gettext("Shift")}</th>
-                            <th>{gettext("Enrolled Students")}</th>
-                            <th>{gettext("Total Vacancies")}</th>
-                            <th>{gettext("State")}</th>
-                            <th>{gettext("Options")}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.shifts.map(shift =>
+                <MenuProfLateral />
+                <div class="resto-pagina2">
+                    <WebCrumbs pages={pages} />
+                    <h2 className="title_main_menu">{gettext("Shift Status Review")}</h2>
+                    <Table className="sift-requests-table">
+                        <thead>
                             <tr>
-                                <td>{shift.subject_name}</td>
-                                <td>{shift.code}</td>
-                                <td>{shift.enrolled_students}</td>
-                                <td>{shift.vacancies}</td>
-                                <td>
-                                {shift.is_open ?
-                                    <Badge pill variant="info">
-                                        {gettext("Open")}
-                                    </Badge>
-                                    :
-                                    <Badge pill variant="danger">
-                                        {gettext("Closed")}
-                                    </Badge>
-                                }
-                                </td>
-                                <td>
-                                    {shift.is_open ?
-                                        <Button variant="outline-danger" onClick={this.handleShiftStateChange.bind(this, shift, false)}>
-                                            {gettext("Close")}
-                                        </Button>
-                                        :
-                                        <Button variant="outline-success" onClick={this.handleShiftStateChange.bind(this, shift, true)}>
-                                            {gettext("Open")}
-                                        </Button>
-                                    }
-                                </td>
+                                <th>{gettext("Subject")}</th>
+                                <th>{gettext("Shift")}</th>
+                                <th>{gettext("Enrolled Students")}</th>
+                                <th>{gettext("Total Vacancies")}</th>
+                                <th>{gettext("State")}</th>
+                                <th>{gettext("Options")}</th>
                             </tr>
-                        )}
-                    </tbody>
-                </Table>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={10000}
-                    hideProgressBar={false}
-                    newestOnTop={true}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnVisibilityChange
-                    draggable
-                    pauseOnHover
-                />
+                        </thead>
+                        <tbody>
+                            {this.state.shifts.map(shift =>
+                                <tr>
+                                    <td>{shift.subject_name}</td>
+                                    <td>{shift.code}</td>
+                                    <td>{shift.enrolled_students}</td>
+                                    <td>{shift.vacancies}</td>
+                                    <td>
+                                        {shift.is_open ?
+                                            <Badge pill variant="info">
+                                                {gettext("Open")}
+                                            </Badge>
+                                            :
+                                            <Badge pill variant="danger">
+                                                {gettext("Closed")}
+                                            </Badge>
+                                        }
+                                    </td>
+                                    <td>
+                                        {shift.is_open ?
+                                            <Button variant="outline-danger" onClick={this.handleShiftStateChange.bind(this, shift, false)}>
+                                                {gettext("Close")}
+                                            </Button>
+                                            :
+                                            <Button variant="outline-success" onClick={this.handleShiftStateChange.bind(this, shift, true)}>
+                                                {gettext("Open")}
+                                            </Button>
+                                        }
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </Table>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={10000}
+                        hideProgressBar={false}
+                        newestOnTop={true}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnVisibilityChange
+                        draggable
+                        pauseOnHover
+                    />
+                </div>
             </div>
         );
     }

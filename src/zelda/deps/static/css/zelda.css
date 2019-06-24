@@ -573,6 +573,10 @@ a.btn.btn-outline-primary:active{
   text-align: center;
 }
 
+
+.badge-info{
+  background-color: #add8e6;
+}
 /* --------------------------------------------- UTILS END ------------------------------------------ */
 
 

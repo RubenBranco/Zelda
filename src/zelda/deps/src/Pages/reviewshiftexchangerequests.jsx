@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import getCsrfToken from "../functions/csrf.js";
 
 
-class ReviewExchangeRequests extends React.Component{
+class ReviewExchangeRequests extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -79,53 +79,53 @@ class ReviewExchangeRequests extends React.Component{
         });
     }
 
-    render () {
+    render() {
         const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Shift Exchange Requests"), href: "" }];
 
-      return (
-          <div>
+        return (
+            <div>
                 <Navigator />
                 <MenuProfLateral />
                 <div class="resto-pagina2">
-                <WebCrumbs pages={pages} />
-                <h2 className="title_main_menu">{gettext("Shift Exchange Requests")}</h2>
-                <Table className="sift-requests-table">
-                    <thead>
-                        <tr>
-                            <th className="th-subject">{gettext("Subject")}</th>
-                            <th className="th-shift">{gettext("Shift")}</th>
-                            <th className="th-capacity">{gettext("Shift Capacity")}</th>
-                            <th className="th-name">{gettext("Student Name")}</th>
-                            <th className="th-number">{gettext("Student Number")}</th>
-                            <th className="th-options">{gettext("Options")}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.requests.map(request =>
+                    <WebCrumbs pages={pages} />
+                    <h2 className="title_main_menu">{gettext("Shift Exchange Requests")}</h2>
+                    <Table className="sift-requests-table">
+                        <thead>
                             <tr>
-                                <td>{request.subject_name}</td>
-                                <td>{request.shift.code}</td>
-                                <td>{request.capacity}</td>
-                                <td>{request.user.first_name} {request.user.last_name}</td>
-                                <td>{request.student.number}</td>
-                                <td>
-                                    <ButtonToolbar>
-                                        <ButtonGroup className="mr-2">
-                                            <Button variant="outline-success" onClick={this.handleRequestAction.bind(this, request, true)}>
-                                                {gettext("Accept")}
-                                            </Button>
-                                        </ButtonGroup>
-                                        <ButtonGroup>
-                                            <Button variant="outline-danger" onClick={this.handleRequestAction.bind(this, request, false)}>
-                                                {gettext("Deny")}
-                                            </Button>
-                                        </ButtonGroup>
-                                    </ButtonToolbar>
-                                </td>
+                                <th className="th-subject">{gettext("Subject")}</th>
+                                <th className="th-shift">{gettext("Shift")}</th>
+                                <th className="th-capacity">{gettext("Shift Capacity")}</th>
+                                <th className="th-name">{gettext("Student Name")}</th>
+                                <th className="th-number">{gettext("Student Number")}</th>
+                                <th className="th-options">{gettext("Options")}</th>
                             </tr>
-                        )}
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                            {this.state.requests.map(request =>
+                                <tr>
+                                    <td>{request.subject_name}</td>
+                                    <td>{request.shift.code}</td>
+                                    <td>{request.capacity}</td>
+                                    <td>{request.user.first_name} {request.user.last_name}</td>
+                                    <td>{request.student.number}</td>
+                                    <td>
+                                        <ButtonToolbar>
+                                            <ButtonGroup className="mr-2">
+                                                <Button variant="outline-success" onClick={this.handleRequestAction.bind(this, request, true)}>
+                                                    {gettext("Accept")}
+                                                </Button>
+                                            </ButtonGroup>
+                                            <ButtonGroup>
+                                                <Button variant="outline-danger" onClick={this.handleRequestAction.bind(this, request, false)}>
+                                                    {gettext("Deny")}
+                                                </Button>
+                                            </ButtonGroup>
+                                        </ButtonToolbar>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </Table>
                 </div>
                 <ToastContainer
                     position="top-right"
@@ -138,8 +138,8 @@ class ReviewExchangeRequests extends React.Component{
                     draggable
                     pauseOnHover
                 />
-          </div>
-      );
+            </div>
+        );
     }
 }
 
