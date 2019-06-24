@@ -18,6 +18,7 @@ class ViewCurricularUnitData extends React.Component {
             programme: null,
             evaluation: null,
             bibliography: null,
+            designation: null,
             ects: null,
             code: null,
             schedule: [],
@@ -39,7 +40,8 @@ class ViewCurricularUnitData extends React.Component {
             }).then(response => {
                 response.json().then(data => {
                     this.setState({
-                        subjectSpecId: data.subject_spec
+                        subjectSpecId: data.subject_spec,
+                        designation: data.designations,
                     });
                     this.fetchSubjectInfo();
                     this.getProfessors();
@@ -87,7 +89,7 @@ class ViewCurricularUnitData extends React.Component {
     render() {
         return (
             <div>
-                <h2 id="titnomecadeira"> nomedaCadeira </h2>
+                <h2 id="titnomecadeira"> {this.state.designation} </h2>
                 <Container id="sub-menu-cadeira">
                     <Tab.Container defaultActiveKey="objectives">
                         <Row>
