@@ -41,6 +41,10 @@ class SubjectSignUpView(AbstractStudentAppView):
     pass
 
 
+class StudentCurriculumView(AbstractStudentAppView):
+    pass
+
+
 class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
