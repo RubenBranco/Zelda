@@ -89,7 +89,7 @@ class ReviewExchangeRequests extends React.Component {
                 <div class="resto-pagina2">
                     <WebCrumbs pages={pages} />
                     <h2 className="title_main_menu">{gettext("Shift Exchange Requests")}</h2>
-                    <Table className="sift-requests-table">
+                    <Table className="shift-requests-table">
                         <thead>
                             <tr>
                                 <th className="th-subject">{gettext("Subject")}</th>

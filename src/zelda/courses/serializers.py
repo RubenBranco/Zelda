@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from .models import Course, CourseSpecification, CourseSubject, Subject, SubjectSpecification, Grade, FinalGrade
 
@@ -22,9 +22,14 @@ class CourseSubjectSerializer(ModelSerializer):
 
 
 class SubjectSerializer(ModelSerializer):
+    designations = SerializerMethodField()
+
     class Meta:
         model = Subject
         fields = "__all__"
+
+    def get_designations(self, subject):
+        return " / ".join(map(lambda cs: cs.designation, CourseSubject.objects.filter(subject=subject)))
 
 
 class RestrictedSubjectSerializer(SubjectSerializer):
