@@ -76,19 +76,10 @@ class StudentTimeTable extends React.Component {
                 <MenuStudLateral />
                 <div class="resto-pagina2">
                 <WebCrumbs pages={pages} />
-<<<<<<< HEAD
                 <Container className="schedule">
                     <Tab.Container id="list-group-tabs-example" >
                         <Row>
                             <Col sm={3}>
-=======
-                <div className="resto-pagina">
-                    <Container className="schedule">
-                        <Tab.Container id="list-group-tabs-example" >
-                            <Row >
-                                <Col sm={1}> </Col>
-                                <Col sm={1}>
->>>>>>> 9f73be4921b888a9732458bb39aa862a949cfb59
                                     {Object.keys(this.state.selectedSubjects).map(subject =>
                                         <div >
                                             <input
