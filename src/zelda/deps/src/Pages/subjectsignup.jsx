@@ -12,9 +12,6 @@ import getCsrfToken from "../functions/csrf.js";
 import 'react-toastify/dist/ReactToastify.min.css';
 
 
-
-
-
 class SubjectSignup extends React.Component {
     constructor() {
         super();
