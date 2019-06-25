@@ -339,9 +339,9 @@ class SubjectViewSet(ModelViewSet):
             raise exceptions.PermissionDenied()
 
         if request.content_type == "application/json" and request.data:
-            for grade in request.data:
+            for grade in request.data['grades']:
                 student = Student.objects.get(number=grade['student_number'])
-                potential_grade = FinalGrade.objects.get(subject=subject, student=student)
+                potential_grade = FinalGrade.objects.filter(subject=subject, student=student).first()
 
                 if potential_grade is not None:
                     potential_grade.eecc = grade['eecc']

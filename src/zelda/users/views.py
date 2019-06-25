@@ -170,7 +170,7 @@ class ProfessorViewSet(viewsets.ModelViewSet):
                 list(
                     set(
                         map(
-                            lambda shift: shift.subject,
+                            lambda s: shift.subject,
                             Shift.objects.filter(professor=professor)
                         )
                     )
