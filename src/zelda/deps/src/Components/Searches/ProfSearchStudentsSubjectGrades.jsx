@@ -63,10 +63,10 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
         }).then(response => {
             response.json().then(data => {
                 let prof_subjects = [];
-                data.map((subject, index) => {
+                data.map(subject => {
                     prof_subjects.push({
-                        id: subject[index].id,
-                        designation: subject[index].designation,
+                        id: subject[0].id,
+                        designation: subject[0].designation,
                     })
                 })
                 this.setState({ prof_subjects });
@@ -231,8 +231,8 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                         <Button onClick={this.handleClose}>Close</Button>
                     </Modal.Footer>
                 </Modal>
-                
-                
+
+
                 <Container>
                     <h2 className="title_main_menu">{gettext("Consult Student Grades")}</h2>
                     <hr />
@@ -293,7 +293,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                         filterable
                     />
                 </Container>
-                
+
             </Container>
             </div>
         )
