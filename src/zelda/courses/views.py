@@ -45,6 +45,10 @@ class StudentCurriculumView(AbstractStudentAppView):
     pass
 
 
+class ProfessorUploadGradesView(AbstractProfessorAppView):
+    pass
+
+
 class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()

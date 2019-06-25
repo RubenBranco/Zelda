@@ -35,6 +35,7 @@ module.exports = {
         reviewshiftstatus: path.resolve(baseSrcPath, "Pages", "reviewshiftstatus.jsx"),
         subjectsignup: path.resolve(baseSrcPath, "Pages", "subjectsignup.jsx"),
         studentcurriculum: path.resolve(baseSrcPath, "Pages", "studentcurriculum.jsx"),
+        professoruploadgrades: path.resolve(baseSrcPath, "Pages", "professoruploadgrades.jsx"),
     },
     output: {
         filename: '[name].js',

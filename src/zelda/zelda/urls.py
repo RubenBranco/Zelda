@@ -130,6 +130,11 @@ urlpatterns = [
         timetable_views.ReviewShiftStatusView.as_view(),
         name='professor_review_shift_status',
     ),
+    path(
+        'professor/upload_grades/',
+        course_views.ProfessorUploadGradesView.as_view(),
+        name='professor_upload_grades',
+    ),
     path('login/', common_views.LoginView.as_view(), name='login'),
     path('logout/', common_views.LogoutView.as_view(), name='logout'),
     path('api/', include(api.urls)),
