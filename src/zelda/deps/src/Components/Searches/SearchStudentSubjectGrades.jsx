@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from "react-bootstrap/Form";
+import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ReactTable from "react-table";
@@ -87,6 +88,7 @@ class SearchStudentSubjectGrades extends React.Component {
                         })
                     })
                     this.setState({ student_grades });
+                    console.log(this.state);
                 })
             })
         });
@@ -107,12 +109,15 @@ class SearchStudentSubjectGrades extends React.Component {
 
     render() {
 
+        let finalGrade = 0;
         const columns = [
             {
                 Header: gettext('Evaluation'),
                 accessor: 'designation',
+                sortable: false,
+                filterable: false,
                 style: {
-                    textAlign: 'right',
+                    textAlign: 'center',
                 },
                 width: 150,
                 maxWidth: 150,
@@ -121,8 +126,10 @@ class SearchStudentSubjectGrades extends React.Component {
             {
                 Header: gettext('Grade'),
                 accessor: 'grade',
+                sortable: false,
+                filterable: false,
                 style: {
-                    textAlign: 'right',
+                    textAlign: 'center',
                 },
                 width: 100,
                 maxWidth: 100,
@@ -131,12 +138,35 @@ class SearchStudentSubjectGrades extends React.Component {
             {
                 Header: gettext('Percentage'),
                 accessor: 'percentage',
+                sortable: false,
+                filterable: false,
                 style: {
-                    textAlign: 'right',
+                    textAlign: 'center',
                 },
                 width: 100,
                 maxWidth: 100,
                 minWidth: 100,
+            },
+            {
+                Header: gettext("To Final Grade"),
+                Cell: props => {
+                    return (
+                        <p>{props.original.grade * (props.original.percentage / 100)}</p>
+                    )
+                },
+                sortable: false,
+                filterable: false,
+                style: {
+                    textAlign: 'center',
+                },
+                width: 150,
+                maxWidth: 150,
+                minWidth: 150,
+            },
+            {
+                Header: gettext('Observations'),
+                sortable: false,
+                filterable: false,
             },
         ]
 
@@ -145,18 +175,31 @@ class SearchStudentSubjectGrades extends React.Component {
                 <h2 className="title_main_menu">{gettext("Grades")}</h2>
                 <hr />
                 <Form>
-                    <Form.Group as={Col}>
-                        <Form.Label>{gettext("Subject")}</Form.Label>
-                        <Form.Control
-                            id="Subject"
-                            name="Subject"
-                            as="select"
-                            onChange={this.handleSubjectChange}
-                        >
-                            {this.state.student_subjects.map(subject =>
-                                <option>{subject.designation}</option>
-                            )}
-                        </Form.Control>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="2">{gettext("Subject")}</Form.Label>
+                        <Col sm="5">
+                            <Form.Control
+                                id="Subject"
+                                name="Subject"
+                                as="select"
+                                onChange={this.handleSubjectChange}
+                            >
+                                {this.state.student_subjects.map(subject =>
+                                    <option>{subject.designation}</option>
+                                )}
+                            </Form.Control>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="2">{gettext("Current Final Grade")}</Form.Label>
+                        <Col sm="5">
+                            <Form.Control plaintext readOnly defaultValue={
+                                    this.state.student_grades.map(grade => 
+                                        finalGrade += grade.grade * (grade.percentage / 100)
+                                    )
+                                }  >
+                            </Form.Control>
+                        </Col>   
                     </Form.Group>
                     <Button
                         variant="primary"
