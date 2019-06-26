@@ -322,12 +322,14 @@ p{
   font-family: 'Karla', sans-serif;
   font-weight: lighter !important;
   text-align: center;
-  padding-top: 6%;
+  padding-top: 2%;
   position: relative;
   margin-bottom: 4%;
 
   
 }
+
+
 /* --------------------------------------------- MAIN MENU END  ---------------------------------  */
 
 .ReactTable{
@@ -577,6 +579,10 @@ a.btn.btn-outline-primary:active{
     z-index: 10;
   }
 
+  .breadcrumb{
+    background-color: transparent !important;
+  }
+
   .title_main_menu{
     margin-top: 25% !important;
   }
@@ -646,11 +652,19 @@ a.btn.btn-outline-primary:active{
   font-weight:150px;
 }
 
-.shift-requests-table{
+.table-sm td, .table-sm th{
+  background-color:rgb(241, 241, 241)!important;
+}
 
+.shift-requests-table{
  width: 70%;
  margin-left: 15%;
  border:1px solid #dee2e6;
+}
+
+.list-group list-group-flush{
+
+  margin-left: 2%;
 }
 
 /* --------------------------------------------- UTILS END ------------------------------------------ */
