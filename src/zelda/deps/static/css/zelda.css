@@ -20,14 +20,6 @@ p{
   font-size: 16px;
 }
 
-#webcrumbs{
-  margin-left: 0%;
-  display: block;
-  width:100%;
-  margin-top:1%;
-  z-index: 10;
-}
-
 #test-table-xls-button{
   margin-top:2% !important;
   background-color:#623725 !important;
@@ -317,7 +309,7 @@ p{
 
 
 .title_main_menu{
-  font-size: 30px;
+  font-size: 130%;
   color: black;
   font-family: 'Karla', sans-serif;
   font-weight: lighter !important;
@@ -455,7 +447,7 @@ width: 50%;
   display: relative !important;
   position: fixed !important;
   top: 45px !important;
-  scrollbar-color: rgb(221, 221, 221) white;
+  scrollbar-color: rgb(241, 241, 241);
   text-align: left;
 }
 
@@ -571,25 +563,62 @@ a.btn.btn-outline-primary:active{
     margin: auto;
   }
 
-  #webcrumbs{
-    margin-left: -10%;
-    width: 100%;
-    margin-top:6%;
-    position: fixed;
-    z-index: 10;
-  }
-
   .breadcrumb{
-    background-color: transparent !important;
-  }
-
-  .title_main_menu{
-    margin-top: 25% !important;
+    margin-top:4%;
   }
   
+  #mainMenu{
+    margin-top:20%;
+  }
+
+  
+  #turnos{
+    width: max-content;
+  }
+
+  .container{
+    margin-left:-10%;
+  }
+
+  .shift-card {
+    width: 96%;
+    margin-left: -10%;
+}
+
+.title_main_menu{
+  margin-left:-15%;
+}
+
+#rowProfile{
+  margin-left: -40% !important;
+}
+}
+
+ 
+
+  nav > ol {
+    background-color: #fbfbff !important;
+   }
+
+   .breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    border-radius: .25rem;
+
+}
+
+   #row_bread{
+    background-color: transparent !important;
+   }
+
   .resto-pagina, .resto-pagina2{
     width: 100%;
-    margin-left: 10%;
+    margin-left: 20%;
     position: absolute !important;
      }
 
@@ -599,8 +628,10 @@ a.btn.btn-outline-primary:active{
       position: absolute !important;
     }
 
-    }
-
+    
+.col-3{
+  max-width: 100%
+}
     @media only screen and (max-width: 414px){
       #webcrumbs{
         margin-top: 22px;
@@ -647,13 +678,13 @@ a.btn.btn-outline-primary:active{
 }
 
 .table thead th{
-  background-color:rgb(241, 241, 241)!important;
+  background-color: white !important;
   font-size: 16px;
-  font-weight:150px;
+  font-weight: 150px;
 }
 
-.table-sm td, .table-sm th{
-  background-color:rgb(241, 241, 241)!important;
+.table-sm td, .table-sm th {
+  background-color: white !important;
 }
 
 .shift-requests-table{

@@ -153,12 +153,12 @@ class SubjectShiftManagement extends React.Component {
                                                 <FontAwesomeIcon icon={faDoorClosed} />
                                         }
                                         <Row>
-                                            <Col lg="3" md="3" sm="3" xl="3" xs="3">
+                                            <Col lg="3" md="3" sm="3" xl="3" xs="3" >
                                             </Col>
                                             <Col>
                                                 <ListGroup variant="flush">
                                                     {shift.lesson_spec.map(lesson_spec =>
-                                                        <ListGroup.Item>
+                                                        <ListGroup.Item id="turnos">
                                                             <FontAwesomeIcon icon={faClock} /> {lesson_spec.weekday} |
                                                 {moment(lesson_spec.time, "HH:mm:ss").format("HH:mm")} - {moment(lesson_spec.time, "HH:mm:ss").add(moment.duration(lesson_spec.duration, "minutes")).format("HH:mm")}
                                                         </ListGroup.Item>
