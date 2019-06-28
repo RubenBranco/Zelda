@@ -5,6 +5,8 @@ import Image from "react-bootstrap/Image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import LanguageSwitch from './LanguageSwitch.jsx';
+import Navitem from 'react-bootstrap/NavLink';
+import NavLink from "react-bootstrap/NavLink";
 
 
 class Navigator extends React.Component {
@@ -24,32 +26,26 @@ class Navigator extends React.Component {
         </Nav>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav>
-            <Image
-              alt=""
-              src={window.userImageUrl}
-              width="30"
-              height="30"
-              className="d-inline-block align-top navImage"
-            />
-
-            <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
-          </Nav>
-
           <Nav className="ml-auto">
-            <Nav.Link>
-                <LanguageSwitch />
-              </Nav.Link>
-            <Nav.Link
-              className="navlinks"
-              href={window.webmailUrl}
-              target="_blank"
-            >
-              <FontAwesomeIcon icon={faEnvelope} />
-            </Nav.Link>
-            <Nav.Link className="navlinks" href={window.logoutUrl}>
-              <FontAwesomeIcon icon={faSignOutAlt} />
-            </Nav.Link>
+              <Image
+                alt=""
+                src={window.userImageUrl}
+                width="30"
+                height="30"
+                className="d-inline-block align-top navImage"
+              />
+              <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
+              <LanguageSwitch />
+              <a
+                className="navlinks"
+                href={window.webmailUrl}
+                target="_blank"
+              >
+                <FontAwesomeIcon icon={faEnvelope} />
+              </a>
+              <a className="navlinks" href={window.logoutUrl}>
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </a>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
