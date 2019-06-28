@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ReactTable from "react-table";
-import Modal from "react-bootstrap/Modal";
 import ProfExportSpecificStudentSubjectGrades from "../Exports/ProfExportSpecificStudentSubjectGrades.jsx";
 
 import 'react-table/react-table.css'
@@ -115,9 +114,11 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                         },
                     }).then(response => {
                         response.json().then(data => {
-                            search_results['firstName'] = data.first_name.toString();
-                            search_results['lastName'] = data.last_name.toString();
-                            search_results['institutional_email'] = data.institutional_email.toString();
+                            search_results['subjectId'] = this.state.chosenSubject;
+                            search_results['studentNumber'] = gradesInfo.student;
+                            search_results['studentFirstName'] = data.first_name.toString();
+                            search_results['studentLastName'] = data.last_name.toString();
+                            search_results['sutdentInstitutionalEmail'] = data.institutional_email.toString();
                             search_results['tableEntryId'] = index + 1;
                             search_results['evaluation'] = gradesInfo.designation.toString();
                             search_results['grade'] = gradesInfo.grade.toString();
@@ -173,7 +174,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             },
             {
                 Header: gettext('Student First Name'),
-                accessor: 'firstName',
+                accessor: 'studentFirstName',
                 filterable: true,
                 style: {
                     textAlign: 'right',
@@ -181,15 +182,27 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             },
             {
                 Header: gettext('Student Last Name'),
-                accessor: 'lastName',
+                accessor: 'studentLastName',
                 filterable: true,
                 style: {
                     textAlign: 'right',
                 }
             },
             {
+                Header: gettext('Student Number'),
+                accessor: 'studentNumber',
+                sortable: true,
+                filterable: true,
+                style: {
+                    textAlign: 'center',
+                },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
+            },
+            {
                 Header: gettext('Student Email'),
-                accessor: 'institutional_email',
+                accessor: 'sutdentInstitutionalEmail',
                 filterable: false,
                 style: {
                     textAlign: 'right',
@@ -244,7 +257,20 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                             columns={columns}
                             defaultPageSize={5}
                             filterable
-                        />
+                        >
+                        {
+                            this.state.search_results.length > 0 ?
+                                (state, filtredData, instace) => {
+                                    this.reactTable = state.pageRows.map(result => { return result._original });
+                                    return (
+                                        <div>
+                                            {filtredData()}
+                                            <ProfExportSpecificStudentSubjectGrades results={this.reactTable} />
+                                        </div>
+                                    );
+                                } : null
+                        }
+                        </ReactTable>
                     </Container>
                 </Container>
             </div>

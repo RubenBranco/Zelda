@@ -1,9 +1,30 @@
 import React from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
+import getCsrfToken from "../../functions/csrf.js";
+
 class ProfExportSpecificStudentSubjectGrades extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            subject: null,
+        }
+
+        this.csrfmiddlewaretoken = getCsrfToken();
+    }
+
+    componentDidMount() {
+        fetch(`/api/subject/${this.props.results[0]['subjectId']}/`, {
+            method: 'GET',
+            headers: {
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            },
+        }).then(response => {
+            response.json().then(data => {
+                console.log(data);
+                this.setState({ subject: data.designations })
+            })
+        })
     }
 
     render () {
@@ -12,25 +33,35 @@ class ProfExportSpecificStudentSubjectGrades extends React.Component {
                 <ReactHTMLTableToExcel
                     id="test-table-xls-button"
                     className="btn btn-primary"
-                    table="ProfExportSpecificStudentSubjectGrades-xls"
-                    filename={gettext('All Student Number: ' + this.props.student + ' Grades of Subject ' + this.props.subject)}
+                    table="ProfExportStudentsSubjectGrades-xls"
+                    filename={this.state.subject + gettext( ' - Students Grades')}
                     sheet="tablexls"
-                    buttonText={gettext('Export Student Number: ' + this.props.student + ' Grades')}/>
-                <table hidden={true} id="ProfExportSpecificStudentSubjectGrades-xls" >
+                    buttonText={this.state.subject + gettext(' - Export Students Grades')}/>
+                <table hidden={true} id="ProfExportStudentsSubjectGrades-xls" >
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>{gettext('Evaluation')}</th>
                             <th>{gettext('Grade')}</th>
-                            <th>{gettext('Percentage')}</th>
+                            <th>{gettext('Student First Name')}</th>
+                            <th>{gettext('Student Last Name')}</th>
+                            <th>{gettext('Student Number')}</th>
+                            <th>{gettext('Student Email')}</th>
+                            <th>{gettext('Observations')}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.results.map(result => {
                             return (
                                 <tr key={result.tableEntryId}>
-                                    <td>{result.designation}</td>
+                                    <td>{result.tableEntryId}</td>
+                                    <td>{result.evaluation}</td>
                                     <td>{result.grade}</td>
-                                    <td>{result.percentage}</td>
+                                    <td>{result.studentFirstName}</td>
+                                    <td>{result.studentLastName}</td>
+                                    <td>{result.studentNumber}</td>
+                                    <td>{result.sutdentInstitutionalEmail}</td>
+                                    <td></td>
                                 </tr>
                             );
                         })}
