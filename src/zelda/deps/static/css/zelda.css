@@ -601,6 +601,11 @@ a.btn.btn-outline-primary:active{
 #rowProfile{
   margin-left: -40% !important;
 }
+
+.resto-pagina, .resto-pagina2{
+  width: 100%;
+  position: absolute !important;
+   }
 }
 
  
@@ -729,8 +734,8 @@ font-size:16px;
   margin-top:-5%;
   font-size:24px;
   margin-bottom: 1%;
-text-align: center;
-margin-left: 1% !important;
+
+
   font-weight: 100px !important;
 }
  

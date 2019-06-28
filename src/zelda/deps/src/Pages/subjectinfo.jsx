@@ -18,10 +18,11 @@ class SubjectInfo extends React.Component {
         <Navigator />
         <MenuStudLateral />
         <div class="resto-pagina2">
-        <WebCrumbs pages={pages} />
-        <div className="menu2">
-        <ViewCurricularUnitData />
-        </div>
+          <WebCrumbs pages={pages} />
+          <h2 class="title_main_menu">{gettext("Subject Information")}</h2>
+          <div className="menu2">
+            <ViewCurricularUnitData />
+          </div>
         </div>
 
       </div>
