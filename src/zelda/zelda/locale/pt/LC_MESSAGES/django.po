@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 18:56+0000\n"
-"PO-Revision-Date: 2019-06-24 20:30+0100\n"
+"POT-Creation-Date: 2019-06-28 20:45+0000\n"
+"PO-Revision-Date: 2019-06-28 21:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -311,6 +311,10 @@ msgstr "Estudantes sem turnos"
 #: zelda/templates/zelda/studentgrades.html:4
 msgid "Grades"
 msgstr "Notas"
+
+#: zelda/templates/zelda/professoruploadgrades.html:4
+msgid "Upload Grades"
+msgstr "Envio de Notas"
 
 #: zelda/templates/zelda/profsubjectschedule.html:4
 msgid "Professor Subject Schedule"
