@@ -9,8 +9,7 @@ body {
 }
 
 a{
-  color: black;
-  
+  color: black; 
 }
 a:hover{
   color: #ae6857;
@@ -29,7 +28,6 @@ p{
 
 #test-table-xls-button > .btn-primary {
   background-color: #ae6857 ;
-
 }
 
 .table{
@@ -146,7 +144,6 @@ p{
     position: fixed;
     position: absolute;
     height: 100%;
-  
   }
 
   .fc-button-primary:disabled{
@@ -220,11 +217,6 @@ p{
   border-radius: 50%;
 }
 
-.navLogoImages {
-  padding-left: 5%;
-  margin-left: 40%;
-  margin-right: 7%;
-}
 .nomedoUser {
   padding-left: 10px;
   display: inline;
