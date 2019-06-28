@@ -88,7 +88,6 @@ class SearchStudentSubjectGrades extends React.Component {
                         })
                     })
                     this.setState({ student_grades });
-                    console.log(this.state);
                 })
             })
         });
@@ -115,7 +114,6 @@ class SearchStudentSubjectGrades extends React.Component {
                 Header: gettext('Evaluation'),
                 accessor: 'designation',
                 sortable: false,
-                filterable: false,
                 style: {
                     textAlign: 'center',
                 },

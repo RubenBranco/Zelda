@@ -22,10 +22,19 @@ p{
 
 #test-table-xls-button{
   margin-top:2% !important;
-  background-color:#623725 !important;
+  background-color:#ae6857 !important;
+  border:none;
   color:white !important;
 }
 
+#test-table-xls-button > .btn-primary {
+  background-color: #ae6857 ;
+
+}
+
+.table{
+  background-color:white;
+}
 
 #login > #img {
   float: right !important;
@@ -725,4 +734,20 @@ margin-left: 1% !important;
   font-weight: 100px !important;
 }
  
-/* --------------------------------------------- SUBJECTS INFO END ------------------------------------------ */
+/* --------------------------------------------- UPLOAD GRAdes------------------------------------------ *//* --------------------------------------------- SUBJECTS INFO STARTT ------------------------------------------ */
+
+#inserir_notas{
+  
+  margin-left: 20%;
+
+  
+}
+
+
+.selecting_subjects{
+
+  width: 60%
+
+
+}
+/* --------------------------------------------- UPLLOOAD GRAdes ------------------------------------------ */

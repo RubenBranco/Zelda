@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import WebCrumbs from "../Components/WebCrumbs.jsx";
 
 import 'react-toastify/dist/ReactToastify.min.css';
 import getCsrfToken from "../functions/csrf.js";
@@ -53,7 +54,7 @@ class ProfessorUploadGrades extends React.Component {
         }
     }
 
-    getSubjects () {
+    getSubjects() {
         fetch(`/api/professor/${this.state.userid}/course_subjects/`, {
             method: 'GET',
             headers: {
@@ -132,16 +133,20 @@ class ProfessorUploadGrades extends React.Component {
     }
 
     render() {
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Upload Grades"), href: "" }];
         return (
             <div>
                 <Navigator />
                 <MenuStudLateral />
                 <div class="resto-pagina2">
-                    <Form>
+                    <WebCrumbs pages={pages} />
+                    <h2 class="title_main_menu">{gettext("Upload Grades")}</h2>
+                    <Form id="inserir_notas">
                         <Form.Row>
                             <Form.Group as={Col} controlId="Subjects">
                                 <Form.Label>{gettext("Subjects")}</Form.Label>
                                 <Form.Control
+                                    className="selecting_subjects"
                                     id="Subjects"
                                     name="subject"
                                     as="select"
@@ -164,7 +169,7 @@ class ProfessorUploadGrades extends React.Component {
                         </Form.Row>
                         <Form.Row>
                             <Form.Group controlId="submit">
-                                <Button onClick={this.handleUpload} variant="outline-success">{gettext("Upload")}</Button>
+                                <Button onClick={this.handleUpload} id="test-table-xls-button" cvariant="outline-success">{gettext("Upload")}</Button>
                             </Form.Group>
                         </Form.Row>
                     </Form>

@@ -36,27 +36,13 @@ class ProfessorMenu extends React.Component {
                                 </ListGroup.Item>
                                 <ListGroup.Item action href={window.viewProfileUrl}><a >{gettext("Profile")}</a></ListGroup.Item>
                                 <ListGroup.Item action href={window.uploadGradesUrl}><a>{gettext("Upload Grades")}</a></ListGroup.Item>
-                            </ListGroup>
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Header className="text-center font-weight-bold">
-                            {gettext("Requests")}
-                        </Card.Header>
-                        <Card.Body>
-                            <ListGroup variant="flush">
                                 <ListGroup.Item action href={window.viewShiftRequestsUrl}>
                                     <a >{gettext("Shift Exchange Requests")}</a>
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#">
-                                    <a >{gettext("Room Change")}</a>
-                                </ListGroup.Item>
-                                <ListGroup.Item action href="#">
-                                    <a >{gettext("Room Reservation")}</a>
-                                </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
                     </Card>
+
                 </CardDeck>
             </div>
         );

@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ReactTable from "react-table";
-import Modal from "react-bootstrap/Modal";
 import ProfExportSpecificStudentSubjectGrades from "../Exports/ProfExportSpecificStudentSubjectGrades.jsx";
 
 import 'react-table/react-table.css'
@@ -33,7 +32,6 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
         this.handleSearchRequest = this.handleSearchRequest.bind(this);
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
-
     }
 
     componentDidMount() {
@@ -69,7 +67,10 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                         designation: subject[0].designation,
                     })
                 })
-                this.setState({ prof_subjects });
+                this.setState({ 
+                    prof_subjects,
+                    chosenSubject: prof_subjects[0].id,
+                });
             })
         })
     }
@@ -80,7 +81,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
         });
     }
 
-    handleSubjectChange() {
+    handleSubjectChange(event) {
         this.handleChange(event);
         this.setState({
             chosenSubject: event.target.value,
@@ -96,11 +97,41 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
     }
 
     handleSearchRequest() {
-
-    }
-
-    getSpecificStudentGrades(student_row_info) {
-
+        let accessor = [];
+        fetch(`/api/subject/${this.state.chosenSubject}/grades/` , {
+            method: 'GET',
+            headers: {
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            },
+        }).then(response => {
+            response.json().then(data => {
+                let search_results = {};
+                data.map((gradesInfo, index) => {
+                    fetch(`/api/appuser/${gradesInfo.student}/` ,{
+                        method: 'GET',
+                        headers: {
+                            "X-CSRFToken": this.csrfmiddlewaretoken,
+                        },
+                    }).then(response => {
+                        response.json().then(data => {
+                            search_results['subjectId'] = this.state.chosenSubject;
+                            search_results['studentNumber'] = gradesInfo.student;
+                            search_results['studentFirstName'] = data.first_name.toString();
+                            search_results['studentLastName'] = data.last_name.toString();
+                            search_results['sutdentInstitutionalEmail'] = data.institutional_email.toString();
+                            search_results['tableEntryId'] = index + 1;
+                            search_results['evaluation'] = gradesInfo.designation.toString();
+                            search_results['grade'] = gradesInfo.grade.toString();
+                            
+                            accessor.push(search_results);
+                            
+                            this.setState({ search_results: accessor})
+                        })
+                    })                  
+                })
+                
+            })
+        })
     }
 
     render () {
@@ -109,192 +140,139 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             {
                 Header: '#',
                 accessor: 'tableEntryId',
+                sortable: true,
                 filterable: true,
                 style: {
                     textAlign: 'right',
                 },
-                width: 100,
-                maxWidth: 100,
-                minWidth: 100,
+                width: 50,
+                maxWidth: 50,
+                minWidth: 50,
             },
-            {
-                Header: gettext('Student Number'),
-                accessor: 'student_number',
-                filterable: true,
-                style: {
-                    textAlign: 'right',
-                },
-                width: 200,
-                maxWidth: 200,
-                minWidth: 200,
-            },
-            {
-                Header: gettext('Student Name'),
-                accessor: 'name',
-                filterable: true,
-                style: {
-                    textAlign: 'right',
-                }
-            },
-            {
-                Header: gettext('Student Email'),
-                accessor: 'email',
-                sortable: false,
-                filterable: false,
-                style: {
-                    textAlign: 'right',
-                }
-            },
-            {
-                Header: gettext('Actions'),
-                Cell: props => {
-                    return (
-                        <Button variant="link"
-                            onClick={() => { this.getSpecificStudentGrades(props.original); }}
-                        >{gettext('+ Evaluation Details')}</Button>
-                    )
-                },
-                sortable: false,
-                filterable: false,
-                style: {
-                    textAlign: 'right',
-                }
-            }
-        ];
-
-        const columnsModal = [
             {
                 Header: gettext('Evaluation'),
-                accessor: 'designation',
+                accessor: 'evaluation',
+                sortable: false,
                 style: {
-                    textAlign: 'right',
+                    textAlign: 'center',
                 },
-                width: 100,
-                maxWidth: 100,
-                minWidth: 100,
+                width: 150,
+                maxWidth: 150,
+                minWidth: 150,
             },
             {
                 Header: gettext('Grade'),
                 accessor: 'grade',
+                sortable: true,
+                filterable: true,
                 style: {
                     textAlign: 'center',
-                }
-            },
-            {
-                Header: gettext('Percentage'),
-                accessor: 'percentage',
-                style: {
-                    textAlign: 'right',
                 },
                 width: 100,
                 maxWidth: 100,
                 minWidth: 100,
-            }
+            },
+            {
+                Header: gettext('Student First Name'),
+                accessor: 'studentFirstName',
+                filterable: true,
+                style: {
+                    textAlign: 'right',
+                }
+            },
+            {
+                Header: gettext('Student Last Name'),
+                accessor: 'studentLastName',
+                filterable: true,
+                style: {
+                    textAlign: 'right',
+                }
+            },
+            {
+                Header: gettext('Student Number'),
+                accessor: 'studentNumber',
+                sortable: true,
+                filterable: true,
+                style: {
+                    textAlign: 'center',
+                },
+                width: 100,
+                maxWidth: 100,
+                minWidth: 100,
+            },
+            {
+                Header: gettext('Student Email'),
+                accessor: 'sutdentInstitutionalEmail',
+                filterable: false,
+                style: {
+                    textAlign: 'right',
+                }
+            },
+            {
+                Header: gettext('Observations'),
+                sortable: false,
+                filterable: false,
+            },
         ];
 
         return(
-            <div class="resto-pagina">
-            <Container>
+            <div className="resto-pagina">
+                <Container>
+                    <Container>
+                        <h2 className="title_main_menu">{gettext("Consult Student Grades")}</h2>
+                        <hr />
+                        <Form>
+                            <Form.Row>
+                                <Form.Group as={Col} controlId="Subjects">
+                                    <Form.Label>{gettext("Subjects")}</Form.Label>
+                                    <Form.Control
+                                        name="subject"
+                                        as="select"
+                                        onChange={this.handleSubjectChange}
+                                    >
+                                        {this.state.prof_subjects.map(subject =>
+                                            <option value={subject.id}>{subject.designation}</option>
+                                        )}
+                                    </Form.Control>
+                                </Form.Group>
+                            </Form.Row>
 
-                <Modal
-                    size="lg"
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered
-                    show={this.state.modalShow}
-                    onHide={this.handleClose}
-                >
-                    <Modal.Body>
+                            <Button
+                                variant="primary"
+                                className="btn btn-primary search_students_attendances"
+                                onClick={this.handleSearchRequest}
+                            >
+                                {gettext("Search")}{" "}
+                                <FontAwesomeIcon icon={faSearch} />
+                            </Button>
+                        </Form>
+                    </Container>
+
+                    <Container>
                         <ReactTable
                             noDataText={gettext('No Results Found')}
                             keyField='#'
-                            //data={this.state.studentAttendances}
-                            //resolveData={data => data.map(row => row)}
-                            columns={columnsModal}
+                            data={this.state.search_results}
+                            resolveData={data => data.map(row => row)}
+                            columns={columns}
                             defaultPageSize={5}
+                            filterable
                         >
-                            {/*
-                                this.state.studentAttendances.length > 0 ?
-                                    (state, filtredData, instace) => {
-                                        this.reactTable = state.pageRows.map(result => { return result._original });
-                                        return (
-                                            <div>
-                                                {filtredData()}
-                                                <ProfExportSpecificStudentAttendances studentAttendances={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} student={this.reactTable[0].student} />
-                                            </div>
-                                        );
-                                    } : null*/
-                            }
-
+                        {
+                            this.state.search_results.length > 0 ?
+                                (state, filtredData, instace) => {
+                                    this.reactTable = state.pageRows.map(result => { return result._original });
+                                    return (
+                                        <div>
+                                            {filtredData()}
+                                            <ProfExportSpecificStudentSubjectGrades results={this.reactTable} />
+                                        </div>
+                                    );
+                                } : null
+                        }
                         </ReactTable>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={this.handleClose}>Close</Button>
-                    </Modal.Footer>
-                </Modal>
-
-
-                <Container>
-                    <h2 className="title_main_menu">{gettext("Consult Student Grades")}</h2>
-                    <hr />
-                    <h2>ola</h2>
-
-                    <Form>
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="Subjects">
-                                <Form.Label>{gettext("Subjects")}</Form.Label>
-                                <Form.Control
-                                    id="Subjects"
-                                    name="subject"
-                                    as="select"
-                                    onChange={this.handleSubjectChange}
-                                >
-                                    {this.state.prof_subjects.map(subject =>
-                                        <option value={subject.id}>{subject.designation}</option>
-                                    )}
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="firstName">
-                                <Form.Label>{gettext("First Name")}</Form.Label>
-                                <Form.Control
-                                    name="firstName"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    placeholder={gettext("First Name")} />
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="lastName">
-                                <Form.Label>{gettext("Last Name")}</Form.Label>
-                                <Form.Control
-                                    name="lastName"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    placeholder={gettext("Last Name")} />
-                            </Form.Group>
-                        </Form.Row>
-
-                        <Button
-                            variant="primary"
-                            className="btn btn-primary search_students_attendances"
-                            onClick={this.handleSearchRequest}
-                        >
-                            {gettext("Search")}{" "}
-                            <FontAwesomeIcon icon={faSearch} />
-                        </Button>
-                    </Form>
+                    </Container>
                 </Container>
-
-                <Container>
-                    <ReactTable
-                        noDataText={gettext('No Results Found')}
-                        keyField='#'
-                        //data={this.state.results}
-                        //resolveData={data => data.map(row => row)}
-                        columns={columns}
-                        defaultPageSize={5}
-                        filterable
-                    />
-                </Container>
-
-            </Container>
             </div>
         )
     }
