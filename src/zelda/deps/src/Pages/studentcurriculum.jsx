@@ -58,9 +58,9 @@ class StudentCurriculum extends React.Component {
                 <Navigator />
                 <MenuStudLateral />
                 <div class="resto-pagina2">
-                    <h2 className="title_main_menu">{gettext("Your Curriculum")}</h2>
-                    <WebCrumbs pages={pages} />
 
+                    <WebCrumbs pages={pages} />
+                    <h2 className="title_main_menu">{gettext("Your Curriculum")}</h2>
                     <Container>
 
                         <Table responsive="sm" size="sm" striped={true}>
