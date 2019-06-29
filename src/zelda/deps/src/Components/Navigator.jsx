@@ -23,21 +23,23 @@ class Navigator extends React.Component {
                             className="d-inline-block align-top navLogoImages"
                         />
                     </Navbar.Brand>
-                    <Nav.Item>
-                        <Image
-                            alt=""
-                            src={window.userImageUrl}
-                            width="30"
-                            height="30"
-                            className="d-inline-block align-top navImage"
-                        />
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
-                    </Nav.Item>
                 </Nav>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Item>
+                            <Image
+                                alt=""
+                                src={window.userImageUrl}
+                                width="30"
+                                height="30"
+                                className="d-inline-block align-top navImage"
+                            />
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
+                        </Nav.Item>
+                    </Nav>
                     <Nav className="ml-auto">
                         <Nav.Item>
                             <LanguageSwitch />
