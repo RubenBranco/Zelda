@@ -37,7 +37,10 @@ class TimeTableLessonSpecificationSerializer(ModelSerializer):
         fields = "__all__"
 
     def get_dates(self, lesson_spec):
-        course = self.context['course']
+        if 'course' in self.context:
+            course = self.context['course']
+        else:
+            course = CourseSubject.objects.filter(subject=lesson_spec.shift.subject).first().course
         return dict(
             first_semester_begin_date=course.f_semester_begin_date,
             first_semester_end_date=course.f_semester_end_date,
@@ -54,8 +57,11 @@ class TimeTableLessonSpecificationSerializer(ModelSerializer):
 
     def get_subject_designation(self, lesson_spec):
         subject = lesson_spec.shift.subject
-        course = self.context['course']
-        return CourseSubject.objects.get(subject=subject, course=course).designation
+        if 'course' in self.context:
+            course = self.context['course']
+            return CourseSubject.objects.get(subject=subject, course=course).designation
+        else:
+            return " / ".join(map(lambda cs: cs.designation, CourseSubject.objects.filter(subject=subject)))
 
     def get_subject_id(self, lesson_spec):
         return lesson_spec.shift.subject.id

@@ -10,5 +10,6 @@
     {% elif app_user.user_type == "Student" %}
         var viewAttendancesUrl = "{% url 'student_view_attendances' %}";
     {% endif %}
+    var subjectUrl = "{% url 'view_subject' 0 %}";
 </script>
 {% endblock footjs %}

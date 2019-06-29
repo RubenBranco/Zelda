@@ -18,7 +18,7 @@ from common.utils import get_user_from_request
 from users.serializers import ProfessorRestrictedSerializer, RestrictedAppUserSerializer, StudentSerializer
 from users.models import Student, Professor
 from timetable.models import Shift, LessonSpecification
-from timetable.serializers import ShiftSerializer, SummaryShiftSerializer
+from timetable.serializers import ShiftSerializer, SummaryShiftSerializer, TimeTableLessonSpecificationSerializer
 
 
 class ViewCourseInfoView(AbstractLoggedInAppView):
@@ -362,6 +362,18 @@ class SubjectViewSet(ModelViewSet):
         course_subjects = CourseSubject.objects.filter(subject__students=student, subject__semester=current_semester)
 
         return reduce(lambda acc, y: acc + y.subject.subject_spec.ects, course_subjects, 0)
+
+    @action(detail=True)
+    def subject_timetable(self, request, pk=None):
+        subject = get_object_or_404(Subject, id=pk)
+        shift = Shift.objects.filter(subject=subject)
+
+        return Response(
+            TimeTableLessonSpecificationSerializer(
+                LessonSpecification.objects.filter(shift__in=shift),
+                many=True,
+            ).data
+        )
 
 
 class SubjectSpecificationViewSet(ModelViewSet):
