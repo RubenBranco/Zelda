@@ -1,9 +1,11 @@
 import React from 'react';
+
 import Container from 'react-bootstrap/Container';
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
+import Schedule from "./Schedules/Schedule.jsx";
 
 import getCsrfToken from "../functions/csrf.js";
 
@@ -23,6 +25,7 @@ class ViewCurricularUnitData extends React.Component {
             code: null,
             schedule: [],
             professors: [],
+            lessons: [],
         };
         this.csrfmiddlewaretoken = getCsrfToken();
         let pathName = window.location.pathname.split("/");
@@ -45,6 +48,7 @@ class ViewCurricularUnitData extends React.Component {
                     });
                     this.fetchSubjectInfo();
                     this.getProfessors();
+                    this.getLessons();
                 });
             });
             this.hasFetched = true;
@@ -56,7 +60,7 @@ class ViewCurricularUnitData extends React.Component {
             method: "GET",
             headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
-            }
+            },
         }).then(response => {
             response.json().then(data => {
                 this.setState({
@@ -66,6 +70,21 @@ class ViewCurricularUnitData extends React.Component {
                     objectives: data.objectives,
                     evaluation: data.evaluation_method,
                     bibliography: data.bibliography
+                });
+            });
+        });
+    }
+
+    getLessons() {
+        fetch(`/api/subject/${this.subjectId}/subject_timetable/`, {
+            method: "GET",
+            headers: {
+                "X-CSRFToken": this.csrfmiddlewaretoken,
+            },
+        }).then(response => {
+            response.json().then(data => {
+                this.setState({
+                    lessons: data,
                 });
             });
         });
@@ -165,7 +184,9 @@ class ViewCurricularUnitData extends React.Component {
                                     <Tab.Pane eventKey="schedule">
                                         <h2 id="tit_sub_menu">{gettext("Schedule")}</h2>
                                         <hr />
-
+                                        {!this.state.lessons.length ? null :
+                                            <Schedule classes={this.state.lessons} />
+                                        }
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="teachers">
                                         <h2 id="tit_sub_menu">{gettext("Teachers")}</h2>
