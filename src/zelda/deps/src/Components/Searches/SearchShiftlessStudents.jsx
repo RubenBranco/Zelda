@@ -169,6 +169,7 @@ class SearchShiftlessStudents extends React.Component {
             {
                 Header: gettext('Information'),
                 Cell: props => {
+                    console.log(props);
                     return (
                         <OverlayTrigger
                             trigger="click"
@@ -176,16 +177,20 @@ class SearchShiftlessStudents extends React.Component {
                             overlay={
                                 <Popover title={gettext("Missing:")}>
                                     <ListGroup variant="flush">
-                                        {props.original.shiftless.Theory !== undefined ?
+                                        {props.original.shiftless['Teórica'] !== undefined || props.original.shiftless['Theory'] !== undefined ?
                                             <ListGroup.Item>{gettext('Theory')}</ListGroup.Item>
                                             : null
                                         }
-                                        {props.original.shiftless.Practice !== undefined ?
+                                        {props.original.shiftless['Practice'] !== undefined || props.original.shiftless['Teórico-Prática'] !== undefined ?
                                             <ListGroup.Item>{gettext('Practice')}</ListGroup.Item>
                                             : null
                                         }
-                                        {props.original.shiftless.Laboratory !== undefined ?
+                                        {props.original.shiftless['Laboratory'] !== undefined || props.original.shiftless['Laboratório'] !== undefined ?
                                             <ListGroup.Item>{gettext('Laboratory')}</ListGroup.Item>
+                                            : null
+                                        }
+                                        {props.original.shiftless['Field'] !== undefined || props.original.shiftless['Aula de campo'] !== undefined ?
+                                            <ListGroup.Item>{gettext('Field')}</ListGroup.Item>
                                             : null
                                         }
                                     </ListGroup>
@@ -208,7 +213,7 @@ class SearchShiftlessStudents extends React.Component {
 
         return (
             <Container>
-                <h2 class="title_main_menu">{gettext("Shiftless Students")}</h2>
+                <h2 className="title_main_menu">{gettext("Shiftless Students")}</h2>
                 <hr />
                 <Form >
                     <Form.Group as={Col}>

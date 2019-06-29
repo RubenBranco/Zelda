@@ -8,7 +8,7 @@ class MenuProfLateral extends React.Component {
 
     render() {
         return (
-            <div class="menu-prof">
+            <div className="menu-prof">
             <Dropdown.Menu show className="MenuProfLateral">
                 <Dropdown.Header>{gettext("Consult")}</Dropdown.Header>
                 <Dropdown.Item eventKey="1" href={window.viewAttendancesUrl}>{gettext("Attendances")}</Dropdown.Item>
