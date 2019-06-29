@@ -97,7 +97,7 @@ class StudentTimeTable extends React.Component {
                                 </Col>
 
                                 <Col>
-                                    {!this.state.classes.length ? null :
+                                    {!this.state.classes.length ? <p>{gettext("You don't have any shifts to show")}</p> :
                                         <Schedule classes={this.filterClasses()} />
                                     }
                                 </Col>

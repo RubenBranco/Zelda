@@ -635,6 +635,13 @@ a.btn.btn-outline-primary:active{
 }
 }
 
+
+.navLogoImages {
+  padding-left: 5%;
+  margin-left: 40%;
+  margin-right: 7%;
+}
+
  
 
   nav > ol {
