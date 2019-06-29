@@ -82,7 +82,7 @@ class ReviewShiftStatus extends React.Component {
 
 
     render() {
-        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Shift Status Review"), href: "" }];
+        const pages = [{ "name": gettext("Home"), "href": window.frontpageUrl }, { "name": gettext("Shift Statuses"), href: "" }];
 
         return (
             <div>
@@ -90,7 +90,7 @@ class ReviewShiftStatus extends React.Component {
                 <MenuProfLateral />
                 <div class="resto-pagina2">
                     <WebCrumbs pages={pages} />
-                    <h2 className="title_main_menu">{gettext("Shift Status Review")}</h2>
+                    <h2 className="title_main_menu">{gettext("Shift Statuses")}</h2>
                     <Table className="shift-requests-table">
                         <thead>
                             <tr>
