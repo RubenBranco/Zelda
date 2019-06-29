@@ -75,8 +75,9 @@ class StudentTimeTable extends React.Component {
                 <MenuStudLateral />
                 <div class="resto-pagina2">
                     <WebCrumbs pages={pages} />
+                    <h2 className="title_main_menu">{gettext("Personal Schedule")}</h2>
                     <Container className="schedule">
-                        <h2 className="title_main_menu">{gettext("Personal Schedule")}</h2>
+
                         <Tab.Container id="list-group-tabs-example" >
                             <Row>
                                 <Col sm={3}>

@@ -169,9 +169,9 @@ class SearchStudentSubjectGrades extends React.Component {
         ]
 
         return (
+            <div>
+            <h2 className="title_main_menu">{gettext("Grades")}</h2>
             <Container>
-                <h2 className="title_main_menu">{gettext("Grades")}</h2>
-                <hr />
                 <Form>
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">{gettext("Subject")}</Form.Label>
@@ -188,16 +188,16 @@ class SearchStudentSubjectGrades extends React.Component {
                             </Form.Control>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row}>
+                    <Form.Group id="final_grade" as={Row}>
                         <Form.Label column sm="2">{gettext("Current Final Grade")}</Form.Label>
                         <Col sm="5">
                             <Form.Control plaintext readOnly defaultValue={
-                                    this.state.student_grades.map(grade => 
-                                        finalGrade += grade.grade * (grade.percentage / 100)
-                                    )
-                                }  >
+                                this.state.student_grades.map(grade =>
+                                    finalGrade += grade.grade * (grade.percentage / 100)
+                                )
+                            }  >
                             </Form.Control>
-                        </Col>   
+                        </Col>
                     </Form.Group>
                     <Button
                         variant="primary"
@@ -220,6 +220,7 @@ class SearchStudentSubjectGrades extends React.Component {
                 >
                 </ReactTable>
             </Container>
+            </div>
         )
     }
 }

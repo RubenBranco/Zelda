@@ -212,59 +212,61 @@ class SearchShiftlessStudents extends React.Component {
         ];
 
         return (
-            <Container>
-                <h2 className="title_main_menu">{gettext("Shiftless Students")}</h2>
-                <hr />
-                <Form >
-                    <Form.Group as={Col}>
-                        <Form.Label>{gettext("Subject")}</Form.Label>
-                        <Form.Control
-                            id="Subject"
-                            name="Subject"
-                            as="select"
-                            onChange={this.handleSubjectChange}
+            <div>                <h2 className="title_main_menu">{gettext("Shiftless Students")}</h2>
+
+                <Container>
+                    <hr />
+                    <Form >
+                        <Form.Group as={Col}>
+                            <Form.Label>{gettext("Subject")}</Form.Label>
+                            <Form.Control
+                                id="Subject"
+                                name="Subject"
+                                as="select"
+                                onChange={this.handleSubjectChange}
+                            >
+                                {this.state.subjects.map(subject =>
+                                    <option>{subject.designation}</option>
+                                )}
+                            </Form.Control>
+                        </Form.Group>
+                        <Button
+                            variant="primary"
+                            className="btn btn-primary search_students_attendances"
+                            onClick={this.getShiftlessStudentsData}
                         >
-                            {this.state.subjects.map(subject =>
-                                <option>{subject.designation}</option>
-                            )}
-                        </Form.Control>
-                    </Form.Group>
-                    <Button
-                        variant="primary"
-                        className="btn btn-primary search_students_attendances"
-                        onClick={this.getShiftlessStudentsData}
+                            {gettext("Search ")}
+                            <FontAwesomeIcon icon={faSearch} />
+                        </Button>
+                    </Form>
+
+                    <br />
+
+                    <ReactTable
+                        noDataText={gettext('No Results Found')}
+                        keyField='#'
+                        data={this.state.shiftlessStudentsData}
+                        resolveData={data => data.map(row => row)}
+                        columns={columns}
+                        defaultPageSize={5}
+                        filterable
                     >
-                        {gettext("Search ")}
-                        <FontAwesomeIcon icon={faSearch} />
-                    </Button>
-                </Form>
+                        {
+                            this.state.shiftlessStudentsData.length > 0 ?
+                                (state, filtredData, instace) => {
+                                    this.reactTable = state.pageRows.map(result => { return result._original });
+                                    return (
+                                        <div>
+                                            {filtredData()}
+                                            <ProfExportAllShiftLessStudentSubject results={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} />
+                                        </div>
+                                    );
+                                } : null
+                        }
 
-                <br />
-
-                <ReactTable
-                    noDataText={gettext('No Results Found')}
-                    keyField='#'
-                    data={this.state.shiftlessStudentsData}
-                    resolveData={data => data.map(row => row)}
-                    columns={columns}
-                    defaultPageSize={5}
-                    filterable
-                >
-                    {
-                        this.state.shiftlessStudentsData.length > 0 ?
-                            (state, filtredData, instace) => {
-                                this.reactTable = state.pageRows.map(result => { return result._original });
-                                return (
-                                    <div>
-                                        {filtredData()}
-                                        <ProfExportAllShiftLessStudentSubject results={this.reactTable} subject={this.state.subjects[this.state.chosenSubject - 1].designation} />
-                                    </div>
-                                );
-                            } : null
-                    }
-
-                </ReactTable>
-            </Container>
+                    </ReactTable>
+                </Container>
+            </div>
         )
     }
 }

@@ -126,9 +126,9 @@ class SubjectSignup extends React.Component {
                 <MenuStudLateral />
                 <div class="resto-pagina2">
                     <WebCrumbs pages={pages} />
+                    <h2 className="title_main_menu">{gettext("Enroll / Unsubscribe in Curricular Units")}</h2>
 
                     <Container>
-                        <h2 className="title_main_menu">{gettext("Enroll / Unsubscribe in Curricular Units")}</h2>
                         <Table className="shift-requests-table" responsive="sm" size="sm" striped={true}>
                             <thead>
                                 <tr>

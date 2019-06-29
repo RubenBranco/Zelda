@@ -339,9 +339,9 @@ class SearchStudentsAttendance extends React.Component {
                         <Button onClick={this.handleClose}>Close</Button>
                     </Modal.Footer>
                 </Modal>
-
+                <h2 class="title_main_menu">{gettext("Consult Students Attendances")}</h2>
                 <Container>
-                    <h2 class="title_main_menu">{gettext("Consult Students Attendances")}</h2>
+                    
                     <hr />
 
                     <Form>

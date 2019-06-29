@@ -576,12 +576,24 @@ a.btn.btn-outline-primary:active{
     margin: auto;
   }
 
+  #final_grade{
+    display: -webkit-inline-box;
+  margin-left: 20%;
+  
+  
+  }
+  
   *, ::after, ::before {
   }
 
+  .fc.fc-ltr.fc-unthemed {
+    display: table-caption;
+    overflow: scroll;
+    width: 300%;
+}
   .col-sm-9 {
-    margin-left: 50% !important;
-    margin-top: -100% !important;
+    margin-left: 80% !important;
+    margin-top: -150% !important;
 }
   .breadcrumb{
     margin-top:4%;
@@ -598,6 +610,7 @@ a.btn.btn-outline-primary:active{
 
   .container{
     margin-left:1%;
+    width: max-content;
   }
 
   .shift-card {
@@ -616,12 +629,16 @@ a.btn.btn-outline-primary:active{
 .resto-pagina, .resto-pagina2{
   position: absolute !important;
   overflow-x: scroll !important;
-  margin-left:0% !important;
+  margin-left:10% !important;
 }
 
 .form-control {
 
-  width:90%;
+  width:90% !important;
+}
+
+.col-2{
+  margin-left:-6%;
 }
 
 .form-row>.col, .form-row>[class*=col-] {
@@ -781,18 +798,33 @@ margin-left:2%;
  
 /* --------------------------------------------- UPLOAD GRAdes------------------------------------------ *//* --------------------------------------------- SUBJECTS INFO STARTT ------------------------------------------ */
 
-#inserir_notas{
-  
-  margin-left: 20%;
-
-  
+#inserir_notas{ 
+  margin-left: 20%; 
 }
 
 
 .selecting_subjects{
-
   width: 60%
+}
+
+
+#final_grade{
+  display: -webkit-inline-box;
+margin-left: 20%;
 
 
 }
+
+
+#final_grade > .form-label {
+  font-weight: bold;
+  display: table-cell;
+}
+
+#final_grade  > .col-sm-5 > input{
+  font-weight: bold;
+  color: #ae6857;
+  text-decoration: underline;
+  
+  }
 /* --------------------------------------------- UPLLOOAD GRAdes ------------------------------------------ */

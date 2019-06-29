@@ -42,46 +42,49 @@ class ViewProfile extends React.Component {
 
     render() {
         return (
-            <Container id="container">
-
+            <div>
                 <h2 class="title_main_menu">{gettext("Profile")}</h2>
-                <hr />
-
-                <Image src={window.userImageUrl} id="img_user" />
-                <Row class="rowjustify-content-md-center" id="rowProfile">
-                    <Col xs={2} md={3}>
+                <Container id="container">
 
 
-                    </Col>
-                    <Col xs={2} md={5}>
-                        <Tabs defaultActiveKey="Personal Data" id="uncontrolled-tab-example">
-                            <Tab eventKey="Personal Data" title={gettext("Personal Data")}>
-                                <Table bordered hover responsive size='sm' class="row justify-content-md-center">
-                                    <tbody>
-                                        <tr>
-                                            <td>{gettext("Name")}</td>
-                                            <td>{this.state.userData.first_name + " " + this.state.userData.last_name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{gettext("Institutional Email")}</td>
-                                            <td>{this.state.userData.institutional_email}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{gettext("Gender")}</td>
-                                            <td>{this.state.userData.gender == "m" ? 'Male' : 'Female'}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{gettext("Country")}</td>
-                                            <td>{this.state.userData.country}</td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </Tab>
-                        </Tabs>
-                    </Col>
-                </Row>
+                    <hr />
 
-            </Container>
+                    <Image src={window.userImageUrl} id="img_user" />
+                    <Row class="rowjustify-content-md-center" id="rowProfile">
+                        <Col xs={2} md={3}>
+
+
+                        </Col>
+                        <Col xs={2} md={5}>
+                            <Tabs defaultActiveKey="Personal Data" id="uncontrolled-tab-example">
+                                <Tab eventKey="Personal Data" title={gettext("Personal Data")}>
+                                    <Table bordered hover responsive size='sm' class="row justify-content-md-center">
+                                        <tbody>
+                                            <tr>
+                                                <td>{gettext("Name")}</td>
+                                                <td>{this.state.userData.first_name + " " + this.state.userData.last_name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{gettext("Institutional Email")}</td>
+                                                <td>{this.state.userData.institutional_email}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{gettext("Gender")}</td>
+                                                <td>{this.state.userData.gender == "m" ? 'Male' : 'Female'}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{gettext("Country")}</td>
+                                                <td>{this.state.userData.country}</td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                </Tab>
+                            </Tabs>
+                        </Col>
+                    </Row>
+
+                </Container>
+            </div>
         )
     }
 }
