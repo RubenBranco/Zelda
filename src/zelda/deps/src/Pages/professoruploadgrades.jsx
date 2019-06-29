@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-import MenuStudLateral from "../Components/Menus/MenuStudLateral.jsx";
+import MenuProfLateral from "../Components/Menus/MenuProfLateral.jsx";
 import Navigator from "../Components/Navigator.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import Form from "react-bootstrap/Form";
@@ -137,7 +137,7 @@ class ProfessorUploadGrades extends React.Component {
         return (
             <div>
                 <Navigator />
-                <MenuStudLateral />
+                <MenuProfLateral />
                 <div class="resto-pagina2">
                     <WebCrumbs pages={pages} />
                     <h2 class="title_main_menu">{gettext("Upload Grades")}</h2>
