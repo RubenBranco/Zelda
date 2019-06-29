@@ -427,17 +427,7 @@ display: block;
 
 }
 
-@media only screen and (max-width: 580px){
-  /* For mobile phones: */
-  #profile_box.row{
-width: 50%;
-    position: absolute;
 
-  }
-  #rowProfile{
-    margin-left: -60px !important;
-  }
-    }
 /* --------------------------------------------- profile END ---------------------------------  */
 
 /* --------------------------------------------- MENU BEM POSICIONADO ---------------------------------  */
@@ -467,11 +457,15 @@ width: 50%;
 .resto-pagina, .resto-pagina2{
   width: 80% !important;
   float: right;
+
+
 }
 
 .resto-pagina2{
   margin-top: 5%;
   width: 80% !important;
+
+
 }
 
 .searchOwnAttendance{
@@ -515,9 +509,6 @@ a.nav-link{
   margin-left: -15px;
 }
 
-.col-sm-9{
-  margin-left: -20px;
-}
 
 .sift-requests-table{
 font-size: 15px;
@@ -553,17 +544,39 @@ a.btn.btn-outline-primary:active{
   margin-left: 2%;
 }
 
-
-
-@media only screen and (max-width: 580px){
+@media only screen and (max-width: 768px) and (min-height: 1024px){
   /* For mobile phones: */
-  .MenuProfLateral, .MenuStudLateral, a.nav-link {
+  .MenuProfLateral, .MenuStudLateral {
     position: relative;
     visibility: hidden;
     width: 0%;
     margin: auto;
   }
 
+  .resto-pagina, .resto-pagina2 {
+    position: absolute !important;
+    margin-left:3% !important;
+}
+
+}
+
+
+@media only screen and (max-width: 580px){
+  /* For mobile phones: */
+  .MenuProfLateral, .MenuStudLateral{
+    position: relative;
+    visibility: hidden;
+    width: 0%;
+    margin: auto;
+  }
+
+  *, ::after, ::before {
+  }
+
+  .col-sm-9 {
+    margin-left: 50% !important;
+    margin-top: -100% !important;
+}
   .breadcrumb{
     margin-top:4%;
   }
@@ -578,7 +591,7 @@ a.btn.btn-outline-primary:active{
   }
 
   .container{
-    margin-left:-10%;
+    margin-left:1%;
   }
 
   .shift-card {
@@ -587,17 +600,39 @@ a.btn.btn-outline-primary:active{
 }
 
 .title_main_menu{
-  margin-left:-15%;
+  margin-left:1%;
 }
 
 #rowProfile{
-  margin-left: -40% !important;
+  width: fit-content;
 }
 
 .resto-pagina, .resto-pagina2{
-  width: 100%;
   position: absolute !important;
-   }
+  overflow-x: scroll !important;
+  margin-left:0% !important;
+}
+
+.form-control {
+
+  width:90%;
+}
+
+.form-row>.col, .form-row>[class*=col-] {
+  padding-right: 5px;
+  padding-left: 3%;
+}
+
+.col-sm-3{
+  margin-top:-100%;
+}
+
+#titnomecadeira {
+ margin-left:6%!important;
+}
+#sub-menu-cadeira {
+  margin-left: 50%;
+}
 }
 
  
@@ -628,11 +663,10 @@ a.btn.btn-outline-primary:active{
     position: absolute !important;
      }
 
-    .col-sm-9{
-      margin-left: -150px;
-      width: 100%;
-      position: absolute !important;
-    }
+     .col-sm-9 {
+      margin-left: 20%;
+      margin-top: -30%;
+  }
 
     
 .col-3{
@@ -687,6 +721,7 @@ a.btn.btn-outline-primary:active{
   background-color: white !important;
   font-size: 16px;
   font-weight: 150px;
+  overflow-x:auto;
 }
 
 .table-sm td, .table-sm th {
@@ -694,7 +729,7 @@ a.btn.btn-outline-primary:active{
 }
 
 .shift-requests-table{
- width: 70%;
+ width: max-content;
  margin-left: 15%;
  border:1px solid #dee2e6;
 }
@@ -723,12 +758,12 @@ font-size:16px;
 }
  
 #titnomecadeira{
-  margin-top:-5%;
+  margin-top:-10%;
   font-size:24px;
   margin-bottom: 1%;
-
-
+margin-left:2%;
   font-weight: 100px !important;
+  color:#ae6857;
 }
  
 /* --------------------------------------------- UPLOAD GRAdes------------------------------------------ *//* --------------------------------------------- SUBJECTS INFO STARTT ------------------------------------------ */

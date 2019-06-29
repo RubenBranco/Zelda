@@ -93,7 +93,7 @@ class ViewCurricularUnitData extends React.Component {
                 <Container id="sub-menu-cadeira">
                     <Tab.Container defaultActiveKey="objectives">
                         <Row>
-                            <Col sm={3}>
+                            <Col sm={4}>
                                 <Nav variant="pills" className="flex-column">
                                     <Nav.Item>
                                         <Nav.Link id="item-menu2" eventKey="objectives">{gettext("Objectives")}</Nav.Link>
