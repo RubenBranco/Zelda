@@ -219,7 +219,7 @@ p{
 
 .nomedoUser {
   padding-left: 10px;
-  display: inline;
+  display: -webkit-inline-box;;
   font-family: 'Karla', sans-serif;
   font-size: 120%;
 }
@@ -528,6 +528,12 @@ background-color: white;
 a.btn.btn-outline-primary:hover{
   color: white;
   background-color: #b77668;
+}
+.btn-group-sm>.btn, .btn-sm {
+  padding: .35rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .2rem;
 }
 
 a.btn.btn-outline-primary:active{
