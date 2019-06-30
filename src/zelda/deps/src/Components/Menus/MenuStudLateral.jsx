@@ -16,8 +16,8 @@ class MenuStudLateral extends React.Component {
                 <Dropdown.Item eventKey="4" href={window.viewProfileUrl}>{gettext("Profile")}</Dropdown.Item>
                 <Dropdown.Item eventKey="5" href={window.viewTimetableUrl}>{gettext("Schedule")}</Dropdown.Item>
                 <Dropdown.Header>{gettext("Management")}</Dropdown.Header>
-                <Dropdown.Item eventKey="6" href={window.viewSubjectSignupUrl}>{gettext("Curricular Units")}</Dropdown.Item>
-                <Dropdown.Item eventKey="7" href={window.viewShiftManagementUrl}>{gettext("Shifts")}</Dropdown.Item>
+                <Dropdown.Item eventKey="6" href={window.viewSubjectSignupUrl}>{gettext("Enroll/Unsubscribe in Curricular Units")}</Dropdown.Item>
+                <Dropdown.Item eventKey="7" href={window.viewShiftManagementUrl}>{gettext("Enroll / Unsubscribe in Shifts")}</Dropdown.Item>
             </Dropdown.Menu>
         );
     }
