@@ -65,14 +65,14 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                     prof_subjects.push({
                         id: subject[0].id,
                         designation: subject[0].designation,
-                    })
-                })
-                this.setState({ 
+                    });
+                });
+                this.setState({
                     prof_subjects,
                     chosenSubject: prof_subjects[0].id,
                 });
-            })
-        })
+            });
+        });
     }
 
     handleChange(event) {
@@ -122,16 +122,15 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                             search_results['tableEntryId'] = index + 1;
                             search_results['evaluation'] = gradesInfo.designation.toString();
                             search_results['grade'] = gradesInfo.grade.toString();
-                            
+
                             accessor.push(search_results);
-                            
+
                             this.setState({ search_results: accessor})
-                        })
-                    })                  
-                })
-                
-            })
-        })
+                        });
+                    });
+                });
+            });
+        });
     }
 
     render () {
@@ -242,7 +241,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                                 className="btn btn-primary search_students_attendances"
                                 onClick={this.handleSearchRequest}
                             >
-                                {gettext("Search")}{" "}
+                                {gettext("Search Grades")}{" "}
                                 <FontAwesomeIcon icon={faSearch} />
                             </Button>
                         </Form>
