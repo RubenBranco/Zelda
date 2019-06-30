@@ -120,7 +120,7 @@ class ShiftViewSet(viewsets.ModelViewSet):
 
         return user in subject.students.all() and \
             user not in shift.student.all() and \
-            shift.open and \
+            shift.is_open and \
             len(enrolled_lessons) < getattr(
                 subject.subject_spec,
                 f"{lesson_spec.c_type}_shifts",
