@@ -134,9 +134,10 @@ class SubjectShiftManagement extends React.Component {
             <div>
                 <MenuStudLateral />
                 <div className="resto-pagina2">
+                    <WebCrumbs pages={pages} />
                     <h2 className="title_main_menu">{gettext("Subject Shifts")}</h2>
 
-                    <WebCrumbs pages={pages} />
+
                     <hr />
                     <Row>
                         <Col lg="3" md="3" sm="3" xl="3" xs="3">
