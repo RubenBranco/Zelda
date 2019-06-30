@@ -55,30 +55,29 @@ class ViewProfile extends React.Component {
 
                         </Col>
                         <Col xs={2} md={5}>
-                            <Tabs defaultActiveKey="Personal Data" id="uncontrolled-tab-example">
-                                <Tab eventKey="Personal Data">
-                                    <Table id="profile_table" bordered hover responsive size='sm' className="row justify-content-md-center">
-                                        <tbody>
-                                            <tr>
-                                                <td>{gettext("Name")}</td>
-                                                <td>{this.state.userData.first_name + " " + this.state.userData.last_name}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>{gettext("Institutional Email")}</td>
-                                                <td>{this.state.userData.institutional_email}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>{gettext("Gender")}</td>
-                                                <td>{this.state.userData.gender == "m" ? 'Male' : 'Female'}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>{gettext("Country")}</td>
-                                                <td>{this.state.userData.country}</td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-                                </Tab>
-                            </Tabs>
+
+                            <Table id="profile_table" bordered hover responsive size='sm' className="row justify-content-md-center">
+                                <tbody>
+                                    <tr>
+                                        <td>{gettext("Name")}</td>
+                                        <td>{this.state.userData.first_name + " " + this.state.userData.last_name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{gettext("Institutional Email")}</td>
+                                        <td>{this.state.userData.institutional_email}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{gettext("Gender")}</td>
+                                        <td>{this.state.userData.gender == "m" ? 'Male' : 'Female'}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{gettext("Country")}</td>
+                                        <td>{this.state.userData.country}</td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+
+
                         </Col>
                     </Row>
                 </Container>
