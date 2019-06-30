@@ -43,14 +43,14 @@ class ViewProfile extends React.Component {
     render() {
         return (
             <div>
-                <h2 class="title_main_menu">{gettext("Profile")}</h2>
+                <h2 className="title_main_menu">{gettext("Profile")}</h2>
                 <Container id="container">
 
 
                     <hr />
 
                     <Image src={window.userImageUrl} id="img_user" />
-                    <Row class="rowjustify-content-md-center" id="rowProfile">
+                    <Row className="rowjustify-content-md-center" id="rowProfile">
                         <Col xs={2} md={3}>
 
 
@@ -58,7 +58,7 @@ class ViewProfile extends React.Component {
                         <Col xs={2} md={5}>
                             <Tabs defaultActiveKey="Personal Data" id="uncontrolled-tab-example">
                                 <Tab eventKey="Personal Data" title={gettext("Personal Data")}>
-                                    <Table bordered hover responsive size='sm' class="row justify-content-md-center">
+                                    <Table bordered hover responsive size='sm' className="row justify-content-md-center">
                                         <tbody>
                                             <tr>
                                                 <td>{gettext("Name")}</td>
@@ -82,7 +82,6 @@ class ViewProfile extends React.Component {
                             </Tabs>
                         </Col>
                     </Row>
-
                 </Container>
             </div>
         )

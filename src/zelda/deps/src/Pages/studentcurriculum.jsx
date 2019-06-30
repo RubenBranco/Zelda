@@ -57,7 +57,7 @@ class StudentCurriculum extends React.Component {
             <div>
                 <Navigator />
                 <MenuStudLateral />
-                <div class="resto-pagina2">
+                <div className="resto-pagina2">
 
                     <WebCrumbs pages={pages} />
                     <h2 className="title_main_menu">{gettext("Your Curriculum")}</h2>

@@ -17,11 +17,11 @@ class ProfCheckShiftlessStudents extends React.Component {
       <div>
         <Navigator />
         <MenuProfLateral />
-        <div class="resto-pagina2">
+        <div className="resto-pagina2">
         <WebCrumbs pages={pages} />
         <SearchShiftlessStudents />
         </div>
-      </div> 
+      </div>
     );
   }
 }

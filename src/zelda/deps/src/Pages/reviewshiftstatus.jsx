@@ -88,7 +88,7 @@ class ReviewShiftStatus extends React.Component {
             <div>
                 <Navbar />
                 <MenuProfLateral />
-                <div class="resto-pagina2">
+                <div className="resto-pagina2">
                     <WebCrumbs pages={pages} />
                     <h2 className="title_main_menu">{gettext("Shift Statuses")}</h2>
                     <Table className="shift-requests-table">

@@ -3,23 +3,3 @@
 {% load i18n %}
 
 {% block title %}{% trans 'Dashboard' %}{% endblock %}
-
-{% block footjs %}
-<script>
-    var viewProfileUrl = "{% url 'view_user' app_user.id %}";
-    {% if app_user.user_type == "Professor" %}
-        var viewAttendancesUrl = "{% url 'prof_view_attendances' %}";
-        var viewShiftRequestsUrl = "{% url 'professor_view_shift_xg_requests' %}";
-        var viewShiftlessStudentsUrl = "{% url 'prof_view_shiftless_students' %}";
-        var viewShiftStatusUrl = "{% url 'professor_review_shift_status' %}";
-        var uploadGradesUrl = "{% url 'professor_upload_grades' %}";
-    {% elif app_user.user_type == "Student" %}
-        var viewAttendancesUrl = "{% url 'student_view_attendances' %}";
-        var viewTimetableUrl = "{% url 'student_view_timetable' %}";
-        var viewGradesUrl = "{% url 'student_view_grades' %}";
-        var viewShiftManagementUrl = "{% url 'student_shift_management' %}";
-        var viewSubjectSignupUrl = "{% url 'student_subject_signup' %}";
-        var viewCurriculumUrl = "{% url 'student_curriculum' %}";
-    {% endif %}
-</script>
-{% endblock footjs %}

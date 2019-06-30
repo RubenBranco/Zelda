@@ -138,9 +138,9 @@ class ProfessorUploadGrades extends React.Component {
             <div>
                 <Navigator />
                 <MenuProfLateral />
-                <div class="resto-pagina2">
+                <div className="resto-pagina2">
                     <WebCrumbs pages={pages} />
-                    <h2 class="title_main_menu">{gettext("Upload Grades")}</h2>
+                    <h2 className="title_main_menu">{gettext("Upload Grades")}</h2>
                     <Form id="inserir_notas">
                         <Form.Row>
                             <Form.Group as={Col} controlId="Subjects">
