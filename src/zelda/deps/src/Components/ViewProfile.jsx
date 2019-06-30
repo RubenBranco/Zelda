@@ -49,7 +49,6 @@ class ViewProfile extends React.Component {
 
                     <hr />
 
-                    <Image src={window.userImageUrl} id="img_user" />
                     <Row className="rowjustify-content-md-center" id="rowProfile">
                         <Col xs={2} md={3}>
 
@@ -57,8 +56,8 @@ class ViewProfile extends React.Component {
                         </Col>
                         <Col xs={2} md={5}>
                             <Tabs defaultActiveKey="Personal Data" id="uncontrolled-tab-example">
-                                <Tab eventKey="Personal Data" title={gettext("Personal Data")}>
-                                    <Table bordered hover responsive size='sm' className="row justify-content-md-center">
+                                <Tab eventKey="Personal Data">
+                                    <Table id="profile_table" bordered hover responsive size='sm' className="row justify-content-md-center">
                                         <tbody>
                                             <tr>
                                                 <td>{gettext("Name")}</td>

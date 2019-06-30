@@ -30,9 +30,7 @@ p{
   background-color: #ae6857 ;
 }
 
-.table{
-  background-color:white;
-}
+
 
 #login > #img {
   float: right !important;
@@ -427,6 +425,10 @@ display: block;
 
 }
 
+#profile_table{
+  background-color: transparent !important;
+}
+
 
 /* --------------------------------------------- profile END ---------------------------------  */
 
@@ -762,6 +764,7 @@ a.btn.btn-outline-primary:active{
  width: max-content;
  margin-left: 15%;
  border:1px solid #dee2e6;
+ background-color: white;
 }
 
 .list-group list-group-flush{
