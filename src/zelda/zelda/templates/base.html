@@ -59,6 +59,7 @@
             var viewShiftlessStudentsUrl = "{% url 'prof_view_shiftless_students' %}";
             var viewShiftStatusUrl = "{% url 'professor_review_shift_status' %}";
             var uploadGradesUrl = "{% url 'professor_upload_grades' %}";
+            var viewGradesUrl = "{% url 'professor_view_grades' %}";
         {% elif app_user.user_type == "Student" %}
             var viewAttendancesUrl = "{% url 'student_view_attendances' %}";
             var viewTimetableUrl = "{% url 'student_view_timetable' %}";
