@@ -5,8 +5,6 @@ import Image from "react-bootstrap/Image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import LanguageSwitch from './LanguageSwitch.jsx';
-import Navitem from 'react-bootstrap/NavLink';
-import NavLink from "react-bootstrap/NavLink";
 
 
 class Navigator extends React.Component {
