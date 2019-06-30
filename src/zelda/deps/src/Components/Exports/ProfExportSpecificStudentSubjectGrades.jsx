@@ -40,7 +40,6 @@ class ProfExportSpecificStudentSubjectGrades extends React.Component {
                 <table hidden={true} id="ProfExportStudentsSubjectGrades-xls" >
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>{gettext('Evaluation')}</th>
                             <th>{gettext('Grade')}</th>
                             <th>{gettext('Student First Name')}</th>
@@ -53,8 +52,7 @@ class ProfExportSpecificStudentSubjectGrades extends React.Component {
                     <tbody>
                         {this.props.results.map(result => {
                             return (
-                                <tr key={result.tableEntryId}>
-                                    <td>{result.tableEntryId}</td>
+                                <tr>
                                     <td>{result.evaluation}</td>
                                     <td>{result.grade}</td>
                                     <td>{result.studentFirstName}</td>

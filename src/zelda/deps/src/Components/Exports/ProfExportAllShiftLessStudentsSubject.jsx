@@ -19,7 +19,6 @@ class ProfExportAllShiftLessStudentSubject extends React.Component {
                 <table hidden={true} id="ProfExportAllShiftLessStudentSubject-xls" >
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>{gettext('Student Number')}</th>
                             <th>{gettext('Student Name')}</th>
                             <th>{gettext('Student Email')}</th>
@@ -28,8 +27,7 @@ class ProfExportAllShiftLessStudentSubject extends React.Component {
                     <tbody>
                         {this.props.results.map(result => {
                             return (
-                                <tr key={result.tableEntryId}>
-                                    <td>{result.tableEntryId}</td>
+                                <tr>
                                     <td>{result.student_number}</td>
                                     <td>{result.name}</td>
                                     <td>{result.institutional_email}</td>

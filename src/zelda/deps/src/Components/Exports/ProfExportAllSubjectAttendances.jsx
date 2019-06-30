@@ -19,7 +19,6 @@ class ProfExportAllSubjectAttendances extends React.Component{
                 <table hidden={true} id="SubjectAllAttendances-xls" >
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>{gettext('Student Number')}</th>
                             <th>{gettext('Student Name')}</th>
                             <th>{gettext('Total Attendances')}</th>
@@ -29,8 +28,7 @@ class ProfExportAllSubjectAttendances extends React.Component{
                     <tbody>
                         {this.props.results.map(result => {
                             return (
-                                <tr key={result.tableEntryId}>
-                                    <td>{result.tableEntryId}</td>
+                                <tr>
                                     <td>{result.student_number}</td>
                                     <td>{result.name}</td>
                                     <td>{result.attendances}</td>

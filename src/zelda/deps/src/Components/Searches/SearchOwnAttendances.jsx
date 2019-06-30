@@ -167,17 +167,6 @@ class SearchOwnAttendances extends React.Component {
 
         const columns = [
             {
-                Header: '#',
-                accessor: 'tableEntryId',
-                filterable: true,
-                style: {
-                    textAlign: 'right',
-                },
-                width: 100,
-                maxWidth: 100,
-                minWidth: 100,
-            },
-            {
                 Header: gettext('Subject'),
                 accessor: 'subject_designation',
                 style: {
@@ -258,7 +247,6 @@ class SearchOwnAttendances extends React.Component {
                     <Container className="resultadosownat">
                         <ReactTable
                             noDataText={gettext('No Results Found')}
-                            keyField='#'
                             data={this.state.results}
                             resolveData={data => data.map(row => row)}
                             columns={columns}
