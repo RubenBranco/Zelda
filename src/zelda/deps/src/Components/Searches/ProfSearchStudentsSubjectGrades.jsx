@@ -13,7 +13,7 @@ import 'react-table/react-table.css'
 import getCsrfToken from "../../functions/csrf.js";
 
 class ProfSearchStudentsSubjectGrades extends React.Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             userid: null,
@@ -98,7 +98,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
 
     handleSearchRequest() {
         let accessor = [];
-        fetch(`/api/subject/${this.state.chosenSubject}/grades/` , {
+        fetch(`/api/subject/${this.state.chosenSubject}/grades/`, {
             method: 'GET',
             headers: {
                 "X-CSRFToken": this.csrfmiddlewaretoken,
@@ -107,7 +107,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             response.json().then(data => {
                 let search_results = {};
                 data.map((gradesInfo, index) => {
-                    fetch(`/api/appuser/${gradesInfo.student}/` ,{
+                    fetch(`/api/appuser/${gradesInfo.student}/`, {
                         method: 'GET',
                         headers: {
                             "X-CSRFToken": this.csrfmiddlewaretoken,
@@ -125,7 +125,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
 
                             accessor.push(search_results);
 
-                            this.setState({ search_results: accessor})
+                            this.setState({ search_results: accessor })
                         });
                     });
                 });
@@ -133,7 +133,8 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
         });
     }
 
-    render () {
+    render() {
+
 
         const columns = [
             {
@@ -214,11 +215,13 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             },
         ];
 
-        return(
-            <div className="resto-pagina">
+        return (
+            <div>
+                <h2 className="title_main_menu">{gettext("Consult Student Grades")}</h2>
+
                 <Container>
                     <Container>
-                        <h2 className="title_main_menu">{gettext("Consult Student Grades")}</h2>
+
                         <hr />
                         <Form>
                             <Form.Row>
@@ -257,18 +260,18 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                             defaultPageSize={5}
                             filterable
                         >
-                        {
-                            this.state.search_results.length > 0 ?
-                                (state, filtredData, instace) => {
-                                    this.reactTable = state.pageRows.map(result => { return result._original });
-                                    return (
-                                        <div>
-                                            {filtredData()}
-                                            <ProfExportSpecificStudentSubjectGrades results={this.reactTable} />
-                                        </div>
-                                    );
-                                } : null
-                        }
+                            {
+                                this.state.search_results.length > 0 ?
+                                    (state, filtredData, instace) => {
+                                        this.reactTable = state.pageRows.map(result => { return result._original });
+                                        return (
+                                            <div>
+                                                {filtredData()}
+                                                <ProfExportSpecificStudentSubjectGrades results={this.reactTable} />
+                                            </div>
+                                        );
+                                    } : null
+                            }
                         </ReactTable>
                     </Container>
                 </Container>
