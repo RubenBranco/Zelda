@@ -27,15 +27,7 @@ class Navigator extends React.Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Item>
-                            <Image
-                                alt=""
-                                src={window.userImageUrl}
-                                width="30"
-                                height="30"
-                                className="d-inline-block align-top navImage"
-                            />
-                        </Nav.Item>
+
                         <Nav.Item>
                             <Navbar.Text className="nomedoUser">{window.firstName} {window.lastName}</Navbar.Text>
                         </Nav.Item>
