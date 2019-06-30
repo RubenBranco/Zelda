@@ -93,7 +93,6 @@ class SearchShiftlessStudents extends React.Component {
                     let shiftlessStudentsData = [];
                     data.map((student, index) => {
                         shiftlessStudentsData.push({
-                            tableEntryId: index + 1,
                             first_name: student.first_name,
                             last_name: student.last_name,
                             name: student.first_name + " " + student.last_name,
@@ -124,18 +123,6 @@ class SearchShiftlessStudents extends React.Component {
     render() {
 
         const columns = [
-            {
-                Header: '#',
-                accessor: 'tableEntryId',
-                filterable: true,
-                sortable: true,
-                style: {
-                    textAlign: 'right',
-                },
-                width: 100,
-                maxWidth: 100,
-                minWidth: 100,
-            },
             {
                 Header: gettext('Student Number'),
                 accessor: 'student_number',
@@ -244,7 +231,6 @@ class SearchShiftlessStudents extends React.Component {
 
                     <ReactTable
                         noDataText={gettext('No Results Found')}
-                        keyField='#'
                         data={this.state.shiftlessStudentsData}
                         resolveData={data => data.map(row => row)}
                         columns={columns}

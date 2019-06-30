@@ -19,7 +19,6 @@ class ProfExportSpecificStudentAttendances extends React.Component{
                 <table hidden={true} id="SubjectSpecificStudentAttendances-xls" >
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>{gettext('Class Type')}</th>
                             <th>{gettext('Date')}</th>
                         </tr>
@@ -27,8 +26,7 @@ class ProfExportSpecificStudentAttendances extends React.Component{
                     <tbody>
                         {this.props.studentAttendances.map(studentAttendance => {
                             return (
-                                <tr key={studentAttendance.tableEntryId}>
-                                    <td>{studentAttendance.tableEntryId}</td>
+                                <tr>
                                     <td>{studentAttendance.lesson_type}</td>
                                     <td>{studentAttendance.date}</td>
                                 </tr>

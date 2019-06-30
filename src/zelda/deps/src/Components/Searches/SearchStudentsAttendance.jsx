@@ -207,17 +207,6 @@ class SearchStudentsAttendance extends React.Component {
 
         const columns = [
             {
-                Header: '#',
-                accessor: 'tableEntryId',
-                filterable: true,
-                style: {
-                    textAlign: 'right',
-                },
-                width: 100,
-                maxWidth: 100,
-                minWidth: 100,
-            },
-            {
                 Header: gettext('Student Number'),
                 accessor: 'student_number',
                 filterable: true,
@@ -274,16 +263,6 @@ class SearchStudentsAttendance extends React.Component {
 
         const columnsModal = [
             {
-                Header: '#',
-                accessor: 'tableEntryId',
-                style: {
-                    textAlign: 'right',
-                },
-                width: 100,
-                maxWidth: 100,
-                minWidth: 100,
-            },
-            {
                 Header: gettext('Class Type'),
                 accessor: 'lesson_type',
                 style: {
@@ -314,7 +293,6 @@ class SearchStudentsAttendance extends React.Component {
                     <Modal.Body>
                         <ReactTable
                             noDataText={gettext('No Results Found')}
-                            keyField='#'
                             data={this.state.studentAttendances}
                             resolveData={data => data.map(row => row)}
                             columns={columnsModal}
@@ -413,7 +391,6 @@ class SearchStudentsAttendance extends React.Component {
                 <Container>
                     <ReactTable
                         noDataText={gettext('No Results Found')}
-                        keyField='#'
                         data={this.state.results}
                         resolveData={data => data.map(row => row)}
                         columns={columns}

@@ -119,7 +119,6 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                             search_results['studentFirstName'] = data.first_name.toString();
                             search_results['studentLastName'] = data.last_name.toString();
                             search_results['sutdentInstitutionalEmail'] = data.institutional_email.toString();
-                            search_results['tableEntryId'] = index + 1;
                             search_results['evaluation'] = gradesInfo.designation.toString();
                             search_results['grade'] = gradesInfo.grade.toString();
 
@@ -137,18 +136,6 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
 
 
         const columns = [
-            {
-                Header: '#',
-                accessor: 'tableEntryId',
-                sortable: true,
-                filterable: true,
-                style: {
-                    textAlign: 'right',
-                },
-                width: 50,
-                maxWidth: 50,
-                minWidth: 50,
-            },
             {
                 Header: gettext('Evaluation'),
                 accessor: 'evaluation',
@@ -253,7 +240,6 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                     <Container>
                         <ReactTable
                             noDataText={gettext('No Results Found')}
-                            keyField='#'
                             data={this.state.search_results}
                             resolveData={data => data.map(row => row)}
                             columns={columns}
