@@ -1,2 +1,2 @@
-number,call,entry_grade,statute,course,lective_year,faculty,nif,n_cc,dob,institutional_email,contact,emergency_contact,professional_occupation,country,marital_status,gender,username,first_name,last_name,email
-111231,1,150.0,"worker",1,"2019-03-16",1,1027850,23451493,"2000-12-20","fc12041@fcul.com",911111111,912222222,"fireman","Portugal","single","m","fc48510","Ze","Pombo","ze@pombo.com"
+number,call,entry_grade,statute,course,faculty,nif,n_cc,dob,institucional_email,contact,emergency_contact,professional_occupation,country,marital_status,gender,username,first_name,last_name,email
+919191,1,150.0,"worker",1,1,767676767,76767676,"20/12/2000","fc919191@fcul.com",911111111,912222222,"fireman","Portugal","single","m","fc919191","Ze","Pombo","ze91@pombo.com"
