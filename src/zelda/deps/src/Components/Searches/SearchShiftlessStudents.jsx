@@ -64,7 +64,7 @@ class SearchShiftlessStudents extends React.Component {
                 data.map((subjectList, index) => {
                     subjects.push(
                         {
-                            id: subjectList[index].subject,
+                            id: subjectList[0].subject,
                             designation: subjectList.map(subject =>
                                 subject.designation
                             ).join(" / "),
