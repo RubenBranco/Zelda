@@ -596,6 +596,7 @@ a.btn.btn-outline-primary:active{
   .col-sm-9 {
     margin-left: 80% !important;
     margin-top: -150% !important;
+    width: min-content;
 }
   .breadcrumb{
     margin-top:4%;
@@ -649,7 +650,7 @@ a.btn.btn-outline-primary:active{
 }
 
 .col-sm-3{
-  margin-top:-100%;
+  margin-top:0%;
 }
 
 #titnomecadeira {
