@@ -30,6 +30,6 @@ class DBBackup(object):
         backup_dir = settings.DBBACKUP_DIR
 
         for backup in os.listdir(backup_dir):
-            time, _ = backup.split(".")
+            time, _, _ = backup.split(".")
             if now - settings.ARCHIVE_DELTA > datetime.strptime(time, settings.DBBACKUP_DATE_FORMAT):
                 os.remove(os.path.join(backup_dir, backup))
