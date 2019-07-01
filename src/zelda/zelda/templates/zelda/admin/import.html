@@ -1,4 +1,4 @@
-<form method="POST" action="./course" enctype="multipart/form-data">
+<form method="POST" action="./{{ model }}" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="file" />
     <input type="submit" />
