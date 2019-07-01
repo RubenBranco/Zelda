@@ -114,6 +114,7 @@ class ShiftViewSet(viewsets.ModelViewSet):
             return False
         subject = shift.subject
         enrolled_lessons = LessonSpecification.objects.filter(
+            shift__subject=subject,
             shift__student=user,
             c_type=lesson_spec.c_type,
         ).exclude(id=lesson_spec.id)
@@ -169,13 +170,16 @@ class ShiftExchangeRequestViewSet(viewsets.ModelViewSet):
                 )
                 shift_ctype = LessonSpecification.objects.filter(shift=xg_request.shift)[0].c_type
 
+                old_shift = None
+
                 for shift in enrolled_shifts:
                     _c_type = LessonSpecification.objects.filter(shift=shift)[0].c_type
                     if _c_type == shift_ctype:
                         old_shift = shift
                         break
 
-                old_shift.student.remove(xg_request.student)
+                if old_shift is not None:
+                    old_shift.student.remove(xg_request.student)
                 xg_request.shift.student.add(xg_request.student)
 
         return Response(status=200)

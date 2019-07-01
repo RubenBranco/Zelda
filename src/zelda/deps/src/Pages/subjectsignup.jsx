@@ -136,7 +136,7 @@ class SubjectSignup extends React.Component {
                                     <th>{gettext("Name")}</th>
                                     <th>{gettext("Status")}</th>
                                     <th>{gettext("Course Year")}</th>
-                                    <th>{gettext("Carried Out In")}</th>
+                                    <th>{gettext("Semester")}</th>
                                     <th>{gettext("ECTS")}</th>
                                     <th>{gettext("Action")}</th>
                                     <th></th>
@@ -149,7 +149,7 @@ class SubjectSignup extends React.Component {
                                             <tr>
                                                 <td>{index + 1}</td>
                                                 <td>{this.state.subjects[subjectId].course_subject.designation}</td>
-                                                <td>{this.state.subjects[subjectId].is_enrolled.toString() ? gettext("Enrolled") : gettext("Not Enrolled")}</td>
+                                                <td>{this.state.subjects[subjectId].is_enrolled.toString() === "true" ? gettext("Enrolled") : gettext("Not Enrolled")}</td>
                                                 <td>{this.state.subjects[subjectId].course_subject.course_year}</td>
                                                 <td>{this.state.subjects[subjectId].subject.semester}</td>
                                                 <td>{this.state.subjects[subjectId].subject_spec.ects}</td>
@@ -161,7 +161,10 @@ class SubjectSignup extends React.Component {
                                                             null
                                                         :
                                                         this.canEnroll(this.state.subjects[subjectId]) ?
+                                                            Number(this.state.subjects[subjectId].subject.semester) >= Number(this.state.currentSemester) ?
                                                             <Button onClick={this.enrollOrUnenrollSubject.bind(this, this.state.subjects[subjectId], true)} variant="outline-success">{gettext("Enroll")}</Button>
+                                                            :
+                                                            null
                                                             :
                                                             null
                                                     }

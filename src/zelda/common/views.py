@@ -119,14 +119,14 @@ class LogoutView(View):
 class ImportEntitiesView(TemplateView):
     template_name = "zelda/admin/import.html"
 
-    @staff_member_required
+    @method_decorator(staff_member_required)
     def get(self, request, model):
         return render(
             request,
             self.template_name,
         )
 
-    @staff_member_required
+    @method_decorator(staff_member_required)
     def post(self, request, model):
         import_csv(
             request.FILES.get('file'),
