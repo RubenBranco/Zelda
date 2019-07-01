@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-30 22:06+0000\n"
-"PO-Revision-Date: 2019-06-30 23:10+0100\n"
+"POT-Creation-Date: 2019-06-30 23:26+0000\n"
+"PO-Revision-Date: 2019-07-01 00:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: deps/static/js/frontpage.js:12 deps/static/js/profattendances.js:75
 #: deps/static/js/professorgrades.js:67
@@ -386,7 +386,7 @@ msgstr "Procurar Notas"
 
 #: deps/static/js/professoruploadgrades.js:67
 msgid "Grades uploaded successfully"
-msgstr "Notas importadas com sucesso"
+msgstr "Notas inseridas com sucesso"
 
 #: deps/static/js/professoruploadgrades.js:67
 #: deps/static/js/reviewshiftexchangerequests.js:67
@@ -413,7 +413,7 @@ msgstr ""
 
 #: deps/static/js/professoruploadgrades.js:67
 msgid "Upload"
-msgstr "Importar"
+msgstr "Inserir"
 
 #: deps/static/js/reviewshiftexchangerequests.js:67
 msgid "accepted"
