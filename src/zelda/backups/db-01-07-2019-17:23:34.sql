@@ -1220,7 +1220,7 @@ INSERT INTO timetable_lessonspecification VALUES(10,'monday','17:30:00',120,'lab
 INSERT INTO timetable_lessonspecification VALUES(11,'tuesday','08:30:00',60,'theory',3,11);
 INSERT INTO timetable_lessonspecification VALUES(12,'tuesday','09:30:00',120,'practice',1,12);
 INSERT INTO timetable_lessonspecification VALUES(13,'tuesday','11:30:00',120,'practice',1,13);
-INSERT INTO timetable_lessonspecification VALUES(14,'monday','15:30:00',120,'lab',2,14);
+INSERT INTO timetable_lessonspecification VALUES(14,'tuesday','15:30:00',120,'lab',2,14);
 INSERT INTO timetable_lessonspecification VALUES(15,'tuesday','17:30:00',120,'lab',2,15);
 INSERT INTO timetable_lessonspecification VALUES(16,'wednesday','08:30:00',60,'theory',3,16);
 INSERT INTO timetable_lessonspecification VALUES(17,'wednesday','09:30:00',120,'practice',1,17);
@@ -1270,7 +1270,7 @@ INSERT INTO timetable_lessonspecification VALUES(60,'monday','17:30:00',120,'lab
 INSERT INTO timetable_lessonspecification VALUES(61,'tuesday','08:30:00',60,'theory',7,61);
 INSERT INTO timetable_lessonspecification VALUES(62,'tuesday','09:30:00',120,'practice',8,62);
 INSERT INTO timetable_lessonspecification VALUES(63,'tuesday','11:30:00',120,'practice',8,63);
-INSERT INTO timetable_lessonspecification VALUES(64,'monday','15:30:00',120,'lab',9,64);
+INSERT INTO timetable_lessonspecification VALUES(64,'tuesday','15:30:00',120,'lab',9,64);
 INSERT INTO timetable_lessonspecification VALUES(65,'tuesday','17:30:00',120,'lab',9,65);
 INSERT INTO timetable_lessonspecification VALUES(66,'wednesday','08:30:00',60,'theory',7,66);
 INSERT INTO timetable_lessonspecification VALUES(67,'wednesday','09:30:00',120,'practice',8,67);
@@ -1290,7 +1290,7 @@ INSERT INTO timetable_lessonspecification VALUES(80,'friday','17:30:00',120,'lab
 INSERT INTO timetable_lessonspecification VALUES(81,'monday','08:30:00',60,'theory',10,81);
 INSERT INTO timetable_lessonspecification VALUES(82,'monday','09:30:00',120,'practice',11,82);
 INSERT INTO timetable_lessonspecification VALUES(83,'monday','11:30:00',120,'practice',11,83);
-INSERT INTO timetable_lessonspecification VALUES(84,'tuesday','15:30:00',120,'lab',12,84);
+INSERT INTO timetable_lessonspecification VALUES(84,'monday','15:30:00',120,'lab',12,84);
 INSERT INTO timetable_lessonspecification VALUES(85,'monday','17:30:00',120,'lab',12,85);
 INSERT INTO timetable_lessonspecification VALUES(86,'tuesday','08:30:00',60,'theory',10,86);
 INSERT INTO timetable_lessonspecification VALUES(87,'tuesday','09:30:00',120,'practice',11,87);
