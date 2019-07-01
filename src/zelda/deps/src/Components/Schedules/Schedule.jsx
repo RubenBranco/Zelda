@@ -51,7 +51,7 @@ class Schedule extends React.Component {
         let activeStart = moment(event.view.activeStart);
         let events = [];
         this.props.classes.map(_class => {
-            let classDay = activeStart.add(this.deltas[_class.weekday]);
+            let classDay = moment(activeStart).add(this.deltas[_class.weekday]);
             let classStart = classDay.add(moment.duration(_class.time));
             let classDuration = moment.duration(_class.duration, 'minutes');
             let classEnd = classStart.add(classDuration);
@@ -105,9 +105,6 @@ class Schedule extends React.Component {
                     windowResize =" function(view) {
                         alert('The calendar has adjusted to a window resize');
                       }"
-
-
-
                 />
 
             </div>
