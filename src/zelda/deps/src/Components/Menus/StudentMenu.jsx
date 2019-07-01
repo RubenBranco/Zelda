@@ -75,7 +75,7 @@ class StudentMenu extends React.Component {
                                 </ListGroup.Item>
                                 <ListGroup.Item action><a href={window.viewProfileUrl}>{gettext("Profile")}</a></ListGroup.Item>
                                 <ListGroup.Item action>
-                                    <a href={window.viewTimetableUrl}>{gettext("Personal")}</a>
+                                    <a href={window.viewTimetableUrl}>{gettext("Schedule")}</a>
                                 </ListGroup.Item>
                             </ListGroup>
 
