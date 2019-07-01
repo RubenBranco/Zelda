@@ -156,7 +156,6 @@ class SearchShiftlessStudents extends React.Component {
             {
                 Header: gettext('Information'),
                 Cell: props => {
-                    console.log(props);
                     return (
                         <OverlayTrigger
                             trigger="click"

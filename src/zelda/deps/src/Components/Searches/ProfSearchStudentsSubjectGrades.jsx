@@ -97,7 +97,6 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
     }
 
     handleSearchRequest() {
-        let accessor = [];
         fetch(`/api/subject/${this.state.chosenSubject}/grades/`, {
             method: 'GET',
             headers: {
@@ -105,8 +104,8 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             },
         }).then(response => {
             response.json().then(data => {
-                let search_results = {};
                 data.map((gradesInfo, index) => {
+                    let result = {}
                     fetch(`/api/appuser/${gradesInfo.student}/`, {
                         method: 'GET',
                         headers: {
@@ -114,17 +113,18 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
                         },
                     }).then(response => {
                         response.json().then(data => {
-                            search_results['subjectId'] = this.state.chosenSubject;
-                            search_results['studentNumber'] = gradesInfo.student;
-                            search_results['studentFirstName'] = data.first_name.toString();
-                            search_results['studentLastName'] = data.last_name.toString();
-                            search_results['sutdentInstitutionalEmail'] = data.institutional_email.toString();
-                            search_results['evaluation'] = gradesInfo.designation.toString();
-                            search_results['grade'] = gradesInfo.grade.toString();
+                            result['subjectId'] = this.state.chosenSubject;
+                            result['studentNumber'] = gradesInfo.student;
+                            result['studentFirstName'] = data.first_name.toString();
+                            result['studentLastName'] = data.last_name.toString();
+                            result['studentInstitutionalEmail'] = data.institutional_email.toString();
+                            result['evaluation'] = gradesInfo.designation.toString();
+                            result['grade'] = gradesInfo.grade.toString();
+                            result['observations'] = gradesInfo.observations;
 
-                            accessor.push(search_results);
-
-                            this.setState({ search_results: accessor })
+                            this.setState(prevState => ({
+                                search_results: [...prevState.search_results, result],
+                            }));
                         });
                     });
                 });
@@ -189,7 +189,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             },
             {
                 Header: gettext('Student Email'),
-                accessor: 'sutdentInstitutionalEmail',
+                accessor: 'studentInstitutionalEmail',
                 filterable: false,
                 style: {
                     textAlign: 'right',
@@ -197,6 +197,7 @@ class ProfSearchStudentsSubjectGrades extends React.Component {
             },
             {
                 Header: gettext('Observations'),
+                accessor: 'observations',
                 sortable: false,
                 filterable: false,
             },

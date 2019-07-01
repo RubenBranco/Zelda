@@ -85,6 +85,7 @@ class SearchStudentSubjectGrades extends React.Component {
                             designation: subject_grades.designation,
                             subject: subject_grades.subject,
                             percentage: subject_grades.percentage,
+                            observations: subject_grades.observations,
                         })
                     })
                     this.setState({ student_grades });
@@ -107,8 +108,6 @@ class SearchStudentSubjectGrades extends React.Component {
     }
 
     render() {
-
-        let finalGrade = 0;
         const columns = [
             {
                 Header: gettext('Evaluation'),
@@ -149,7 +148,7 @@ class SearchStudentSubjectGrades extends React.Component {
                 Header: gettext("To Final Grade"),
                 Cell: props => {
                     return (
-                        <p>{props.original.grade * (props.original.percentage / 100)}</p>
+                        <p>{(props.original.grade * (props.original.percentage / 100)).toFixed(2)}</p>
                     )
                 },
                 sortable: false,
@@ -163,11 +162,11 @@ class SearchStudentSubjectGrades extends React.Component {
             },
             {
                 Header: gettext('Observations'),
+                accessor: 'observations',
                 sortable: false,
                 filterable: false,
             },
         ]
-
         return (
             <div>
             <h2 className="title_main_menu">{gettext("Grades")}</h2>
@@ -185,17 +184,6 @@ class SearchStudentSubjectGrades extends React.Component {
                                 {this.state.student_subjects.map(subject =>
                                     <option>{subject.designation}</option>
                                 )}
-                            </Form.Control>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group id="final_grade" as={Row}>
-                        <Form.Label column sm="2">{gettext("Current Final Grade")}</Form.Label>
-                        <Col sm="5">
-                            <Form.Control plaintext readOnly defaultValue={
-                                this.state.student_grades.map(grade =>
-                                    finalGrade += grade.grade * (grade.percentage / 100)
-                                )
-                            }  >
                             </Form.Control>
                         </Col>
                     </Form.Group>

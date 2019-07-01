@@ -138,6 +138,7 @@ class Grade(models.Model):
     grade = models.FloatField()
     percentage = models.FloatField()
     designation = models.CharField(max_length=100)
+    observations = models.TextField(blank=True, null=True)
 
 
 class FinalGrade(models.Model):

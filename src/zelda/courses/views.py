@@ -341,20 +341,48 @@ class SubjectViewSet(ModelViewSet):
         if request.content_type == "application/json" and request.data:
             for grade in request.data['grades']:
                 student = Student.objects.get(number=grade['student_number'])
-                potential_grade = FinalGrade.objects.filter(subject=subject, student=student).first()
+                designation = grade['designation']
+                grade_score = grade['grade']
+                percentage = grade['percentage']
+                observations = grade['observations']
 
-                if potential_grade is not None:
-                    potential_grade.eecc = grade['eecc']
-                    potential_grade.grade = grade['grade']
-                    potential_grade.save()
+                previous_grade = Grade.objects.filter(
+                    subject=subject,
+                    student=student,
+                    designation=designation,
+                ).first()
+
+                if previous_grade is not None:
+                    previous_grade.grade = grade_score
+                    previous_grade.percentage = percentage
+                    previous_grade.observations = observations
+                    previous_grade.save()
                 else:
-                    new_grade = FinalGrade(
+                    new_grade = Grade(
                         subject=subject,
                         student=student,
-                        eecc=grade['eecc'],
-                        grade=grade['grade']
+                        designation=designation,
+                        grade=grade_score,
+                        percentage=percentage,
+                        observations=observations,
                     )
                     new_grade.save()
+
+                if percentage == 100.0:
+                    previous_final_grade = FinalGrade.objects.filter(subject=subject, student=student).first()
+
+                    if previous_final_grade is not None:
+                        previous_final_grade.eecc = grade['eecc']
+                        previous_final_grade.grade = grade_score
+                        previous_final_grade.save()
+                    else:
+                        new_final_grade = FinalGrade(
+                            subject=subject,
+                            student=student,
+                            eecc=grade['eecc'],
+                            grade=grade_score
+                        )
+                        new_final_grade.save()
 
         return Response(status=200)
 

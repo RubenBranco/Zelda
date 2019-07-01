@@ -88,14 +88,21 @@ class ProfessorUploadGrades extends React.Component {
         let grades = [];
         text.split("\n").map(grade => {
             let fields = grade.split(",");
-            if (fields.length !== 3) {
+            if ([5, 6].indexOf(fields.length) === -1) {
                 throw new this.ParsingException();
             }
-            grades.push({
+            grade = {
                 "student_number": Number(fields[0]),
-                "eecc": fields[1],
-                "grade": Number(fields[2]),
-            });
+                "designation": fields[1],
+                "percentage": Number(fields[2]),
+                "grade": Number(fields[3]),
+                "observations": fields[4],
+
+            };
+            if (Number(fields[2]) === 100.0) {
+                grade["eecc"] = fields[5];
+            }
+            grades.push(grade);
         });
         return grades;
     }
@@ -163,7 +170,7 @@ class ProfessorUploadGrades extends React.Component {
                                 <Form.Label>{gettext("Grades")}</Form.Label>
                                 <Form.Control as="textarea" rows="4" id="gradeText" />
                                 <Form.Text className="text-muted">
-                                    {gettext("One grade per line, each value seperated by a comma(\",\"). The format is the following: student number, eecc, grade")}
+                                    {gettext("One grade per line, each value seperated by a comma(\",\"). The format is the following: student number, evaluation, percentage (100 if final grade), grade, observations, eecc (if final grade).")}
                                 </Form.Text>
                             </Form.Group>
                         </Form.Row>
