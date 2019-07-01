@@ -114,6 +114,7 @@ class ShiftViewSet(viewsets.ModelViewSet):
             return False
         subject = shift.subject
         enrolled_lessons = LessonSpecification.objects.filter(
+            shift__subject=subject,
             shift__student=user,
             c_type=lesson_spec.c_type,
         ).exclude(id=lesson_spec.id)
