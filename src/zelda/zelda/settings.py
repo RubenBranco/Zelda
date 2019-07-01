@@ -266,8 +266,8 @@ CELERY_BEAT_SCHEDULE = {
     'backup-db': {
         'task': 'db_management.tasks.backup_db_task',
         'schedule': crontab(
-            minute=0,
-            hour=','.join(BACKUP_TIMES),
+            minute=15,
+            hour='*',
             day_of_week='*',
             day_of_month='*',
             month_of_year='*',
