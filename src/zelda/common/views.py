@@ -124,6 +124,9 @@ class ImportEntitiesView(TemplateView):
         return render(
             request,
             self.template_name,
+            context=dict(
+                model=model,
+            ),
         )
 
     @method_decorator(staff_member_required)
