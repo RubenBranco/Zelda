@@ -212,7 +212,7 @@ class SearchShiftlessStudents extends React.Component {
                                 onChange={this.handleSubjectChange}
                             >
                                 {this.state.subjects.map(subject =>
-                                    <option>{subject.designation}</option>
+                                    <option value={subject.id} >{subject.designation}</option>
                                 )}
                             </Form.Control>
                         </Form.Group>

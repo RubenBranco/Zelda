@@ -182,7 +182,7 @@ class SearchStudentSubjectGrades extends React.Component {
                                 onChange={this.handleSubjectChange}
                             >
                                 {this.state.student_subjects.map(subject =>
-                                    <option>{subject.designation}</option>
+                                    <option value={subject.id}>{subject.designation}</option>
                                 )}
                             </Form.Control>
                         </Col>
